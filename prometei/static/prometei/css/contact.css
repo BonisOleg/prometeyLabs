@@ -1,0 +1,108 @@
+/* Styles for the Contact Page */
+
+.contact-section .container {
+    max-width: 800px;
+    /* Limit width for better readability */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-section .section-title {
+    margin-bottom: 1rem;
+}
+
+.contact-section .section-subtitle {
+    margin-bottom: 3rem;
+    color: var(--theme-subtext);
+}
+
+.contact-form-container {
+    background-color: var(--theme-surface);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px var(--theme-shadow);
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--theme-text);
+}
+
+.contact-form input[type="text"],
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 8px;
+    background-color: var(--theme-surface-alt);
+    color: var(--theme-text);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+[data-theme="dark"] .contact-form input[type="text"],
+[data-theme="dark"] .contact-form textarea {
+    border-color: var(--color-black-100);
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--theme-accent-alt);
+    box-shadow: 0 0 0 2px rgba(var(--theme-accent-alt-rgb, 116, 44, 240), 0.2);
+}
+
+.contact-form button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.form-status {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    min-height: 1.5em;
+    /* Reserve space */
+    transition: color 0.3s ease;
+}
+
+.form-status.success {
+    color: var(--color-purple-300);
+}
+
+.form-status.error {
+    color: var(--color-orange-400);
+}
+
+.contact-info {
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--theme-subtext);
+}
+
+.contact-info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--theme-text);
+}
+
+.contact-info p {
+    line-height: 1.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-form-container {
+        padding: 2rem;
+    }
+}

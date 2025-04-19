@@ -1,12 +1,27 @@
 from django.urls import path
-from . import views # Передбачаємо, що представлення (views) будуть тут
+from .views import (
+    HomePageView,
+    AboutPageView,
+    ServicesPageView,
+    BuilderPageView,
+    ContactPageView,
+)
 
 app_name = 'prometei' # Додаємо неймспейс для уникнення конфліктів імен URL
 
 urlpatterns = [
-    # Тут будуть наші URL-шаблони
-    # Наприклад:
-    # path('', views.home, name='home'),
-    # path('about/', views.about, name='about'),
-    # ... і так далі для інших сторінок
+    # Головна сторінка
+    path('', HomePageView.as_view(), name='home'),
+    
+    # Про нас
+    path('about/', AboutPageView.as_view(), name='about'),
+    
+    # Послуги
+    path('services/', ServicesPageView.as_view(), name='services'),
+    
+    # Конструктор
+    path('builder/', BuilderPageView.as_view(), name='builder'),
+    
+    # Контакти
+    path('contact/', ContactPageView.as_view(), name='contact'),
 ] 

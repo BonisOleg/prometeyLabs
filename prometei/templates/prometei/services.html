@@ -1,0 +1,187 @@
+{% extends 'prometei/base.html' %}
+{% load static %}
+
+{% block title %}Наші Послуги - Prometey Labs{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'prometei/css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Services Hero Section -->
+<section class="services-hero">
+    <div class="container">
+        <h1 class="services-hero__title">Що ми <span class="services-hero__accent">пропонуємо</span></h1>
+        <p class="services-hero__text">Від простих лендінгів до складних веб-додатків — ми втілимо будь-яку вашу ідею.
+        </p>
+    </div>
+</section>
+
+<!-- Services Grid Section -->
+<section class="services-grid">
+    <div class="container">
+        <h2 class="section-title">Наші Послуги</h2>
+        <div class="services-grid__wrapper">
+            <!-- Service Card 1 -->
+            <div class="service-card" data-modal-target="service-landing">
+                <div class="service-card__icon">
+                    <!-- Placeholder for icon -->
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M3 7L12 12.5L21 7M5 18H19C20.1046 18 21 17.1046 21 16V8C21 6.89543 20.1046 6 19 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="service-card__title">Розробка Landing Page</h3>
+                <p class="service-card__description">Створення ефективних односторінкових сайтів для презентації
+                    продукту чи послуги.</p>
+                <button class="button button--details" data-modal-trigger="service-landing">Детальніше</button>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-card" data-modal-target="service-corporate">
+                <div class="service-card__icon">
+                    <!-- Placeholder for icon -->
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M23 21V19C22.9994 17.8681 22.5728 16.7849 21.8021 16.0011C21.0313 15.2173 19.976 14.7997 18.85 14.8"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M17 11C18.0941 10.9998 19.1449 10.6197 19.9772 9.93552C20.8095 9.25137 21.3713 8.3041 21.57 7.25"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="service-card__title">Корпоративні Сайти</h3>
+                <p class="service-card__description">Розробка іміджевих сайтів для компаній, що представляють бренд та
+                    його діяльність.</p>
+                <button class="button button--details" data-modal-trigger="service-corporate">Детальніше</button>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="service-card" data-modal-target="service-store">
+                <div class="service-card__icon">
+                    <!-- Placeholder for icon -->
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="service-card__title">Інтернет-магазини</h3>
+                <p class="service-card__description">Створення функціональних e-commerce рішень з каталогом товарів та
+                    системою замовлень.</p>
+                <button class="button button--details" data-modal-trigger="service-store">Детальніше</button>
+            </div>
+
+            <!-- Service Card 4 -->
+            <div class="service-card" data-modal-target="service-webapp">
+                <div class="service-card__icon">
+                    <!-- Placeholder for icon -->
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="service-card__title">Веб-додатки</h3>
+                <p class="service-card__description">Розробка складних інтерактивних веб-систем та сервісів під ваші
+                    унікальні задачі.</p>
+                <button class="button button--details" data-modal-trigger="service-webapp">Детальніше</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Windows Container -->
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<div class="modal" id="service-landing">
+    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
+    <h2 class="modal__title">Розробка Landing Page</h2>
+    <div class="modal__content">
+        <p>Ідеальне рішення для швидкого запуску рекламної кампанії, презентації нового продукту чи збору контактів. Ми
+            створюємо лендінги, які конвертують.</p>
+        <ul>
+            <li>Унікальний дизайн</li>
+            <li>Адаптивність під усі пристрої</li>
+            <li>Висока швидкість завантаження</li>
+            <li>Налаштування аналітики</li>
+            <li>Форми зворотного зв'язку</li>
+        </ul>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">Замовити лендінг</a>
+    </div>
+</div>
+
+<div class="modal" id="service-corporate">
+    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
+    <h2 class="modal__title">Корпоративні Сайти</h2>
+    <div class="modal__content">
+        <p>Сайт компанії - це її обличчя в інтернеті. Ми створимо професійний, сучасний та інформативний сайт, який
+            підвищить довіру до вашого бренду.</p>
+        <ul>
+            <li>Структура, що легко масштабується</li>
+            <li>Система керування контентом (CMS)</li>
+            <li>Інтеграція з сервісами</li>
+            <li>Блог або розділ новин</li>
+            <li>Оптимізація для пошукових систем</li>
+        </ul>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">Замовити сайт</a>
+    </div>
+</div>
+
+<div class="modal" id="service-store">
+    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
+    <h2 class="modal__title">Інтернет-магазини</h2>
+    <div class="modal__content">
+        <p>Запустіть свій онлайн-бізнес з потужним інтернет-магазином. Ми пропонуємо повний цикл розробки від дизайну до
+            інтеграції платіжних систем.</p>
+        <ul>
+            <li>Каталог товарів з фільтрами</li>
+            <li>Кошик та система оформлення замовлень</li>
+            <li>Особистий кабінет користувача</li>
+            <li>Інтеграція з платіжними системами та службами доставки</li>
+            <li>Зручна панель адміністрування</li>
+        </ul>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">Замовити магазин</a>
+    </div>
+</div>
+
+<div class="modal" id="service-webapp">
+    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
+    <h2 class="modal__title">Веб-додатки</h2>
+    <div class="modal__content">
+        <p>Якщо вам потрібне нестандартне рішення, CRM-система, особистий кабінет чи будь-який інший складний сервіс -
+            ми готові взятися за розробку.</p>
+        <ul>
+            <li>Аналіз вимог та проектування архітектури</li>
+            <li>Розробка фронтенду та бекенду</li>
+            <li>Інтеграція зі сторонніми API</li>
+            <li>Забезпечення безпеки та масштабованості</li>
+            <li>Тестування та підтримка</li>
+        </ul>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">Обговорити проект</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'prometei/js/services.js' %}"></script>
+{% endblock %}

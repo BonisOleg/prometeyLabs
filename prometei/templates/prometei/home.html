@@ -1,0 +1,144 @@
+{% extends 'prometei/base.html' %}
+{% load static %}
+
+{% block title %}Prometey Labs - Створення сучасних сайтів швидко й доступно{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'prometei/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero__wrapper">
+            <div class="hero__content">
+                <h1 class="hero__title">Створюємо <span class="hero__accent">сучасні сайти</span><br>швидко й доступно
+                </h1>
+                <p class="hero__text">Prometey Labs — це команда професіоналів, яка допоможе втілити ваші ідеї в
+                    реальність. Ми створюємо сайти, які працюють на ваш бізнес.</p>
+                <div class="hero__buttons">
+                    <a href="{% url 'prometei:builder' %}" class="button cta-button">Розрахувати вартість</a>
+                    <a href="{% url 'prometei:services' %}" class="button">Наші послуги</a>
+                </div>
+            </div>
+            <div class="hero__image">
+                <!-- Placeholder for hero image - в майбутньому додамо SVG або зображення -->
+                <div class="hero__image-placeholder">
+                    <div class="hero__image-circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Animated Tape - Анімована стрічка -->
+<section class="animated-tape">
+    <div class="animated-tape__container">
+        <div class="animated-tape__wrapper">
+            <!-- Multiply these items via JavaScript for infinite animation -->
+            <div class="animated-tape__item">Розробка сайтів</div>
+            <div class="animated-tape__item">Веб-дизайн</div>
+            <div class="animated-tape__item">Підтримка 24/7</div>
+            <div class="animated-tape__item">SEO-оптимізація</div>
+            <div class="animated-tape__item">Адаптивна верстка</div>
+            <div class="animated-tape__item">Розробка сайтів</div>
+            <div class="animated-tape__item">Веб-дизайн</div>
+            <div class="animated-tape__item">Підтримка 24/7</div>
+            <div class="animated-tape__item">SEO-оптимізація</div>
+            <div class="animated-tape__item">Адаптивна верстка</div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">Чому обирають нас</h2>
+        <div class="features__grid">
+            <div class="feature-card">
+                <div class="feature-card__icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="feature-card__title">Швидкість</h3>
+                <p class="feature-card__text">Створюємо сайти у найкоротші терміни без втрати якості. Ви отримаєте свій
+                    проєкт вчасно.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-card__icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9 9H9.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M15 9H15.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="feature-card__title">Зручність</h3>
+                <p class="feature-card__text">Сайти, які ми створюємо, максимально зручні у використанні та легко
+                    налаштовуються під ваші потреби.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-card__icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M19.4 15C19.1277 15.6273 19.2553 16.3519 19.68 16.87L19.74 16.93C20.0981 17.2879 20.2987 17.7668 20.2987 18.265C20.2987 18.7632 20.0981 19.2421 19.74 19.6C19.3921 19.9581 18.9132 20.1587 18.415 20.1587C17.9168 20.1587 17.4379 19.9581 17.09 19.6L17.03 19.54C16.5119 19.1153 15.7873 18.9877 15.16 19.26C14.5474 19.5192 14.1445 20.1068 14.14 20.77V20.91C14.14 21.9346 13.3046 22.77 12.28 22.77C11.2554 22.77 10.42 21.9346 10.42 20.91V20.82C10.3952 20.1421 9.95686 19.5414 9.31996 19.31C8.69264 19.0377 7.96804 19.1653 7.44996 19.59L7.38996 19.65C7.04207 20.0081 6.56315 20.2087 6.06496 20.2087C5.56677 20.2087 5.08786 20.0081 4.73996 19.65C4.38187 19.3021 4.18127 18.8232 4.18127 18.325C4.18127 17.8268 4.38187 17.3479 4.73996 17L4.79996 16.94C5.2247 16.422 5.35227 15.6973 5.07996 15.07C4.82081 14.4574 4.23317 14.0545 3.56996 14.05H3.42996C2.40539 14.05 1.56996 13.2146 1.56996 12.19C1.56996 11.1654 2.40539 10.33 3.42996 10.33H3.51996C4.19786 10.3052 4.79855 9.86684 5.02996 9.22996C5.30227 8.60264 5.1747 7.87804 4.74996 7.35996L4.68996 7.29996C4.33187 6.95207 4.13127 6.47315 4.13127 5.97496C4.13127 5.47677 4.33187 4.99786 4.68996 4.64996C5.03786 4.29187 5.51677 4.09127 6.01496 4.09127C6.51315 4.09127 6.99207 4.29187 7.33996 4.64996L7.39996 4.70996C7.91804 5.1347 8.64264 5.26227 9.26996 4.98996H9.33996C9.95256 4.7308 10.3555 4.14317 10.36 3.47996V3.33996C10.36 2.31539 11.1954 1.47996 12.22 1.47996C13.2446 1.47996 14.08 2.31539 14.08 3.33996V3.42996C14.0845 4.09317 14.4874 4.6808 15.1 4.93996C15.7273 5.21227 16.4519 5.0847 16.97 4.65996L17.03 4.59996C17.3779 4.24187 17.8568 4.04127 18.355 4.04127C18.8532 4.04127 19.3321 4.24187 19.68 4.59996C20.0381 4.94786 20.2387 5.42677 20.2387 5.92496C20.2387 6.42315 20.0381 6.90207 19.68 7.24996L19.62 7.30996C19.1953 7.82804 19.0677 8.55264 19.34 9.17996V9.24996C19.5992 9.86256 20.1868 10.2655 20.85 10.27H20.99C22.0146 10.27 22.85 11.1054 22.85 12.13C22.85 13.1546 22.0146 13.99 20.99 13.99H20.9C20.2272 13.9945 19.6365 14.3974 19.4 15Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="feature-card__title">Адаптивність</h3>
+                <p class="feature-card__text">Всі наші сайти чудово виглядають на будь-яких пристроях: від смартфонів до
+                    великих моніторів.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-card__icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3 class="feature-card__title">Якість</h3>
+                <p class="feature-card__text">Ми гарантуємо високу якість наших робіт. Кожен проєкт проходить детальне
+                    тестування перед запуском.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <div class="cta__wrapper">
+            <h2 class="cta__title">Готові розпочати свій проєкт?</h2>
+            <p class="cta__text">Зв'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!</p>
+            <div class="cta__buttons">
+                <a href="{% url 'prometei:contact' %}" class="button cta-button">Зв'язатися</a>
+                <a href="{% url 'prometei:builder' %}" class="button">Конструктор</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'prometei/js/home.js' %}"></script>
+{% endblock %}
