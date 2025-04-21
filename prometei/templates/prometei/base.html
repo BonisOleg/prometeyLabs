@@ -1,11 +1,12 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="uk" data-theme="light">
+<html lang="{{ request.LANGUAGE_CODE }}" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Prometey Labs - Створення сучасних сайтів{% endblock %}</title>
+    <title>{% block title %}{% trans "Prometey Labs - Створення сучасних сайтів" %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'prometei/css/base.css' %}">
     {% block styles %}{% endblock %}
 </head>
@@ -21,17 +22,16 @@
 
                 <nav class="nav">
                     <ul class="nav__list">
-                        <li class="nav__item"><a href="{% url 'prometei:home' %}" class="nav__link">Головна</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:about' %}" class="nav__link">Про нас</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:services' %}" class="nav__link">Послуги</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:builder' %}" class="nav__link">Конструктор</a>
-                        </li>
-                        <li class="nav__item"><a href="{% url 'prometei:contact' %}" class="nav__link">Контакти</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:home' %}" class="nav__link">{%trans "Головна"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:about' %}" class="nav__link">{%trans "Про нас"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:services' %}" class="nav__link">{%trans "Послуги"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:builder' %}" class="nav__link">{%trans "Конструктор"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:contact' %}" class="nav__link">{%trans "Контакти"%}</a></li>
                     </ul>
                 </nav>
 
                 <div class="header__controls">
-                    <button class="theme-toggle" id="themeToggle" aria-label="Змінити тему">
+                    <button class="theme-toggle" id="themeToggle" aria-label="{% trans 'Змінити тему' %}">
                         <svg class="theme-toggle__icon theme-toggle__icon--light" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -62,7 +62,24 @@
                         </svg>
                     </button>
 
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Відкрити меню">
+                    <!-- Language Switcher Form -->
+                    <form action="{% url 'set_language' %}" method="post" class="language-switcher">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}"> {# Removed |slice:'3:' #}
+                        <select name="language" onchange="this.form.submit()" class="language-switcher__select"
+                            aria-label="{% trans 'Вибрати мову' %}">
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                            <option value="{{ language.code }}" {% if language.code == request.LANGUAGE_CODE %}selected{%endif %}>
+                                {{ language.code|upper }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                    <!-- End Language Switcher Form -->
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% trans 'Відкрити меню' %}">
                         <span class="mobile-menu-toggle__line"></span>
                         <span class="mobile-menu-toggle__line"></span>
                         <span class="mobile-menu-toggle__line"></span>
@@ -77,17 +94,34 @@
         <div class="container">
             <nav class="mobile-nav">
                 <ul class="mobile-nav__list">
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}"
-                            class="mobile-nav__link">Головна</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">Про
-                            нас</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}"
-                            class="mobile-nav__link">Послуги</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}"
-                            class="mobile-nav__link">Конструктор</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}"
-                            class="mobile-nav__link">Контакти</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans
+                            "Головна" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans
+                            "Про нас" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{%
+                            trans "Послуги" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{%
+                            trans "Конструктор" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{%
+                            trans "Контакти" %}</a></li>
                 </ul>
+                <!-- Mobile Language Switcher -->
+                <form action="{% url 'set_language' %}" method="post"
+                    class="language-switcher language-switcher--mobile">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}"> {# Removed |slice:'3:' #}
+                    <div class="language-switcher__buttons">
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                        <button type="submit" name="language" value="{{ language.code }}"
+                            class="language-switcher__button {% if language.code == request.LANGUAGE_CODE %}language-switcher__button--active{% endif %}">
+                            {{ language.code|upper }}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </form>
+                <!-- End Mobile Language Switcher -->
             </nav>
         </div>
     </div>
@@ -102,11 +136,11 @@
         <div class="container">
             <div class="footer__wrapper">
                 <div class="footer__copyright">
-                    &copy; {% now "Y" %} Prometey Labs. Всі права захищено.
+                    &copy; {% now "Y" %} {% blocktrans %}Prometey Labs. Всі права захищено.{% endblocktrans %}
                 </div>
                 <div class="footer__links">
-                    <a href="#" class="footer__link">Політика конфіденційності</a>
-                    <a href="#" class="footer__link">Умови використання</a>
+                    <a href="#" class="footer__link">{% trans "Політика конфіденційності" %}</a>
+                    <a href="#" class="footer__link">{% trans "Умови використання" %}</a>
                 </div>
             </div>
         </div>

@@ -1,7 +1,8 @@
 {% extends 'prometei/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Про нас - Prometey Labs{% endblock %}
+{% block title %}{% trans "Про нас" %} - Prometey Labs{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'prometei/css/about.css' %}">
@@ -11,9 +12,10 @@
 <!-- About Us Section -->
 <section class="about-hero">
     <div class="container">
-        <h1 class="about-hero__title">Наша <span class="about-hero__accent">історія</span> та місія</h1>
-        <p class="about-hero__text">Ми — команда ентузіастів, об'єднаних любов'ю до технологій та бажанням створювати
-            продукти, які змінюють світ на краще.</p>
+        <h1 class="about-hero__title">
+            {% trans "Наша" %} <span class="about-hero__accent">{% trans "історія" %}</span> {% trans "та місія" %}
+        </h1>
+        <p class="about-hero__text">{% blocktrans %}Ми — команда ентузіастів, об\'єднаних любов\'ю до технологій та бажанням створювати продукти, які змінюють світ на краще.{% endblocktrans %}</p>
     </div>
 </section>
 
@@ -21,11 +23,9 @@
     <div class="container">
         <div class="about-mission__wrapper">
             <div class="about-mission__content">
-                <h2 class="section-title section-title--left">Наша Місія</h2>
-                <p>Допомагати бізнесам та стартапам досягати успіху в цифровому світі шляхом створення інноваційних,
-                    якісних та доступних веб-рішень.</p>
-                <p>Ми віримо, що кожен заслуговує на потужний інструмент для представлення себе в Інтернеті, і ми тут,
-                    щоб це забезпечити.</p>
+                <h2 class="section-title section-title--left">{% trans "Наша Місія" %}</h2>
+                <p>{% blocktrans %}Допомагати бізнесам та стартапам досягати успіху в цифровому світі шляхом створення інноваційних, якісних та доступних веб-рішень.{% endblocktrans %}</p>
+                <p>{% blocktrans %}Ми віримо, що кожен заслуговує на потужний інструмент для представлення себе в Інтернеті, і ми тут, щоб це забезпечити.{% endblocktrans %}</p>
             </div>
             <div class="about-mission__image">
                 <!-- Placeholder for mission image -->
@@ -37,28 +37,28 @@
 
 <section class="about-team">
     <div class="container">
-        <h2 class="section-title">Наша Команда</h2>
+        <h2 class="section-title">{% trans "Наша Команда" %}</h2>
         <div class="about-team__grid">
             <!-- Team Member Card 1 -->
             <div class="team-card">
                 <div class="team-card__image-placeholder"></div>
-                <h3 class="team-card__name">Ім'я Прізвище</h3>
-                <p class="team-card__role">CEO & Founder</p>
-                <p class="team-card__bio">Короткий опис досвіду та обов'язків.</p>
+                <h3 class="team-card__name">{% trans "Ім'я Прізвище" %}</h3> {# Placeholder text #}
+                <p class="team-card__role">{% trans "CEO & Founder" %}</p> {# Placeholder text #}
+                <p class="team-card__bio">{% trans "Короткий опис досвіду та обов'язків." %}</p> {# Placeholder text #}
             </div>
             <!-- Team Member Card 2 -->
             <div class="team-card">
                 <div class="team-card__image-placeholder"></div>
-                <h3 class="team-card__name">Ім'я Прізвище</h3>
-                <p class="team-card__role">Lead Developer</p>
-                <p class="team-card__bio">Короткий опис досвіду та обов'язків.</p>
+                <h3 class="team-card__name">{% trans "Ім'я Прізвище" %}</h3> {# Placeholder text #}
+                <p class="team-card__role">{% trans "Lead Developer" %}</p> {# Placeholder text #}
+                <p class="team-card__bio">{% trans "Короткий опис досвіду та обов'язків." %}</p> {# Placeholder text #}
             </div>
             <!-- Team Member Card 3 -->
             <div class="team-card">
                 <div class="team-card__image-placeholder"></div>
-                <h3 class="team-card__name">Ім'я Прізвище</h3>
-                <p class="team-card__role">UI/UX Designer</p>
-                <p class="team-card__bio">Короткий опис досвіду та обов'язків.</p>
+                <h3 class="team-card__name">{% trans "Ім'я Прізвище" %}</h3> {# Placeholder text #}
+                <p class="team-card__role">{% trans "UI/UX Designer" %}</p> {# Placeholder text #}
+                <p class="team-card__bio">{% trans "Короткий опис досвіду та обов'язків." %}</p> {# Placeholder text #}
             </div>
             <!-- Add more team members as needed -->
         </div>

@@ -1,0 +1,1563 @@
+# Ukrainian translations for Prometey Labs project.
+# Copyright (C) 2025 Prometey Labs
+# This file is distributed under the same license as the Prometey Labs package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Prometey Labs 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-21 11:32+0300\n"
+"PO-Revision-Date: 2025-04-21 10:00+0300\n"
+"Last-Translator: Your Name <your.email@example.com>\n"
+"Language-Team: Ukrainian <your.email@example.com>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+msgid "Про нас"
+msgstr "Про нас"
+
+msgid "Наша"
+msgstr "Наша"
+
+msgid "історія"
+msgstr "історія"
+
+msgid "та місія"
+msgstr "та місія"
+
+msgid ""
+"Ми — команда ентузіастів, об\\'єднаних любов\\'ю до технологій та бажанням "
+"створювати продукти, які змінюють світ на краще."
+msgstr ""
+"Ми — команда ентузіастів, об\\'єднаних любов\\'ю до технологій та "
+"бажанням створювати продукти, які змінюють світ на краще."
+
+msgid "Наша Місія"
+msgstr "Наша Місія"
+
+msgid ""
+"Допомагати бізнесам та стартапам досягати успіху в цифровому світі шляхом "
+"створення інноваційних, якісних та доступних веб-рішень."
+msgstr ""
+"Допомагати бізнесам та стартапам досягати успіху в цифровому світі шляхом "
+"створення інноваційних, якісних та доступних веб-рішень."
+
+msgid ""
+"Ми віримо, що кожен заслуговує на потужний інструмент для представлення себе "
+"в Інтернеті, і ми тут, щоб це забезпечити."
+msgstr ""
+"Ми віримо, що кожен заслуговує на потужний інструмент для представлення себе "
+"в Інтернеті, і ми тут, щоб це забезпечити."
+
+msgid "Наша Команда"
+msgstr "Наша Команда"
+
+msgid "Ім'я Прізвище"
+msgstr "Ім'я Прізвище"
+
+msgid "CEO & Founder"
+msgstr "CEO & Founder"
+
+msgid "Короткий опис досвіду та обов'язків."
+msgstr "Короткий опис досвіду та обов'язків."
+
+msgid "Lead Developer"
+msgstr "Lead Developer"
+
+msgid "UI/UX Designer"
+msgstr "UI/UX Designer"
+
+msgid "Prometey Labs - Створення сучасних сайтів"
+msgstr "Prometey Labs - Створення сучасних сайтів"
+
+msgid "Головна"
+msgstr "Головна"
+
+msgid "Послуги"
+msgstr "Послуги"
+
+msgid "Конструктор"
+msgstr "Конструктор"
+
+msgid "Контакти"
+msgstr "Контакти"
+
+msgid "Змінити тему"
+msgstr "Змінити тему"
+
+msgid "Вибрати мову"
+msgstr "Вибрати мову"
+
+msgid "Відкрити меню"
+msgstr "Відкрити меню"
+
+msgid "Prometey Labs. Всі права захищено."
+msgstr "Prometey Labs. Всі права захищено."
+
+msgid "Політика конфіденційності"
+msgstr "Політика конфіденційності"
+
+msgid "Умови використання"
+msgstr "Умови використання"
+
+msgid "Конструктор Сайту"
+msgstr "Конструктор Сайту"
+
+msgid "Сконструюй"
+msgstr "Сконструюй"
+
+msgid "свій ідеальний"
+msgstr "свій ідеальний"
+
+msgid "сайт"
+msgstr "сайт"
+
+msgid ""
+"Вибери потрібні опції, а наш конструктор допоможе визначити орієнтовний "
+"пакет, термін та вартість."
+msgstr ""
+"Вибери потрібні опції, а наш конструктор допоможе визначити орієнтовний "
+"пакет, термін та вартість."
+
+msgid "1. Виберіть опції"
+msgstr "1. Виберіть опції"
+
+msgid "Тип сайту"
+msgstr "Тип сайту"
+
+msgid "Лендінг"
+msgstr "Лендінг"
+
+msgid "Корпоративний"
+msgstr "Корпоративний"
+
+msgid "Магазин"
+msgstr "Магазин"
+
+msgid "Веб-додаток"
+msgstr "Веб-додаток"
+
+msgid "Додаткові модулі"
+msgstr "Додаткові модулі"
+
+msgid "Блог / Новини"
+msgstr "Блог / Новини"
+
+msgid "Портфоліо / Галерея"
+msgstr "Портфоліо / Галерея"
+
+msgid "Онлайн-калькулятор"
+msgstr "Онлайн-калькулятор"
+
+msgid "Система бронювання"
+msgstr "Система бронювання"
+
+msgid "Мультимовність"
+msgstr "Мультимовність"
+
+msgid "Відправка форм на Email"
+msgstr "Відправка форм на Email"
+
+msgid "Відправка форм в Telegram"
+msgstr "Відправка форм в Telegram"
+
+msgid "Темна/Світла тема"
+msgstr "Темна/Світла тема"
+
+msgid "Оплата карткою на сайті"
+msgstr "Оплата карткою на сайті"
+
+msgid "Підключення Apple Pay / Google Pay"
+msgstr "Підключення Apple Pay / Google Pay"
+
+msgid "ШІ-підтримка / Чат-бот"
+msgstr "ШІ-підтримка / Чат-бот"
+
+msgid "Підключення до сторонніх сервісів (API)"
+msgstr "Підключення до сторонніх сервісів (API)"
+
+msgid "Дизайн"
+msgstr "Дизайн"
+
+msgid "Шаблонний"
+msgstr "Шаблонний"
+
+msgid "Унікальний"
+msgstr "Унікальний"
+
+msgid "Кількість сторінок (приблизно)"
+msgstr "Кількість сторінок (приблизно)"
+
+msgid "2. Результат"
+msgstr "2. Результат"
+
+msgid "Пакет:"
+msgstr "Пакет:"
+
+msgid "Сторінок:"
+msgstr "Сторінок:"
+
+msgid "Термін:"
+msgstr "Термін:"
+
+msgid "Ціна:"
+msgstr "Ціна:"
+
+msgid "Можлива знижка при замовленні сьогодні!"
+msgstr "Можлива знижка при замовленні сьогодні!"
+
+msgid "Надіслати запит"
+msgstr "Надіслати запит"
+
+msgid "Ваш запит успішно надіслано!"
+msgstr "Ваш запит успішно надіслано!"
+
+msgid "Зв'яжіться з нами"
+msgstr "Зв'яжіться з нами"
+
+msgid "Маєте питання або готові розпочати проєкт? Напишіть нам!"
+msgstr "Маєте питання або готові розпочати проєкт? Напишіть нам!"
+
+msgid "Ваше ім'я:"
+msgstr "Ваше ім'я:"
+
+msgid "Telegram або Email:"
+msgstr "Telegram або Email:"
+
+msgid "Повідомлення:"
+msgstr "Повідомлення:"
+
+msgid "Надіслати"
+msgstr "Надіслати"
+
+msgid "Інші способи зв'язку:"
+msgstr "Інші способи зв'язку:"
+
+msgid "Prometey Labs - Створення сучасних сайтів швидко й доступно"
+msgstr "Prometey Labs - Створення сучасних сайтів швидко й доступно"
+
+msgid "Створюємо"
+msgstr "Створюємо"
+
+msgid "сучасні сайти"
+msgstr "сучасні сайти"
+
+msgid "швидко й доступно"
+msgstr "швидко й доступно"
+
+msgid ""
+"Prometey Labs — це команда професіоналів, яка допоможе втілити ваші ідеї в "
+"реальність. Ми створюємо сайти, які працюють на ваш бізнес."
+msgstr ""
+"Prometey Labs — це команда професіоналів, яка допоможе втілити ваші ідеї в "
+"реальність. Ми створюємо сайти, які працюють на ваш бізнес."
+
+msgid "Розрахувати вартість"
+msgstr "Розрахувати вартість"
+
+msgid "Наші послуги"
+msgstr "Наші послуги"
+
+msgid "Розробка сайтів"
+msgstr "Розробка сайтів"
+
+msgid "Веб-дизайн"
+msgstr "Веб-дизайн"
+
+msgid "Підтримка 24/7"
+msgstr "Підтримка 24/7"
+
+msgid "SEO-оптимізація"
+msgstr "SEO-оптимізація"
+
+msgid "Адаптивна верстка"
+msgstr "Адаптивна верстка"
+
+msgid "Чому обирають нас"
+msgstr "Чому обирають нас"
+
+msgid "Швидкість"
+msgstr "Швидкість"
+
+msgid ""
+"Створюємо сайти у найкоротші терміни без втрати якості. Ви отримаєте свій "
+"проєкт вчасно."
+msgstr ""
+"Створюємо сайти у найкоротші терміни без втрати якості. Ви отримаєте свій "
+"проєкт вчасно."
+
+msgid "Зручність"
+msgstr "Зручність"
+
+msgid ""
+"Сайти, які ми створюємо, максимально зручні у використанні та легко "
+"налаштовуються під ваші потреби."
+msgstr ""
+"Сайти, які ми створюємо, максимально зручні у використанні та легко "
+"налаштовуються під ваші потреби."
+
+msgid "Адаптивність"
+msgstr "Адаптивність"
+
+msgid ""
+"Всі наші сайти чудово виглядають на будь-яких пристроях: від смартфонів до "
+"великих моніторів."
+msgstr ""
+"Всі наші сайти чудово виглядають на будь-яких пристроях: від смартфонів до "
+"великих моніторів."
+
+msgid "Якість"
+msgstr "Якість"
+
+msgid ""
+"Ми гарантуємо високу якість наших робіт. Кожен проєкт проходить детальне "
+"тестування перед запуском."
+msgstr ""
+"Ми гарантуємо високу якість наших робіт. Кожен проєкт проходить детальне "
+"тестування перед запуском."
+
+msgid "Готові розпочати свій проєкт?"
+msgstr "Готові розпочати свій проєкт?"
+
+msgid "Зв'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!"
+msgstr "Зв'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!"
+
+msgid "Зв'язатися"
+msgstr "Зв'язатися"
+
+msgid "Наші Послуги"
+msgstr "Наші Послуги"
+
+msgid "Що ми"
+msgstr "Що ми"
+
+msgid "пропонуємо"
+msgstr "пропонуємо"
+
+msgid ""
+"Від простих лендінгів до складних веб-додатків — ми втілимо будь-яку вашу "
+"ідею."
+msgstr ""
+"Від простих лендінгів до складних веб-додатків — ми втілимо будь-яку вашу "
+"ідею."
+
+msgid "Розробка Landing Page"
+msgstr "Розробка Landing Page"
+
+msgid ""
+"Створення ефективних односторінкових сайтів для презентації продукту чи "
+"послуги."
+msgstr ""
+"Створення ефективних односторінкових сайтів для презентації продукту чи "
+"послуги."
+
+msgid "Детальніше"
+msgstr "Детальніше"
+
+msgid "Корпоративні Сайти"
+msgstr "Корпоративні Сайти"
+
+msgid ""
+"Розробка іміджевих сайтів для компаній, що представляють бренд та його "
+"діяльність."
+msgstr ""
+"Розробка іміджевих сайтів для компаній, що представляють бренд та його "
+"діяльність."
+
+msgid "Інтернет-магазини"
+msgstr "Інтернет-магазини"
+
+msgid ""
+"Створення функціональних e-commerce рішень з каталогом товарів та системою "
+"замовлень."
+msgstr ""
+"Створення функціональних e-commerce рішень з каталогом товарів та системою "
+"замовлень."
+
+msgid "Веб-додатки"
+msgstr "Веб-додатки"
+
+msgid ""
+"Розробка складних інтерактивних веб-систем та сервісів під ваші унікальні "
+"задачі."
+msgstr ""
+"Розробка складних інтерактивних веб-систем та сервісів під ваші унікальні "
+"задачі."
+
+msgid "Закрити"
+msgstr "Закрити"
+
+msgid ""
+"Ідеальне рішення для швидкого запуску рекламної кампанії, презентації нового "
+"продукту чи збору контактів. Ми створюємо лендінги, які конвертують."
+msgstr ""
+"Ідеальне рішення для швидкого запуску рекламної кампанії, презентації нового "
+"продукту чи збору контактів. Ми створюємо лендінги, які конвертують."
+
+msgid "Унікальний дизайн"
+msgstr "Унікальний дизайн"
+
+msgid "Адаптивність під усі пристрої"
+msgstr "Адаптивність під усі пристрої"
+
+msgid "Висока швидкість завантаження"
+msgstr "Висока швидкість завантаження"
+
+msgid "Налаштування аналітики"
+msgstr "Налаштування аналітики"
+
+msgid "Форми зворотного зв'язку"
+msgstr "Форми зворотного зв'язку"
+
+msgid "Замовити лендінг"
+msgstr "Замовити лендінг"
+
+msgid ""
+"Сайт компанії - це її обличчя в інтернеті. Ми створимо професійний, сучасний "
+"та інформативний сайт, який підвищить довіру до вашого бренду."
+msgstr ""
+"Сайт компанії - це її обличчя в інтернеті. Ми створимо професійний, сучасний "
+"та інформативний сайт, який підвищить довіру до вашого бренду."
+
+msgid "Структура, що легко масштабується"
+msgstr "Структура, що легко масштабується"
+
+msgid "Система керування контентом (CMS)"
+msgstr "Система керування контентом (CMS)"
+
+msgid "Інтеграція з сервісами"
+msgstr "Інтеграція з сервісами"
+
+msgid "Блог або розділ новин"
+msgstr "Блог або розділ новин"
+
+msgid "Оптимізація для пошукових систем"
+msgstr "Оптимізація для пошукових систем"
+
+msgid "Замовити сайт"
+msgstr "Замовити сайт"
+
+msgid ""
+"Запустіть свій онлайн-бізнес з потужним інтернет-магазином. Ми пропонуємо "
+"повний цикл розробки від дизайну до інтеграції платіжних систем."
+msgstr ""
+"Запустіть свій онлайн-бізнес з потужним інтернет-магазином. Ми пропонуємо "
+"повний цикл розробки від дизайну до інтеграції платіжних систем."
+
+msgid "Каталог товарів з фільтрами"
+msgstr "Каталог товарів з фільтрами"
+
+msgid "Кошик та система оформлення замовлень"
+msgstr "Кошик та система оформлення замовлень"
+
+msgid "Особистий кабінет користувача"
+msgstr "Особистий кабінет користувача"
+
+msgid "Інтеграція з платіжними системами та службами доставки"
+msgstr "Інтеграція з платіжними системами та службами доставки"
+
+msgid "Зручна панель адміністрування"
+msgstr "Зручна панель адміністрування"
+
+msgid "Замовити магазин"
+msgstr "Замовити магазин"
+
+msgid ""
+"Якщо вам потрібне нестандартне рішення, CRM-система, особистий кабінет чи "
+"будь-який інший складний сервіс - ми готові взятися за розробку."
+msgstr ""
+"Якщо вам потрібне нестандартне рішення, CRM-система, особистий кабінет чи "
+"будь-який інший складний сервіс - ми готові взятися за розробку."
+
+msgid "Аналіз вимог та проектування архітектури"
+msgstr "Аналіз вимог та проектування архітектури"
+
+msgid "Розробка фронтенду та бекенду"
+msgstr "Розробка фронтенду та бекенду"
+
+msgid "Інтеграція зі сторонніми API"
+msgstr "Інтеграція зі сторонніми API"
+
+msgid "Забезпечення безпеки та масштабованості"
+msgstr "Забезпечення безпеки та масштабованості"
+
+msgid "Тестування та підтримка"
+msgstr "Тестування та підтримка"
+
+msgid "Обговорити проект"
+msgstr "Обговорити проект"
+
+msgid "Messages"
+msgstr "Повідомлення"
+
+msgid "Site Maps"
+msgstr "Карти сайту"
+
+msgid "Static Files"
+msgstr "Статичні файли"
+
+msgid "Syndication"
+msgstr "Синдикація"
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, \'…\', 5, 6, 7, \'…\', 9, 10].
+msgid "…"
+msgstr "…"
+
+msgid "That page number is not an integer"
+msgstr "That page number is not an integer"
+
+msgid "That page number is less than 1"
+msgstr "That page number is less than 1"
+
+msgid "That page contains no results"
+msgstr "That page contains no results"
+
+msgid "Enter a valid value."
+msgstr "Enter a valid value."
+
+msgid "Enter a valid domain name."
+msgstr "Enter a valid domain name."
+
+msgid "Enter a valid URL."
+msgstr "Enter a valid URL."
+
+msgid "Enter a valid integer."
+msgstr "Enter a valid integer."
+
+msgid "Enter a valid email address."
+msgstr "Enter a valid email address."
+
+#. Translators: \"letters\" means latin letters: a-z and A-Z.
+msgid ""
+"Enter a valid \\\"slug\\\" consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+"Enter a valid \\\"slug\\\" consisting of letters, numbers, underscores or hyphens."
+
+msgid ""
+"Enter a valid \\\"slug\\\" consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+"Enter a valid \\\"slug\\\" consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+
+#, python-format
+msgid "Enter a valid %(protocol)s address."
+msgstr "Enter a valid %(protocol)s address."
+
+msgid "IPv4"
+msgstr "IPv4"
+
+msgid "IPv6"
+msgstr "IPv6"
+
+msgid "IPv4 or IPv6"
+msgstr "IPv4 or IPv6"
+
+msgid "Enter only digits separated by commas."
+msgstr "Enter only digits separated by commas."
+
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Ensure this value is less than or equal to %(limit_value)s."
+
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Ensure this value is greater than or equal to %(limit_value)s."
+
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr "Ensure this value is a multiple of step size %(limit_value)s."
+
+#, python-format
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgstr[1] ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[2] ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[3] ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgstr[1] ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[2] ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[3] ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+
+msgid "Enter a number."
+msgstr "Enter a number."
+
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] "Ensure that there are no more than %(max)s digit in total."
+msgstr[1] "Ensure that there are no more than %(max)s digits in total."
+msgstr[2] "Ensure that there are no more than %(max)s digits in total."
+msgstr[3] "Ensure that there are no more than %(max)s digits in total."
+
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] "Ensure that there are no more than %(max)s decimal place."
+msgstr[1] "Ensure that there are no more than %(max)s decimal places."
+msgstr[2] "Ensure that there are no more than %(max)s decimal places."
+msgstr[3] "Ensure that there are no more than %(max)s decimal places."
+
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgstr[1] ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[2] ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[3] ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+
+#, python-format
+msgid ""
+"File extension \\\"slug\\\" is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+"File extension \\\"slug\\\" is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+
+msgid "Null characters are not allowed."
+msgstr "Null characters are not allowed."
+
+msgid "and"
+msgstr "and"
+
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr "%(model_name)s with this %(field_labels)s already exists."
+
+#, python-format
+msgid "Constraint \\\"slug\\\" is violated."
+msgstr "Constraint \\\"slug\\\" is violated."
+
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr "Value %(value)r is not a valid choice."
+
+msgid "This field cannot be null."
+msgstr "This field cannot be null."
+
+msgid "This field cannot be blank."
+msgstr "This field cannot be blank."
+
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "%(model_name)s with this %(field_label)s already exists."
+
+#. Translators: The \'lookup_type\' is one of \'date\', \'year\' or
+#. \'month\'. Eg: \"Title must be unique for pub_date year\"
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr "Field of type: %(field_type)s"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" must be either True or False."
+msgstr ""
+"Value \\\"slug\\\" must be either True or False."
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" must be either True, False, or None."
+msgstr ""
+"Value \\\"slug\\\" must be either True, False, or None."
+
+msgid "Boolean (Either True or False)"
+msgstr "Boolean (Either True or False)"
+
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr "String (up to %(max_length)s)"
+
+msgid "String (unlimited)"
+msgstr "String (unlimited)"
+
+msgid "Comma-separated integers"
+msgstr "Comma-separated integers"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+"Value \\\"slug\\\" has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+"Value \\\"slug\\\" has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+
+msgid "Date (without time)"
+msgstr "Date (without time)"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" has an invalid format. It must be in YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] format."
+msgstr ""
+"Value \\\"slug\\\" has an invalid format. It must be in YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] format."
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+"Value \\\"slug\\\" has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+
+msgid "Date (with time)"
+msgstr "Date (with time)"
+
+#, python-format
+msgid "Value \\\"slug\\\" must be a decimal number."
+msgstr "Value \\\"slug\\\" must be a decimal number."
+
+msgid "Decimal number"
+msgstr "Decimal number"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" has an invalid format. It must be in [DD] "
+"[[HH:]MM:]ss[.uuuuuu] format."
+msgstr ""
+"Value \\\"slug\\\" has an invalid format. It must be in [DD] "
+"[[HH:]MM:]ss[.uuuuuu] format."
+
+msgid "Duration"
+msgstr "Duration"
+
+msgid "Email address"
+msgstr "Email address"
+
+msgid "File path"
+msgstr "File path"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" must be a float."
+msgstr ""
+"Value \\\"slug\\\" must be a float."
+
+msgid "Floating point number"
+msgstr "Floating point number"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" must be an integer."
+msgstr ""
+"Value \\\"slug\\\" must be an integer."
+
+msgid "Integer"
+msgstr "Integer"
+
+msgid "Big (8 byte) integer"
+msgstr "Big (8 byte) integer"
+
+msgid "Small integer"
+msgstr "Small integer"
+
+msgid "IPv4 address"
+msgstr "IPv4 address"
+
+msgid "IP address"
+msgstr "IP address"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" must be either None, True or False."
+msgstr ""
+"Value \\\"slug\\\" must be either None, True or False."
+
+msgid "Boolean (Either True, False or None)"
+msgstr "Boolean (Either True, False or None)"
+
+msgid "Positive big integer"
+msgstr "Positive big integer"
+
+msgid "Positive integer"
+msgstr "Positive integer"
+
+msgid "Positive small integer"
+msgstr "Positive small integer"
+
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr "Slug (up to %(max_length)s)"
+
+msgid "Text"
+msgstr "Text"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+"Value \\\"slug\\\" has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+"Value \\\"slug\\\" has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+
+msgid "Time"
+msgstr "Time"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Raw binary data"
+msgstr "Raw binary data"
+
+#, python-format
+msgid ""
+"Value \\\"slug\\\" is not a valid UUID."
+msgstr ""
+"Value \\\"slug\\\" is not a valid UUID."
+
+msgid "Universally unique identifier"
+msgstr "Universally unique identifier"
+
+msgid "File"
+msgstr "File"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "A JSON object"
+msgstr "A JSON object"
+
+msgid "Value must be valid JSON."
+msgstr "Value must be valid JSON."
+
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
+msgstr "%(model)s instance with %(field)s %(value)r is not a valid choice."
+
+msgid "Foreign Key (type determined by related field)"
+msgstr "Foreign Key (type determined by related field)"
+
+msgid "One-to-one relationship"
+msgstr "One-to-one relationship"
+
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr "%(from)s-%(to)s relationship"
+
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr "%(from)s-%(to)s relationships"
+
+msgid "Many-to-many relationship"
+msgstr "Many-to-many relationship"
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+msgid ":?.!"
+msgstr ":?.!"
+
+msgid "This field is required."
+msgstr "This field is required."
+
+msgid "Enter a whole number."
+msgstr "Enter a whole number."
+
+msgid "Enter a valid date."
+msgstr "Enter a valid date."
+
+msgid "Enter a valid time."
+msgstr "Enter a valid time."
+
+msgid "Enter a valid date/time."
+msgstr "Enter a valid date/time."
+
+msgid "Enter a valid duration."
+msgstr "Enter a valid duration."
+
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr "The number of days must be between {min_days} and {max_days}."
+
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr "No file was submitted. Check the encoding type on the form."
+
+msgid "No file was submitted."
+msgstr "No file was submitted."
+
+msgid "The submitted file is empty."
+msgstr "The submitted file is empty."
+
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgstr[1] ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[2] ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[3] ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr "Please either submit a file or check the clear checkbox, not both."
+
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr "Select a valid choice. %(value)s is not one of the available choices."
+
+msgid "Enter a list of values."
+msgstr "Enter a list of values."
+
+msgid "Enter a complete value."
+msgstr "Enter a complete value."
+
+msgid "Enter a valid UUID."
+msgstr "Enter a valid UUID."
+
+msgid "Enter a valid JSON."
+msgstr "Enter a valid JSON."
+
+#. Translators: This is the default suffix added to form field labels
+msgid ":"
+msgstr ":"
+
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr "(Hidden field %(name)s) %(error)s"
+
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+
+#, python-format
+msgid "Please submit at most %(num)d form."
+msgid_plural "Please submit at most %(num)d forms."
+msgstr[0] "Please submit at most %(num)d form."
+msgstr[1] "Please submit at most %(num)d forms."
+msgstr[2] "Please submit at most %(num)d forms."
+msgstr[3] "Please submit at most %(num)d forms."
+
+#, python-format
+msgid "Please submit at least %(num)d form."
+msgid_plural "Please submit at least %(num)d forms."
+msgstr[0] "Please submit at least %(num)d form."
+msgstr[1] "Please submit at least %(num)d forms."
+msgstr[2] "Please submit at least %(num)d forms."
+msgstr[3] "Please submit at least %(num)d forms."
+
+msgid "Order"
+msgstr "Order"
+
+msgid "Delete"
+msgstr "Delete"
+
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr "Please correct the duplicate data for %(field)s."
+
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr "Please correct the duplicate data for %(field)s, which must be unique."
+
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+
+msgid "Please correct the duplicate values below."
+msgstr "Please correct the duplicate values below."
+
+msgid "The inline value did not match the parent instance."
+msgstr "The inline value did not match the parent instance."
+
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "Select a valid choice. That choice is not one of the available choices."
+
+#, python-format
+msgid ""
+"\"slug\" is not a valid value."
+msgstr ""
+"\"slug\" is not a valid value."
+
+#, python-format
+msgid ""
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+
+msgid "Clear"
+msgstr "Clear"
+
+msgid "Currently"
+msgstr "Currently"
+
+msgid "Change"
+msgstr "Change"
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "No"
+msgstr "No"
+
+#. Translators: Please do not add spaces around commas.
+msgid "yes,no,maybe"
+msgstr "yes,no,maybe"
+
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d byte"
+msgstr[1] "%(size)d bytes"
+msgstr[2] "%(size)d bytes"
+msgstr[3] "%(size)d bytes"
+
+#, python-format
+msgid "%s KB"
+msgstr "%s KB"
+
+#, python-format
+msgid "%s MB"
+msgstr "%s MB"
+
+#, python-format
+msgid "%s GB"
+msgstr "%s GB"
+
+#, python-format
+msgid "%s TB"
+msgstr "%s TB"
+
+#, python-format
+msgid "%s PB"
+msgstr "%s PB"
+
+msgid "p.m."
+msgstr "p.m."
+
+msgid "a.m."
+msgstr "a.m."
+
+msgid "PM"
+msgstr "PM"
+
+msgid "AM"
+msgstr "AM"
+
+msgid "midnight"
+msgstr "midnight"
+
+msgid "noon"
+msgstr "noon"
+
+msgid "Monday"
+msgstr "Monday"
+
+msgid "Tuesday"
+msgstr "Tuesday"
+
+msgid "Wednesday"
+msgstr "Wednesday"
+
+msgid "Thursday"
+msgstr "Thursday"
+
+msgid "Friday"
+msgstr "Friday"
+
+msgid "Saturday"
+msgstr "Saturday"
+
+msgid "Sunday"
+msgstr "Sunday"
+
+msgid "Mon"
+msgstr "Mon"
+
+msgid "Tue"
+msgstr "Tue"
+
+msgid "Wed"
+msgstr "Wed"
+
+msgid "Thu"
+msgstr "Thu"
+
+msgid "Fri"
+msgstr "Fri"
+
+msgid "Sat"
+msgstr "Sat"
+
+msgid "Sun"
+msgstr "Sun"
+
+msgid "January"
+msgstr "January"
+
+msgid "February"
+msgstr "February"
+
+msgid "March"
+msgstr "March"
+
+msgid "April"
+msgstr "April"
+
+msgid "May"
+msgstr "May"
+
+msgid "June"
+msgstr "June"
+
+msgid "July"
+msgstr "July"
+
+msgid "August"
+msgstr "August"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "October"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
+msgid "jan"
+msgstr "jan"
+
+msgid "feb"
+msgstr "feb"
+
+msgid "mar"
+msgstr "mar"
+
+msgid "apr"
+msgstr "apr"
+
+msgid "may"
+msgstr "may"
+
+msgid "jun"
+msgstr "jun"
+
+msgid "jul"
+msgstr "jul"
+
+msgid "aug"
+msgstr "aug"
+
+msgid "sep"
+msgstr "sep"
+
+msgid "oct"
+msgstr "oct"
+
+msgid "nov"
+msgstr "nov"
+
+msgid "dec"
+msgstr "dec"
+
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr "Jan."
+
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr "Feb."
+
+msgctxt "abbrev. month"
+msgid "March"
+msgstr "March"
+
+msgctxt "abbrev. month"
+msgid "April"
+msgstr "April"
+
+msgctxt "abbrev. month"
+msgid "May"
+msgstr "May"
+
+msgctxt "abbrev. month"
+msgid "June"
+msgstr "June"
+
+msgctxt "abbrev. month"
+msgid "July"
+msgstr "July"
+
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr "Aug."
+
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr "Sept."
+
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr "Oct."
+
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr "Nov."
+
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr "Dec."
+
+msgctxt "alt. month"
+msgid "January"
+msgstr "January"
+
+msgctxt "alt. month"
+msgid "February"
+msgstr "February"
+
+msgctxt "alt. month"
+msgid "March"
+msgstr "March"
+
+msgctxt "alt. month"
+msgid "April"
+msgstr "April"
+
+msgctxt "alt. month"
+msgid "May"
+msgstr "May"
+
+msgctxt "alt. month"
+msgid "June"
+msgstr "June"
+
+msgctxt "alt. month"
+msgid "July"
+msgstr "July"
+
+msgctxt "alt. month"
+msgid "August"
+msgstr "August"
+
+msgctxt "alt. month"
+msgid "September"
+msgstr "September"
+
+msgctxt "alt. month"
+msgid "October"
+msgstr "October"
+
+msgctxt "alt. month"
+msgid "November"
+msgstr "November"
+
+msgctxt "alt. month"
+msgid "December"
+msgstr "December"
+
+msgid "This is not a valid IPv6 address."
+msgstr "This is not a valid IPv6 address."
+
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr "%(truncated_text)s…"
+
+msgid "or"
+msgstr "or"
+
+#. Translators: This string is used as a separator between list elements
+msgid ", "
+msgstr ", "
+
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] "%(num)d year"
+msgstr[1] "%(num)d years"
+msgstr[2] "%(num)d years"
+msgstr[3] "%(num)d years"
+
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] "%(num)d month"
+msgstr[1] "%(num)d months"
+msgstr[2] "%(num)d months"
+msgstr[3] "%(num)d months"
+
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] "%(num)d week"
+msgstr[1] "%(num)d weeks"
+msgstr[2] "%(num)d weeks"
+msgstr[3] "%(num)d weeks"
+
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] "%(num)d day"
+msgstr[1] "%(num)d days"
+msgstr[2] "%(num)d days"
+msgstr[3] "%(num)d days"
+
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] "%(num)d hour"
+msgstr[1] "%(num)d hours"
+msgstr[2] "%(num)d hours"
+msgstr[3] "%(num)d hours"
+
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] "%(num)d minute"
+msgstr[1] "%(num)d minutes"
+msgstr[2] "%(num)d minutes"
+msgstr[3] "%(num)d minutes"
+
+msgid "Forbidden"
+msgstr "Forbidden"
+
+msgid "CSRF verification failed. Request aborted."
+msgstr "CSRF verification failed. Request aborted."
+
+msgid ""
+"You are seeing this message because this HTTPS site requires a \"Referer \""
+"\"header\" to be sent by your web browser, but none was sent. This header is required for security reasons, to ensure that your browser is not being hijacked by third parties."
+msgstr ""
+"You are seeing this message because this HTTPS site requires a \"Referer \""
+"\"header\" to be sent by your web browser, but none was sent. This header is required for security reasons, to ensure that your browser is not being hijacked by third parties."
+
+msgid ""
+"If you have configured your browser to disable \"Referer\" headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for \"same-"
+"origin\" requests."
+msgstr ""
+"If you have configured your browser to disable \"Referer\" headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for \"same-"
+"origin\" requests."
+
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the \"Referrer-Policy: no-referrer\" header, please remove them. The "
+"CSRF protection requires the \"Referer\" header to do strict referer checking. "
+"If you're concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
+msgstr ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the \"Referrer-Policy: no-referrer\" header, please remove them. The "
+"CSRF protection requires the \"Referer\" header to do strict referer checking. "
+"If you're concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
+
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for \"same-origin\" requests."
+msgstr ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for \"same-origin\" requests."
+
+msgid "More information is available with DEBUG=True."
+msgstr "More information is available with DEBUG=True."
+
+msgid "No year specified"
+msgstr "No year specified"
+
+msgid "Date out of range"
+msgstr "Date out of range"
+
+msgid "No month specified"
+msgstr "No month specified"
+
+msgid "No day specified"
+msgstr "No day specified"
+
+msgid "No week specified"
+msgstr "No week specified"
+
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr "No %(verbose_name_plural)s available"
+
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because "
+"%(class_name)s.allow_future is False."
+msgstr ""
+"Future %(verbose_name_plural)s not available because "
+"%(class_name)s.allow_future is False."
+
+#, python-format
+msgid "Invalid date string \"slug\" given format \"format\""
+msgstr "Invalid date string \"slug\" given format \"format\""
+
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr "No %(verbose_name)s found matching the query"
+
+msgid "Page is not \"last\", nor can it be converted to an int."
+msgstr "Page is not \"last\", nor can it be converted to an int."
+
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr "Invalid page (%(page_number)s): %(message)s"
+
+#, python-format
+msgid "Empty list and \"slug\" is False."
+msgstr "Empty list and \"slug\" is False."
+
+msgid "Directory indexes are not allowed here."
+msgstr "Directory indexes are not allowed here."
+
+#, python-format
+msgid ""
+"\"slug\" does not exist"
+msgstr ""
+"\"slug\" does not exist"
+
+#, python-format
+msgid "Index of \"slug\""
+msgstr "Index of \"slug\""
+
+msgid "The install worked successfully! Congratulations!"
+msgstr "The install worked successfully! Congratulations!"
+
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" "
+"target=\"_blank\" rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not configured any URLs."
+msgstr ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" "
+"target=\"_blank\" rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not configured any URLs."
+
+msgid "Django Documentation"
+msgstr "Django Documentation"
+
+msgid "Topics, references, &amp; how-to's"
+msgstr "Topics, references, &amp; how-to's"
+
+msgid "Tutorial: A Polling App"
+msgstr "Tutorial: A Polling App"
+
+msgid "Get started with Django"
+msgstr "Get started with Django"
+
+msgid "Django Community"
+msgstr "Django Community"
+
+msgid "Connect, get help, or contribute"
+msgstr "Connect, get help, or contribute"
+
+#~ msgid "Статус відправки форми"
+#~ msgstr "Статус відправки форми"

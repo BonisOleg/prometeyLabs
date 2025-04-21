@@ -1,7 +1,8 @@
 {% extends 'prometei/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Наші Послуги - Prometey Labs{% endblock %}
+{% block title %}{% trans "Наші Послуги" %} - Prometey Labs{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'prometei/css/services.css' %}">
@@ -11,16 +12,17 @@
 <!-- Services Hero Section -->
 <section class="services-hero">
     <div class="container">
-        <h1 class="services-hero__title">Що ми <span class="services-hero__accent">пропонуємо</span></h1>
-        <p class="services-hero__text">Від простих лендінгів до складних веб-додатків — ми втілимо будь-яку вашу ідею.
-        </p>
+        <h1 class="services-hero__title">
+            {% trans "Що ми" %} <span class="services-hero__accent">{% trans "пропонуємо" %}</span>
+        </h1>
+        <p class="services-hero__text">{% trans "Від простих лендінгів до складних веб-додатків — ми втілимо будь-яку вашу ідею." %}</p>
     </div>
 </section>
 
 <!-- Services Grid Section -->
 <section class="services-grid">
     <div class="container">
-        <h2 class="section-title">Наші Послуги</h2>
+        <h2 class="section-title">{% trans "Наші Послуги" %}</h2>
         <div class="services-grid__wrapper">
             <!-- Service Card 1 -->
             <div class="service-card" data-modal-target="service-landing">
@@ -32,10 +34,9 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="service-card__title">Розробка Landing Page</h3>
-                <p class="service-card__description">Створення ефективних односторінкових сайтів для презентації
-                    продукту чи послуги.</p>
-                <button class="button button--details" data-modal-trigger="service-landing">Детальніше</button>
+                <h3 class="service-card__title">{% trans "Розробка Landing Page" %}</h3>
+                <p class="service-card__description">{% trans "Створення ефективних односторінкових сайтів для презентації продукту чи послуги." %}</p>
+                <button class="button button--details" data-modal-trigger="service-landing">{% trans "Детальніше" %}</button>
             </div>
 
             <!-- Service Card 2 -->
@@ -56,10 +57,9 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="service-card__title">Корпоративні Сайти</h3>
-                <p class="service-card__description">Розробка іміджевих сайтів для компаній, що представляють бренд та
-                    його діяльність.</p>
-                <button class="button button--details" data-modal-trigger="service-corporate">Детальніше</button>
+                <h3 class="service-card__title">{% trans "Корпоративні Сайти" %}</h3>
+                <p class="service-card__description">{% trans "Розробка іміджевих сайтів для компаній, що представляють бренд та його діяльність." %}</p>
+                <button class="button button--details" data-modal-trigger="service-corporate">{% trans "Детальніше" %}</button>
             </div>
 
             <!-- Service Card 3 -->
@@ -77,10 +77,9 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="service-card__title">Інтернет-магазини</h3>
-                <p class="service-card__description">Створення функціональних e-commerce рішень з каталогом товарів та
-                    системою замовлень.</p>
-                <button class="button button--details" data-modal-trigger="service-store">Детальніше</button>
+                <h3 class="service-card__title">{% trans "Інтернет-магазини" %}</h3>
+                <p class="service-card__description">{% trans "Створення функціональних e-commerce рішень з каталогом товарів та системою замовлень." %}</p>
+                <button class="button button--details" data-modal-trigger="service-store">{% trans "Детальніше" %}</button>
             </div>
 
             <!-- Service Card 4 -->
@@ -101,10 +100,9 @@
                             stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="service-card__title">Веб-додатки</h3>
-                <p class="service-card__description">Розробка складних інтерактивних веб-систем та сервісів під ваші
-                    унікальні задачі.</p>
-                <button class="button button--details" data-modal-trigger="service-webapp">Детальніше</button>
+                <h3 class="service-card__title">{% trans "Веб-додатки" %}</h3>
+                <p class="service-card__description">{% trans "Розробка складних інтерактивних веб-систем та сервісів під ваші унікальні задачі." %}</p>
+                <button class="button button--details" data-modal-trigger="service-webapp">{% trans "Детальніше" %}</button>
             </div>
         </div>
     </div>
@@ -114,70 +112,66 @@
 <div class="modal-overlay" id="modalOverlay"></div>
 
 <div class="modal" id="service-landing">
-    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
-    <h2 class="modal__title">Розробка Landing Page</h2>
+    <button class="modal__close" data-modal-close aria-label="{% trans 'Закрити' %}">&times;</button>
+    <h2 class="modal__title">{% trans "Розробка Landing Page" %}</h2>
     <div class="modal__content">
-        <p>Ідеальне рішення для швидкого запуску рекламної кампанії, презентації нового продукту чи збору контактів. Ми
-            створюємо лендінги, які конвертують.</p>
+        <p>{% trans "Ідеальне рішення для швидкого запуску рекламної кампанії, презентації нового продукту чи збору контактів. Ми створюємо лендінги, які конвертують." %}</p>
         <ul>
-            <li>Унікальний дизайн</li>
-            <li>Адаптивність під усі пристрої</li>
-            <li>Висока швидкість завантаження</li>
-            <li>Налаштування аналітики</li>
-            <li>Форми зворотного зв'язку</li>
+            <li>{% trans "Унікальний дизайн" %}</li>
+            <li>{% trans "Адаптивність під усі пристрої" %}</li>
+            <li>{% trans "Висока швидкість завантаження" %}</li>
+            <li>{% trans "Налаштування аналітики" %}</li>
+            <li>{% trans "Форми зворотного зв'язку" %}</li>
         </ul>
-        <a href="{% url 'prometei:contact' %}" class="button cta-button">Замовити лендінг</a>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">{% trans "Замовити лендінг" %}</a>
     </div>
 </div>
 
 <div class="modal" id="service-corporate">
-    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
-    <h2 class="modal__title">Корпоративні Сайти</h2>
+    <button class="modal__close" data-modal-close aria-label="{% trans 'Закрити' %}">&times;</button>
+    <h2 class="modal__title">{% trans "Корпоративні Сайти" %}</h2>
     <div class="modal__content">
-        <p>Сайт компанії - це її обличчя в інтернеті. Ми створимо професійний, сучасний та інформативний сайт, який
-            підвищить довіру до вашого бренду.</p>
+        <p>{% trans "Сайт компанії - це її обличчя в інтернеті. Ми створимо професійний, сучасний та інформативний сайт, який підвищить довіру до вашого бренду." %}</p>
         <ul>
-            <li>Структура, що легко масштабується</li>
-            <li>Система керування контентом (CMS)</li>
-            <li>Інтеграція з сервісами</li>
-            <li>Блог або розділ новин</li>
-            <li>Оптимізація для пошукових систем</li>
+            <li>{% trans "Структура, що легко масштабується" %}</li>
+            <li>{% trans "Система керування контентом (CMS)" %}</li>
+            <li>{% trans "Інтеграція з сервісами" %}</li>
+            <li>{% trans "Блог або розділ новин" %}</li>
+            <li>{% trans "Оптимізація для пошукових систем" %}</li>
         </ul>
-        <a href="{% url 'prometei:contact' %}" class="button cta-button">Замовити сайт</a>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">{% trans "Замовити сайт" %}</a>
     </div>
 </div>
 
 <div class="modal" id="service-store">
-    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
-    <h2 class="modal__title">Інтернет-магазини</h2>
+    <button class="modal__close" data-modal-close aria-label="{% trans 'Закрити' %}">&times;</button>
+    <h2 class="modal__title">{% trans "Інтернет-магазини" %}</h2>
     <div class="modal__content">
-        <p>Запустіть свій онлайн-бізнес з потужним інтернет-магазином. Ми пропонуємо повний цикл розробки від дизайну до
-            інтеграції платіжних систем.</p>
+        <p>{% trans "Запустіть свій онлайн-бізнес з потужним інтернет-магазином. Ми пропонуємо повний цикл розробки від дизайну до інтеграції платіжних систем." %}</p>
         <ul>
-            <li>Каталог товарів з фільтрами</li>
-            <li>Кошик та система оформлення замовлень</li>
-            <li>Особистий кабінет користувача</li>
-            <li>Інтеграція з платіжними системами та службами доставки</li>
-            <li>Зручна панель адміністрування</li>
+            <li>{% trans "Каталог товарів з фільтрами" %}</li>
+            <li>{% trans "Кошик та система оформлення замовлень" %}</li>
+            <li>{% trans "Особистий кабінет користувача" %}</li>
+            <li>{% trans "Інтеграція з платіжними системами та службами доставки" %}</li>
+            <li>{% trans "Зручна панель адміністрування" %}</li>
         </ul>
-        <a href="{% url 'prometei:contact' %}" class="button cta-button">Замовити магазин</a>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">{% trans "Замовити магазин" %}</a>
     </div>
 </div>
 
 <div class="modal" id="service-webapp">
-    <button class="modal__close" data-modal-close aria-label="Закрити">&times;</button>
-    <h2 class="modal__title">Веб-додатки</h2>
+    <button class="modal__close" data-modal-close aria-label="{% trans 'Закрити' %}">&times;</button>
+    <h2 class="modal__title">{% trans "Веб-додатки" %}</h2>
     <div class="modal__content">
-        <p>Якщо вам потрібне нестандартне рішення, CRM-система, особистий кабінет чи будь-який інший складний сервіс -
-            ми готові взятися за розробку.</p>
+        <p>{% trans "Якщо вам потрібне нестандартне рішення, CRM-система, особистий кабінет чи будь-який інший складний сервіс - ми готові взятися за розробку." %}</p>
         <ul>
-            <li>Аналіз вимог та проектування архітектури</li>
-            <li>Розробка фронтенду та бекенду</li>
-            <li>Інтеграція зі сторонніми API</li>
-            <li>Забезпечення безпеки та масштабованості</li>
-            <li>Тестування та підтримка</li>
+            <li>{% trans "Аналіз вимог та проектування архітектури" %}</li>
+            <li>{% trans "Розробка фронтенду та бекенду" %}</li>
+            <li>{% trans "Інтеграція зі сторонніми API" %}</li>
+            <li>{% trans "Забезпечення безпеки та масштабованості" %}</li>
+            <li>{% trans "Тестування та підтримка" %}</li>
         </ul>
-        <a href="{% url 'prometei:contact' %}" class="button cta-button">Обговорити проект</a>
+        <a href="{% url 'prometei:contact' %}" class="button cta-button">{% trans "Обговорити проект" %}</a>
     </div>
 </div>
 {% endblock %}

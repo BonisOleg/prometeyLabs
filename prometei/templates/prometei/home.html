@@ -1,7 +1,8 @@
 {% extends 'prometei/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Prometey Labs - Створення сучасних сайтів швидко й доступно{% endblock %}
+{% block title %}{% trans "Prometey Labs - Створення сучасних сайтів швидко й доступно" %}{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'prometei/css/home.css' %}">
@@ -13,13 +14,13 @@
     <div class="container">
         <div class="hero__wrapper">
             <div class="hero__content">
-                <h1 class="hero__title">Створюємо <span class="hero__accent">сучасні сайти</span><br>швидко й доступно
+                <h1 class="hero__title">
+                    {% trans "Створюємо" %} <span class="hero__accent">{% trans "сучасні сайти" %}</span><br>{% trans "швидко й доступно" %}
                 </h1>
-                <p class="hero__text">Prometey Labs — це команда професіоналів, яка допоможе втілити ваші ідеї в
-                    реальність. Ми створюємо сайти, які працюють на ваш бізнес.</p>
+                <p class="hero__text">{% blocktrans %}Prometey Labs — це команда професіоналів, яка допоможе втілити ваші ідеї в реальність. Ми створюємо сайти, які працюють на ваш бізнес.{% endblocktrans %}</p>
                 <div class="hero__buttons">
-                    <a href="{% url 'prometei:builder' %}" class="button cta-button">Розрахувати вартість</a>
-                    <a href="{% url 'prometei:services' %}" class="button">Наші послуги</a>
+                    <a href="{% url 'prometei:builder' %}" class="button cta-button">{% trans "Розрахувати вартість" %}</a>
+                    <a href="{% url 'prometei:services' %}" class="button">{% trans "Наші послуги" %}</a>
                 </div>
             </div>
             <div class="hero__image">
@@ -37,16 +38,17 @@
     <div class="animated-tape__container">
         <div class="animated-tape__wrapper">
             <!-- Multiply these items via JavaScript for infinite animation -->
-            <div class="animated-tape__item">Розробка сайтів</div>
-            <div class="animated-tape__item">Веб-дизайн</div>
-            <div class="animated-tape__item">Підтримка 24/7</div>
-            <div class="animated-tape__item">SEO-оптимізація</div>
-            <div class="animated-tape__item">Адаптивна верстка</div>
-            <div class="animated-tape__item">Розробка сайтів</div>
-            <div class="animated-tape__item">Веб-дизайн</div>
-            <div class="animated-tape__item">Підтримка 24/7</div>
-            <div class="animated-tape__item">SEO-оптимізація</div>
-            <div class="animated-tape__item">Адаптивна верстка</div>
+            <div class="animated-tape__item">{% trans "Розробка сайтів" %}</div>
+            <div class="animated-tape__item">{% trans "Веб-дизайн" %}</div>
+            <div class="animated-tape__item">{% trans "Підтримка 24/7" %}</div>
+            <div class="animated-tape__item">{% trans "SEO-оптимізація" %}</div>
+            <div class="animated-tape__item">{% trans "Адаптивна верстка" %}</div>
+            {# Duplicate items for seamless loop #}
+            <div class="animated-tape__item">{% trans "Розробка сайтів" %}</div>
+            <div class="animated-tape__item">{% trans "Веб-дизайн" %}</div>
+            <div class="animated-tape__item">{% trans "Підтримка 24/7" %}</div>
+            <div class="animated-tape__item">{% trans "SEO-оптимізація" %}</div>
+            <div class="animated-tape__item">{% trans "Адаптивна верстка" %}</div>
         </div>
     </div>
 </section>
@@ -54,7 +56,7 @@
 <!-- Features Section -->
 <section class="features">
     <div class="container">
-        <h2 class="section-title">Чому обирають нас</h2>
+        <h2 class="section-title">{% trans "Чому обирають нас" %}</h2>
         <div class="features__grid">
             <div class="feature-card">
                 <div class="feature-card__icon">
@@ -66,9 +68,8 @@
                             stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="feature-card__title">Швидкість</h3>
-                <p class="feature-card__text">Створюємо сайти у найкоротші терміни без втрати якості. Ви отримаєте свій
-                    проєкт вчасно.</p>
+                <h3 class="feature-card__title">{% trans "Швидкість" %}</h3>
+                <p class="feature-card__text">{% trans "Створюємо сайти у найкоротші терміни без втрати якості. Ви отримаєте свій проєкт вчасно." %}</p>
             </div>
 
             <div class="feature-card">
@@ -85,9 +86,8 @@
                             stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="feature-card__title">Зручність</h3>
-                <p class="feature-card__text">Сайти, які ми створюємо, максимально зручні у використанні та легко
-                    налаштовуються під ваші потреби.</p>
+                <h3 class="feature-card__title">{% trans "Зручність" %}</h3>
+                <p class="feature-card__text">{% trans "Сайти, які ми створюємо, максимально зручні у використанні та легко налаштовуються під ваші потреби." %}</p>
             </div>
 
             <div class="feature-card">
@@ -101,9 +101,8 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="feature-card__title">Адаптивність</h3>
-                <p class="feature-card__text">Всі наші сайти чудово виглядають на будь-яких пристроях: від смартфонів до
-                    великих моніторів.</p>
+                <h3 class="feature-card__title">{% trans "Адаптивність" %}</h3>
+                <p class="feature-card__text">{% trans "Всі наші сайти чудово виглядають на будь-яких пристроях: від смартфонів до великих моніторів." %}</p>
             </div>
 
             <div class="feature-card">
@@ -116,9 +115,8 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3 class="feature-card__title">Якість</h3>
-                <p class="feature-card__text">Ми гарантуємо високу якість наших робіт. Кожен проєкт проходить детальне
-                    тестування перед запуском.</p>
+                <h3 class="feature-card__title">{% trans "Якість" %}</h3>
+                <p class="feature-card__text">{% trans "Ми гарантуємо високу якість наших робіт. Кожен проєкт проходить детальне тестування перед запуском." %}</p>
             </div>
         </div>
     </div>
@@ -128,11 +126,12 @@
 <section class="cta">
     <div class="container">
         <div class="cta__wrapper">
-            <h2 class="cta__title">Готові розпочати свій проєкт?</h2>
-            <p class="cta__text">Зв'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!</p>
+            <h2 class="cta__title">{% trans "Готові розпочати свій проєкт?" %}</h2>
+            <p class="cta__text">{% trans "Зв'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!" %}
+            </p>
             <div class="cta__buttons">
-                <a href="{% url 'prometei:contact' %}" class="button cta-button">Зв'язатися</a>
-                <a href="{% url 'prometei:builder' %}" class="button">Конструктор</a>
+                <a href="{% url 'prometei:contact' %}" class="button cta-button">{% trans "Зв'язатися" %}</a>
+                <a href="{% url 'prometei:builder' %}" class="button">{% trans "Конструктор" %}</a>
             </div>
         </div>
     </div>

@@ -1,7 +1,8 @@
 {% extends 'prometei/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Зв'яжіться з нами - Prometey Labs{% endblock %}
+{% block title %}{% trans "Зв'яжіться з нами" %} - Prometey Labs{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'prometei/css/contact.css' %}">
@@ -10,32 +11,34 @@
 {% block content %}
 <section class="contact-section">
     <div class="container">
-        <h1 class="section-title">Контакти</h1>
-        <p class="section-subtitle">Маєте питання або готові розпочати проєкт? Напишіть нам!</p>
+        <h1 class="section-title">{% trans "Контакти" %}</h1>
+        <p class="section-subtitle">{% trans "Маєте питання або готові розпочати проєкт? Напишіть нам!" %}</p>
 
         <div class="contact-form-container">
             <!-- Contact Form will go here -->
             <form id="contactForm" class="contact-form">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="name">Ваше ім'я:</label>
+                    <label for="name">{% trans "Ваше ім'я:" %}</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="contact_method">Telegram або Email:</label>
+                    <label for="contact_method">{% trans "Telegram або Email:" %}</label>
                     <input type="text" id="contact_method" name="contact_method" required>
                 </div>
                 <div class="form-group">
-                    <label for="message">Повідомлення:</label>
+                    <label for="message">{% trans "Повідомлення:" %}</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="button cta-button">Надіслати</button>
-                <div id="formStatus" class="form-status"></div>
+                <button type="submit" class="button cta-button">{% trans "Надіслати" %}</button>
+                {# Status messages are set via JS, but we can add a placeholder translation comment #}
+                <div id="formStatus" class="form-status"></div> {# {% trans "Статус відправки форми" %} #}
             </form>
         </div>
 
         <div class="contact-info">
-            <h2>Інші способи зв'язку:</h2>
+            <h2>{% trans "Інші способи зв'язку:" %}</h2>
+            {# Assuming email/telegram handle itself shouldn't be translated #}
             <p>Email: info@prometeylabs.com</p>
             <p>Telegram: @PrometeyLabs</p>
             <!-- Add more contact info if needed -->
