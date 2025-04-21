@@ -1,7 +1,8 @@
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="{{ request.LANGUAGE_CODE }}" data-theme="light">
+<html lang="{{ request.LANGUAGE_CODE }}" data-theme="light"
+    data-prometey-image-path="{% static 'prometei/media/prometey.png' %}">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,8 @@
     {% block styles %}{% endblock %}
 </head>
 
-<body>
+<body data-theme="{{ request.COOKIES.theme|default:'light' }}"
+    data-prometey-image-path="{% static 'prometei/media/prometey.png' %}">
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -94,16 +96,11 @@
         <div class="container">
             <nav class="mobile-nav">
                 <ul class="mobile-nav__list">
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans
-                            "Головна" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans
-                            "Про нас" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{%
-                            trans "Послуги" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{%
-                            trans "Конструктор" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{%
-                            trans "Контакти" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans "Головна" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans "Про нас" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{% trans "Послуги" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{% trans "Конструктор" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{% trans "Контакти" %}</a></li>
                 </ul>
                 <!-- Mobile Language Switcher -->
                 <form action="{% url 'set_language' %}" method="post"
