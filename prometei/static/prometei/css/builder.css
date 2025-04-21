@@ -58,10 +58,13 @@
     border-radius: 8px;
     padding: 1rem 1.5rem 1.5rem;
     margin-bottom: 1.5rem;
+    background-color: #ffffff;
 }
 
 [data-theme="dark"] .builder-fieldset {
     border-color: var(--color-black-200);
+    background-color: var(--color-black-300);
+    /* Removed light gray background for dark theme */
 }
 
 .builder-legend {
@@ -153,11 +156,11 @@
 }
 
 [data-theme="dark"] .builder-slider::-webkit-slider-runnable-track {
-    background: var(--color-black-200);
+    background: var(--color-gray-300);
 }
 
 [data-theme="dark"] .builder-slider::-moz-range-track {
-    background: var(--color-black-200);
+    background: var(--color-gray-300);
 }
 
 .builder-slider:focus-visible {
@@ -167,12 +170,21 @@
 
 .builder-slider-value {
     font-weight: 600;
-    background-color: var(--theme-surface-alt);
+    background-color: #ffffff;
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     min-width: 35px;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid var(--color-gray-300);
+    color: var(--theme-subtext);
+}
+
+/* Add styles for dark theme slider value */
+[data-theme="dark"] .builder-slider-value {
+    background-color: var(--color-gray-100);
+    color: var(--color-black-300);
+    border-color: var(--color-gray-300);
 }
 
 /* Results Panel */
