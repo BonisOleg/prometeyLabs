@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Enhanced Animated Tape - Automatically adjust speed based on screen width
     const adjustTapeAnimation = () => {
         const screenWidth = window.innerWidth;
-        const animationDuration = screenWidth < 768 ? '20s' : '30s';
+        // Reduced animation duration for faster speed
+        const animationDuration = screenWidth < 768 ? '8s' : '12s';
         animatedTape.style.animationDuration = animationDuration;
     };
 
