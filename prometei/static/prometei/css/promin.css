@@ -1,0 +1,451 @@
+/* Promin Page Styles */
+:root {
+    --promin-primary: var(--color-purple-300);
+    --promin-secondary: var(--color-orange-300);
+    --promin-bg: var(--theme-bg);
+    --promin-text: var(--theme-text);
+    --promin-surface: var(--theme-surface);
+    --promin-accent: var(--color-orange-300);
+    --promin-accent-alt: var(--color-purple-300);
+}
+
+/* Helper classes for text colors */
+.text-orange {
+    color: var(--promin-accent);
+}
+
+.text-purple {
+    color: var(--promin-primary);
+}
+
+/* Main Container */
+.promin-section {
+    background-color: var(--promin-bg);
+    padding: 0 0 60px;
+    overflow: hidden;
+}
+
+.promin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.promin-header {
+    padding: 40px 0 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.promin-header__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: flex-end;
+    padding-left: 320px;
+    min-height: 280px;
+}
+
+.promin-header__title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--promin-primary);
+    text-align: right;
+    position: relative;
+    z-index: 2;
+}
+
+/* Розмістити зображення зліва */
+.promin-header-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 280px;
+    margin-top: 0px;
+    z-index: 1;
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.promin-image__element {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scaleX(-1);
+}
+
+/* Subtitle and Goal - вирівняні праворуч */
+.promin-header__subtitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    max-width: 100%;
+    margin: 30px 0 15px;
+    color: var(--promin-text);
+    position: relative;
+    z-index: 2;
+    text-align: right;
+}
+
+.promin-header__goal {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 100%;
+    color: var(--theme-subtext);
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+    text-align: right;
+}
+
+/* Animated Tape - на весь екран з нахилом у іншу сторону */
+.animated-tape--promin {
+    background-color: var(--promin-primary);
+    color: white;
+    padding: 1.5rem 0;
+    overflow: hidden;
+    margin: 4rem 0;
+    transform: rotate(2deg) scale(1.1);
+    position: relative;
+    z-index: 10;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.animated-tape--promin .animated-tape__container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.animated-tape--promin .animated-tape__wrapper {
+    display: flex;
+    white-space: nowrap;
+    animation: scrollTape 30s linear infinite;
+}
+
+.animated-tape--promin .animated-tape__item {
+    display: inline-block;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: white;
+}
+
+.animated-tape--promin .animated-tape__item::after {
+    content: '•';
+    margin-left: 2rem;
+}
+
+.animated-tape--promin .animated-tape__item:last-child::after {
+    content: '';
+}
+
+@keyframes scrollTape {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Content Area */
+.promin-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Form Styles */
+.promin-form {
+    background-color: var(--promin-surface);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+.promin-form__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--promin-primary);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--promin-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: var(--theme-text);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Стилі для темної теми */
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-300);
+    color: var(--color-black-300);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--theme-accent-alt);
+    box-shadow: 0 0 0 3px rgba(116, 44, 240, 0.15);
+}
+
+/* Стилі фокусу для темної теми */
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group select:focus,
+[data-theme="dark"] .form-group textarea:focus {
+    border-color: var(--theme-accent-alt);
+    box-shadow: 0 0 0 3px rgba(159, 93, 253, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.promin-form__button {
+    background-color: var(--promin-accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.promin-form__button:hover {
+    background-color: var(--color-orange-400);
+}
+
+/* How It Works Section */
+.promin-how-it-works {
+    padding: 30px;
+    background-color: var(--promin-surface);
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+.promin-how-it-works__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--promin-primary);
+}
+
+.promin-how-it-works__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.promin-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.promin-step__number {
+    background-color: var(--promin-accent);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.promin-step__content {
+    flex-grow: 1;
+}
+
+.promin-step__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--promin-text);
+}
+
+.promin-step__description {
+    font-size: 1rem;
+    color: var(--theme-subtext);
+    line-height: 1.5;
+}
+
+/* Results Area */
+.promin-results {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--promin-surface);
+    text-align: center;
+}
+
+/* Coming Soon Block */
+.promin-coming-soon {
+    margin-top: 40px;
+    background-color: var(--theme-surface-alt);
+    border: 1px solid var(--color-sand-300);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 6px 18px var(--theme-shadow);
+}
+
+[data-theme="dark"] .promin-coming-soon {
+    background-color: var(--theme-surface-alt);
+    border-color: var(--color-black-100);
+}
+
+.promin-coming-soon__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.promin-coming-soon__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--promin-primary);
+    margin-bottom: 0.5rem;
+}
+
+.promin-coming-soon__text {
+    font-size: 1.1rem;
+    color: var(--theme-subtext);
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .promin-content {
+        grid-template-columns: 1fr;
+    }
+
+    .promin-header__wrapper {
+        padding-left: 250px;
+        min-height: 220px;
+    }
+
+    .promin-header-image {
+        width: 220px;
+        height: 220px;
+        top: 10px;
+        left: 0;
+    }
+
+    .promin-header__subtitle,
+    .promin-header__goal {
+        max-width: 100%;
+        text-align: right;
+    }
+}
+
+@media (max-width: 768px) {
+    .promin-header__wrapper {
+        align-items: center;
+        padding-left: 0;
+        min-height: auto;
+    }
+
+    .promin-header__title {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .promin-header-image {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        margin: 20px auto;
+        top: auto;
+        left: auto;
+        opacity: 0.8;
+        animation: none;
+    }
+
+    .promin-header__subtitle {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .promin-header__goal {
+        text-align: center;
+    }
+
+    .animated-tape--promin .animated-tape__item {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .promin-header__title {
+        font-size: 2rem;
+    }
+
+    .promin-header-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .promin-header__subtitle {
+        font-size: 1.3rem;
+    }
+
+    .animated-tape--promin {
+        padding: 6px 0;
+    }
+
+    .animated-tape--promin .animated-tape__item {
+        font-size: 0.9rem;
+        padding: 0 15px;
+    }
+}

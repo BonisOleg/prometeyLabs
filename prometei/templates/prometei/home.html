@@ -14,10 +14,23 @@
     <div class="container">
         <div class="hero__wrapper">
             <div class="hero__content">
+                {% if request.LANGUAGE_CODE == 'uk' %}
                 <h1 class="hero__title">
-                    {% trans "Створюємо" %} <span class="hero__accent">{% trans "сучасні сайти" %}</span><br>{% trans "швидко й доступно" %}
+                    {% trans "Створюємо" %} <span class="hero__accent">{% trans "сучасні сайти" %}</span><br>{% trans "для тих, хто прагне більшого" %}
                 </h1>
-                <p class="hero__text">{% blocktrans %}Prometey Labs — це команда професіоналів, яка допоможе втілити ваші ідеї в реальність. Ми створюємо сайти, які працюють на ваш бізнес.{% endblocktrans %}</p>
+                <p class="hero__text">{% blocktrans %}У Prometey Labs ми допомагаємо перетворювати ідеї на реальні
+                    бізнес-інструменти — швидко, професійно й доступно.
+                    А для тих, хто має сильну ідею, але обмежений бюджет, ми створили PROmin — спеціальну програму
+                    підтримки амбітних проєктів.
+                    Заповніть заявку і зробіть перший крок у цифровий світ із нашою командою.{% endblocktrans %}</p>
+                {% else %}
+                {# English version - Restore original text #}
+                <h1 class="hero__title">
+                    {% trans "We create" %} <span class="hero__accent">{% trans "modern websites" %}</span><br>{% trans "quickly and affordably" %}
+                </h1>
+                <p class="hero__text">{% blocktrans %}Prometey Labs is a team of professionals who will help bring your
+                    ideas to life. We create websites that work for your business.{% endblocktrans %}</p>
+                {% endif %}
                 <div class="hero__buttons">
                     <a href="{% url 'prometei:builder' %}" class="button cta-button">{% trans "Розрахувати вартість" %}</a>
                     <a href="{% url 'prometei:services' %}" class="button">{% trans "Наші послуги" %}</a>

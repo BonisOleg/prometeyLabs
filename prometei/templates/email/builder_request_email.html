@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Новий запит з конструктора сайту</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff6500;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #742cf0;
+            margin-top: 20px;
+        }
+
+        .contact-info {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .site-specs {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .message-box {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-line;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        .package {
+            display: inline-block;
+            background-color: #742cf0;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .price {
+            display: inline-block;
+            background-color: #ff6500;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Новий запит на створення сайту</h1>
+
+    <div class="contact-info">
+        <p><span class="highlight">Від:</span> {{ contact_request.name }}</p>
+        <p><span class="highlight">Контакт:</span> {{ contact_request.contact_method }}</p>
+        <p><span class="highlight">Дата:</span> {{ contact_request.created_at|date:"d.m.Y H:i" }}</p>
+    </div>
+
+    <h2>Специфікація сайту:</h2>
+    <div class="site-specs">
+        <p><span class="highlight">Тип сайту:</span> {{ contact_request.builder_site_type }}</p>
+        <p><span class="highlight">Дизайн:</span> {{ contact_request.builder_design }}</p>
+        <p><span class="highlight">Кількість сторінок:</span> {{ contact_request.builder_pages }}</p>
+
+        {% if contact_request.builder_modules %}
+        <p><span class="highlight">Обрані модулі:</span></p>
+        <div style="margin-left: 20px;">
+            {% for module in contact_request.builder_modules.split|slice:":5" %}
+            <p>• {{ module }}</p>
+            {% endfor %}
+            {% if contact_request.builder_modules.split|length > 5 %}
+            <p>• ... та {{ contact_request.builder_modules.split|length|add:"-5" }} інш.</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <p>
+            <span class="highlight">Пропонований пакет:</span>
+            <span class="package">{{ contact_request.builder_package }}</span>
+            <span class="price">{{ contact_request.builder_price }}</span>
+        </p>
+    </div>
+
+    {% if contact_request.message %}
+    <h2>Додаткові побажання:</h2>
+    <div class="message-box">
+        {{ contact_request.message }}
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        <p>Цей лист згенеровано автоматично системою Prometey Labs.</p>
+        <p>© {{ contact_request.created_at|date:"Y" }} Prometey Labs</p>
+    </div>
+</body>
+
+</html>

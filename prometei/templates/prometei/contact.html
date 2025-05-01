@@ -15,33 +15,72 @@
         <p class="section-subtitle">{% trans "Маєте питання або готові розпочати проєкт? Напишіть нам!" %}</p>
 
         <div class="contact-form-container">
-            <!-- Contact Form will go here -->
-            <form id="contactForm" class="contact-form">
+            <!-- Contact Form using Django Form -->
+            <form id="contactForm" class="contact-form" method="post" action="{% url 'prometei:contact' %}">
                 {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                    <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if messages %}
+                <div class="form-messages">
+                    {% for message in messages %}
+                    <p class="message {{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
                 <div class="form-group">
                     <label for="name">{% trans "Ваше ім'я:" %}</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required {% if form.name.value %}value="{{ form.name.value }}" {% endif %}>
+                    {% if form.name.errors %}
+                    <div class="field-errors">
+                        {% for error in form.name.errors %}
+                        <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
                 <div class="form-group">
-                    <label for="contact_method">{% trans "Telegram або Email:" %}</label>
-                    <input type="text" id="contact_method" name="contact_method" required>
+                    <label for="contact_method">{% trans "Email або Telegram:" %}</label>
+                    <input type="text" id="contact_method" name="contact_method" required {% if form.contact_method.value %}value="{{ form.contact_method.value }}" {% endif %}>
+                    {% if form.contact_method.errors %}
+                    <div class="field-errors">
+                        {% for error in form.contact_method.errors %}
+                        <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
                 <div class="form-group">
                     <label for="message">{% trans "Повідомлення:" %}</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <textarea id="message" name="message" rows="5"
+                        required>{% if form.message.value %}{{ form.message.value }}{% endif %}</textarea>
+                    {% if form.message.errors %}
+                    <div class="field-errors">
+                        {% for error in form.message.errors %}
+                        <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
+
                 <button type="submit" class="button cta-button">{% trans "Надіслати" %}</button>
-                {# Status messages are set via JS, but we can add a placeholder translation comment #}
-                <div id="formStatus" class="form-status"></div> {# {% trans "Статус відправки форми" %} #}
+                <div id="formStatus" class="form-status"></div>
             </form>
         </div>
 
         <div class="contact-info">
             <h2>{% trans "Інші способи зв'язку:" %}</h2>
-            {# Assuming email/telegram handle itself shouldn't be translated #}
             <p>Email: info@prometeylabs.com</p>
             <p>Telegram: @PrometeyLabs</p>
-            <!-- Add more contact info if needed -->
         </div>
     </div>
 </section>

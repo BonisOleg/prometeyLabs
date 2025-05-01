@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const browserContent = document.getElementById('browserContent');
     const submitButton = document.getElementById('submitRequest');
     const successMessage = document.getElementById('successMessage');
+    const builderContainer = document.querySelector('.builder-container');
+    const builderOptions = document.querySelector('.builder-options');
+    const builderResults = document.querySelector('.builder-results');
 
     // Base prices and factors (can be adjusted)
     const pagePriceFactor = 50; // Price per additional page (approx)
@@ -72,6 +75,172 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, stepTime);
     };
+
+    // Функція для обробки адаптивності
+    const handleResponsiveLayout = () => {
+        const windowWidth = window.innerWidth;
+        // Якщо ширина вікна менша за 1024px
+        if (windowWidth <= 1024) {
+            // Застосовуємо мобільний макет
+            document.body.classList.add('builder-mobile-view');
+
+            // Видаляємо sticky позицію для результатів
+            if (builderResults) {
+                builderResults.style.position = 'static';
+                builderResults.style.top = 'auto';
+                builderResults.style.width = '100%';
+                builderResults.style.maxWidth = '100%';
+            }
+
+            // Переконуємося, що контейнер має одноколонковий вигляд 
+            if (builderContainer) {
+                builderContainer.style.display = 'flex';
+                builderContainer.style.flexDirection = 'column';
+                builderContainer.style.gap = windowWidth <= 768 ? '1.5rem' : '2rem';
+            }
+
+            // Змінюємо відступи для опцій та результатів
+            if (builderOptions && builderResults) {
+                const padding = windowWidth <= 768 ? '1rem' : '1.5rem';
+                builderOptions.style.padding = padding;
+                builderResults.style.padding = padding;
+
+                if (windowWidth <= 768) {
+                    const fieldsets = document.querySelectorAll('.builder-fieldset');
+                    fieldsets.forEach(fieldset => {
+                        fieldset.style.padding = '1rem 1.2rem 1.2rem';
+                    });
+
+                    const legends = document.querySelectorAll('.builder-legend');
+                    legends.forEach(legend => {
+                        legend.style.fontSize = '1.1rem';
+                        legend.style.marginBottom = '0.8rem';
+                    });
+
+                    const labels = document.querySelectorAll('.builder-radio-group label, .builder-checkbox-group label');
+                    labels.forEach(label => {
+                        label.style.marginBottom = '0.8rem';
+                        label.style.lineHeight = '1.4';
+                    });
+
+                    const inputs = document.querySelectorAll('.builder-radio-group input[type="radio"], .builder-checkbox-group input[type="checkbox"]');
+                    inputs.forEach(input => {
+                        input.style.marginRight = '0.7rem';
+                        input.style.verticalAlign = 'middle';
+                    });
+                }
+            }
+        } else {
+            // Десктопний макет
+            document.body.classList.remove('builder-mobile-view');
+
+            // Повертаємо sticky позицію для результатів
+            if (builderResults) {
+                builderResults.style.position = 'sticky';
+                builderResults.style.top = '110px';
+                builderResults.style.width = '';
+                builderResults.style.maxWidth = '';
+            }
+
+            // Повертаємо двоколонковий вигляд
+            if (builderContainer) {
+                builderContainer.style.display = 'grid';
+                builderContainer.style.gridTemplateColumns = '1fr 1.2fr';
+                builderContainer.style.gap = '3rem';
+            }
+
+            // Скидаємо стилі для опцій та результатів
+            if (builderOptions && builderResults) {
+                builderOptions.style.padding = '2rem';
+                builderResults.style.padding = '2rem';
+
+                const fieldsets = document.querySelectorAll('.builder-fieldset');
+                fieldsets.forEach(fieldset => {
+                    fieldset.style.padding = '';
+                });
+
+                const legends = document.querySelectorAll('.builder-legend');
+                legends.forEach(legend => {
+                    legend.style.fontSize = '';
+                    legend.style.marginBottom = '';
+                });
+
+                const labels = document.querySelectorAll('.builder-radio-group label, .builder-checkbox-group label');
+                labels.forEach(label => {
+                    label.style.marginBottom = '';
+                    label.style.lineHeight = '';
+                });
+
+                const inputs = document.querySelectorAll('.builder-radio-group input[type="radio"], .builder-checkbox-group input[type="checkbox"]');
+                inputs.forEach(input => {
+                    input.style.marginRight = '';
+                    input.style.verticalAlign = '';
+                });
+            }
+        }
+    };
+
+    // Відстежуємо зміни розміру вікна
+    window.addEventListener('resize', handleResponsiveLayout);
+
+    // Викликаємо функцію при завантаженні
+    handleResponsiveLayout();
+
+    // Функція для отримання перекладів текстів
+    const getTranslation = (text) => {
+        // Перевіряємо поточну мову
+        const currentLang = document.documentElement.lang || 'uk';
+
+        const translations = {
+            'uk': {
+                'Package:': 'Пакет:',
+                'Pages:': 'Сторінок:',
+                'Timeline:': 'Термін:',
+                'Price:': 'Ціна:',
+                'Send Request': 'Надіслати запит'
+            },
+            'en': {
+                'Package:': 'Package:',
+                'Pages:': 'Pages:',
+                'Timeline:': 'Timeline:',
+                'Price:': 'Price:',
+                'Send Request': 'Send Request'
+            }
+        };
+
+        // Повертаємо переклад або оригінальний текст, якщо переклад відсутній
+        return translations[currentLang]?.[text] || text;
+    };
+
+    // Функція для оновлення текстів
+    const updateLabels = () => {
+        // Оновлюємо текст міток
+        const summaryLabels = document.querySelectorAll('.summary-label');
+        if (summaryLabels.length >= 4) {
+            summaryLabels[0].textContent = getTranslation('Package:');
+            summaryLabels[1].textContent = getTranslation('Pages:');
+            summaryLabels[2].textContent = getTranslation('Timeline:');
+            summaryLabels[3].textContent = getTranslation('Price:');
+        }
+
+        // Оновлюємо текст кнопки
+        if (submitButton) {
+            submitButton.textContent = getTranslation('Send Request');
+        }
+    };
+
+    // Відразу оновлюємо тексти після завантаження сторінки
+    updateLabels();
+
+    // Додаємо слухач подій для зміни мови
+    const languageSelectors = document.querySelectorAll('.language-switcher select, .language-switcher__button');
+    languageSelectors.forEach(selector => {
+        selector.addEventListener('change', updateLabels);
+        selector.addEventListener('click', () => {
+            // Додаємо невелику затримку для зміни мови
+            setTimeout(updateLabels, 100);
+        });
+    });
 
     const calculateResults = (event = null) => {
         let basePrice = 0;
@@ -146,6 +315,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePriceWithAnimation(priceResult, `від ${basePrice} $`);
         discountHint.classList.toggle('visible', packageName === 'Plus' || packageName === 'Pro');
 
+        // Додаємо виклик адаптивності після всіх оновлень DOM
+        setTimeout(handleResponsiveLayout, 50);
+
         // Determine if a visual update is needed
         let needsVisualUpdate = true;
         // If the change event was triggered AND the element was one of the non-visual modules
@@ -162,12 +334,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pass all selected modules, the simulation function decides what to show visually
                 selectedModules: Array.from(selectedModules).map(m => m.value)
             });
+
+            // Викликаємо ще раз для оновлення після симуляції
+            setTimeout(handleResponsiveLayout, 800);
         }
+
+        // Оновлюємо переклад після обчислень
+        updateLabels();
     };
 
     // Enhanced Browser Simulation Logic with ultra-realism
     const updateBrowserSimulation = (options) => {
-        const { siteType, designType, pages, selectedModules = [] } = options;
+        const { siteType, designType, pages, selectedModules = [] } = options || {};
 
         // Get the browser window elements
         const browserWindow = document.querySelector('.browser-window');
@@ -284,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Generate modules section based on selected modules
                 if (selectedModules && selectedModules.length > 0) {
                     content += '<div class="sim-modules-container">';
-                    selectedModules.forEach(module => {
+                    (Array.isArray(selectedModules) ? selectedModules : []).forEach(module => {
                         if (module === 'blog') content += generateBlogModule(customClass);
                         else if (module === 'portfolio') content += generatePortfolioModule(customClass);
                         else if (module === 'calculator') content += generateCalculatorModule(customClass);
@@ -317,12 +495,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     contentContainer.style.opacity = '1';
 
                     // Initialize interactions for specific modules if present
-                    if (selectedModules.includes('calculator')) {
-                        initCalculatorInteraction();
-                    }
+                    if (selectedModules && Array.isArray(selectedModules)) {
+                        if (selectedModules.includes('calculator')) {
+                            initCalculatorInteraction();
+                        }
 
-                    if (selectedModules.includes('booking')) {
-                        initBookingInteraction();
+                        if (selectedModules.includes('booking')) {
+                            initBookingInteraction();
+                        }
                     }
                 }, 100);
 
@@ -572,9 +752,75 @@ document.addEventListener('DOMContentLoaded', () => {
         return columnsHtml;
     }
 
+    // Функції генерації модулів
+    function generateBlogModule(customClass) {
+        return `
+        <div class="sim-blog-module ${customClass}">
+            <div class="sim-section-title"></div>
+            <div class="sim-blog-posts">
+                <div class="sim-blog-post">
+                    <div class="sim-blog-image"></div>
+                    <div class="sim-blog-title"></div>
+                    <div class="sim-blog-date"></div>
+                    <div class="sim-blog-excerpt"></div>
+                </div>
+                <div class="sim-blog-post">
+                    <div class="sim-blog-image"></div>
+                    <div class="sim-blog-title"></div>
+                    <div class="sim-blog-date"></div>
+                    <div class="sim-blog-excerpt"></div>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    function generatePortfolioModule(customClass) {
+        return `
+        <div class="sim-portfolio-module ${customClass}">
+            <div class="sim-section-title"></div>
+            <div class="sim-portfolio-filters"></div>
+            <div class="sim-portfolio-grid">
+                <div class="sim-portfolio-item"></div>
+                <div class="sim-portfolio-item"></div>
+                <div class="sim-portfolio-item"></div>
+                <div class="sim-portfolio-item"></div>
+            </div>
+        </div>`;
+    }
+
+    function generateCalculatorModule(customClass) {
+        return `
+        <div class="sim-calculator ${customClass}">
+            <div class="sim-section-title"></div>
+            <div class="sim-calculator-form">
+                <div class="sim-calculator-fields">
+                    <div class="sim-calculator-field"></div>
+                    <div class="sim-calculator-field"></div>
+                </div>
+                <div class="sim-calculator-button"></div>
+                <div class="sim-calculator-results"></div>
+            </div>
+        </div>`;
+    }
+
+    function generateBookingModule(customClass) {
+        return `
+        <div class="sim-booking-module ${customClass}">
+            <div class="sim-section-title"></div>
+            <div class="sim-booking-calendar"></div>
+            <div class="sim-booking-form">
+                <div class="sim-booking-field"></div>
+                <div class="sim-booking-field"></div>
+                <div class="sim-booking-button"></div>
+            </div>
+        </div>`;
+    }
+
     // Updated createInteractiveModules to return element (to append later)
     function createInteractiveModulesElement(selectedModules) {
-        if (!selectedModules || selectedModules.length === 0) return null;
+        // Переконаємось, що selectedModules завжди масив
+        selectedModules = Array.isArray(selectedModules) ? selectedModules : [];
+        if (selectedModules.length === 0) return null;
 
         const interactiveContainer = document.createElement('div');
         interactiveContainer.className = 'browser-interactive-modules';
@@ -703,46 +949,190 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (submitButton) {
         submitButton.addEventListener('click', () => {
-            // Simulate request sending
+            // Змінюємо стан кнопки
             submitButton.disabled = true;
             submitButton.textContent = 'Надсилаємо...';
 
-            // In a real application, you would collect data and send it via fetch/AJAX
-            console.log("Запит надіслано з наступними опціями:");
-            const formData = new FormData(builderForm);
-            const selections = {};
-            formData.forEach((value, key) => {
-                if (selections[key]) {
-                    if (Array.isArray(selections[key])) {
-                        selections[key].push(value);
-                    } else {
-                        selections[key] = [selections[key], value];
-                    }
-                } else {
-                    selections[key] = value;
+            // Збираємо дані для відправки
+            const formData = {
+                name: '',
+                contact_method: '',
+                message: 'Запит з конструктора сайту',
+                builder_site_type: '',
+                builder_modules: '',
+                builder_design: '',
+                builder_pages: 0,
+                builder_package: '',
+                builder_price: ''
+            };
+
+            // Показуємо модальне вікно для введення контактної інформації
+            const modalHTML = `
+                <div class="builder-form-modal">
+                    <div class="builder-form-modal-content">
+                        <span class="builder-form-modal-close">&times;</span>
+                        <h3>Залиште свої контактні дані</h3>
+                        <div class="builder-form-fields">
+                            <div class="builder-form-field">
+                                <label for="modal-name">Ваше ім'я*:</label>
+                                <input type="text" id="modal-name" required>
+                            </div>
+                            <div class="builder-form-field">
+                                <label for="modal-contact">Email або Telegram*:</label>
+                                <input type="text" id="modal-contact" required>
+                            </div>
+                            <div class="builder-form-field">
+                                <label for="modal-message">Додаткові побажання:</label>
+                                <textarea id="modal-message" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <button id="modal-submit" class="button cta-button">Надіслати запит</button>
+                        <div id="modal-status" class="builder-form-status"></div>
+                    </div>
+                </div>
+            `;
+
+            // Додаємо модальне вікно на сторінку
+            const modalContainer = document.createElement('div');
+            modalContainer.innerHTML = modalHTML;
+            document.body.appendChild(modalContainer);
+
+            // Отримуємо посилання на елементи модального вікна
+            const modal = document.querySelector('.builder-form-modal');
+            const closeBtn = document.querySelector('.builder-form-modal-close');
+            const modalSubmit = document.getElementById('modal-submit');
+            const modalStatus = document.getElementById('modal-status');
+
+            // Обробники подій для модального вікна
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.removeChild(modalContainer);
+                submitButton.disabled = false;
+                submitButton.textContent = 'Надіслати запит';
+            });
+
+            // Кліки поза модальним вікном закривають його
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.removeChild(modalContainer);
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Надіслати запит';
                 }
             });
-            selections.pageCount = pageCountSlider.value; // Add slider value
-            console.log(selections);
-            console.log("Розрахований пакет:", packageResult.textContent);
-            console.log("Орієнтовна ціна:", priceResult.textContent);
 
-            // Simulate success after a short delay
-            setTimeout(() => {
-                submitButton.style.display = 'none'; // Hide button
-                successMessage.classList.add('visible');
+            // Обробка відправки форми з модального вікна
+            modalSubmit.addEventListener('click', () => {
+                const nameInput = document.getElementById('modal-name');
+                const contactInput = document.getElementById('modal-contact');
+                const messageInput = document.getElementById('modal-message');
 
-                // Optional: Reset form or redirect after a longer delay
-                // setTimeout(() => {
-                //    window.location.reload(); 
-                // }, 5000);
+                // Базова валідація
+                if (!nameInput.value.trim() || !contactInput.value.trim()) {
+                    modalStatus.textContent = 'Будь ласка, заповніть обов\'язкові поля';
+                    modalStatus.classList.add('error');
+                    return;
+                }
 
-            }, 1500); // Simulate network delay
+                // Збираємо всі дані конструктора
+                formData.name = nameInput.value.trim();
+                formData.contact_method = contactInput.value.trim();
+
+                if (messageInput.value.trim()) {
+                    formData.message = messageInput.value.trim();
+                }
+
+                // Збираємо дані з конструктора
+                const siteTypeElement = builderForm.querySelector('input[name="siteType"]:checked');
+                formData.builder_site_type = siteTypeElement ? siteTypeElement.value : '';
+
+                const designElement = builderForm.querySelector('input[name="design"]:checked');
+                formData.builder_design = designElement ? designElement.value : '';
+
+                formData.builder_pages = parseInt(pageCountSlider.value);
+                formData.builder_package = packageResult.textContent;
+                formData.builder_price = priceResult.textContent;
+
+                // Збираємо обрані модулі
+                const selectedModules = [];
+                builderForm.querySelectorAll('input[name="modules"]:checked').forEach(module => {
+                    selectedModules.push(module.value);
+                });
+                formData.builder_modules = selectedModules.join(', ');
+
+                // Відправляємо дані на сервер
+                modalSubmit.disabled = true;
+                modalSubmit.textContent = 'Відправка...';
+                modalStatus.textContent = 'Відправка запиту...';
+                modalStatus.classList.remove('error');
+                modalStatus.classList.remove('success');
+
+                // Отримуємо CSRF токен зі сторінки
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+                // Визначаємо поточний URL-шлях (для роботи з localization)
+                let builderRequestUrl = '/builder/request/';
+                // Перевіряємо, чи ми знаходимося в локалізованому шляху (наприклад, /uk/)
+                const currentPath = window.location.pathname;
+                const langMatch = currentPath.match(/^\/([a-z]{2})\//);
+                if (langMatch) {
+                    // Якщо ми на локалізованому шляху, додаємо мовний префікс до запиту
+                    builderRequestUrl = `/${langMatch[1]}/builder/request/`;
+                }
+
+                fetch(builderRequestUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Успішно відправлено
+                            modalStatus.textContent = data.message || 'Дякуємо! Ваш запит успішно надіслано.';
+                            modalStatus.classList.add('success');
+
+                            // Закриваємо модальне вікно через 2 секунди
+                            setTimeout(() => {
+                                modal.style.display = 'none';
+                                document.body.removeChild(modalContainer);
+
+                                // Показуємо повідомлення про успіх на сторінці
+                                submitButton.style.display = 'none';
+                                successMessage.classList.add('visible');
+                            }, 2000);
+                        } else {
+                            // Помилка
+                            modalStatus.textContent = data.message || 'Виникла помилка. Спробуйте пізніше.';
+                            modalStatus.classList.add('error');
+                            modalSubmit.disabled = false;
+                            modalSubmit.textContent = 'Надіслати запит';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        modalStatus.textContent = 'Виникла помилка при відправці. Спробуйте пізніше.';
+                        modalStatus.classList.add('error');
+                        modalSubmit.disabled = false;
+                        modalSubmit.textContent = 'Надіслати запит';
+                    });
+            });
+
+            // Показуємо модальне вікно
+            modal.style.display = 'block';
         });
     }
 
     // Initial Calculation on page load (no event object needed here, will trigger visual update)
     calculateResults();
+
+    // Додаємо класи адаптивності до body
+    document.body.classList.add('has-builder');
+    handleResponsiveLayout();
 });
 
 // Add this function to simulate smooth scrolling for a more realistic experience

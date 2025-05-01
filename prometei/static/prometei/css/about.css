@@ -18,6 +18,11 @@
     color: var(--theme-accent);
 }
 
+/* Додатковий акцент для фіолетового кольору */
+.about-hero__accent--alt {
+    color: var(--theme-accent-alt);
+}
+
 .about-hero__text {
     max-width: 700px;
     margin: 0 auto;
@@ -34,10 +39,12 @@
     display: flex;
     align-items: center;
     gap: 3rem;
+    justify-content: center;
 }
 
 .about-mission__content {
     flex: 1;
+    max-width: 450px;
 }
 
 .section-title--left {
@@ -51,9 +58,9 @@
 }
 
 .about-mission__image {
-    flex: 1;
     display: flex;
     justify-content: center;
+    align-self: center;
 }
 
 .about__image-placeholder {
@@ -66,6 +73,22 @@
 
 [data-theme="dark"] .about__image-placeholder {
     background-color: var(--color-black-200);
+}
+
+/* Стилі для доданого зображення місії */
+.about__mission-img {
+    display: block;
+    /* Щоб уникнути зайвих відступів */
+    width: 100%;
+    /* Зайняти всю ширину контейнера .about-mission__image */
+    max-width: 450px;
+    /* Обмежити максимальну ширину, як у плейсхолдера */
+    height: auto;
+    /* Автоматична висота для збереження пропорцій */
+    border-radius: 16px;
+    /* Заокруглення кутів, як у плейсхолдера */
+    object-fit: cover;
+    /* Масштабувати зображення, щоб заповнити блок, зберігаючи пропорції */
 }
 
 /* Team Section */

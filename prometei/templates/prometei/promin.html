@@ -1,0 +1,187 @@
+{% extends "prometei/base.html" %}
+{% load static %}
+
+{% block title %}Промінь від Прометей{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'prometei/css/promin.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="promin-section">
+    <div class="promin-container">
+        <!-- Promin header -->
+        <header class="promin-header">
+            <div class="promin-header__wrapper">
+                <h1 class="promin-header__title"><span class="text-orange">~</span><span
+                        class="text-purple">PROmin</span></h1>
+
+                <!-- Перемістити зображення праворуч від тексту -->
+                <div class="promin-header-image">
+                    <img src="{% static 'prometei/media/prometey.png' %}" alt="Prometey Labs Logo"
+                        class="promin-image__element">
+                </div>
+
+                <h2 class="promin-header__subtitle">Проєкт «Промінь» – це Pro рівень за min вартість</h2>
+
+                <p class="promin-header__goal">
+                    Ми у Prometey Labs віримо, що технології мають бути доступними кожному українцю.
+                    Саме тому ми створили цей проєкт — аби допомогти бізнесу перейти у цифровий світ легко, швидко й без
+                    зайвих бар'єрів.
+                    Заповніть заявку: опишіть свій бізнес, цілі та орієнтовний бюджет — і якщо побачимо взаємну енергію,
+                    разом втілимо вашу ідею в реальність.
+                </p>
+            </div>
+        </header>
+    </div>
+
+    <!-- Стрічка перенесена поза контейнером - на весь екран -->
+    <div class="animated-tape animated-tape--promin">
+        <div class="animated-tape__container">
+            <div class="animated-tape__wrapper">
+                <div class="animated-tape__item">Спільнота новаторів</div>
+                <div class="animated-tape__item">Підтримка українських бізнесів</div>
+                <div class="animated-tape__item">Цифрова трансформація</div>
+                <div class="animated-tape__item">Інноваційні рішення</div>
+                <div class="animated-tape__item">Освіта без кордонів</div>
+                <div class="animated-tape__item">Спільнота новаторів</div>
+                <div class="animated-tape__item">Підтримка українських бізнесів</div>
+                <div class="animated-tape__item">Цифрова трансформація</div>
+                <div class="animated-tape__item">Інноваційні рішення</div>
+                <div class="animated-tape__item">Освіта без кордонів</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promin-container">
+        <!-- Main content area -->
+        <div class="promin-content">
+            <!-- Application Form -->
+            <div class="promin-form">
+                <h2 class="promin-form__title">Подайте заявку на участь</h2>
+                <form id="promin-application-form" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="project-name">Назва проєкту*</label>
+                        <input type="text" id="project-name" name="project_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-name">Ваше ім'я*</label>
+                        <input type="text" id="contact-name" name="contact_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-email">Email*</label>
+                        <input type="text" id="contact-email" name="contact_email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-telegram">Telegram</label>
+                        <input type="text" id="contact-telegram" name="contact_telegram" placeholder="@username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-type">Тип проєкту*</label>
+                        <select id="project-type" name="project_type" required>
+                            <option value="">Оберіть тип</option>
+                            <option value="cultural">Культурний</option>
+                            <option value="social">Соціальний</option>
+                            <option value="educational">Освітній</option>
+                            <option value="startup">Стартап</option>
+                            <option value="volunteer">Волонтерський</option>
+                            <option value="other">Інше</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-description">Опис проєкту*</label>
+                        <textarea id="project-description" name="project_description" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-budget">Бюджет (у гривнях)</label>
+                        <input type="number" id="project-budget" name="project_budget" placeholder="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-deadline">Дедлайн проєкту</label>
+                        <input type="date" id="project-deadline" name="project_deadline">
+                    </div>
+
+                    <button type="submit" class="promin-form__button">Надіслати заявку</button>
+                </form>
+            </div>
+
+            <!-- How it works section -->
+            <div class="promin-how-it-works">
+                <h2 class="promin-how-it-works__title">Як це працює</h2>
+
+                <div class="promin-how-it-works__steps">
+                    <div class="promin-step">
+                        <div class="promin-step__number">1</div>
+                        <div class="promin-step__content">
+                            <h3 class="promin-step__title">Подайте заявку</h3>
+                            <p class="promin-step__description">Заповніть форму зліва з усіма деталями вашого проєкту
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="promin-step">
+                        <div class="promin-step__number">2</div>
+                        <div class="promin-step__content">
+                            <h3 class="promin-step__title">Розгляд заявки</h3>
+                            <p class="promin-step__description">Ми зв'яжемося з вами протягом 3 робочих днів</p>
+                        </div>
+                    </div>
+
+                    <div class="promin-step">
+                        <div class="promin-step__number">3</div>
+                        <div class="promin-step__content">
+                            <h3 class="promin-step__title">Планування</h3>
+                            <p class="promin-step__description">Разом ми складемо технічне завдання та план реалізації
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="promin-step">
+                        <div class="promin-step__number">4</div>
+                        <div class="promin-step__content">
+                            <h3 class="promin-step__title">Розробка</h3>
+                            <p class="promin-step__description">Команда Prometey Labs створить ваш проєкт</p>
+                        </div>
+                    </div>
+
+                    <div class="promin-step">
+                        <div class="promin-step__number">5</div>
+                        <div class="promin-step__content">
+                            <h3 class="promin-step__title">Запуск</h3>
+                            <p class="promin-step__description">Публікація проєкту та навчання вашої команди</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results area (hidden by default) -->
+        <div id="promin-results" class="promin-results" style="display: none;">
+            <h3>Результат заявки</h3>
+            <div id="result-content"></div>
+        </div>
+
+        <!-- Coming Soon Block -->
+        <section class="promin-coming-soon">
+            <div class="promin-coming-soon__icon">🎓</div>
+            <h3 class="promin-coming-soon__title">Навчання</h3>
+            <p class="promin-coming-soon__text">coming soon...</p>
+        </section>
+        <!-- End Coming Soon Block -->
+
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'prometei/js/promin.js' %}"></script>
+{% endblock %}

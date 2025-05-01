@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Дякуємо за ваше звернення</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff6500;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #742cf0;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        .social {
+            margin-top: 15px;
+        }
+
+        .social a {
+            color: #742cf0;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Дякуємо за ваше звернення, {{ name }}!</h1>
+
+    <div class="content">
+        <p>Ми отримали ваше повідомлення та найближчим часом зв'яжемося з вами для обговорення деталей.</p>
+
+        <p>Якщо у вас виникнуть додаткові питання або ідеї, ви можете відповісти на цей лист або написати нам у
+            Telegram.</p>
+
+        <p>З повагою,<br>
+            Команда Prometey Labs</p>
+
+        <a href="https://prometeylabs.com" class="button">Відвідати наш сайт</a>
+    </div>
+
+    <div class="footer">
+        <p>© Prometey Labs, 2023. Всі права захищені.</p>
+
+        <div class="social">
+            <a href="https://t.me/PrometeyLabs">Telegram</a> |
+            <a href="mailto:info@prometeylabs.com">Email</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -7,9 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}{% trans "Prometey Labs - Створення сучасних сайтів" %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'prometei/css/base.css' %}">
     {% block styles %}{% endblock %}
+    <!-- Add theme-color meta tags for mobile browsers -->
+    <meta name="theme-color" content="#ffffff">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'prometei/media/favicon.png' %}">
 </head>
 
 <body data-theme="{{ request.COOKIES.theme|default:'light' }}"
@@ -24,11 +29,22 @@
 
                 <nav class="nav">
                     <ul class="nav__list">
-                        <li class="nav__item"><a href="{% url 'prometei:home' %}" class="nav__link">{%trans "Головна"%}</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:about' %}" class="nav__link">{%trans "Про нас"%}</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:services' %}" class="nav__link">{%trans "Послуги"%}</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:builder' %}" class="nav__link">{%trans "Конструктор"%}</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:contact' %}" class="nav__link">{%trans "Контакти"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:home' %}" class="nav__link">{%trans
+                                "Головна"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:about' %}" class="nav__link">{%trans "Про
+                                нас"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:services' %}" class="nav__link">{%trans
+                                "Послуги"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:builder' %}" class="nav__link">{%trans
+                                "Конструктор"%}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:contact' %}" class="nav__link">{%trans
+                                "Контакти"%}</a></li>
+                        {# Add Promin button only for Ukrainian language #}
+                        {% if request.LANGUAGE_CODE == 'uk' %}
+                        <li class="nav__item nav__item--promin">
+                            <a href="{% url 'prometei:promin' %}" class="nav__link nav__link--promin">~PROmin</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
 
@@ -73,7 +89,7 @@
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% for language in languages %}
-                            <option value="{{ language.code }}" {% if language.code == request.LANGUAGE_CODE%}selected{%endif %}>
+                            <option value="{{ language.code }}" {% if language.code == request.LANGUAGE_CODE %} selected{% endif %}>
                                 {{ language.code|upper }}
                             </option>
                             {% endfor %}
@@ -96,11 +112,22 @@
         <div class="container">
             <nav class="mobile-nav">
                 <ul class="mobile-nav__list">
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans "Головна" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans "Про нас" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{% trans "Послуги" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{% trans "Конструктор" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{% trans "Контакти" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans
+                            "Головна" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans
+                            "Про нас" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{%
+                            trans "Послуги" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{%
+                            trans "Конструктор" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{%
+                            trans "Контакти" %}</a></li>
+                    {% if request.LANGUAGE_CODE == 'uk' %}
+                    <li class="mobile-nav__item mobile-nav__item--promin">
+                        <a href="{% url 'prometei:promin' %}"
+                            class="mobile-nav__link mobile-nav__link--promin">~PROmin</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <!-- Mobile Language Switcher -->
                 <form action="{% url 'set_language' %}" method="post"

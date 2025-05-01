@@ -1204,6 +1204,38 @@
         flex-direction: column;
         align-items: center;
     }
+
+    /* Add improved spacing for radio buttons and checkboxes */
+    body .builder-radio-group input[type="radio"]+span,
+    body .builder-checkbox-group input[type="checkbox"]+span {
+        display: inline-block !important;
+        padding-left: 0.5rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* Make the text for section titles bold and clearly visible */
+    body h2.builder-section-title,
+    body .builder-section-title {
+        font-weight: 700 !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 1rem !important;
+        margin-top: 1.5rem !important;
+    }
+
+    /* Fix all form elements width */
+    body .builder-fieldset,
+    body .builder-legend,
+    body .builder-radio-group,
+    body .builder-checkbox-group {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Add more breathing room above the browser preview */
+    body .builder-simulation-container {
+        margin-top: 2rem !important;
+    }
 }
 
 /* Enhanced Browser Simulation Styles */
@@ -1848,4 +1880,302 @@
 .browser-window.design-type--unique .sim-modules-container {
     background-color: #f8f9fa;
     /* Match unique content background */
+}
+
+/* Responsive adjustments for Builder Layout with higher specificity */
+/* Apply stacking earlier (tablets and below) */
+@media (max-width: 1024px) {
+    body .builder-container {
+        grid-template-columns: 1fr !important;
+        /* Stack columns */
+        gap: 2rem !important;
+        /* Reduce gap between stacked sections */
+    }
+
+    body .builder-options,
+    body .builder-results {
+        padding: 1.5rem !important;
+        /* Reduce padding inside panels */
+        width: auto !important;
+    }
+
+    body .builder-results {
+        position: static !important;
+        /* Remove sticky positioning */
+        margin-top: 0 !important;
+        /* Reset margin if any was added due to sticky */
+        box-shadow: 0 4px 10px var(--theme-shadow) !important;
+        /* Slightly smaller shadow */
+    }
+
+    body .builder-options__title,
+    body .builder-results__title {
+        font-size: 1.3rem !important;
+        /* Slightly smaller titles */
+    }
+
+    body .builder-hero {
+        padding: 40px 1rem !important;
+        /* Add horizontal padding */
+    }
+
+    body .builder-hero__title {
+        font-size: 2.2rem !important;
+        /* Slightly smaller title */
+    }
+
+    body .builder-hero__text {
+        font-size: 1rem !important;
+    }
+
+    body .builder-main {
+        padding: 2rem 1rem 3rem !important;
+        /* Add horizontal padding */
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Ensure stacking persists and add specific mobile tweaks */
+    body .builder-container {
+        grid-template-columns: 1fr !important;
+        /* Reinforce stacking */
+        gap: 1.5rem !important;
+        /* Further reduce gap */
+    }
+
+    body .builder-options,
+    body .builder-results {
+        padding: 1rem !important;
+        /* Further reduce padding */
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    body .builder-options__title,
+    body .builder-results__title {
+        font-size: 1.2rem !important;
+        /* Even smaller titles */
+    }
+
+    body .builder-fieldset {
+        padding: 1rem 1.2rem 1.2rem !important;
+        /* Slightly increased padding */
+    }
+
+    body .builder-legend {
+        font-size: 1.1rem !important;
+        /* Make legend slightly larger */
+        margin-bottom: 0.8rem !important;
+        /* Add space below legend */
+        padding: 0 0.2rem !important;
+        /* Adjust padding */
+        margin-left: -0.2rem !important;
+        /* Adjust negative margin */
+    }
+
+    body .builder-radio-group label,
+    body .builder-checkbox-group label {
+        margin-bottom: 0.8rem !important;
+        /* Increase space between options slightly */
+        line-height: 1.4 !important;
+        /* Improve line height for labels */
+    }
+
+    body .builder-radio-group input[type="radio"],
+    body .builder-checkbox-group input[type="checkbox"] {
+        margin-right: 0.7rem !important;
+        /* Increase space between input and label text */
+        vertical-align: middle !important;
+        /* Align input vertically with text */
+    }
+
+    body .builder-hero__title {
+        font-size: 1.8rem !important;
+        /* Smaller title on mobile */
+    }
+
+    /* Keep existing 768px styles for simulation elements */
+    // ... existing code ...
+}
+
+/* Стилі для мобільної версії, які доповнять інлайнові стилі з JavaScript */
+.builder-mobile-view .builder-container {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.builder-mobile-view .builder-results {
+    position: static !important;
+    top: auto !important;
+    margin-top: 0 !important;
+}
+
+.builder-mobile-view .builder-options,
+.builder-mobile-view .builder-results {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Стилі для контейнера мобільних чекбоксів/радіо-кнопок */
+.builder-mobile-view .builder-radio-group,
+.builder-mobile-view .builder-checkbox-group {
+    padding: 0.25rem 0;
+}
+
+.builder-mobile-view .builder-radio-group label,
+.builder-mobile-view .builder-checkbox-group label {
+    display: flex !important;
+    align-items: flex-start !important;
+    margin-bottom: 0.8rem !important;
+}
+
+/* Покращена форма заголовків */
+.builder-mobile-view .builder-options__title,
+.builder-mobile-view .builder-results__title {
+    font-size: 1.3rem !important;
+    margin-bottom: 1.2rem !important;
+}
+
+/* Анімація при зміні розміру вікна */
+.builder-container {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Спеціальні стилі для ширини 375px і менше */
+@media (max-width: 375px) {
+
+    .builder-mobile-view .builder-options,
+    .builder-mobile-view .builder-results {
+        padding: 0.8rem !important;
+    }
+
+    .builder-mobile-view .builder-fieldset {
+        padding: 0.8rem 1rem 1rem !important;
+    }
+
+    .builder-mobile-view .builder-slider-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .builder-mobile-view .builder-slider {
+        width: 100%;
+    }
+}
+
+/* Додаємо стилі для модального вікна контактної форми конструктора */
+
+.builder-form-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.builder-form-modal-content {
+    background-color: var(--theme-surface);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 36px var(--theme-shadow);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.builder-form-modal-close {
+    color: var(--theme-subtext);
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.builder-form-modal-close:hover {
+    color: var(--theme-accent);
+}
+
+.builder-form-fields {
+    margin: 20px 0;
+}
+
+.builder-form-field {
+    margin-bottom: 20px;
+}
+
+.builder-form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--theme-text);
+}
+
+.builder-form-field input,
+.builder-form-field textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-gray-200);
+    background-color: var(--theme-surface-alt);
+    color: var(--theme-text);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.builder-form-field input:focus,
+.builder-form-field textarea:focus {
+    border-color: var(--theme-accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 101, 0, 0.2);
+}
+
+.builder-form-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
+    font-weight: 500;
+}
+
+.builder-form-status.error {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #d32f2f;
+    display: block;
+}
+
+.builder-form-status.success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #388e3c;
+    display: block;
+}
+
+/* Адаптивність для модального вікна */
+@media (max-width: 768px) {
+    .builder-form-modal-content {
+        margin: 20% auto;
+        padding: 20px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .builder-form-modal-content {
+        margin: 25% auto;
+        padding: 15px;
+    }
+
+    .builder-form-modal-close {
+        top: 10px;
+        right: 15px;
+    }
 }

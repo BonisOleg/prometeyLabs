@@ -1,0 +1,5 @@
+Django==5.2
+pillow
+python-dotenv==1.0.1
+django-anymail[mailgun]==10.3
+requests==2.31.0 

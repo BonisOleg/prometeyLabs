@@ -13,9 +13,13 @@
 <section class="about-hero">
     <div class="container">
         <h1 class="about-hero__title">
-            {% trans "Наша" %} <span class="about-hero__accent">{% trans "історія" %}</span> {% trans "та місія" %}
+            {% if request.LANGUAGE_CODE == 'uk' %}
+            Ми не розповідаємо <span class="about-hero__accent">історії</span>. Ми створюємо <span
+                class="about-hero__accent--alt">результат</span>.
+            {% else %}
+            {% trans "Our" %} <span class="about-hero__accent">{% trans "story" %}</span> {% trans "and mission" %}
+            {% endif %}
         </h1>
-        <p class="about-hero__text">{% blocktrans %}Ми — команда ентузіастів, об\'єднаних любов\'ю до технологій та бажанням створювати продукти, які змінюють світ на краще.{% endblocktrans %}</p>
     </div>
 </section>
 
@@ -23,13 +27,26 @@
     <div class="container">
         <div class="about-mission__wrapper">
             <div class="about-mission__content">
-                <h2 class="section-title section-title--left">{% trans "Наша Місія" %}</h2>
-                <p>{% blocktrans %}Допомагати бізнесам та стартапам досягати успіху в цифровому світі шляхом створення інноваційних, якісних та доступних веб-рішень.{% endblocktrans %}</p>
-                <p>{% blocktrans %}Ми віримо, що кожен заслуговує на потужний інструмент для представлення себе в Інтернеті, і ми тут, щоб це забезпечити.{% endblocktrans %}</p>
+                {% if request.LANGUAGE_CODE == 'uk' %}
+                <h2 class="section-title section-title--left">Про команду, якій довіряють швидкість, якість і дедлайни
+                </h2>
+                <p>Prometey Labs — це команда, яка запускає цифрові продукти в темпі, якого не витримує більшість ринку.
+                    Ми не обіцяємо — ми робимо.</p>
+                <p>Ми створюємо сайти, платформи та рішення, які запускаються вчасно, виглядають сучасно, працюють
+                    стабільно — і не коштують космос.<br>Якщо вам потрібно швидко, надійно і без тисячі правок — вам до
+                    нас.</p>
+                {% else %}
+                <h2 class="section-title section-title--left">{% trans "Our Mission" %}</h2>
+                <p>{% blocktrans %}To help businesses and startups succeed in the digital world by creating innovative,
+                    high-quality, and accessible web solutions.{% endblocktrans %}</p>
+                <p>{% blocktrans %}We believe that everyone deserves a powerful tool to represent themselves on the
+                    Internet, and we are here to provide it.{% endblocktrans %}</p>
+                {% endif %}
             </div>
             <div class="about-mission__image">
-                <!-- Placeholder for mission image -->
-                <div class="about__image-placeholder about__image-placeholder--mission"></div>
+                <!-- Placeholder замінено на img -->
+                <img src="{% static 'prometei/media/about.png' %}" alt="Наша місія - ілюстрація"
+                    class="about__mission-img">
             </div>
         </div>
     </div>

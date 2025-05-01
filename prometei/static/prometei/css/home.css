@@ -53,10 +53,10 @@
 }
 
 .hero__text {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
     color: var(--theme-subtext);
-    max-width: 500px;
+    max-width: 650px;
     animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
