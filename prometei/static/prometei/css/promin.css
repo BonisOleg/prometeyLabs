@@ -134,7 +134,7 @@
 .animated-tape--promin .animated-tape__wrapper {
     display: flex;
     white-space: nowrap;
-    animation: scrollTape 30s linear infinite;
+    animation: scrollTape 15s linear infinite;
 }
 
 .animated-tape--promin .animated-tape__item {
@@ -420,6 +420,10 @@
         text-align: center;
     }
 
+    .animated-tape--promin .animated-tape__wrapper {
+        animation: scrollTape 8s linear infinite;
+    }
+
     .animated-tape--promin .animated-tape__item {
         font-size: 1rem;
         padding: 0 20px;
@@ -442,6 +446,10 @@
 
     .animated-tape--promin {
         padding: 6px 0;
+    }
+
+    .animated-tape--promin .animated-tape__wrapper {
+        animation: scrollTape 5s linear infinite;
     }
 
     .animated-tape--promin .animated-tape__item {
