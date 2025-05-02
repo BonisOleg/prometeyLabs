@@ -228,43 +228,51 @@ LOGGING = {
         },
     },
     'handlers': {
-        'console': {
+        'console': { # Завжди використовуємо консоль
             'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/prometei.log'),
-            'formatter': 'verbose',
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-        }
+        # Визначення 'file' та 'mail_admins' перенесено нижче
     },
     'loggers': {
         'django': {
-            # Визначаємо обробники динамічно: 'console' та 'file' локально, лише 'console' на Render
-            'handlers': ['console', 'file'] if DEBUG else ['console'],
+            'handlers': ['console'], # Базово - лише консоль
             'level': 'INFO',
             'propagate': True,
         },
         'prometei': { # Якщо ти використовуєш логування в своєму додатку
-             # Визначаємо обробники динамічно: 'console' та 'file' локально, лише 'console' на Render
-            'handlers': ['console', 'file'] if DEBUG else ['console'],
-            'level': 'DEBUG' if DEBUG else 'INFO', # На Render менш детальні логи
+            'handlers': ['console'], # Базово - лише консоль
+            'level': 'INFO', # Базово INFO
             'propagate': False,
         },
-    },
+    }
 }
 
-# Примусово вимикаємо файлове логування на Render
-if 'RENDER' in os.environ:
-    LOGGING['loggers']['django']['handlers'] = ['console']
-    if 'prometei' in LOGGING['loggers']:
-        LOGGING['loggers']['prometei']['handlers'] = ['console']
-    # Також можна видалити сам хендлер 'file', якщо він більше ніде не потрібен:
-    # if 'file' in LOGGING['handlers']:
-    #     del LOGGING['handlers']['file']
+# Додаткові налаштування логування для DEBUG режиму (локально)
+if DEBUG:
+    # Додаємо файловий обробник
+    LOGGING['handlers']['file'] = {
+        'level': 'INFO',
+        'class': 'logging.FileHandler',
+        'filename': os.path.join(BASE_DIR, 'logs/prometei.log'), # Переконайся, що папка logs існує локально
+        'formatter': 'verbose',
+    }
+    # Додаємо обробник для пошти адмінам
+    LOGGING['handlers']['mail_admins'] = {
+        'level': 'ERROR',
+        'class': 'django.utils.log.AdminEmailHandler',
+    }
+    # Додаємо 'file' до обробників логерів
+    LOGGING['loggers']['django']['handlers'].append('file')
+    LOGGING['loggers']['django']['handlers'].append('mail_admins') # Якщо потрібно надсилати помилки Django адмінам
+    LOGGING['loggers']['prometei']['handlers'].append('file')
+    LOGGING['loggers']['prometei']['level'] = 'DEBUG' # Більш детальні логи локально
+
+# Примусово вимикаємо файлове логування на Render (цей блок тепер не потрібен, але залишу про всяк випадок, якщо DEBUG визначиться неправильно)
+# if 'RENDER' in os.environ:
+#     LOGGING['loggers']['django']['handlers'] = ['console']
+#     if 'prometei' in LOGGING['loggers']:
+#         LOGGING['loggers']['prometei']['handlers'] = ['console']
+#     if 'file' in LOGGING['handlers']:
+#         del LOGGING['handlers']['file']
