@@ -20,58 +20,82 @@ document.addEventListener('DOMContentLoaded', () => {
     const builderResults = document.querySelector('.builder-results');
 
     // Base prices and factors (can be adjusted)
-    const pagePriceFactor = 50; // Price per additional page (approx)
-    const baseTerms = { // Base terms in days
-        landing: 7,
-        corporate: 14,
-        store: 21,
-        webapp: 30
+    const pagePriceFactor = 50; // Price per additional page beyond included
+    const uniqueDesignExtraPagePrice = 20; // Extra price per page for unique design
+    const multilangExtraPagePrice = 30; // Extra price per page for multilanguage module
+
+    // Number of pages included in base price for each site type (Should match HTML base prices)
+    const includedPages = {
+        landing: 1,    // Base price $100 includes 1 page
+        corporate: 3,  // Base price $400 includes 3 pages
+        store: 5,      // Base price $400 includes 5 pages
+        webapp: 5      // Base price $1200 includes 5 pages
     };
-    const termPageFactor = 0.5; // Days per additional page
-    const moduleTermFactor = 2; // Days per module
+
+    const baseTerms = { // Base terms in days (Should match algorithm)
+        landing: 3,
+        corporate: 7,
+        store: 7,
+        webapp: 21
+    };
+    const termPageFactor = 0; // No extra days per page now
+    const moduleTermFactor = 1; // 1 day per module
 
     const updateTextWithAnimation = (element, newText) => {
-        if (element.textContent !== newText) {
+        if (element && element.textContent !== newText) {
             element.style.opacity = '0';
             setTimeout(() => {
-                element.textContent = newText;
-                element.style.opacity = '1';
-            }, 150); // Match half of the transition duration
+                if (element) element.textContent = newText;
+                if (element) element.style.opacity = '1';
+            }, 150);
         }
     };
 
     const updatePriceWithAnimation = (element, newPrice) => {
-        const currentPrice = element.textContent.match(/\d+/);
-        const targetPrice = newPrice.match(/\d+/)[0];
+        if (!element) return;
 
-        if (!currentPrice) {
-            element.textContent = newPrice;
+        const currentPriceMatch = element.textContent.match(/\d+/);
+        const targetPriceMatch = newPrice.match(/\d+/);
+
+        if (!targetPriceMatch) {
+            if (element) element.textContent = newPrice;
+            return;
+        }
+        const targetPrice = targetPriceMatch[0];
+
+        if (!currentPriceMatch) {
+            if (element) element.textContent = newPrice;
             return;
         }
 
-        const startValue = parseInt(currentPrice[0]);
+        const startValue = parseInt(currentPriceMatch[0]);
         const endValue = parseInt(targetPrice);
-        const duration = 500; // ms
-        const stepTime = 20; // ms
+        const duration = 500;
+        const stepTime = 20;
         const steps = duration / stepTime;
         const stepValue = (endValue - startValue) / steps;
 
         let currentStep = 0;
         let currentValue = startValue;
 
-        element.classList.add('updating');
+        if (element) element.classList.add('updating');
 
-        const interval = setInterval(() => {
+        if (element.animationInterval) {
+            clearInterval(element.animationInterval);
+        }
+
+        element.animationInterval = setInterval(() => {
             currentStep++;
             currentValue += stepValue;
 
             if (currentStep >= steps) {
-                clearInterval(interval);
+                clearInterval(element.animationInterval);
+                element.animationInterval = null;
                 currentValue = endValue;
-                element.textContent = newPrice;
-                element.classList.remove('updating');
+                if (element) element.textContent = newPrice;
+                if (element) element.classList.remove('updating');
             } else {
-                element.textContent = `від ${Math.round(currentValue)} $`;
+                if (element) element.textContent = `${getTranslation('from')} ${Math.round(currentValue)} $`;
             }
         }, stepTime);
     };
@@ -197,14 +221,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Pages:': 'Сторінок:',
                 'Timeline:': 'Термін:',
                 'Price:': 'Ціна:',
-                'Send Request': 'Надіслати запит'
+                'Send Request': 'Надіслати запит',
+                '1 page': '1 сторінка',
+                'up to': 'до',
+                'pages': 'сторінок',
+                'from': 'від',
+                'days': 'днів'
             },
             'en': {
                 'Package:': 'Package:',
                 'Pages:': 'Pages:',
                 'Timeline:': 'Timeline:',
                 'Price:': 'Price:',
-                'Send Request': 'Send Request'
+                'Send Request': 'Send Request',
+                '1 page': '1 page',
+                'up to': 'up to',
+                'pages': 'pages',
+                'from': 'from',
+                'days': 'days'
             }
         };
 
@@ -215,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функція для оновлення текстів
     const updateLabels = () => {
         // Оновлюємо текст міток
-        const summaryLabels = document.querySelectorAll('.summary-label');
+        const summaryLabels = document.querySelectorAll('.summary-labels');
         if (summaryLabels.length >= 4) {
             summaryLabels[0].textContent = getTranslation('Package:');
             summaryLabels[1].textContent = getTranslation('Pages:');
@@ -242,63 +276,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Function to update the page count slider and its displayed value
+    const updatePageCountUI = (newValue) => {
+        if (pageCountSlider && pageCountValue) {
+            pageCountSlider.value = newValue;
+            pageCountValue.textContent = newValue;
+        }
+    };
+
     const calculateResults = (event = null) => {
+        const changedElement = event?.target;
+
+        // --- Get initial selections --- 
+        const siteTypeElement = builderForm.querySelector('input[name="siteType"]:checked');
+        const designElement = builderForm.querySelector('input[name="design"]:checked');
+        const selectedModulesElements = builderForm.querySelectorAll('input[name="modules"]:checked');
+        const siteType = siteTypeElement ? siteTypeElement.value : 'landing';
+        const designType = designElement ? designElement.value : 'template';
+
+        // --- !! NEW: Adjust page count slider if site type changed !! ---
+        if (changedElement && changedElement.name === 'siteType') {
+            const newSiteType = changedElement.value;
+            const pagesToSet = includedPages[newSiteType] || 1;
+            updatePageCountUI(pagesToSet);
+        }
+        // --- End NEW --- 
+
         let basePrice = 0;
         let term = 0;
         let complexityScore = 0;
-        let pageCount = parseInt(pageCountSlider.value);
+        let pageCount = parseInt(pageCountSlider.value); // Read the potentially updated value
 
-        // Identify the element that triggered the change, if any
-        const changedElement = event?.target;
-
-        // List of module values that should NOT trigger a visual update
         const nonVisualModules = [
-            'blog',
-            'portfolio',
-            'calculator',
-            'booking',
-            'multilingual',
-            'forms_email',
-            'forms_telegram',
-            'theme_switcher',
-            'payment_card',
-            'payment_apple',
-            'ai_support',
-            'integrations'
+            'blog', 'portfolio', 'calculator', 'booking', 'multilingual',
+            'forms_email', 'forms_telegram', 'theme_switcher', 'payment_card',
+            'payment_apple', 'ai_support', 'integrations'
         ];
 
-        // 1. Calculate base price from site type
-        const siteTypeElement = builderForm.querySelector('input[name="siteType"]:checked');
+        // --- 2. Calculate BASE Term & Price --- 
         if (siteTypeElement) {
-            basePrice += parseInt(siteTypeElement.dataset.price);
-            complexityScore += Object.keys(baseTerms).indexOf(siteTypeElement.value) + 1;
-            term += baseTerms[siteTypeElement.value];
+            // Base price and complexity are already determined by siteType
+            basePrice += parseInt(siteTypeElement.dataset.price || 0);
+            term += baseTerms[siteType] || 3;
+            complexityScore += Object.keys(baseTerms).indexOf(siteType) + 1;
         }
 
-        // 2. Add price and term for modules
-        const selectedModules = builderForm.querySelectorAll('input[name="modules"]:checked');
-        selectedModules.forEach(module => {
-            basePrice += parseInt(module.dataset.price || 0);
-            complexityScore += 1;
+        // --- 3. Calculate Module Term & Price --- 
+        let hasMultilingual = false;
+        selectedModulesElements.forEach(module => {
+            basePrice += parseInt(module.dataset.price || 50);
             term += parseInt(module.dataset.term || 1);
+            complexityScore += 1;
+            if (module.value === 'multilingual') {
+                hasMultilingual = true;
+            }
         });
 
-        // 3. Add price for design
-        const designElement = builderForm.querySelector('input[name="design"]:checked');
-        if (designElement && designElement.value === 'unique') {
-            basePrice += parseInt(designElement.dataset.price);
+        // --- 4. Calculate ADDITIONAL Page Price --- 
+        const pagesIncluded = includedPages[siteType] || 1;
+        let additionalPages = Math.max(0, pageCount - pagesIncluded);
+        if (additionalPages > 0) {
+            basePrice += additionalPages * pagePriceFactor;
+        }
+
+        // --- 5. Calculate Unique Design extras --- 
+        if (designType === 'unique') {
+            if (pageCount >= 1) basePrice += 100;
+            if (pageCount > 1) basePrice += (pageCount - 1) * uniqueDesignExtraPagePrice;
+            term += parseInt(designElement.dataset.term || 3);
             complexityScore += 2;
-            term += parseInt(designElement.dataset.term || 5);
         }
 
-        // 4. Adjust price and term based on page count
-        if (pageCount > 5) {
-            basePrice += (pageCount - 5) * pagePriceFactor;
+        // --- 6. Calculate Multilingual extras --- 
+        if (hasMultilingual && pageCount > 1) {
+            basePrice += (pageCount - 1) * multilangExtraPagePrice;
         }
-        term += Math.max(0, pageCount - 5) * termPageFactor;
-        term = Math.ceil(term); // Round up days
 
-        // Determine Package based on complexity score
+        // --- 7. Final Calculations & Package --- 
+        term = Math.ceil(term);
+
         let packageName = 'Econom';
         if (complexityScore >= 10 || basePrice > 2500) {
             packageName = 'Pro';
@@ -308,38 +364,36 @@ document.addEventListener('DOMContentLoaded', () => {
             packageName = 'Standard';
         }
 
-        // Update UI Elements (Price, Term, Package, Hint) - These always update
+        // --- 8. Update UI --- 
         updateTextWithAnimation(packageResult, packageName);
-        updateTextWithAnimation(pagesResult, pageCount === 1 ? '1 сторінка' : `до ${pageCount} сторінок`);
-        updateTextWithAnimation(termResult, `від ${term} днів`);
-        updatePriceWithAnimation(priceResult, `від ${basePrice} $`);
+        // Update page count text based on the potentially adjusted slider value
+        const pageText = pageCount === 1
+            ? getTranslation('1 page')
+            : getTranslation('up to') + ' ' + pageCount + ' ' + getTranslation('pages');
+        updateTextWithAnimation(pagesResult, pageText);
+
+        updateTextWithAnimation(termResult, getTranslation('from') + ' ' + term + ' ' + getTranslation('days'));
+        updatePriceWithAnimation(priceResult, getTranslation('from') + ' ' + basePrice + ' $');
         discountHint.classList.toggle('visible', packageName === 'Plus' || packageName === 'Pro');
 
-        // Додаємо виклик адаптивності після всіх оновлень DOM
+        // --- 9. Update Simulation & Labels --- 
         setTimeout(handleResponsiveLayout, 50);
 
-        // Determine if a visual update is needed
         let needsVisualUpdate = true;
-        // If the change event was triggered AND the element was one of the non-visual modules
         if (changedElement && changedElement.name === 'modules' && nonVisualModules.includes(changedElement.value)) {
             needsVisualUpdate = false;
         }
 
-        // Update Browser Window Simulation ONLY if needed
         if (needsVisualUpdate) {
             updateBrowserSimulation({
-                siteType: siteTypeElement?.value,
-                designType: designElement?.value,
+                siteType: siteType,
+                designType: designType,
                 pages: pageCount,
-                // Pass all selected modules, the simulation function decides what to show visually
-                selectedModules: Array.from(selectedModules).map(m => m.value)
+                selectedModules: Array.from(selectedModulesElements).map(m => m.value)
             });
-
-            // Викликаємо ще раз для оновлення після симуляції
             setTimeout(handleResponsiveLayout, 800);
         }
 
-        // Оновлюємо переклад після обчислень
         updateLabels();
     };
 
@@ -1127,8 +1181,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial Calculation on page load (no event object needed here, will trigger visual update)
-    calculateResults();
+    // Initial setup on page load
+    const initialSiteType = builderForm.querySelector('input[name="siteType"]:checked')?.value || 'landing';
+    const initialPages = includedPages[initialSiteType] || 1;
+    updatePageCountUI(initialPages); // Set initial slider value
+    calculateResults(); // Initial calculation
 
     // Додаємо класи адаптивності до body
     document.body.classList.add('has-builder');

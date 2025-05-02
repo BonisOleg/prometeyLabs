@@ -28,12 +28,14 @@
                 <fieldset class="builder-fieldset">
                     <legend class="builder-legend">{% trans "Тип сайту" %}</legend>
                     <div class="builder-radio-group">
-                        <label><input type="radio" name="siteType" value="landing" data-price="500" checked>
+                        <label><input type="radio" name="siteType" value="landing" data-price="100" checked>
                             {% trans "Лендінг" %}</label>
-                        <label><input type="radio" name="siteType" value="corporate" data-price="1000">
+                        <label><input type="radio" name="siteType" value="corporate" data-price="400">
                             {% trans "Корпоративний" %}</label>
-                        <label><input type="radio" name="siteType" value="store" data-price="1500"> {% trans "Магазин" %}</label>
-                        <label><input type="radio" name="siteType" value="webapp" data-price="2500"> {% trans "Веб-додаток" %}</label>
+                        <label><input type="radio" name="siteType" value="store" data-price="400">
+                            {% trans "Магазин" %}</label>
+                        <label><input type="radio" name="siteType" value="webapp" data-price="1200">
+                            {% trans "Веб-додаток" %}</label>
                     </div>
                 </fieldset>
 
@@ -41,23 +43,23 @@
                     <legend class="builder-legend">{% trans "Додаткові модулі" %}</legend>
                     <div class="builder-checkbox-group">
                         <label>
-                            <input type="checkbox" name="modules" value="blog" data-price="200" data-term="3">
+                            <input type="checkbox" name="modules" value="blog" data-price="50" data-term="1">
                             {% trans "Блог / Новини" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="portfolio" data-price="150" data-term="2">
+                            <input type="checkbox" name="modules" value="portfolio" data-price="50" data-term="1">
                             {% trans "Портфоліо / Галерея" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="calculator" data-price="250" data-term="4">
+                            <input type="checkbox" name="modules" value="calculator" data-price="50" data-term="1">
                             {% trans "Онлайн-калькулятор" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="booking" data-price="300" data-term="5">
+                            <input type="checkbox" name="modules" value="booking" data-price="50" data-term="1">
                             {% trans "Система бронювання" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="multilingual" data-price="250" data-term="3">
+                            <input type="checkbox" name="modules" value="multilingual" data-price="80" data-term="1">
                             {% trans "Мультимовність" %}
                         </label>
                         <label>
@@ -65,27 +67,27 @@
                             {% trans "Відправка форм на Email" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="forms_telegram" data-price="70" data-term="1">
+                            <input type="checkbox" name="modules" value="forms_telegram" data-price="50" data-term="1">
                             {% trans "Відправка форм в Telegram" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="theme_switcher" data-price="100" data-term="1">
+                            <input type="checkbox" name="modules" value="theme_switcher" data-price="50" data-term="1">
                             {% trans "Темна/Світла тема" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="payment_card" data-price="250" data-term="4">
+                            <input type="checkbox" name="modules" value="payment_card" data-price="50" data-term="1">
                             {% trans "Оплата карткою на сайті" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="payment_apple" data-price="150" data-term="2">
+                            <input type="checkbox" name="modules" value="payment_apple" data-price="50" data-term="1">
                             {% trans "Підключення Apple Pay / Google Pay" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="ai_support" data-price="300" data-term="5">
+                            <input type="checkbox" name="modules" value="ai_support" data-price="150" data-term="1">
                             {% trans "ШІ-підтримка / Чат-бот" %}
                         </label>
                         <label>
-                            <input type="checkbox" name="modules" value="integrations" data-price="200" data-term="3">
+                            <input type="checkbox" name="modules" value="integrations" data-price="50" data-term="1">
                             {% trans "Підключення до сторонніх сервісів (API)" %}
                         </label>
                     </div>
@@ -94,18 +96,18 @@
                 <fieldset class="builder-fieldset">
                     <legend class="builder-legend">{% trans "Дизайн" %}</legend>
                     <div class="builder-radio-group">
-                        <label><input type="radio" name="design" value="template" data-price="0" checked>
+                        <label><input type="radio" name="design" value="template" data-price="0" data-term="0" checked>
                             {% trans "Шаблонний" %}</label>
-                        <label><input type="radio" name="design" value="unique" data-price="800"> {% trans "Унікальний" %}</label>
+                        <label><input type="radio" name="design" value="unique" data-price="150" data-term="3">{% trans "Унікальний" %}</label>
                     </div>
                 </fieldset>
 
                 <fieldset class="builder-fieldset">
                     <legend class="builder-legend">{% trans "Кількість сторінок (приблизно)" %}</legend>
                     <div class="builder-slider-group">
-                        <input type="range" id="pageCountSlider" name="pageCount" min="1" max="50" value="5"
+                        <input type="range" id="pageCountSlider" name="pageCount" min="1" max="50" value="1"
                             class="builder-slider">
-                        <span id="pageCountValue" class="builder-slider-value">5</span>
+                        <span id="pageCountValue" class="builder-slider-value">1</span>
                     </div>
                 </fieldset>
 
@@ -135,17 +137,21 @@
 
             <!-- Calculated Results -->
             <div class="builder-results__summary">
-                <div class="summary-labels">
-                    <span class="summary-label">{% trans "Пакет:" %}</span>
-                    <span class="summary-label">{% trans "Сторінок:" %}</span>
-                    <span class="summary-label">{% trans "Термін:" %}</span>
-                    <span class="summary-label">{% trans "Ціна:" %}</span>
+                <div class="builder-results__row">
+                    <span class="summary-labels">{% trans "Пакет:" %}</span>
+                    <span class="summary-values" id="packageResult">Econom</span>
                 </div>
-                <div class="summary-values">
-                    <span class="summary-value" id="packageResult">Econom</span>
-                    <span class="summary-value" id="pagesResult">до 5</span>
-                    <span class="summary-value" id="termResult">від 7 днів</span>
-                    <span class="summary-value summary-value--price" id="priceResult">від 500 $</span>
+                <div class="builder-results__row">
+                    <span class="summary-labels">{% trans "Сторінок:" %}</span>
+                    <span class="summary-values" id="pagesResult">1 сторінка</span>
+                </div>
+                <div class="builder-results__row">
+                    <span class="summary-labels">{% trans "Термін:" %}</span>
+                    <span class="summary-values" id="termResult">від 3 днів</span>
+                </div>
+                <div class="builder-results__row">
+                    <span class="summary-labels">{% trans "Ціна:" %}</span>
+                    <span class="summary-values summary-value--price" id="priceResult">від 100 $</span>
                 </div>
             </div>
             <div class="summary-hint" id="discountHint">
@@ -164,5 +170,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'prometei/js/builder.js' %}"></script>
+<script src="{% static 'prometei/js/builder.js' %}?v={% now 'U' %}"></script>
 {% endblock %}
