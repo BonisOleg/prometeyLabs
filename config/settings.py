@@ -259,3 +259,12 @@ LOGGING = {
         },
     },
 }
+
+# Примусово вимикаємо файлове логування на Render
+if 'RENDER' in os.environ:
+    LOGGING['loggers']['django']['handlers'] = ['console']
+    if 'prometei' in LOGGING['loggers']:
+        LOGGING['loggers']['prometei']['handlers'] = ['console']
+    # Також можна видалити сам хендлер 'file', якщо він більше ніде не потрібен:
+    # if 'file' in LOGGING['handlers']:
+    #     del LOGGING['handlers']['file']
