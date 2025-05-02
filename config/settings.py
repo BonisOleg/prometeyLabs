@@ -53,8 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'prometei', # Додаємо наш додаток
-    'prometei.apps.PrometeiConfig', # Переконайся, що твій додаток тут
+    'prometei.apps.PrometeiConfig', # Залишаємо цей
 ]
 
 MIDDLEWARE = [
