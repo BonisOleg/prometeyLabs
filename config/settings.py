@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os # Додаємо імпорт os для роботи зі шляхами
+import dj_database_url # Додано для Render
 
 # Завантаження змінних середовища з .env файлу
 from dotenv import load_dotenv
@@ -25,12 +26,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-1vgmgg9e_e4t2u9+j&uovyt@b_&ng+&=n5+$87x#^+$dnja9ki')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!!!ЗАМІНИТИ_ЦЕ_У_ПРОДАКШЕНІ!!!') # Змінено для Render
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+# DEBUG = True # Оригінальне значення
+DEBUG = 'RENDER' not in os.environ # Змінено для Render (False, якщо є змінна RENDER)
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
+# ALLOWED_HOSTS = [] # Оригінальне значення
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Дозволити localhost для локальних тестів prod налаштувань
+if not RENDER_EXTERNAL_HOSTNAME: # Або інша логіка визначення локального середовища
+    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1'])
 
 
 # Application definition
@@ -43,10 +54,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'prometei', # Додаємо наш додаток
+    'prometei.apps.PrometeiConfig', # Переконайся, що твій додаток тут
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Додано для Render (після SecurityMiddleware)
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,7 +74,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'prometei/templates')], # Додаємо шлях до загальних шаблонів
+        'DIRS': [BASE_DIR / 'templates'], # Перевір цей шлях, якщо шаблони лежать деінде
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,16 +88,28 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application' # Додано, якщо використовуєш ASGI
 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Оригінальна конфігурація SQLite:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# Нова конфігурація для PostgreSQL на Render:
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Зчитує DATABASE_URL зі змінної середовища
+        # Значення за замовчуванням для локальної розробки (якщо DATABASE_URL не встановлено):
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}", # Або твоя локальна Postgres URL
+        conn_max_age=600 # Опціонально
+    )
 }
 
 
@@ -131,11 +156,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/' # Додаємо MEDIA_URL згідно structrules.mdc
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/' # Якщо використовуєш медіа файли
+
+# STATICFILES_DIRS визначає, де шукати статику в розробці
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'prometei/static'), # Додаємо шлях до статичних файлів додатку prometei
+    BASE_DIR / 'prometei' / 'static', # Перевір цей шлях
 ]
+
+# Налаштування для WhiteNoise у продакшені
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = BASE_DIR / 'mediafiles' # Якщо використовуєш медіа файли
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
