@@ -56,28 +56,39 @@
     <div class="container">
         <h2 class="section-title">{% trans "Наша Команда" %}</h2>
         <div class="about-team__grid">
-            <!-- Team Member Card 1 -->
+            <!-- Team Member Card 1: Oleg -->
             <div class="team-card">
-                <div class="team-card__image-placeholder"></div>
-                <h3 class="team-card__name">{% trans "Ім'я Прізвище" %}</h3> {# Placeholder text #}
-                <p class="team-card__role">{% trans "CEO & Founder" %}</p> {# Placeholder text #}
-                <p class="team-card__bio">{% trans "Короткий опис досвіду та обов'язків." %}</p> {# Placeholder text #}
+                <img src="{% static 'prometei/media/Oleg.jpeg' %}"
+                    alt="{% if request.LANGUAGE_CODE == 'uk' %}Олег{% else %}Oleg{% endif %}" class="team-card__image">
+                <h3 class="team-card__name">{% if request.LANGUAGE_CODE == 'uk' %}Олег{% else %}Oleg{% endif %}</h3>
+                <p class="team-card__role">{% if request.LANGUAGE_CODE == 'uk' %}Засновник, Full-Stack розробник{% else %}Founder, Full-Stack Developer{% endif %}</p>
             </div>
-            <!-- Team Member Card 2 -->
+            <!-- Team Member Card 2: Sofia -->
             <div class="team-card">
-                <div class="team-card__image-placeholder"></div>
-                <h3 class="team-card__name">{% trans "Ім'я Прізвище" %}</h3> {# Placeholder text #}
-                <p class="team-card__role">{% trans "Lead Developer" %}</p> {# Placeholder text #}
-                <p class="team-card__bio">{% trans "Короткий опис досвіду та обов'язків." %}</p> {# Placeholder text #}
+                <img src="{% static 'prometei/media/Sofia.jpeg' %}"
+                    alt="{% if request.LANGUAGE_CODE == 'uk' %}Софія{% else %}Sofia{% endif %}"
+                    class="team-card__image">
+                <h3 class="team-card__name">{% if request.LANGUAGE_CODE == 'uk' %}Софія{% else %}Sofia{% endif %}</h3>
+                <p class="team-card__role">{% if request.LANGUAGE_CODE == 'uk' %}Засновниця, Full-Stack розробниця{% else %}Founder, Full-Stack Developer{% endif %}</p>
             </div>
-            <!-- Team Member Card 3 -->
+            <!-- Team Member Card 3: Yaroslav -->
             <div class="team-card">
-                <div class="team-card__image-placeholder"></div>
-                <h3 class="team-card__name">{% trans "Ім'я Прізвище" %}</h3> {# Placeholder text #}
-                <p class="team-card__role">{% trans "UI/UX Designer" %}</p> {# Placeholder text #}
-                <p class="team-card__bio">{% trans "Короткий опис досвіду та обов'язків." %}</p> {# Placeholder text #}
+                <img src="{% static 'prometei/media/Yaroslav.jpeg' %}"
+                    alt="{% if request.LANGUAGE_CODE == 'uk' %}Ярослав{% else %}Yaroslav{% endif %}"
+                    class="team-card__image">
+                <h3 class="team-card__name">{% if request.LANGUAGE_CODE == 'uk' %}Ярослав{% else %}Yaroslav{% endif %}
+                </h3>
+                <p class="team-card__role">{% if request.LANGUAGE_CODE == 'uk' %}UX/UI Дизайнер{% else %}UX/UI
+                    Designer{% endif %}</p>
             </div>
-            <!-- Add more team members as needed -->
+            <!-- Team Member Card 4: Anton -->
+            <div class="team-card">
+                <img src="{% static 'prometei/media/Anton.jpeg' %}"
+                    alt="{% if request.LANGUAGE_CODE == 'uk' %}Антон{% else %}Anton{% endif %}"
+                    class="team-card__image">
+                <h3 class="team-card__name">{% if request.LANGUAGE_CODE == 'uk' %}Антон{% else %}Anton{% endif %}</h3>
+                <p class="team-card__role">{% if request.LANGUAGE_CODE == 'uk' %}Менеджер з маркетингу та продажів{% else %}Marketing & Sales Manager{% endif %}</p>
+            </div>
         </div>
     </div>
 </section>

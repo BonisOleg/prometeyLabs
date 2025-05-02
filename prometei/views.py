@@ -33,6 +33,14 @@ class BuilderPageView(TemplateView):
     template_name = 'prometei/builder.html'
 
 
+class PrivacyPolicyView(TemplateView):
+    template_name = 'prometei/privacy_policy.html'
+
+
+class TermsOfUseView(TemplateView):
+    template_name = 'prometei/terms_of_use.html'
+
+
 class ContactPageView(FormView):
     template_name = 'prometei/contact.html'
     form_class = ContactForm

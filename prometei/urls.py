@@ -6,6 +6,8 @@ from .views import (
     BuilderPageView,
     ContactPageView,
     ProminPageView,
+    PrivacyPolicyView,
+    TermsOfUseView,
     builder_request_view
 )
 
@@ -30,4 +32,8 @@ urlpatterns = [
     
     # Promin
     path('promin/', ProminPageView.as_view(), name='promin'),
+
+    # Юридичні сторінки
+    path('privacy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
+    path('terms/', TermsOfUseView.as_view(), name='terms_of_use'),
 ] 

@@ -110,7 +110,7 @@
                     <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans "Головна" %}</a></li>
                     <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans "Про нас" %}</a></li>
                     <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{% trans "Послуги" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{% trans "Конструктор" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{ trans "Конструктор" %}</a></li>
                     <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{% trans "Контакти" %}</a></li>
                     {% if request.LANGUAGE_CODE == 'uk' %}
                     <li class="mobile-nav__item mobile-nav__item--promin">
@@ -153,8 +153,8 @@
                     &copy; {% now "Y" %} {% blocktrans %}Prometey Labs. Всі права захищено.{% endblocktrans %}
                 </div>
                 <div class="footer__links">
-                    <a href="#" class="footer__link">{% trans "Політика конфіденційності" %}</a>
-                    <a href="#" class="footer__link">{% trans "Умови використання" %}</a>
+                    <a href="{% url 'prometei:privacy_policy' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Політика конфіденційності{% else %}Privacy Policy{% endif %}</a>
+                    <a href="{% url 'prometei:terms_of_use' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Умови використання{% else %}Terms of Use{% endif %}</a>
                 </div>
             </div>
         </div>
