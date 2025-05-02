@@ -246,13 +246,15 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            # Визначаємо обробники динамічно: 'console' та 'file' локально, лише 'console' на Render
+            'handlers': ['console', 'file'] if DEBUG else ['console'],
             'level': 'INFO',
             'propagate': True,
         },
-        'prometei': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
+        'prometei': { # Якщо ти використовуєш логування в своєму додатку
+             # Визначаємо обробники динамічно: 'console' та 'file' локально, лише 'console' на Render
+            'handlers': ['console', 'file'] if DEBUG else ['console'],
+            'level': 'DEBUG' if DEBUG else 'INFO', # На Render менш детальні логи
             'propagate': False,
         },
     },
