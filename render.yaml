@@ -22,4 +22,4 @@ services:
       - key: WEB_CONCURRENCY # Кількість Gunicorn воркерів
         value: 4
       - key: PYTHON_VERSION
-        value: 3.13          # Вкажи свою версію Python, якщо потрібно 
+        value: 3.13.3          # Змінено на повну версію 
