@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prometey Labs 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-03 06:39+0300\n"
+"POT-Creation-Date: 2025-05-03 22:55+0300\n"
 "PO-Revision-Date: 2025-04-21 10:00+0300\n"
 "Last-Translator: Your Name <your.email@example.com>\n"
 "Language-Team: Ukrainian <your.email@example.com>\n"
@@ -234,7 +234,6 @@ msgid "Контактні запити"
 msgstr "Контакти"
 
 #: prometei/templates/prometei/about.html:5
-#: prometei/templates/prometei/base.html:33
 #: prometei/templates/prometei/base.html:111
 msgid "Про нас"
 msgstr "Про нас"
@@ -282,12 +281,19 @@ msgstr "Prometey Labs - Створення сучасних сайтів"
 msgid "Головна"
 msgstr "Головна"
 
+#: prometei/templates/prometei/base.html:33
+#, fuzzy
+#| msgid "Про нас"
+msgid "Про нас "
+msgstr "Про нас"
+
 #: prometei/templates/prometei/base.html:34
 #: prometei/templates/prometei/base.html:112
 msgid "Послуги"
 msgstr "Послуги"
 
 #: prometei/templates/prometei/base.html:35
+#: prometei/templates/prometei/base.html:113
 #: prometei/templates/prometei/home.html:144
 msgid "Конструктор"
 msgstr "Конструктор"
