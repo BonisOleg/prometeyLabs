@@ -256,7 +256,7 @@ if DEBUG:
         'class': 'logging.FileHandler',
         'filename': os.path.join(BASE_DIR, 'logs/prometei.log'), # Переконайся, що папка logs існує локально
         'formatter': 'verbose',
-    }
+}
     # Додаємо обробник для пошти адмінам
     LOGGING['handlers']['mail_admins'] = {
         'level': 'ERROR',

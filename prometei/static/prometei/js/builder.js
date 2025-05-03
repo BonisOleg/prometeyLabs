@@ -550,12 +550,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Initialize interactions for specific modules if present
                     if (selectedModules && Array.isArray(selectedModules)) {
-                        if (selectedModules.includes('calculator')) {
-                            initCalculatorInteraction();
-                        }
+                    if (selectedModules.includes('calculator')) {
+                        initCalculatorInteraction();
+                    }
 
-                        if (selectedModules.includes('booking')) {
-                            initBookingInteraction();
+                    if (selectedModules.includes('booking')) {
+                        initBookingInteraction();
                         }
                     }
                 }, 100);

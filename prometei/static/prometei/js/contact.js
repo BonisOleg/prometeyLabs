@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Clear previous status and errors
             try { // DEBUG: Added try...catch for clearFormErrors
-                clearFormErrors();
+            clearFormErrors();
                 console.log('clearFormErrors called successfully'); // DEBUG
             } catch (e) {
                 console.error('Error in clearFormErrors:', e); // DEBUG
