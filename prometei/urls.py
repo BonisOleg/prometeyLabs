@@ -34,6 +34,6 @@ urlpatterns = [
     path('promin/', ProminPageView.as_view(), name='promin'),
 
     # Юридичні сторінки
-    path('privacy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
-    path('terms/', TermsOfUseView.as_view(), name='terms_of_use'),
+    path('privacy_policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
+    path('terms_of_use/', TermsOfUseView.as_view(), name='terms_of_use'),
 ] 
