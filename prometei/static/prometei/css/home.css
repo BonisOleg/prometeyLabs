@@ -286,19 +286,34 @@
 @media (max-width: 768px) {
     .hero__wrapper {
         flex-direction: column;
+        text-align: center;
     }
 
     .hero__content {
-        max-width: 100%;
-        text-align: center;
+        order: 2;
+        /* Content below image */
+        padding-left: 0;
+        margin-top: 2rem;
+        /* Add space between image and text */
+        transform: none;
+        /* Reset desktop transform */
     }
 
     .hero__text {
         max-width: 100%;
+        /* Allow text to take full width */
     }
 
     .hero__buttons {
         justify-content: center;
+        /* Center buttons */
+    }
+
+    .hero__image {
+        order: 1;
+        /* Image above content */
+        width: 100%;
+        /* Ensure the container takes full width to center canvas */
     }
 
     .hero__title {
