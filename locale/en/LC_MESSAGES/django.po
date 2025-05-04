@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-03 22:55+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: PACKAGE VERSION\\n"
+"Report-Msgid-Bugs-To: \\n"
+"POT-Creation-Date: 2025-05-03 22:55+0300\\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"
+"Language-Team: LANGUAGE <LL@li.org>\\n"
+"Language: en\\n"
+"MIME-Version: 1.0\\n"
+"Content-Type: text/plain; charset=UTF-8\\n"
+"Content-Transfer-Encoding: 8bit\\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\\n"
 
 #: prometei/email_service.py:66
 #, python-brace-format
@@ -49,7 +49,7 @@ msgid "Ваш запит отримано - Prometey Labs"
 msgstr "Your request received - Prometey Labs"
 
 #: prometei/forms.py:13 prometei/forms.py:36
-msgid "Введіть ваше імʼя"
+msgid "Введіть ваше ім'я"
 msgstr "Enter your name"
 
 #: prometei/forms.py:15
@@ -58,186 +58,184 @@ msgstr "Email or Telegram (@username)"
 
 #: prometei/forms.py:17
 msgid "Опишіть ваше питання або проєкт"
-msgstr ""
+msgstr "Describe your question or project"
 
 #: prometei/forms.py:38
-msgid "Email або Telegram для звʼязку"
-msgstr ""
+msgid "Email або Telegram для зв'язку"
+msgstr "Email or Telegram for contact"
 
 #: prometei/forms.py:40
 msgid "Додаткові побажання чи питання"
-msgstr ""
+msgstr "Additional wishes or questions"
 
 #: prometei/forms.py:82
 msgid "Оберіть тип"
-msgstr ""
+msgstr "Select type"
 
 #: prometei/forms.py:83
 msgid "Культурний"
-msgstr ""
+msgstr "Cultural"
 
 #: prometei/forms.py:84
 msgid "Соціальний"
-msgstr ""
+msgstr "Social"
 
 #: prometei/forms.py:85
 msgid "Освітній"
-msgstr ""
+msgstr "Educational"
 
 #: prometei/forms.py:86
 msgid "Стартап"
-msgstr ""
+msgstr "Startup"
 
 #: prometei/forms.py:87
 msgid "Волонтерський"
-msgstr ""
+msgstr "Volunteer"
 
 #: prometei/forms.py:88
 msgid "Інше"
-msgstr ""
+msgstr "Other"
 
 #: prometei/models.py:11
 msgid "Контактна форма"
-msgstr "Contact form"
+msgstr "Contact Form"
 
 #: prometei/models.py:12
 msgid "Конструктор сайту"
-msgstr "Website builder"
+msgstr "Website Builder"
 
 #: prometei/models.py:13
 msgid "Заявка Промінь"
-msgstr ""
+msgstr "Promin Application"
 
 #: prometei/models.py:16
-msgid "Імʼя"
-msgstr ""
+msgid "Ім'я"
+msgstr "Name"
 
 #: prometei/models.py:17
-#, fuzzy
-#| msgid "Контактна форма"
 msgid "Контактний метод"
-msgstr "Contact form"
+msgstr "Contact Method"
 
 #: prometei/models.py:18
-#, fuzzy
-#| msgid "Email або Telegram (@username)"
 msgid "Email або Telegram"
-msgstr "Email or Telegram (@username)"
+msgstr "Email or Telegram"
 
 #: prometei/models.py:19
 msgid "Повідомлення"
-msgstr ""
+msgstr "Message"
 
 #: prometei/models.py:20
 msgid "Тип запиту"
-msgstr ""
+msgstr "Request Type"
 
 #: prometei/models.py:23 prometei/templates/prometei/builder.html:29
 msgid "Тип сайту"
-msgstr ""
+msgstr "Website Type"
 
 #: prometei/models.py:24
 msgid "Обрані модулі"
-msgstr ""
+msgstr "Selected Modules"
 
 #: prometei/models.py:25
 msgid "Тип дизайну"
-msgstr ""
+msgstr "Design Type"
 
 #: prometei/models.py:26
 msgid "Кількість сторінок"
-msgstr ""
+msgstr "Number of Pages"
 
 #: prometei/models.py:27
 msgid "Розрахований пакет"
-msgstr ""
+msgstr "Calculated Package"
 
 #: prometei/models.py:28
 msgid "Орієнтовна ціна"
-msgstr ""
+msgstr "Estimated Price"
 
 #: prometei/models.py:31
 msgid "Назва проєкту"
-msgstr ""
+msgstr "Project Name"
 
 #: prometei/models.py:32
 msgid "Тип проєкту"
-msgstr ""
+msgstr "Project Type"
 
 #: prometei/models.py:33
 msgid "Опис проєкту"
-msgstr ""
+msgstr "Project Description"
 
 #: prometei/models.py:34
 msgid "Бюджет"
-msgstr ""
+msgstr "Budget"
 
 #: prometei/models.py:35
 msgid "Дедлайн"
-msgstr ""
+msgstr "Deadline"
 
 #: prometei/models.py:38
 msgid "Дата створення"
-msgstr ""
+msgstr "Creation Date"
 
 #: prometei/models.py:39
 msgid "Опрацьовано"
-msgstr ""
+msgstr "Processed"
 
 #: prometei/models.py:40
 msgid "Нотатки"
-msgstr ""
+msgstr "Notes"
 
 #: prometei/models.py:43
-#, fuzzy
-#| msgid "Контактна форма"
 msgid "Контактний запит"
-msgstr "Contact form"
+msgstr "Contact Request"
 
 #: prometei/models.py:44
-#, fuzzy
-#| msgid "Контактна форма"
 msgid "Контактні запити"
-msgstr "Contact form"
+msgstr "Contact Requests"
 
 #: prometei/templates/prometei/about.html:5
 #: prometei/templates/prometei/base.html:111
 msgid "Про нас"
-msgstr ""
+msgstr "About Us"
 
 #: prometei/templates/prometei/about.html:20
 msgid "Our"
-msgstr ""
+msgstr "Our"
 
 #: prometei/templates/prometei/about.html:20
 msgid "story"
-msgstr ""
+msgstr "story"
 
 #: prometei/templates/prometei/about.html:20
 msgid "and mission"
-msgstr ""
+msgstr "and mission"
 
 #: prometei/templates/prometei/about.html:39
 msgid "Our Mission"
-msgstr ""
+msgstr "Our Mission"
 
 #: prometei/templates/prometei/about.html:40
 msgid ""
 "To help businesses and startups succeed in the digital world by creating "
-"innovative,\n"
+"innovative,\\n"
 "                    high-quality, and accessible web solutions."
 msgstr ""
+"To help businesses and startups succeed in the digital world by creating "
+"innovative,\\n"
+"                    high-quality, and accessible web solutions."
 
 #: prometei/templates/prometei/about.html:42
 msgid ""
 "We believe that everyone deserves a powerful tool to represent themselves on "
-"the\n"
+"the\\n"
 "                    Internet, and we are here to provide it."
 msgstr ""
+"We believe that everyone deserves a powerful tool to represent themselves on "
+"the\\n"
+"                    Internet, and we are here to provide it."
 
 #: prometei/templates/prometei/about.html:57
 msgid "Наша Команда"
-msgstr ""
+msgstr "Our Team"
 
 #: prometei/templates/prometei/base.html:11
 msgid "Prometey Labs - Створення сучасних сайтів"
@@ -250,7 +248,7 @@ msgstr "Home"
 
 #: prometei/templates/prometei/base.html:33
 msgid "Про нас "
-msgstr ""
+msgstr "About Us"
 
 #: prometei/templates/prometei/base.html:34
 #: prometei/templates/prometei/base.html:112
@@ -260,18 +258,14 @@ msgstr "Services"
 #: prometei/templates/prometei/base.html:35
 #: prometei/templates/prometei/base.html:113
 #: prometei/templates/prometei/home.html:144
-#, fuzzy
-#| msgid "Конструктор сайту"
 msgid "Конструктор"
-msgstr "Website builder"
+msgstr "Builder"
 
 #: prometei/templates/prometei/base.html:36
 #: prometei/templates/prometei/base.html:114
 #: prometei/templates/prometei/contact.html:14
-#, fuzzy
-#| msgid "Контактна форма"
 msgid "Контакти"
-msgstr "Contact form"
+msgstr "Contacts"
 
 #: prometei/templates/prometei/base.html:47
 msgid "Змінити тему"
@@ -279,197 +273,187 @@ msgstr "Change theme"
 
 #: prometei/templates/prometei/base.html:83
 msgid "Вибрати мову"
-msgstr ""
+msgstr "Select language"
 
 #: prometei/templates/prometei/base.html:95
-#, fuzzy
-#| msgid "Змінити тему"
 msgid "Відкрити меню"
-msgstr "Change theme"
+msgstr "Open menu"
 
 #: prometei/templates/prometei/base.html:153
 msgid "Prometey Labs. Всі права захищено."
-msgstr ""
+msgstr "Prometey Labs. All rights reserved."
 
 #: prometei/templates/prometei/builder.html:5
 msgid "Конструктор Сайту"
 msgstr "Website Builder"
 
 #: prometei/templates/prometei/builder.html:15
-#, fuzzy
-#| msgid "Конструктор сайту"
 msgid "Сконструюй"
-msgstr "Website builder"
+msgstr "Construct"
 
 #: prometei/templates/prometei/builder.html:15
 msgid "свій ідеальний"
-msgstr ""
+msgstr "your ideal"
 
 #: prometei/templates/prometei/builder.html:15
 msgid "сайт"
-msgstr ""
+msgstr "website"
 
 #: prometei/templates/prometei/builder.html:17
 msgid ""
 "Вибери потрібні опції, а наш конструктор допоможе визначити орієнтовний "
 "пакет, термін та вартість."
 msgstr ""
+"Choose the required options, and our builder will help determine the approximate "
+"package, timeline, and cost."
 
 #: prometei/templates/prometei/builder.html:25
 msgid "1. Виберіть опції"
-msgstr ""
+msgstr "1. Select options"
 
 #: prometei/templates/prometei/builder.html:32
 msgid "Лендінг"
-msgstr ""
+msgstr "Landing Page"
 
 #: prometei/templates/prometei/builder.html:34
 msgid "Корпоративний"
-msgstr ""
+msgstr "Corporate"
 
 #: prometei/templates/prometei/builder.html:36
 msgid "Магазин"
-msgstr ""
+msgstr "Online Store"
 
 #: prometei/templates/prometei/builder.html:38
 msgid "Веб-додаток"
-msgstr ""
+msgstr "Web Application"
 
 #: prometei/templates/prometei/builder.html:43
 msgid "Додаткові модулі"
-msgstr ""
+msgstr "Additional Modules"
 
 #: prometei/templates/prometei/builder.html:47
 msgid "Блог / Новини"
-msgstr ""
+msgstr "Blog / News"
 
 #: prometei/templates/prometei/builder.html:51
 msgid "Портфоліо / Галерея"
-msgstr ""
+msgstr "Portfolio / Gallery"
 
 #: prometei/templates/prometei/builder.html:55
 msgid "Онлайн-калькулятор"
-msgstr ""
+msgstr "Online Calculator"
 
 #: prometei/templates/prometei/builder.html:59
 msgid "Система бронювання"
-msgstr ""
+msgstr "Booking System"
 
 #: prometei/templates/prometei/builder.html:63
 msgid "Мультимовність"
-msgstr ""
+msgstr "Multilingual Support"
 
 #: prometei/templates/prometei/builder.html:67
-#, fuzzy
-#| msgid "Контактна форма"
 msgid "Відправка форм на Email"
-msgstr "Contact form"
+msgstr "Send Forms to Email"
 
 #: prometei/templates/prometei/builder.html:71
 msgid "Відправка форм в Telegram"
-msgstr ""
+msgstr "Send Forms to Telegram"
 
 #: prometei/templates/prometei/builder.html:75
 msgid "Темна/Світла тема"
-msgstr ""
+msgstr "Dark/Light Theme"
 
 #: prometei/templates/prometei/builder.html:79
-#, fuzzy
-#| msgid "Конструктор сайту"
 msgid "Оплата карткою на сайті"
-msgstr "Website builder"
+msgstr "Online Card Payment"
 
 #: prometei/templates/prometei/builder.html:83
 msgid "Підключення Apple Pay / Google Pay"
-msgstr ""
+msgstr "Apple Pay / Google Pay Integration"
 
 #: prometei/templates/prometei/builder.html:87
 msgid "ШІ-підтримка / Чат-бот"
-msgstr ""
+msgstr "AI Support / Chatbot"
 
 #: prometei/templates/prometei/builder.html:91
 msgid "Підключення до сторонніх сервісів (API)"
-msgstr ""
+msgstr "Integration with Third-Party Services (API)"
 
 #: prometei/templates/prometei/builder.html:97
 msgid "Дизайн"
-msgstr ""
+msgstr "Design"
 
 #: prometei/templates/prometei/builder.html:100
 msgid "Шаблонний"
-msgstr ""
+msgstr "Template-based"
 
 #: prometei/templates/prometei/builder.html:101
 msgid "Унікальний"
-msgstr ""
+msgstr "Unique"
 
 #: prometei/templates/prometei/builder.html:106
 msgid "Кількість сторінок (приблизно)"
-msgstr ""
+msgstr "Number of pages (approximate)"
 
 #: prometei/templates/prometei/builder.html:119
 msgid "2. Результат"
-msgstr ""
+msgstr "2. Result"
 
 #: prometei/templates/prometei/builder.html:141
 msgid "Пакет:"
-msgstr ""
+msgstr "Package:"
 
 #: prometei/templates/prometei/builder.html:145
 msgid "Сторінок:"
-msgstr ""
+msgstr "Pages:"
 
 #: prometei/templates/prometei/builder.html:149
 msgid "Термін:"
-msgstr ""
+msgstr "Timeline:"
 
 #: prometei/templates/prometei/builder.html:153
 msgid "Ціна:"
-msgstr ""
+msgstr "Price:"
 
 #: prometei/templates/prometei/builder.html:158
 msgid "Можлива знижка при замовленні сьогодні!"
-msgstr ""
+msgstr "Possible discount for ordering today!"
 
 #: prometei/templates/prometei/builder.html:163
 msgid "Надіслати запит"
-msgstr ""
+msgstr "Send Request"
 
 #: prometei/templates/prometei/builder.html:164
 msgid "Ваш запит успішно надіслано!"
-msgstr ""
+msgstr "Your request has been sent successfully!"
 
 #: prometei/templates/prometei/contact.html:5
 msgid "Зв'яжіться з нами"
-msgstr "Contact us"
+msgstr "Contact Us"
 
 #: prometei/templates/prometei/contact.html:15
 msgid "Маєте питання або готові розпочати проєкт? Напишіть нам!"
-msgstr ""
+msgstr "Have questions or ready to start a project? Write to us!"
 
 #: prometei/templates/prometei/contact.html:39
-#, fuzzy
-#| msgid "Введіть ваше імʼя"
 msgid "Ваше ім'я:"
-msgstr "Enter your name"
+msgstr "Your name:"
 
 #: prometei/templates/prometei/contact.html:51
-#, fuzzy
-#| msgid "Email або Telegram (@username)"
 msgid "Email або Telegram:"
-msgstr "Email or Telegram (@username)"
+msgstr "Email or Telegram:"
 
 #: prometei/templates/prometei/contact.html:63
 msgid "Повідомлення:"
-msgstr ""
+msgstr "Message:"
 
 #: prometei/templates/prometei/contact.html:75
 msgid "Надіслати"
-msgstr ""
+msgstr "Send"
 
 #: prometei/templates/prometei/contact.html:81
 msgid "Інші способи зв'язку:"
-msgstr ""
+msgstr "Other ways to contact:"
 
 #: prometei/templates/prometei/home.html:5
 msgid "Prometey Labs - Створення сучасних сайтів швидко й доступно"
@@ -477,170 +461,185 @@ msgstr "Prometey Labs - Creating modern websites quickly and affordably"
 
 #: prometei/templates/prometei/home.html:19
 msgid "Створюємо"
-msgstr ""
+msgstr "We create"
 
 #: prometei/templates/prometei/home.html:19
 msgid "сучасні сайти"
-msgstr ""
+msgstr "modern websites"
 
 #: prometei/templates/prometei/home.html:19
 msgid "для тих, хто прагне більшого"
-msgstr ""
+msgstr "for those who strive for more"
 
 #: prometei/templates/prometei/home.html:21
 msgid ""
-"У Prometey Labs ми допомагаємо перетворювати ідеї на реальні\n"
-"                    бізнес-інструменти — швидко, професійно й доступно.\n"
+"У Prometey Labs ми допомагаємо перетворювати ідеї на реальні\\n"
+"                    бізнес-інструменти — швидко, професійно й доступно.\\n"
 "                    А для тих, хто має сильну ідею, але обмежений бюджет, ми "
-"створили PROmin — спеціальну програму\n"
-"                    підтримки амбітних проєктів.\n"
+"створили PROmin — спеціальну програму\\n"
+"                    підтримки амбітних проєктів.\\n"
 "                    Заповніть заявку і зробіть перший крок у цифровий світ "
 "із нашою командою."
 msgstr ""
+"At Prometey Labs, we help turn ideas into real\\n"
+"                    business tools — quickly, professionally, and affordably.\\n"
+"                    And for those with a strong idea but a limited budget, we created PROmin — a special program\\n"
+"                    to support ambitious projects.\\n"
+"                    Fill out the application and take the first step into the digital world "
+"with our team."
 
 #: prometei/templates/prometei/home.html:29
 msgid "We create"
-msgstr ""
+msgstr "We create"
 
 #: prometei/templates/prometei/home.html:29
 msgid "modern websites"
-msgstr ""
+msgstr "modern websites"
 
 #: prometei/templates/prometei/home.html:29
 msgid "quickly and affordably"
-msgstr ""
+msgstr "quickly and affordably"
 
 #: prometei/templates/prometei/home.html:31
 msgid ""
-"Prometey Labs is a team of professionals who will help bring your\n"
+"Prometey Labs is a team of professionals who will help bring your\\n"
 "                    ideas to life. We create websites that work for your "
 "business."
 msgstr ""
+"Prometey Labs is a team of professionals who will help bring your\\n"
+"                    ideas to life. We create websites that work for your "
+"business."
 
 #: prometei/templates/prometei/home.html:35
 msgid "Розрахувати вартість"
-msgstr ""
+msgstr "Calculate Cost"
 
 #: prometei/templates/prometei/home.html:36
-#, fuzzy
-#| msgid "Послуги"
 msgid "Наші послуги"
-msgstr "Services"
+msgstr "Our Services"
 
 #: prometei/templates/prometei/home.html:51
 #: prometei/templates/prometei/home.html:57
-#, fuzzy
-#| msgid "Конструктор сайту"
 msgid "Розробка сайтів"
-msgstr "Website builder"
+msgstr "Website Development"
 
 #: prometei/templates/prometei/home.html:52
 #: prometei/templates/prometei/home.html:58
 msgid "Веб-дизайн"
-msgstr ""
+msgstr "Web Design"
 
 #: prometei/templates/prometei/home.html:53
 #: prometei/templates/prometei/home.html:59
 msgid "Підтримка 24/7"
-msgstr ""
+msgstr "24/7 Support"
 
 #: prometei/templates/prometei/home.html:54
 #: prometei/templates/prometei/home.html:60
 msgid "SEO-оптимізація"
-msgstr ""
+msgstr "SEO Optimization"
 
 #: prometei/templates/prometei/home.html:55
 #: prometei/templates/prometei/home.html:61
 msgid "Адаптивна верстка"
-msgstr ""
+msgstr "Responsive Layout"
 
 #: prometei/templates/prometei/home.html:69
 msgid "Чому обирають нас"
-msgstr ""
+msgstr "Why Choose Us"
 
 #: prometei/templates/prometei/home.html:81
 msgid "Швидкість"
-msgstr ""
+msgstr "Speed"
 
 #: prometei/templates/prometei/home.html:82
 msgid ""
 "Створюємо сайти у найкоротші терміни без втрати якості. Ви отримаєте свій "
 "проєкт вчасно."
 msgstr ""
+"We create websites in the shortest possible time without compromising quality. You will receive your "
+"project on time."
 
 #: prometei/templates/prometei/home.html:99
 msgid "Зручність"
-msgstr ""
+msgstr "Convenience"
 
 #: prometei/templates/prometei/home.html:100
 msgid ""
 "Сайти, які ми створюємо, максимально зручні у використанні та легко "
 "налаштовуються під ваші потреби."
 msgstr ""
+"The websites we create are extremely user-friendly and easily "
+"customizable to your needs."
 
 #: prometei/templates/prometei/home.html:114
 msgid "Адаптивність"
-msgstr ""
+msgstr "Adaptability"
 
 #: prometei/templates/prometei/home.html:115
 msgid ""
 "Всі наші сайти чудово виглядають на будь-яких пристроях: від смартфонів до "
 "великих моніторів."
 msgstr ""
+"All our websites look great on any device: from smartphones to "
+"large monitors."
 
 #: prometei/templates/prometei/home.html:128
 msgid "Якість"
-msgstr ""
+msgstr "Quality"
 
 #: prometei/templates/prometei/home.html:129
 msgid ""
 "Ми гарантуємо високу якість наших робіт. Кожен проєкт проходить детальне "
 "тестування перед запуском."
 msgstr ""
+"We guarantee the high quality of our work. Each project undergoes detailed "
+"testing before launch."
 
 #: prometei/templates/prometei/home.html:139
 msgid "Готові розпочати свій проєкт?"
-msgstr ""
+msgstr "Ready to start your project?"
 
 #: prometei/templates/prometei/home.html:140
-msgid "Зв'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!"
-msgstr ""
+msgid "Зв\'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!"
+msgstr "Contact us today, and we will help bring your ideas to life!"
 
 #: prometei/templates/prometei/home.html:143
-msgid "Зв'язатися"
-msgstr ""
+msgid "Зв\'язатися"
+msgstr "Get in Touch"
 
 #: prometei/templates/prometei/services.html:5
 #: prometei/templates/prometei/services.html:25
-#, fuzzy
-#| msgid "Послуги"
 msgid "Наші Послуги"
-msgstr "Services"
+msgstr "Our Services"
 
 #: prometei/templates/prometei/services.html:16
 msgid "Що ми"
-msgstr ""
+msgstr "What we"
 
 #: prometei/templates/prometei/services.html:16
 msgid "пропонуємо"
-msgstr ""
+msgstr "offer"
 
 #: prometei/templates/prometei/services.html:18
 msgid ""
 "Від простих лендінгів до складних веб-додатків — ми втілимо будь-яку вашу "
 "ідею."
 msgstr ""
+"From simple landing pages to complex web applications — we will bring any of your "
+"ideas to life."
 
 #: prometei/templates/prometei/services.html:37
 #: prometei/templates/prometei/services.html:157
 msgid "Розробка Landing Page"
-msgstr ""
+msgstr "Landing Page Development"
 
 #: prometei/templates/prometei/services.html:38
 msgid ""
 "Створення ефективних односторінкових сайтів для презентації продукту чи "
 "послуги."
 msgstr ""
+"Creation of effective single-page websites for presenting a product or "
+"service."
 
 #: prometei/templates/prometei/services.html:39
 #: prometei/templates/prometei/services.html:62
@@ -649,295 +648,145 @@ msgstr ""
 #: prometei/templates/prometei/services.html:124
 #: prometei/templates/prometei/services.html:145
 msgid "Детальніше"
-msgstr ""
+msgstr "Details"
 
 #: prometei/templates/prometei/services.html:60
 #: prometei/templates/prometei/services.html:173
-#, fuzzy
-#| msgid "Конструктор Сайту"
 msgid "Корпоративні Сайти"
-msgstr "Website Builder"
+msgstr "Corporate Websites"
 
 #: prometei/templates/prometei/services.html:61
 msgid ""
 "Розробка іміджевих сайтів для компаній, що представляють бренд та його "
 "діяльність."
 msgstr ""
+"Development of image websites for companies representing the brand and its "
+"activities."
 
 #: prometei/templates/prometei/services.html:80
 #: prometei/templates/prometei/services.html:189
 msgid "Інтернет-магазини"
-msgstr ""
+msgstr "Online Stores"
 
 #: prometei/templates/prometei/services.html:81
 msgid ""
 "Створення функціональних e-commerce рішень з каталогом товарів та системою "
 "замовлень."
 msgstr ""
+"Creation of functional e-commerce solutions with a product catalog and ordering "
+"system."
 
 #: prometei/templates/prometei/services.html:103
 #: prometei/templates/prometei/services.html:205
 msgid "Веб-додатки"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:104
-msgid ""
-"Розробка складних інтерактивних веб-систем та сервісів під ваші унікальні "
-"задачі."
-msgstr ""
-
-#: prometei/templates/prometei/services.html:156
-#: prometei/templates/prometei/services.html:172
-#: prometei/templates/prometei/services.html:188
-#: prometei/templates/prometei/services.html:204
-#: prometei/templates/prometei/services.html:222
-#: prometei/templates/prometei/services.html:241
-msgid "Закрити"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:159
-msgid ""
-"Ідеальне рішення для швидкого запуску рекламної кампанії, презентації нового "
-"продукту чи збору контактів. Ми створюємо лендінги, які конвертують."
-msgstr ""
-
-#: prometei/templates/prometei/services.html:161
-msgid "Унікальний дизайн"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:162
-msgid "Адаптивність під усі пристрої"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:163
-msgid "Висока швидкість завантаження"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:164
-msgid "Налаштування аналітики"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:165
-msgid "Форми зворотного зв'язку"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:167
-msgid "Замовити лендінг"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:175
-msgid ""
-"Сайт компанії - це її обличчя в інтернеті. Ми створимо професійний, сучасний "
-"та інформативний сайт, який підвищить довіру до вашого бренду."
-msgstr ""
-
-#: prometei/templates/prometei/services.html:177
-msgid "Структура, що легко масштабується"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:178
-msgid "Система керування контентом (CMS)"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:179
-msgid "Інтеграція з сервісами"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:180
-msgid "Блог або розділ новин"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:181
-msgid "Оптимізація для пошукових систем"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:183
-#, fuzzy
-#| msgid "Змінити тему"
-msgid "Замовити сайт"
-msgstr "Change theme"
-
-#: prometei/templates/prometei/services.html:191
-msgid ""
-"Запустіть свій онлайн-бізнес з потужним інтернет-магазином. Ми пропонуємо "
-"повний цикл розробки від дизайну до інтеграції платіжних систем."
-msgstr ""
-
-#: prometei/templates/prometei/services.html:193
-msgid "Каталог товарів з фільтрами"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:194
-msgid "Кошик та система оформлення замовлень"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:195
-msgid "Особистий кабінет користувача"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:196
-msgid "Інтеграція з платіжними системами та службами доставки"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:197
-msgid "Зручна панель адміністрування"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:199
-msgid "Замовити магазин"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:207
-msgid ""
-"Якщо вам потрібне нестандартне рішення, CRM-система, особистий кабінет чи "
-"будь-який інший складний сервіс - ми готові взятися за розробку."
-msgstr ""
-
-#: prometei/templates/prometei/services.html:209
-msgid "Аналіз вимог та проектування архітектури"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:210
-msgid "Розробка фронтенду та бекенду"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:211
-msgid "Інтеграція зі сторонніми API"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:212
-msgid "Забезпечення безпеки та масштабованості"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:213
-msgid "Тестування та підтримка"
-msgstr ""
-
-#: prometei/templates/prometei/services.html:215
-msgid "Обговорити проект"
-msgstr ""
+msgstr "Web Applications"
 
 #: prometei/views.py:60 prometei/views.py:139
 msgid "Будь ласка, перевірте введені дані."
-msgstr "Please check the data you entered."
+msgstr "Please check the entered data."
 
 #: prometei/views.py:65 prometei/views.py:144
 msgid "Помилка формату запиту."
-msgstr "Invalid request format."
+msgstr "Request format error."
 
 #: prometei/views.py:68 prometei/views.py:147
 msgid "Внутрішня помилка сервера."
-msgstr ""
+msgstr "Internal server error."
 
 #: prometei/views.py:88 prometei/views.py:95
-msgid "Дякуємо за ваше повідомлення! Ми зв'яжемося з вами найближчим часом."
-msgstr "Thank you for your message! We'll get back to you shortly."
+msgid "Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом."
+msgstr "Thank you for your message! We will contact you shortly."
 
 #: prometei/views.py:107 prometei/views.py:113
 msgid ""
-"Виникла помилка при відправці повідомлення. Спробуйте пізніше або зв'яжіться "
+"Виникла помилка при відправці повідомлення. Спробуйте пізніше або зв\'яжіться "
 "з нами по телефону."
 msgstr ""
+"An error occurred while sending the message. Please try again later or contact "
+"us by phone."
 
 #: prometei/views.py:167 prometei/views.py:174
-#, fuzzy
-#| msgid "Дякуємо за ваше повідомлення! Ми зв'яжемося з вами найближчим часом."
 msgid ""
-"Дякуємо за вашу заявку! Ми розглянемо її та зв'яжемося з вами найближчим "
+"Дякуємо за вашу заявку! Ми розглянемо її та зв\'яжемося з вами найближчим "
 "часом."
-msgstr "Thank you for your message! We'll get back to you shortly."
+msgstr ""
+"Thank you for your application! We will review it and contact you "
+"shortly."
 
 #: prometei/views.py:186 prometei/views.py:192
 msgid ""
-"Виникла помилка при відправці заявки. Спробуйте пізніше або зв'яжіться з "
+"Виникла помилка при відправці заявки. Спробуйте пізніше або зв\'яжіться з "
 "нами по телефону."
 msgstr ""
+"An error occurred while sending the application. Please try again later or contact "
+"us by phone."
 
 #: prometei/views.py:230 prometei/views.py:256
 msgid ""
-"Дякуємо за ваш запит! Ми зв'яжемося з вами найближчим часом для уточнення "
+"Дякуємо за ваш запит! Ми зв\'яжемося з вами найближчим часом для уточнення "
 "деталей."
 msgstr ""
-"Thank you for your request! We'll get back to you shortly to clarify details."
+"Thank you for your request! We will contact you shortly to clarify "
+"the details."
 
 #: prometei/views.py:236 prometei/views.py:263
-#, fuzzy
-#| msgid "Будь ласка, перевірте введені дані."
 msgid "Будь ласка, виправте помилки у формі."
-msgstr "Please check the data you entered."
+msgstr "Please correct the errors in the form."
 
 #: prometei/views.py:274 prometei/views.py:280
 msgid ""
-"Виникла помилка при відправці запиту. Спробуйте пізніше або зв'яжіться з "
+"Виникла помилка при відправці запиту. Спробуйте пізніше або зв\'яжіться з "
 "нами по телефону."
 msgstr ""
+"An error occurred while sending the request. Please try again later or contact "
+"us by phone."
 
 #: venv/lib/python3.13/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #: venv/lib/python3.13/site-packages/django/contrib/sitemaps/apps.py:8
 msgid "Site Maps"
-msgstr ""
+msgstr "Site Maps"
 
 #: venv/lib/python3.13/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
-msgstr ""
-
-#: venv/lib/python3.13/site-packages/django/contrib/syndication/apps.py:7
-msgid "Syndication"
-msgstr ""
-
-#. Translators: String used to replace omitted page numbers in elided page
-#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
-#: venv/lib/python3.13/site-packages/django/core/paginator.py:30
-msgid "…"
-msgstr ""
-
-#: venv/lib/python3.13/site-packages/django/core/paginator.py:32
-msgid "That page number is not an integer"
-msgstr ""
-
-#: venv/lib/python3.13/site-packages/django/core/paginator.py:33
-msgid "That page number is less than 1"
-msgstr ""
-
-#: venv/lib/python3.13/site-packages/django/core/paginator.py:34
-msgid "That page contains no results"
-msgstr ""
+msgstr "Static Files"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:22
 msgid "Enter a valid value."
-msgstr ""
+msgstr "Enter a valid value."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:70
 msgid "Enter a valid domain name."
-msgstr ""
+msgstr "Enter a valid domain name."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:153
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:775
 msgid "Enter a valid URL."
-msgstr ""
+msgstr "Enter a valid URL."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:200
 msgid "Enter a valid integer."
-msgstr ""
+msgstr "Enter a valid integer."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:211
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Enter a valid email address."
 
-#. Translators: "letters" means latin letters: a-z and A-Z.
 #: venv/lib/python3.13/site-packages/django/core/validators.py:289
 msgid ""
-"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+"Enter a valid \"slug\" consisting of letters, numbers, underscores or hyphens."
 msgstr ""
+"Enter a valid \"slug\" consisting of letters, numbers, underscores or hyphens."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:297
 msgid ""
-"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"Enter a valid \"slug\" consisting of Unicode letters, numbers, underscores, or "
 "hyphens."
 msgstr ""
+"Enter a valid \"slug\" consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:309
 #: venv/lib/python3.13/site-packages/django/core/validators.py:318
@@ -945,44 +794,44 @@ msgstr ""
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2220
 #, python-format
 msgid "Enter a valid %(protocol)s address."
-msgstr ""
+msgstr "Enter a valid %(protocol)s address."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:311
 msgid "IPv4"
-msgstr ""
+msgstr "IPv4"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:320
 #: venv/lib/python3.13/site-packages/django/utils/ipv6.py:43
 msgid "IPv6"
-msgstr ""
+msgstr "IPv6"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:334
 msgid "IPv4 or IPv6"
-msgstr ""
+msgstr "IPv4 or IPv6"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:375
 msgid "Enter only digits separated by commas."
-msgstr ""
+msgstr "Enter only digits separated by commas."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:381
 #, python-format
 msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-msgstr ""
+msgstr "Ensure this value is %(limit_value)s (it is %(show_value)s)."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:416
 #, python-format
 msgid "Ensure this value is less than or equal to %(limit_value)s."
-msgstr ""
+msgstr "Ensure this value is less than or equal to %(limit_value)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:425
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr ""
+msgstr "Ensure this value is greater than or equal to %(limit_value)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:434
 #, python-format
 msgid "Ensure this value is a multiple of step size %(limit_value)s."
-msgstr ""
+msgstr "Ensure this value is a multiple of step size %(limit_value)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:441
 #, python-format
@@ -990,6 +839,8 @@ msgid ""
 "Ensure this value is a multiple of step size %(limit_value)s, starting from "
 "%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
 msgstr ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:473
 #, python-format
@@ -1000,7 +851,11 @@ msgid_plural ""
 "Ensure this value has at least %(limit_value)d characters (it has "
 "%(show_value)d)."
 msgstr[0] ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
 msgstr[1] ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:491
 #, python-format
@@ -1011,27 +866,31 @@ msgid_plural ""
 "Ensure this value has at most %(limit_value)d characters (it has "
 "%(show_value)d)."
 msgstr[0] ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
 msgstr[1] ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:514
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:366
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:405
 msgid "Enter a number."
-msgstr ""
+msgstr "Enter a number."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:516
 #, python-format
 msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ensure that there are no more than %(max)s digit in total."
+msgstr[1] "Ensure that there are no more than %(max)s digits in total."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:521
 #, python-format
 msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ensure that there are no more than %(max)s decimal place."
+msgstr[1] "Ensure that there are no more than %(max)s decimal places."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:526
 #, python-format
@@ -1040,348 +899,363 @@ msgid ""
 msgid_plural ""
 "Ensure that there are no more than %(max)s digits before the decimal point."
 msgstr[0] ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
 msgstr[1] ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:597
 #, python-format
 msgid ""
-"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"File extension \"%(extension)s\" is not allowed. Allowed extensions are: "
 "%(allowed_extensions)s."
 msgstr ""
+"File extension \"%(extension)s\" is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:659
 msgid "Null characters are not allowed."
-msgstr ""
+msgstr "Null characters are not allowed."
 
 #: venv/lib/python3.13/site-packages/django/db/models/base.py:1600
 #: venv/lib/python3.13/site-packages/django/forms/models.py:908
 msgid "and"
-msgstr ""
+msgstr "and"
 
 #: venv/lib/python3.13/site-packages/django/db/models/base.py:1602
 #, python-format
 msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr ""
+msgstr "%(model_name)s with this %(field_labels)s already exists."
 
 #: venv/lib/python3.13/site-packages/django/db/models/constraints.py:22
 #, python-format
-msgid "Constraint “%(name)s” is violated."
-msgstr ""
+msgid "Constraint \"%(name)s\" is violated."
+msgstr "Constraint \"%(name)s\" is violated."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:134
 #, python-format
 msgid "Value %(value)r is not a valid choice."
-msgstr ""
+msgstr "Value %(value)r is not a valid choice."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:135
 msgid "This field cannot be null."
-msgstr ""
+msgstr "This field cannot be null."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:136
 msgid "This field cannot be blank."
-msgstr ""
+msgstr "This field cannot be blank."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:137
 #, python-format
 msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr ""
+msgstr "%(model_name)s with this %(field_label)s already exists."
 
-#. Translators: The 'lookup_type' is one of 'date', 'year' or
-#. 'month'. Eg: "Title must be unique for pub_date year"
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:141
 #, python-format
 msgid ""
 "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:180
 #, python-format
 msgid "Field of type: %(field_type)s"
-msgstr ""
+msgstr "Field of type: %(field_type)s"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1162
 #, python-format
-msgid "“%(value)s” value must be either True or False."
-msgstr ""
+msgid "\"%(value)s\" value must be either True or False."
+msgstr "\"%(value)s\" value must be either True or False."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1163
 #, python-format
-msgid "“%(value)s” value must be either True, False, or None."
-msgstr ""
+msgid "\"%(value)s\" value must be either True, False, or None."
+msgstr "\"%(value)s\" value must be either True, False, or None."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1165
 msgid "Boolean (Either True or False)"
-msgstr ""
+msgstr "Boolean (Either True or False)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1215
 #, python-format
 msgid "String (up to %(max_length)s)"
-msgstr ""
+msgstr "String (up to %(max_length)s)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1217
 msgid "String (unlimited)"
-msgstr ""
+msgstr "String (unlimited)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1326
 msgid "Comma-separated integers"
-msgstr ""
+msgstr "Comma-separated integers"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1427
 #, python-format
 msgid ""
-"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"\"%(value)s\" value has an invalid date format. It must be in YYYY-MM-DD "
 "format."
 msgstr ""
+"\"%(value)s\" value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1431
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1566
 #, python-format
 msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"\"%(value)s\" value has the correct format (YYYY-MM-DD) but it is an invalid "
 "date."
 msgstr ""
+"\"%(value)s\" value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1435
 msgid "Date (without time)"
-msgstr ""
+msgstr "Date (without time)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1562
 #, python-format
 msgid ""
-"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD "
+"\"%(value)s\" value has an invalid format. It must be in YYYY-MM-DD "
 "HH:MM[:ss[.uuuuuu]][TZ] format."
 msgstr ""
+"\"%(value)s\" value has an invalid format. It must be in YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] format."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1570
 #, python-format
 msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"\"%(value)s\" value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
 "[TZ]) but it is an invalid date/time."
 msgstr ""
+"\"%(value)s\" value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1575
 msgid "Date (with time)"
-msgstr ""
+msgstr "Date (with time)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1702
 #, python-format
-msgid "“%(value)s” value must be a decimal number."
-msgstr ""
+msgid "\"%(value)s\" value must be a decimal number."
+msgstr "\"%(value)s\" value must be a decimal number."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1704
 msgid "Decimal number"
-msgstr ""
+msgstr "Decimal number"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1864
 #, python-format
 msgid ""
-"“%(value)s” value has an invalid format. It must be in [DD] "
+"\"%(value)s\" value has an invalid format. It must be in [DD] "
 "[[HH:]MM:]ss[.uuuuuu] format."
 msgstr ""
+"\"%(value)s\" value has an invalid format. It must be in [DD] "
+"[[HH:]MM:]ss[.uuuuuu] format."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1868
 msgid "Duration"
-msgstr ""
+msgstr "Duration"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1920
 msgid "Email address"
-msgstr ""
+msgstr "Email address"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1945
 msgid "File path"
-msgstr ""
+msgstr "File path"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2023
 #, python-format
-msgid "“%(value)s” value must be a float."
-msgstr ""
+msgid "\"%(value)s\" value must be a float."
+msgstr "\"%(value)s\" value must be a float."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2025
 msgid "Floating point number"
-msgstr ""
+msgstr "Floating point number"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2065
 #, python-format
-msgid "“%(value)s” value must be an integer."
-msgstr ""
+msgid "\"%(value)s\" value must be an integer."
+msgstr "\"%(value)s\" value must be an integer."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2067
 msgid "Integer"
-msgstr ""
+msgstr "Integer"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2163
 msgid "Big (8 byte) integer"
-msgstr ""
+msgstr "Big (8 byte) integer"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2180
 msgid "Small integer"
-msgstr ""
+msgstr "Small integer"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2188
 msgid "IPv4 address"
-msgstr ""
+msgstr "IPv4 address"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2219
 msgid "IP address"
-msgstr ""
+msgstr "IP address"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2310
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2311
 #, python-format
-msgid "“%(value)s” value must be either None, True or False."
-msgstr ""
+msgid "\"%(value)s\" value must be either None, True or False."
+msgstr "\"%(value)s\" value must be either None, True or False."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2313
 msgid "Boolean (Either True, False or None)"
-msgstr ""
+msgstr "Boolean (Either True, False or None)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2364
 msgid "Positive big integer"
-msgstr ""
+msgstr "Positive big integer"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2379
 msgid "Positive integer"
-msgstr ""
+msgstr "Positive integer"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2394
 msgid "Positive small integer"
-msgstr ""
+msgstr "Positive small integer"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2410
 #, python-format
 msgid "Slug (up to %(max_length)s)"
-msgstr ""
+msgstr "Slug (up to %(max_length)s)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2446
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2526
 #, python-format
 msgid ""
-"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"\"%(value)s\" value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
 "format."
 msgstr ""
+"\"%(value)s\" value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2530
 #, python-format
 msgid ""
-"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"\"%(value)s\" value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
 "invalid time."
 msgstr ""
+"\"%(value)s\" value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2534
 msgid "Time"
-msgstr ""
+msgstr "Time"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2642
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2666
 msgid "Raw binary data"
-msgstr ""
+msgstr "Raw binary data"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2731
 #, python-format
-msgid "“%(value)s” is not a valid UUID."
-msgstr ""
+msgid "\"%(value)s\" is not a valid UUID."
+msgstr "\"%(value)s\" is not a valid UUID."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2733
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Universally unique identifier"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/files.py:244
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/files.py:420
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/json.py:24
 msgid "A JSON object"
-msgstr ""
+msgstr "A JSON object"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/json.py:26
 msgid "Value must be valid JSON."
-msgstr ""
+msgstr "Value must be valid JSON."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:978
 #, python-format
 msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
-msgstr ""
+msgstr "%(model)s instance with %(field)s %(value)r is not a valid choice."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:981
 msgid "Foreign Key (type determined by related field)"
-msgstr ""
+msgstr "Foreign Key (type determined by related field)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1275
 msgid "One-to-one relationship"
-msgstr ""
+msgstr "One-to-one relationship"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1332
 #, python-format
 msgid "%(from)s-%(to)s relationship"
-msgstr ""
+msgstr "%(from)s-%(to)s relationship"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1334
 #, python-format
 msgid "%(from)s-%(to)s relationships"
-msgstr ""
+msgstr "%(from)s-%(to)s relationships"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1382
 msgid "Many-to-many relationship"
-msgstr ""
+msgstr "Many-to-many relationship"
 
-#. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the label
 #: venv/lib/python3.13/site-packages/django/forms/boundfield.py:185
 msgid ":?.!"
-msgstr ""
+msgstr ":?.!"
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:95
 msgid "This field is required."
-msgstr ""
+msgstr "This field is required."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:315
 msgid "Enter a whole number."
-msgstr ""
+msgstr "Enter a whole number."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:486
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1267
 msgid "Enter a valid date."
-msgstr ""
+msgstr "Enter a valid date."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:509
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1268
 msgid "Enter a valid time."
-msgstr ""
+msgstr "Enter a valid time."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:536
 msgid "Enter a valid date/time."
-msgstr ""
+msgstr "Enter a valid date/time."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:570
 msgid "Enter a valid duration."
-msgstr ""
+msgstr "Enter a valid duration."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:571
 #, python-brace-format
 msgid "The number of days must be between {min_days} and {max_days}."
-msgstr ""
+msgstr "The number of days must be between {min_days} and {max_days}."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:640
 msgid "No file was submitted. Check the encoding type on the form."
-msgstr ""
+msgstr "No file was submitted. Check the encoding type on the form."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:641
 msgid "No file was submitted."
-msgstr ""
+msgstr "No file was submitted."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:642
 msgid "The submitted file is empty."
-msgstr ""
+msgstr "The submitted file is empty."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:644
 #, python-format
@@ -1389,52 +1263,55 @@ msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
+"Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgstr[1] ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:649
 msgid "Please either submit a file or check the clear checkbox, not both."
-msgstr ""
+msgstr "Please either submit a file or check the clear checkbox, not both."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:717
 msgid ""
 "Upload a valid image. The file you uploaded was either not an image or a "
 "corrupted image."
 msgstr ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:889
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:975
 #: venv/lib/python3.13/site-packages/django/forms/models.py:1592
 #, python-format
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "Select a valid choice. %(value)s is not one of the available choices."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:977
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1096
 #: venv/lib/python3.13/site-packages/django/forms/models.py:1590
 msgid "Enter a list of values."
-msgstr ""
+msgstr "Enter a list of values."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1097
 msgid "Enter a complete value."
-msgstr ""
+msgstr "Enter a complete value."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1339
 msgid "Enter a valid UUID."
-msgstr ""
+msgstr "Enter a valid UUID."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1369
 msgid "Enter a valid JSON."
-msgstr ""
+msgstr "Enter a valid JSON."
 
-#. Translators: This is the default suffix added to form field labels
 #: venv/lib/python3.13/site-packages/django/forms/forms.py:97
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: venv/lib/python3.13/site-packages/django/forms/forms.py:239
 #, python-format
 msgid "(Hidden field %(name)s) %(error)s"
-msgstr ""
+msgstr "(Hidden field %(name)s) %(error)s"
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:61
 #, python-format
@@ -1442,29 +1319,31 @@ msgid ""
 "ManagementForm data is missing or has been tampered with. Missing fields: "
 "%(field_names)s. You may need to file a bug report if the issue persists."
 msgstr ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:65
 #, python-format
 msgid "Please submit at most %(num)d form."
 msgid_plural "Please submit at most %(num)d forms."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Please submit at most %(num)d form."
+msgstr[1] "Please submit at most %(num)d forms."
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:70
 #, python-format
 msgid "Please submit at least %(num)d form."
 msgid_plural "Please submit at least %(num)d forms."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Please submit at least %(num)d form."
+msgstr[1] "Please submit at least %(num)d forms."
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:484
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:491
 msgid "Order"
-msgstr ""
+msgstr "Order"
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:499
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:901
 #, python-format
@@ -1497,15 +1376,17 @@ msgstr ""
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:1594
 #, python-format
-msgid "“%(pk)s” is not a valid value."
-msgstr ""
+msgid "\"%(pk)s\" is not a valid value."
+msgstr "\"%(pk)s\" is not a valid value."
 
 #: venv/lib/python3.13/site-packages/django/forms/utils.py:229
 #, python-format
 msgid ""
-"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
 "may be ambiguous or it may not exist."
 msgstr ""
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
 
 #: venv/lib/python3.13/site-packages/django/forms/widgets.py:527
 msgid "Clear"
@@ -1531,7 +1412,6 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#. Translators: Please do not add spaces around commas.
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:873
 msgid "yes,no,maybe"
 msgstr ""
@@ -1715,249 +1595,260 @@ msgstr ""
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:43
 msgid "may"
-msgstr ""
+msgstr "May"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:44
 msgid "jun"
-msgstr ""
+msgstr "Jun"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:45
 msgid "jul"
-msgstr ""
+msgstr "Jul"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:46
 msgid "aug"
-msgstr ""
+msgstr "Aug"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:47
 msgid "sep"
-msgstr ""
+msgstr "Sep"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:48
 msgid "oct"
-msgstr ""
+msgstr "Oct"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:49
 msgid "nov"
-msgstr ""
+msgstr "Nov"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:50
 msgid "dec"
-msgstr ""
+msgstr "Dec"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:53
 msgctxt "abbrev. month"
 msgid "Jan."
-msgstr ""
+msgstr "Jan."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:54
 msgctxt "abbrev. month"
 msgid "Feb."
-msgstr ""
+msgstr "Feb."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:55
 msgctxt "abbrev. month"
 msgid "March"
-msgstr ""
+msgstr "Mar."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:56
 msgctxt "abbrev. month"
 msgid "April"
-msgstr ""
+msgstr "Apr."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:57
 msgctxt "abbrev. month"
 msgid "May"
-msgstr ""
+msgstr "May"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:58
 msgctxt "abbrev. month"
 msgid "June"
-msgstr ""
+msgstr "Jun."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:59
 msgctxt "abbrev. month"
 msgid "July"
-msgstr ""
+msgstr "Jul."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:60
 msgctxt "abbrev. month"
 msgid "Aug."
-msgstr ""
+msgstr "Aug."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:61
 msgctxt "abbrev. month"
 msgid "Sept."
-msgstr ""
+msgstr "Sep."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:62
 msgctxt "abbrev. month"
 msgid "Oct."
-msgstr ""
+msgstr "Oct."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:63
 msgctxt "abbrev. month"
 msgid "Nov."
-msgstr ""
+msgstr "Nov."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:64
 msgctxt "abbrev. month"
 msgid "Dec."
-msgstr ""
+msgstr "Dec."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:67
 msgctxt "alt. month"
 msgid "January"
-msgstr ""
+msgstr "January"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:68
 msgctxt "alt. month"
 msgid "February"
-msgstr ""
+msgstr "February"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:69
 msgctxt "alt. month"
 msgid "March"
-msgstr ""
+msgstr "March"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:70
 msgctxt "alt. month"
 msgid "April"
-msgstr ""
+msgstr "April"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:71
 msgctxt "alt. month"
 msgid "May"
-msgstr ""
+msgstr "May"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:72
 msgctxt "alt. month"
 msgid "June"
-msgstr ""
+msgstr "June"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:73
 msgctxt "alt. month"
 msgid "July"
-msgstr ""
+msgstr "July"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:74
 msgctxt "alt. month"
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:75
 msgctxt "alt. month"
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:76
 msgctxt "alt. month"
 msgid "October"
-msgstr ""
+msgstr "October"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:77
 msgctxt "alt. month"
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:78
 msgctxt "alt. month"
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: venv/lib/python3.13/site-packages/django/utils/ipv6.py:20
 msgid "This is not a valid IPv6 address."
-msgstr ""
+msgstr "This is not a valid IPv6 address."
 
 #: venv/lib/python3.13/site-packages/django/utils/text.py:67
 #, python-format
 msgctxt "String to return when truncating text"
 msgid "%(truncated_text)s…"
-msgstr ""
+msgstr "%(truncated_text)s…"
 
 #: venv/lib/python3.13/site-packages/django/utils/text.py:278
 msgid "or"
-msgstr ""
+msgstr "or"
 
-#. Translators: This string is used as a separator between list elements
 #: venv/lib/python3.13/site-packages/django/utils/text.py:297
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:135
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:8
 #, python-format
 msgid "%(num)d year"
 msgid_plural "%(num)d years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d year"
+msgstr[1] "%(num)d years"
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:9
 #, python-format
 msgid "%(num)d month"
 msgid_plural "%(num)d months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d month"
+msgstr[1] "%(num)d months"
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:10
 #, python-format
 msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d week"
+msgstr[1] "%(num)d weeks"
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:11
 #, python-format
 msgid "%(num)d day"
 msgid_plural "%(num)d days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d day"
+msgstr[1] "%(num)d days"
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:12
 #, python-format
 msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d hour"
+msgstr[1] "%(num)d hours"
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:13
 #, python-format
 msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d minute"
+msgstr[1] "%(num)d minutes"
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:29
 msgid "Forbidden"
-msgstr ""
+msgstr "Forbidden"
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:30
 msgid "CSRF verification failed. Request aborted."
-msgstr ""
+msgstr "CSRF verification failed. Request aborted."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:34
 msgid ""
-"You are seeing this message because this HTTPS site requires a “Referer "
-"header” to be sent by your web browser, but none was sent. This header is "
+"You are seeing this message because this HTTPS site requires a Referer "
+"header to be sent by your web browser, but none was sent. This header is "
 "required for security reasons, to ensure that your browser is not being "
 "hijacked by third parties."
 msgstr ""
+"You are seeing this message because this HTTPS site requires a Referer "
+"header to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:40
 msgid ""
-"If you have configured your browser to disable “Referer” headers, please re-"
-"enable them, at least for this site, or for HTTPS connections, or for “same-"
-"origin” requests."
+"If you have configured your browser to disable Referer headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for same-"
+"origin requests."
 msgstr ""
+"If you have configured your browser to disable Referer headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for same-"
+"origin requests."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:45
 msgid ""
 "If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
-"including the “Referrer-Policy: no-referrer” header, please remove them. The "
-"CSRF protection requires the “Referer” header to do strict referer checking. "
-"If you’re concerned about privacy, use alternatives like <a "
+"including the Referrer-Policy: no-referrer header, please remove them. The "
+"CSRF protection requires the Referer header to do strict referer checking. "
+"If you're concerned about privacy, use alternatives like <a "
 "rel=\"noreferrer\" …> for links to third-party sites."
 msgstr ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the Referrer-Policy: no-referrer header, please remove them. The "
+"CSRF protection requires the Referer header to do strict referer checking. "
+"If you're concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:54
 msgid ""
@@ -1965,44 +1856,49 @@ msgid ""
 "submitting forms. This cookie is required for security reasons, to ensure "
 "that your browser is not being hijacked by third parties."
 msgstr ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:60
 msgid ""
 "If you have configured your browser to disable cookies, please re-enable "
-"them, at least for this site, or for “same-origin” requests."
+"them, at least for this site, or for same-origin requests."
 msgstr ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for same-origin requests."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:66
 msgid "More information is available with DEBUG=True."
-msgstr ""
+msgstr "More information is available with DEBUG=True."
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:44
 msgid "No year specified"
-msgstr ""
+msgstr "No year specified"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:64
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:115
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:214
 msgid "Date out of range"
-msgstr ""
+msgstr "Date out of range"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:94
 msgid "No month specified"
-msgstr ""
+msgstr "No month specified"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:147
 msgid "No day specified"
-msgstr ""
+msgstr "No day specified"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:194
 msgid "No week specified"
-msgstr ""
+msgstr "No week specified"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:353
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:384
 #, python-format
 msgid "No %(verbose_name_plural)s available"
-msgstr ""
+msgstr "No %(verbose_name_plural)s available"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:680
 #, python-format
@@ -2010,51 +1906,53 @@ msgid ""
 "Future %(verbose_name_plural)s not available because "
 "%(class_name)s.allow_future is False."
 msgstr ""
+"Future %(verbose_name_plural)s not available because "
+"%(class_name)s.allow_future is False."
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:720
 #, python-format
-msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
-msgstr ""
+msgid "Invalid date string "%(datestr)s" given format "%(format)s""
+msgstr "Invalid date string \"%(datestr)s\" given format \"%(format)s\""
 
 #: venv/lib/python3.13/site-packages/django/views/generic/detail.py:56
 #, python-format
 msgid "No %(verbose_name)s found matching the query"
-msgstr ""
+msgstr "No %(verbose_name)s found matching the query"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/list.py:70
-msgid "Page is not “last”, nor can it be converted to an int."
-msgstr ""
+msgid "Page is not last, nor can it be converted to an int."
+msgstr "Page is not last, nor can it be converted to an int."
 
 #: venv/lib/python3.13/site-packages/django/views/generic/list.py:77
 #, python-format
 msgid "Invalid page (%(page_number)s): %(message)s"
-msgstr ""
+msgstr "Invalid page (%(page_number)s): %(message)s"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/list.py:173
 #, python-format
-msgid "Empty list and “%(class_name)s.allow_empty” is False."
-msgstr ""
+msgid "Empty list and "
+msgstr "Empty list and "
 
 #: venv/lib/python3.13/site-packages/django/views/static.py:49
 msgid "Directory indexes are not allowed here."
-msgstr ""
+msgstr "Directory indexes are not allowed here."
 
 #: venv/lib/python3.13/site-packages/django/views/static.py:51
 #, python-format
-msgid "“%(path)s” does not exist"
-msgstr ""
+msgid "\"%(path)s\" does not exist"
+msgstr "\"%(path)s\" does not exist"
 
 #: venv/lib/python3.13/site-packages/django/views/static.py:68
 #: venv/lib/python3.13/site-packages/django/views/templates/directory_index.html:8
 #: venv/lib/python3.13/site-packages/django/views/templates/directory_index.html:11
 #, python-format
 msgid "Index of %(directory)s"
-msgstr ""
+msgstr "Index of %(directory)s"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:7
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:204
 msgid "The install worked successfully! Congratulations!"
-msgstr ""
+msgstr "The install worked successfully! Congratulations!"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:206
 #, python-format
@@ -2062,6 +1960,8 @@ msgid ""
 "View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
 "target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
 msgstr ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:208
 #, python-format
@@ -2071,27 +1971,176 @@ msgid ""
 "rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
 "configured any URLs."
 msgstr ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:217
 msgid "Django Documentation"
-msgstr ""
+msgstr "Django Documentation"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:218
-msgid "Topics, references, &amp; how-to’s"
-msgstr ""
+msgid "Topics, references, &amp; how-to's"
+msgstr "Topics, references, & how-to's"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:226
 msgid "Tutorial: A Polling App"
-msgstr ""
+msgstr "Tutorial: A Polling App"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:227
 msgid "Get started with Django"
-msgstr ""
+msgstr "Get started with Django"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:235
 msgid "Django Community"
-msgstr ""
+msgstr "Django Community"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:236
 msgid "Connect, get help, or contribute"
+msgstr "Connect, get help, or contribute"
+
+#: prometei/templates/prometei/services.html:104
+msgid ""
+"Розробка складних інтерактивних веб-систем та сервісів під ваші унікальні "
+"задачі."
 msgstr ""
+"Development of complex interactive web systems and services for your unique "
+"tasks."
+
+#: prometei/templates/prometei/services.html:156
+#: prometei/templates/prometei/services.html:172
+#: prometei/templates/prometei/services.html:188
+#: prometei/templates/prometei/services.html:204
+#: prometei/templates/prometei/services.html:222
+#: prometei/templates/prometei/services.html:241
+msgid "Закрити"
+msgstr "Close"
+
+#: prometei/templates/prometei/services.html:159
+msgid ""
+"Ідеальне рішення для швидкого запуску рекламної кампанії, презентації нового "
+"продукту чи збору контактів. Ми створюємо лендінги, які конвертують."
+msgstr ""
+"Ideal solution for quickly launching an advertising campaign, presenting a new "
+"product, or collecting contacts. We create landing pages that convert."
+
+#: prometei/templates/prometei/services.html:161
+msgid "Унікальний дизайн"
+msgstr "Unique Design"
+
+#: prometei/templates/prometei/services.html:162
+msgid "Адаптивність під усі пристрої"
+msgstr "Adaptability for all devices"
+
+#: prometei/templates/prometei/services.html:163
+msgid "Висока швидкість завантаження"
+msgstr "High loading speed"
+
+#: prometei/templates/prometei/services.html:164
+msgid "Налаштування аналітики"
+msgstr "Analytics Setup"
+
+#: prometei/templates/prometei/services.html:165
+msgid "Форми зворотного зв\'язку"
+msgstr "Feedback Forms"
+
+#: prometei/templates/prometei/services.html:167
+msgid "Замовити лендінг"
+msgstr "Order Landing Page"
+
+#: prometei/templates/prometei/services.html:175
+msgid ""
+"Сайт компанії - це її обличчя в інтернеті. Ми створимо професійний, сучасний "
+"та інформативний сайт, який підвищить довіру до вашого бренду."
+msgstr ""
+"A company website is its face on the internet. We will create a professional, modern, "
+"and informative site that will increase trust in your brand."
+
+#: prometei/templates/prometei/services.html:177
+msgid "Структура, що легко масштабується"
+msgstr "Easily scalable structure"
+
+#: prometei/templates/prometei/services.html:178
+msgid "Система керування контентом (CMS)"
+msgstr "Content Management System (CMS)"
+
+#: prometei/templates/prometei/services.html:179
+msgid "Інтеграція з сервісами"
+msgstr "Integration with services"
+
+#: prometei/templates/prometei/services.html:180
+msgid "Блог або розділ новин"
+msgstr "Blog or news section"
+
+#: prometei/templates/prometei/services.html:181
+msgid "Оптимізація для пошукових систем"
+msgstr "Search engine optimization"
+
+#: prometei/templates/prometei/services.html:183
+msgid "Замовити сайт"
+msgstr "Order Website"
+
+#: prometei/templates/prometei/services.html:191
+msgid ""
+"Запустіть свій онлайн-бізнес з потужним інтернет-магазином. Ми пропонуємо "
+"повний цикл розробки від дизайну до інтеграції платіжних систем."
+msgstr ""
+"Launch your online business with a powerful online store. We offer "
+"a full development cycle from design to payment system integration."
+
+#: prometei/templates/prometei/services.html:193
+msgid "Каталог товарів з фільтрами"
+msgstr "Product catalog with filters"
+
+#: prometei/templates/prometei/services.html:194
+msgid "Кошик та система оформлення замовлень"
+msgstr "Shopping cart and order processing system"
+
+#: prometei/templates/prometei/services.html:195
+msgid "Особистий кабінет користувача"
+msgstr "User personal account"
+
+#: prometei/templates/prometei/services.html:196
+msgid "Інтеграція з платіжними системами та службами доставки"
+msgstr "Integration with payment systems and delivery services"
+
+#: prometei/templates/prometei/services.html:197
+msgid "Зручна панель адміністрування"
+msgstr "Convenient admin panel"
+
+#: prometei/templates/prometei/services.html:199
+msgid "Замовити магазин"
+msgstr "Order Online Store"
+
+#: prometei/templates/prometei/services.html:207
+msgid ""
+"Якщо вам потрібне нестандартне рішення, CRM-система, особистий кабінет чи "
+"будь-який інший складний сервіс - ми готові взятися за розробку."
+msgstr ""
+"If you need a custom solution, CRM system, personal account, or "
+"any other complex service - we are ready to take on the development."
+
+#: prometei/templates/prometei/services.html:209
+msgid "Аналіз вимог та проектування архітектури"
+msgstr "Requirements analysis and architecture design"
+
+#: prometei/templates/prometei/services.html:210
+msgid "Розробка фронтенду та бекенду"
+msgstr "Frontend and backend development"
+
+#: prometei/templates/prometei/services.html:211
+msgid "Інтеграція зі сторонніми API"
+msgstr "Integration with third-party APIs"
+
+#: prometei/templates/prometei/services.html:212
+msgid "Забезпечення безпеки та масштабованості"
+msgstr "Ensuring security and scalability"
+
+#: prometei/templates/prometei/services.html:213
+msgid "Тестування та підтримка"
+msgstr "Testing and support"
+
+#: prometei/templates/prometei/services.html:215
+msgid "Обговорити проект"
+msgstr "Discuss Project"
