@@ -14,8 +14,8 @@ Labs{% endblock %}
     <div class="container">
         <h1 class="section-title">{% if request.LANGUAGE_CODE == 'uk' %}Умови Використання{% else %}Terms of Use{% endif
             %}</h1>
-        <p class="last-updated">{% if request.LANGUAGE_CODE == 'uk' %}Останнє оновлення{% else %}Last updated{% endif
-            %}: {% now "d F Y" %}</p>
+        {# <p class="last-updated">{% if request.LANGUAGE_CODE == 'uk' %}Останнє оновлення{% else %}Last updated{% endif
+            %}: {% now "d F Y" %}</p> #}
 
         {% if request.LANGUAGE_CODE == 'uk' %}
         <p>Ласкаво просимо на сайт Prometey Labs. Використовуючи цей сайт, ви погоджуєтеся дотримуватися наступних умов.
