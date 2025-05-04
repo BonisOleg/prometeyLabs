@@ -600,11 +600,11 @@ msgid "Готові розпочати свій проєкт?"
 msgstr "Ready to start your project?"
 
 #: prometei/templates/prometei/home.html:140
-msgid "Зв\'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!"
+msgid "Зв'яжіться з нами сьогодні, і ми допоможемо втілити ваші ідеї в життя!"
 msgstr "Contact us today, and we will help bring your ideas to life!"
 
 #: prometei/templates/prometei/home.html:143
-msgid "Зв\'язатися"
+msgid "Зв'язатися"
 msgstr "Get in Touch"
 
 #: prometei/templates/prometei/services.html:5
@@ -694,12 +694,12 @@ msgid "Внутрішня помилка сервера."
 msgstr "Internal server error."
 
 #: prometei/views.py:88 prometei/views.py:95
-msgid "Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом."
+msgid "Дякуємо за ваше повідомлення! Ми зв'яжемося з вами найближчим часом."
 msgstr "Thank you for your message! We will contact you shortly."
 
 #: prometei/views.py:107 prometei/views.py:113
 msgid ""
-"Виникла помилка при відправці повідомлення. Спробуйте пізніше або зв\'яжіться "
+"Виникла помилка при відправці повідомлення. Спробуйте пізніше або зв'яжіться "
 "з нами по телефону."
 msgstr ""
 "An error occurred while sending the message. Please try again later or contact "
@@ -707,7 +707,7 @@ msgstr ""
 
 #: prometei/views.py:167 prometei/views.py:174
 msgid ""
-"Дякуємо за вашу заявку! Ми розглянемо її та зв\'яжемося з вами найближчим "
+"Дякуємо за вашу заявку! Ми розглянемо її та зв'яжемося з вами найближчим "
 "часом."
 msgstr ""
 "Thank you for your application! We will review it and contact you "
@@ -715,7 +715,7 @@ msgstr ""
 
 #: prometei/views.py:186 prometei/views.py:192
 msgid ""
-"Виникла помилка при відправці заявки. Спробуйте пізніше або зв\'яжіться з "
+"Виникла помилка при відправці заявки. Спробуйте пізніше або зв'яжіться з "
 "нами по телефону."
 msgstr ""
 "An error occurred while sending the application. Please try again later or contact "
@@ -723,7 +723,7 @@ msgstr ""
 
 #: prometei/views.py:230 prometei/views.py:256
 msgid ""
-"Дякуємо за ваш запит! Ми зв\'яжемося з вами найближчим часом для уточнення "
+"Дякуємо за ваш запит! Ми зв'яжемося з вами найближчим часом для уточнення "
 "деталей."
 msgstr ""
 "Thank you for your request! We will contact you shortly to clarify "
@@ -735,7 +735,7 @@ msgstr "Please correct the errors in the form."
 
 #: prometei/views.py:274 prometei/views.py:280
 msgid ""
-"Виникла помилка при відправці запиту. Спробуйте пізніше або зв\'яжіться з "
+"Виникла помилка при відправці запиту. Спробуйте пізніше або зв'яжіться з "
 "нами по телефону."
 msgstr ""
 "An error occurred while sending the request. Please try again later or contact "
@@ -1910,8 +1910,7 @@ msgstr ""
 "%(class_name)s.allow_future is False."
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:720
-#, python-format
-msgid "Invalid date string "%(datestr)s" given format "%(format)s""
+msgid "Invalid date string \"%(datestr)s\" given format \"%(format)s\""
 msgstr "Invalid date string \"%(datestr)s\" given format \"%(format)s\""
 
 #: venv/lib/python3.13/site-packages/django/views/generic/detail.py:56
@@ -2042,7 +2041,7 @@ msgid "Налаштування аналітики"
 msgstr "Analytics Setup"
 
 #: prometei/templates/prometei/services.html:165
-msgid "Форми зворотного зв\'язку"
+msgid "Форми зворотного зв'язку"
 msgstr "Feedback Forms"
 
 #: prometei/templates/prometei/services.html:167
