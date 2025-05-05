@@ -153,10 +153,8 @@
                     &copy; {% now "Y" %} {% blocktrans %}Prometey Labs. Всі права захищено.{% endblocktrans %}
                 </div>
                 <div class="footer__links">
-                    <a href="{% url 'prometei:privacy_policy' %}" class="footer__link">{% if request.LANGUAGE_CODE ==
-                        'uk' %}Політика конфіденційності{% else %}Privacy Policy{% endif %}</a>
-                    <a href="{% url 'prometei:terms_of_use' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk'
-                        %}Умови використання{% else %}Terms of Use{% endif %}</a>
+                    <a href="{% url 'prometei:privacy_policy' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Політика конфіденційності{% else %}Privacy Policy{% endif %}</a>
+                    <a href="{% url 'prometei:terms_of_use' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Умови використання{% else %}Terms of Use{% endif %}</a>
                 </div>
             </div>
         </div>
