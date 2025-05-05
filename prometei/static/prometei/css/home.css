@@ -92,10 +92,13 @@
 
 /* Animated Tape (Стрічка) */
 .animated-tape {
+    overflow: hidden;
+    /* Keep for clipping */
     margin: -5.5rem 0 5rem 0;
     position: relative;
     z-index: 10;
     width: 100%;
+    /* No transform here */
 }
 
 .animated-tape__container {
@@ -103,14 +106,16 @@
     color: white;
     padding: 1.5rem 0;
     width: 100%;
-    overflow: hidden;
+    /* Apply original transform here */
+    transform: rotate(-2deg) scale(1.1);
+    /* No overflow needed here, outer handles clipping */
 }
 
 .animated-tape__wrapper {
     display: flex;
     white-space: nowrap;
     animation: tape-scroll 30s linear infinite;
-    transform: rotate(-2deg);
+    /* Remove transform from here */
 }
 
 .animated-tape__item {
@@ -362,14 +367,21 @@
 
     .animated-tape {
         margin: 2rem 0;
+        /* Keep adjusted margin */
+        /* No transform */
+        overflow: hidden;
+        /* Ensure clipping */
     }
 
     .animated-tape__container {
         padding: 1rem 0;
+        /* Keep adjusted padding */
+        /* Apply original small screen transform here */
+        transform: rotate(-1deg) scale(1.05);
     }
 
     .animated-tape__wrapper {
-        transform: rotate(-1deg);
+        /* No transform here */
     }
 
     .animated-tape__item {
