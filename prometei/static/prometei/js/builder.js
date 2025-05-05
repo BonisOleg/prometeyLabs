@@ -380,7 +380,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(handleResponsiveLayout, 50);
 
         let needsVisualUpdate = true;
-        if (changedElement && changedElement.name === 'modules' && nonVisualModules.includes(changedElement.value)) {
+
+        // Check if the change was triggered by the slider OR a non-visual module
+        const isSlider = changedElement && changedElement.id === 'pageCountSlider';
+        const isNonVisualModule = changedElement && changedElement.name === 'modules' && nonVisualModules.includes(changedElement.value);
+
+        if (isSlider || isNonVisualModule) {
             needsVisualUpdate = false;
         }
 
@@ -550,12 +555,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Initialize interactions for specific modules if present
                     if (selectedModules && Array.isArray(selectedModules)) {
-                    if (selectedModules.includes('calculator')) {
-                        initCalculatorInteraction();
-                    }
+                        if (selectedModules.includes('calculator')) {
+                            initCalculatorInteraction();
+                        }
 
-                    if (selectedModules.includes('booking')) {
-                        initBookingInteraction();
+                        if (selectedModules.includes('booking')) {
+                            initBookingInteraction();
                         }
                     }
                 }, 100);
