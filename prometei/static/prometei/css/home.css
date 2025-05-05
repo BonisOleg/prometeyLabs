@@ -92,7 +92,6 @@
 
 /* Animated Tape (Стрічка) */
 .animated-tape {
-    overflow: hidden;
     margin: -5.5rem 0 5rem 0;
     position: relative;
     z-index: 10;
@@ -104,6 +103,7 @@
     color: white;
     padding: 1.5rem 0;
     width: 100%;
+    overflow: hidden;
 }
 
 .animated-tape__wrapper {
