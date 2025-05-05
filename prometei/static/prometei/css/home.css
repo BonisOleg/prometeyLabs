@@ -94,7 +94,6 @@
 .animated-tape {
     overflow: hidden;
     margin: -5.5rem 0 5rem 0;
-    transform: rotate(-2deg) scale(1.1);
     position: relative;
     z-index: 10;
     width: 100%;
@@ -106,6 +105,7 @@
     padding: 1.5rem 0;
     width: 100%;
     overflow: hidden;
+    transform: rotate(-2deg);
 }
 
 .animated-tape__wrapper {
