@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    ALLOWED_HOSTS.append(f'www.{RENDER_EXTERNAL_HOSTNAME}') # Додаємо версію з www.
 
 # Дозволити localhost для локальних тестів prod налаштувань
 if not RENDER_EXTERNAL_HOSTNAME: # Або інша логіка визначення локального середовища
