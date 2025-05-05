@@ -19,15 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     adjustTapeAnimation();
     window.addEventListener('resize', adjustTapeAnimation);
 
-    // Pause animation on hover
-    animatedTape.addEventListener('mouseenter', () => {
-        animatedTape.style.animationPlayState = 'paused';
-    });
-
-    animatedTape.addEventListener('mouseleave', () => {
-        animatedTape.style.animationPlayState = 'running';
-    });
-
     // Add parallax effect to the hero circles
     /* // Removed: Elements no longer exist
     const heroImage = document.querySelector('.hero__image-placeholder');
