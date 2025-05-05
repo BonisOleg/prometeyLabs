@@ -104,14 +104,13 @@
     color: white;
     padding: 1.5rem 0;
     width: 100%;
-    overflow: hidden;
-    transform: rotate(-2deg);
 }
 
 .animated-tape__wrapper {
     display: flex;
     white-space: nowrap;
     animation: tape-scroll 30s linear infinite;
+    transform: rotate(-2deg);
 }
 
 .animated-tape__item {
@@ -362,7 +361,15 @@
     }
 
     .animated-tape {
-        transform: rotate(-1deg) scale(1.05);
+        margin: 2rem 0;
+    }
+
+    .animated-tape__container {
+        padding: 1rem 0;
+    }
+
+    .animated-tape__wrapper {
+        transform: rotate(-1deg);
     }
 
     .animated-tape__item {
