@@ -84,8 +84,9 @@
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% for language in languages %}
-                            <option value="{{ language.code }}" {% if language.code == request.LANGUAGE_CODE %} selected{% endif %}>
-                                {{ language.code|upper }}
+                            <option value="{{ language.code }}" {% if language.code==request.LANGUAGE_CODE %} selected{%
+                                endif %}>
+                                {% if language.code == 'uk' %}UA{% else %}{{ language.code|upper }}{% endif %}
                             </option>
                             {% endfor %}
                         </select>
@@ -130,7 +131,7 @@
                         {% for language in languages %}
                         <button type="submit" name="language" value="{{ language.code }}"
                             class="language-switcher__button {% if language.code == request.LANGUAGE_CODE %}language-switcher__button--active{% endif %}">
-                            {{ language.code|upper }}
+                            {% if language.code == 'uk' %}UA{% else %}{{ language.code|upper }}{% endif %}
                         </button>
                         {% endfor %}
                     </div>
@@ -153,8 +154,10 @@
                     &copy; {% now "Y" %} {% blocktrans %}Prometey Labs. Всі права захищено.{% endblocktrans %}
                 </div>
                 <div class="footer__links">
-                    <a href="{% url 'prometei:privacy_policy' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Політика конфіденційності{% else %}Privacy Policy{% endif %}</a>
-                    <a href="{% url 'prometei:terms_of_use' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Умови використання{% else %}Terms of Use{% endif %}</a>
+                    <a href="{% url 'prometei:privacy_policy' %}" class="footer__link">{% if request.LANGUAGE_CODE ==
+                        'uk' %}Політика конфіденційності{% else %}Privacy Policy{% endif %}</a>
+                    <a href="{% url 'prometei:terms_of_use' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk'
+                        %}Умови використання{% else %}Terms of Use{% endif %}</a>
                 </div>
             </div>
         </div>
