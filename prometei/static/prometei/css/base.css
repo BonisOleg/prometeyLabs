@@ -83,6 +83,8 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    height: 100%;
+    /* Додано для iOS */
 }
 
 body {
@@ -95,13 +97,20 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow-x: hidden;
-    /* Prevent horizontal scroll */
+    /* Залишено min-height */
+    /* overflow-x: hidden; */
+    /* Прибрано, щоб не ламати sticky/fixed */
+    overflow: clip;
+    /* Новий стандартний спосіб запобігти прокрутці без ламання sticky/fixed */
+    height: 100%;
+    /* Додано для iOS */
 }
 
 body.menu-open {
     overflow: hidden;
-    position: fixed;
+    /* Залишаємо для блокування прокрутки при відкритому меню */
+    /* position: fixed; */
+    /* Можливо, це не потрібно, якщо хедер і меню вже fixed */
     width: 100%;
 }
 
@@ -195,9 +204,19 @@ a:hover {
 .header {
     background-color: var(--theme-surface);
     box-shadow: 0 2px 10px var(--theme-shadow);
-    position: sticky;
+    /* position: sticky; */
+    /* Буде змінено на fixed у медіа-запиті */
+    position: fixed;
+    /* Робимо хедер фіксованим завжди */
     top: 0;
-    z-index: 100;
+    left: 0;
+    /* Додано */
+    right: 0;
+    /* Додано */
+    width: 100%;
+    /* Додано */
+    z-index: 1000;
+    /* Збільшено z-index, щоб бути вище за все */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -459,18 +478,19 @@ a:hover {
 /* Mobile Menu */
 .mobile-menu {
     position: fixed;
-    top: 80px;
+    /* top: 80px; */
+    /* Буде встановлюватися динамічно JS */
     left: 0;
     width: 100%;
     height: 0;
     background-color: var(--theme-surface);
     overflow: hidden;
     transition: height 0.4s ease;
-    z-index: 100;
+    z-index: 999;
+    /* Нижче хедера, але вище контенту */
     box-shadow: 0 6px 18px var(--theme-shadow);
     visibility: hidden;
     -webkit-transform: translateZ(0);
-    /* Фікс для iOS, щоб position: fixed працював коректно */
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -562,9 +582,14 @@ a:hover {
 
 /* Main Content */
 .main {
-    min-height: calc(100vh - 80px - 120px);
-    /* 100vh - header - footer */
-    padding: 2rem 0;
+    /* min-height: calc(100vh - 80px - 120px); */
+    /* Закоментовано, бо хедер fixed */
+    padding-top: 80px;
+    /* Додаємо відступ зверху, рівний висоті хедера */
+    padding-bottom: 2rem;
+    /* Залишаємо нижній відступ */
+    flex-grow: 1;
+    /* Щоб футер притискався до низу */
 }
 
 /* Footer Styles */
@@ -627,6 +652,8 @@ a:hover {
 
     .mobile-menu {
         display: block;
+        /* top: 70px; */
+        /* Висота хедера буде встановлюватися JS */
     }
 
     .header__wrapper {
@@ -634,7 +661,9 @@ a:hover {
     }
 
     .main {
-        min-height: calc(100vh - 70px - 100px);
+        /* min-height: calc(100vh - 70px - 100px); */
+        padding-top: 70px;
+        /* Адаптуємо відступ для мобільного хедера */
     }
 
     h1 {
@@ -660,10 +689,13 @@ a:hover {
 
     html,
     body {
-        max-width: 100vw;
-        width: 100%;
-        overflow-x: hidden !important;
-        position: relative;
+        /* max-width: 100vw; */
+        /* Може викликати проблеми з overflow: clip */
+        /* width: 100%; */
+        /* overflow-x: hidden !important; */
+        /* Вже є overflow: clip на body */
+        /* position: relative; */
+        /* Може конфліктувати з fixed */
     }
 
     .container {
