@@ -33,11 +33,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!!!ЗАМІНИТИ_�
 DEBUG = 'RENDER' not in os.environ # Змінено для Render (False, якщо є змінна RENDER)
 
 # ALLOWED_HOSTS = [] # Оригінальне значення
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'www.prometeylabs.com', # Жорстко додано для тесту
+]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    # Наступний рядок тепер дублює жорстко прописаний, але залишимо для чистоти експерименту
     ALLOWED_HOSTS.append(f'www.{RENDER_EXTERNAL_HOSTNAME}') # Додаємо версію з www.
 
 # Дозволити localhost для локальних тестів prod налаштувань
