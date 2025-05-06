@@ -29,40 +29,33 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileMenu = document.getElementById('mobileMenu');
     const header = document.querySelector('.header'); // Отримуємо хедер
 
-    function updateMobileMenuPositionAndHeight() {
+    function updateMobileMenuState() {
         const headerHeight = header.offsetHeight;
+        // Встановлюємо top для мобільного меню відносно хедера
+        // Цей стиль може бути встановлений і в CSS, але для динаміки висоти хедера (якщо вона зміниться) краще тут
         mobileMenu.style.top = `${headerHeight}px`;
 
         if (mobileMenu.classList.contains('active')) {
+            // Встановлюємо висоту активного меню
             mobileMenu.style.height = `${window.innerHeight - headerHeight}px`;
+            document.body.classList.add('menu-open');
         } else {
             mobileMenu.style.height = '0px';
+            document.body.classList.remove('menu-open');
         }
     }
 
     mobileMenuToggle.addEventListener('click', function () {
         mobileMenuToggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
-
-        if (mobileMenu.classList.contains('active')) {
-            document.body.classList.add('menu-open');
-        } else {
-            document.body.classList.remove('menu-open');
-        }
-        updateMobileMenuPositionAndHeight(); // Оновлюємо позицію та висоту
+        updateMobileMenuState();
     });
 
     mobileMenuToggle.addEventListener('touchstart', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Залишаємо для запобігання подвійного кліку (click + touch)
         mobileMenuToggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
-
-        if (mobileMenu.classList.contains('active')) {
-            document.body.classList.add('menu-open');
-        } else {
-            document.body.classList.remove('menu-open');
-        }
-        updateMobileMenuPositionAndHeight(); // Оновлюємо позицію та висоту
+        updateMobileMenuState();
     });
 
     const mobileNavLinks = document.querySelectorAll('.mobile-nav__link');
@@ -70,32 +63,49 @@ document.addEventListener('DOMContentLoaded', function () {
         function closeMenuAction() {
             mobileMenuToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-            updateMobileMenuPositionAndHeight(); // Оновлюємо позицію та висоту
+            updateMobileMenuState();
         }
         link.addEventListener('click', closeMenuAction);
-        link.addEventListener('touchstart', closeMenuAction);
+        link.addEventListener('touchstart', function (e) {
+            // Для посилань не робимо e.preventDefault(), щоб перехід відбувся
+            closeMenuAction();
+        });
     });
 
     window.addEventListener('resize', function () {
-        if (window.innerWidth > 992 && mobileMenu.classList.contains('active')) {
+        // Закриваємо меню на десктопі, якщо воно було відкрите
+        if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) { // Змінено на 768px відповідно до CSS
             mobileMenuToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
         }
-        updateMobileMenuPositionAndHeight(); // Оновлюємо позицію та висоту при ресайзі
+        updateMobileMenuState(); // Оновлюємо стан/висоту/позицію меню при ресайзі
     });
 
-    // Запускаємо оновлення позиції при завантаженні сторінки
-    updateMobileMenuPositionAndHeight();
+    // Ініціалізація стану меню при завантаженні (важливо для правильного top)
+    updateMobileMenuState();
 
     // Add active class to current page nav link
     const currentUrl = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav__link, .mobile-nav__link');
 
     navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentUrl ||
-            (currentUrl === '/' && link.getAttribute('href') === '{% url "prometei:home" %}')) {
+        // Порівнюємо повний шлях або тільки '/' для домашньої сторінки
+        let linkPath = link.getAttribute('href');
+        try {
+            // Якщо це Django URL тег, він може бути відносним. Для порівняння потрібен повний шлях.
+            // Однак, якщо це зовнішнє посилання, URL об'єкт не спрацює. Тому обережно.
+            if (linkPath && !linkPath.startsWith('http') && !linkPath.startsWith('#')) {
+                const fullUrl = new URL(linkPath, window.location.origin);
+                linkPath = fullUrl.pathname;
+            }
+        } catch (error) {
+            // Залишаємо linkPath як є, якщо не вдалося створити URL
+        }
+
+        const isHomePage = currentUrl === '/' && (linkPath === '/' || linkPath === '/uk/' || linkPath === '/en/');
+        const isCurrentPage = linkPath === currentUrl;
+
+        if (isHomePage || isCurrentPage) {
             link.classList.add('active');
             link.setAttribute('aria-current', 'page');
         }
