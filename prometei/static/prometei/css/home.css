@@ -90,6 +90,13 @@
     /* Ensure canvas behaves like a block element */
 }
 
+/* Ensure the wrapper itself doesn't cause overflow initially */
+.tape-overflow-wrapper {
+    width: 100%;
+    /* overflow: visible; */
+    /* Default or remove if not needed */
+}
+
 /* Animated Tape (Стрічка) */
 .animated-tape {
     margin: -5.5rem 0 5rem 0;
@@ -333,6 +340,11 @@
 
     .cta__wrapper {
         padding: 2rem 1.5rem;
+    }
+
+    .tape-overflow-wrapper {
+        overflow: hidden;
+        /* Apply overflow:hidden only on smaller screens */
     }
 }
 
