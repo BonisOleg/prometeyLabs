@@ -99,6 +99,12 @@ body {
     /* Prevent horizontal scroll */
 }
 
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
 /* Typography */
 h1,
 h2,
@@ -459,7 +465,7 @@ a:hover {
     height: 0;
     background-color: var(--theme-surface);
     overflow: hidden;
-    transition: height 0.4s ease, visibility 0s linear 0.4s;
+    transition: height 0.4s ease;
     z-index: 100;
     box-shadow: 0 6px 18px var(--theme-shadow);
     visibility: hidden;
@@ -469,7 +475,8 @@ a:hover {
     height: calc(100vh - 80px);
     visibility: visible;
     overflow-y: auto;
-    transition: height 0.4s ease;
+    -webkit-overflow-scrolling: touch;
+    /* Плавна прокрутка на iOS */
 }
 
 .mobile-nav {
