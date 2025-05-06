@@ -28,11 +28,11 @@
                 <h1 class="hero__title">
                     {% trans "We create" %} <span class="hero__accent">{% trans "modern websites" %}</span><br>{% trans "quickly and affordably" %}
                 </h1>
-                <p class="hero__text">{% blocktrans %}Prometey Labs is a team of professionals who will help bring your
-                    ideas to life. We create websites that work for your business.{% endblocktrans %}</p>
+                <p class="hero__text">{% blocktrans %}Prometey Labs is a team of professionals who will help bring your ideas to life. We create websites that work for your business.{% endblocktrans %}</p>
                 {% endif %}
                 <div class="hero__buttons">
-                    <a href="{% url 'prometei:builder' %}" class="button cta-button">{% trans "Розрахувати вартість" %}</a>
+                    <a href="{% url 'prometei:builder' %}" class="button cta-button">{% trans "Розрахувати вартість"
+                        %}</a>
                     <a href="{% url 'prometei:services' %}" class="button">{% trans "Наші послуги" %}</a>
                 </div>
             </div>
@@ -43,25 +43,28 @@
     </div>
 </section>
 
-<!-- Animated Tape - Анімована стрічка -->
-<section class="animated-tape">
-    <div class="animated-tape__container">
-        <div class="animated-tape__wrapper">
-            <!-- Multiply these items via JavaScript for infinite animation -->
-            <div class="animated-tape__item">{% trans "Розробка сайтів" %}</div>
-            <div class="animated-tape__item">{% trans "Веб-дизайн" %}</div>
-            <div class="animated-tape__item">{% trans "Підтримка 24/7" %}</div>
-            <div class="animated-tape__item">{% trans "SEO-оптимізація" %}</div>
-            <div class="animated-tape__item">{% trans "Адаптивна верстка" %}</div>
-            {# Duplicate items for seamless loop #}
-            <div class="animated-tape__item">{% trans "Розробка сайтів" %}</div>
-            <div class="animated-tape__item">{% trans "Веб-дизайн" %}</div>
-            <div class="animated-tape__item">{% trans "Підтримка 24/7" %}</div>
-            <div class="animated-tape__item">{% trans "SEO-оптимізація" %}</div>
-            <div class="animated-tape__item">{% trans "Адаптивна верстка" %}</div>
+<!-- Wrapper for Animated Tape to prevent page overflow on mobile -->
+<div class="tape-overflow-wrapper">
+    <!-- Animated Tape - Анімована стрічка -->
+    <section class="animated-tape">
+        <div class="animated-tape__container">
+            <div class="animated-tape__wrapper">
+                <!-- Multiply these items via JavaScript for infinite animation -->
+                <div class="animated-tape__item">{% trans "Розробка сайтів" %}</div>
+                <div class="animated-tape__item">{% trans "Веб-дизайн" %}</div>
+                <div class="animated-tape__item">{% trans "Підтримка 24/7" %}</div>
+                <div class="animated-tape__item">{% trans "SEO-оптимізація" %}</div>
+                <div class="animated-tape__item">{% trans "Адаптивна верстка" %}</div>
+                {# Duplicate items for seamless loop #}
+                <div class="animated-tape__item">{% trans "Розробка сайтів" %}</div>
+                <div class="animated-tape__item">{% trans "Веб-дизайн" %}</div>
+                <div class="animated-tape__item">{% trans "Підтримка 24/7" %}</div>
+                <div class="animated-tape__item">{% trans "SEO-оптимізація" %}</div>
+                <div class="animated-tape__item">{% trans "Адаптивна верстка" %}</div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- Features Section -->
 <section class="features">
