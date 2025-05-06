@@ -89,6 +89,21 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.classList.remove('menu-open');
             mobileMenu.style.height = '0px';
         }
+        // Оновлюємо висоту меню при зміні розміру вікна, якщо воно відкрите
+        if (mobileMenu.classList.contains('active')) {
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            mobileMenu.style.height = `${window.innerHeight - headerHeight}px`;
+            // Оновлюємо позицію для iOS, щоб меню залишалося зверху
+            mobileMenu.style.top = `${headerHeight}px`;
+        }
+    });
+
+    // Оновлюємо позицію меню при прокрутці для коректної роботи на iOS
+    window.addEventListener('scroll', function () {
+        if (mobileMenu.classList.contains('active')) {
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            mobileMenu.style.top = `${headerHeight}px`;
+        }
     });
 
     // Add active class to current page nav link

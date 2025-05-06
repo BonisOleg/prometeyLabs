@@ -469,6 +469,11 @@ a:hover {
     z-index: 100;
     box-shadow: 0 6px 18px var(--theme-shadow);
     visibility: hidden;
+    -webkit-transform: translateZ(0);
+    /* Фікс для iOS, щоб position: fixed працював коректно */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .mobile-menu.active {
