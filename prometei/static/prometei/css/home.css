@@ -361,12 +361,11 @@
 
     .animated-tape {
         margin: 2rem 0;
-        overflow: hidden;
     }
 
     .animated-tape__container {
         padding: 1rem 0;
-        transform: rotate(-1deg) scale(1.05);
+        transform: rotate(-1deg) scale(1.01);
     }
 
     .animated-tape__wrapper {
