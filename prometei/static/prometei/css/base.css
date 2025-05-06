@@ -459,7 +459,7 @@ a:hover {
     height: 0;
     background-color: var(--theme-surface);
     overflow: hidden;
-    transition: height 0.4s ease;
+    transition: height 0.4s ease, visibility 0s linear 0.4s;
     z-index: 100;
     box-shadow: 0 6px 18px var(--theme-shadow);
     visibility: hidden;
@@ -468,6 +468,8 @@ a:hover {
 .mobile-menu.active {
     height: calc(100vh - 80px);
     visibility: visible;
+    overflow-y: auto;
+    transition: height 0.4s ease;
 }
 
 .mobile-nav {
