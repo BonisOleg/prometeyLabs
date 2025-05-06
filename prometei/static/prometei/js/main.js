@@ -93,17 +93,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (mobileMenu.classList.contains('active')) {
             const headerHeight = document.querySelector('.header').offsetHeight;
             mobileMenu.style.height = `${window.innerHeight - headerHeight}px`;
-            // Оновлюємо позицію для iOS, щоб меню залишалося зверху
-            mobileMenu.style.top = `${headerHeight}px`;
         }
+        // Завжди оновлюємо позицію меню, щоб воно залишалося зверху
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        mobileMenu.style.top = `${headerHeight}px`;
     });
 
-    // Оновлюємо позицію меню при прокрутці для коректної роботи на iOS
+    // Оновлюємо позицію меню при прокрутці для коректної роботи на iOS, завжди
     window.addEventListener('scroll', function () {
-        if (mobileMenu.classList.contains('active')) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            mobileMenu.style.top = `${headerHeight}px`;
-        }
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        mobileMenu.style.top = `${headerHeight}px`;
     });
 
     // Add active class to current page nav link
