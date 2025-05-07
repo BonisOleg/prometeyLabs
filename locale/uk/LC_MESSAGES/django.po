@@ -453,8 +453,8 @@ msgid "Ціна:"
 msgstr "Ціна:"
 
 #: prometei/templates/prometei/builder.html:158
-msgid "Можлива знижка при замовленні сьогодні!"
-msgstr "Можлива знижка при замовленні сьогодні!"
+msgid "Можлива персональна знижка, ми з вами скоро зв'яжемося"
+msgstr "Можлива персональна знижка, ми з вами скоро зв'яжемося"
 
 #: prometei/templates/prometei/builder.html:163
 msgid "Надіслати запит"

@@ -8,15 +8,27 @@
 <link rel="stylesheet" href="{% static 'prometei/css/builder.css' %}">
 {% endblock %}
 
+{% block body_attributes %}
+data-modal-title="{% trans "Залиште свої контактні дані" %}"
+data-modal-name-label="{% trans "Ваше ім'я*" %}"
+data-modal-contact-label="{% trans "Email або Telegram*" %}"
+data-modal-wishes-label="{% trans "Додаткові побажання" %}"
+data-modal-submit-button-text="{% trans "Надіслати запит" %}"
+data-modal-sending-button-text="{% trans "Надсилаємо..." %}"
+data-modal-form-status-sending="{% trans "Відправка запиту..." %}"
+data-modal-form-sent-success="{% trans "Дякуємо! Ваш запит успішно надіслано." %}"
+data-modal-form-sent-error-generic="{% trans "Виникла помилка.Спробуйте пізніше." %}"
+data-modal-form-sent-error-network="{% trans "Виникла помилка при відправці.Спробуйте пізніше." %}"
+data-modal-validation-error-fill-fields="{% trans "Будь ласка, заповніть обов'язкові поля" %}"
+{% endblock %}
+
 {% block content %}
 <section class="builder-hero">
     <div class="container">
         <h1 class="builder-hero__title">
-            {% trans "Сконструюй" %} <span class="builder-hero__accent">{% trans "свій ідеальний" %}</span> {% trans
-            "сайт" %}
+            {% trans "Сконструюй" %} <span class="builder-hero__accent">{% trans "свій ідеальний" %}</span> {% trans "сайт" %}
         </h1>
-        <p class="builder-hero__text">{% trans "Вибери потрібні опції, а наш конструктор допоможе визначити орієнтовний
-            пакет, термін та вартість." %}</p>
+        <p class="builder-hero__text">{% trans "Вибери потрібні опції, а наш конструктор допоможе визначити орієнтовний пакет, термін та вартість." %}</p>
     </div>
 </section>
 
@@ -100,8 +112,7 @@
                     <div class="builder-radio-group">
                         <label><input type="radio" name="design" value="template" data-price="0" data-term="0" checked>
                             {% trans "Шаблонний" %}</label>
-                        <label><input type="radio" name="design" value="unique" data-price="150" data-term="3">{% trans
-                            "Унікальний" %}</label>
+                        <label><input type="radio" name="design" value="unique" data-price="150" data-term="3">{% trans "Унікальний" %}</label>
                     </div>
                 </fieldset>
 
@@ -158,13 +169,12 @@
                 </div>
             </div>
             <div class="summary-hint" id="discountHint">
-                ✨ {% trans "Можлива знижка при замовленні сьогодні!" %}
+                ✨ {% trans "Можлива персональна знижка, ми з вами скоро зв'яжемося" %}
             </div>
 
             <!-- Submit Button & Success Message -->
             <div class="builder-submit-area">
-                <button class="button cta-button builder-submit" id="submitRequest">{% trans "Надіслати запит"
-                    %}</button>
+                <button class="button cta-button builder-submit" id="submitRequest">{% trans "Надіслати запит" %}</button>
                 <div class="builder-success-message" id="successMessage">{% trans "Ваш запит успішно надіслано!" %}
                 </div>
             </div>
@@ -174,20 +184,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-    const builderModalTranslations = {
-        modalTitle: "{% trans "Залиште свої контактні дані" %}",
-        nameLabel: "{% trans "Ваше ім'я*" %}",
-        contactLabel: "{% trans "Email або Telegram*" %}",
-        wishesLabel: "{% trans "Додаткові побажання" %}",
-        submitButtonText: "{% trans "Надіслати запит" %}",
-        sendingButtonText: "{% trans "Надсилаємо..." %}",
-        formStatusSending: "{% trans "Відправка запиту..." %}",
-        formSentSuccess: "{% trans "Дякуємо! Ваш запит успішно надіслано." %}",
-        formSentErrorGeneric: "{% trans "Виникла помилка.Спробуйте пізніше." %}",
-        formSentErrorNetwork: "{% trans "Виникла помилка при відправці.Спробуйте пізніше." %}",
-        validationErrorFillFields: "{% trans "Будь ласка, заповніть обов'язкові поля" %}"
-    };
-</script>
 <script src="{% static 'prometei/js/builder.js' %}?v={% now 'U' %}"></script>
 {% endblock %}
