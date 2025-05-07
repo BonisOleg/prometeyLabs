@@ -109,7 +109,7 @@
                 <ul class="mobile-nav__list">
                     <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans "Головна" %}</a></li>
                     <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans "Про нас" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{% trans "Послуги" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{%trans "Послуги" %}</a></li>
                     <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{% trans "Конструктор" %}</a></li>
                     <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{% trans "Контакти" %}</a></li>
                     {% if request.LANGUAGE_CODE == 'uk' %}
