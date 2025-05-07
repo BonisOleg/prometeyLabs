@@ -1008,11 +1008,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (submitButton) {
         submitButton.addEventListener('click', () => {
-            // Змінюємо стан кнопки
             submitButton.disabled = true;
-            submitButton.textContent = 'Надсилаємо...';
+            submitButton.textContent = translations.sendingButtonText || 'Надсилаємо...';
 
-            // Збираємо дані для відправки
             const formData = {
                 name: '',
                 contact_method: '',
@@ -1025,70 +1023,65 @@ document.addEventListener('DOMContentLoaded', () => {
                 builder_price: ''
             };
 
-            // Показуємо модальне вікно для введення контактної інформації
             const modalHTML = `
                 <div class="builder-form-modal">
                     <div class="builder-form-modal-content">
                         <span class="builder-form-modal-close">&times;</span>
-                        <h3>Залиште свої контактні дані</h3>
+                        <h3>${translations.modalTitle || 'Залиште свої контактні дані'}</h3>
                         <div class="builder-form-fields">
                             <div class="builder-form-field">
-                                <label for="modal-name">Ваше ім'я*:</label>
+                                <label for="modal-name">${translations.nameLabel || 'Ваше ім\'я*'}:</label>
                                 <input type="text" id="modal-name" required>
                             </div>
                             <div class="builder-form-field">
-                                <label for="modal-contact">Email або Telegram*:</label>
+                                <label for="modal-contact">${translations.contactLabel || 'Email або Telegram*'}:</label>
                                 <input type="text" id="modal-contact" required>
                             </div>
                             <div class="builder-form-field">
-                                <label for="modal-message">Додаткові побажання:</label>
+                                <label for="modal-message">${translations.wishesLabel || 'Додаткові побажання'}:</label>
                                 <textarea id="modal-message" rows="3"></textarea>
                             </div>
                         </div>
-                        <button id="modal-submit" class="button cta-button">Надіслати запит</button>
+                        <button id="modal-submit" class="button cta-button">${translations.submitButtonText || 'Надіслати запит'}</button>
                         <div id="modal-status" class="builder-form-status"></div>
                     </div>
                 </div>
             `;
 
-            // Додаємо модальне вікно на сторінку
             const modalContainer = document.createElement('div');
             modalContainer.innerHTML = modalHTML;
             document.body.appendChild(modalContainer);
 
-            // Отримуємо посилання на елементи модального вікна
             const modal = document.querySelector('.builder-form-modal');
             const closeBtn = document.querySelector('.builder-form-modal-close');
             const modalSubmit = document.getElementById('modal-submit');
             const modalStatus = document.getElementById('modal-status');
 
-            // Обробники подій для модального вікна
+            const originalSubmitButtonText = document.getElementById('submitRequest').textContent; // Зберігаємо оригінальний текст кнопки
+
             closeBtn.addEventListener('click', () => {
                 modal.style.display = 'none';
                 document.body.removeChild(modalContainer);
                 submitButton.disabled = false;
-                submitButton.textContent = 'Надіслати запит';
+                submitButton.textContent = originalSubmitButtonText; // Відновлюємо текст кнопки з шаблону
             });
 
-            // Кліки поза модальним вікном закривають його
             window.addEventListener('click', (event) => {
                 if (event.target === modal) {
                     modal.style.display = 'none';
                     document.body.removeChild(modalContainer);
                     submitButton.disabled = false;
-                    submitButton.textContent = 'Надіслати запит';
+                    submitButton.textContent = originalSubmitButtonText;
                 }
             });
 
-            // Обробка відправки форми з модального вікна
             modalSubmit.addEventListener('click', () => {
                 const nameInput = document.getElementById('modal-name');
                 const contactInput = document.getElementById('modal-contact');
                 const messageInput = document.getElementById('modal-message');
 
-                // Базова валідація
                 if (!nameInput.value.trim() || !contactInput.value.trim()) {
-                    modalStatus.textContent = 'Будь ласка, заповніть обов\'язкові поля';
+                    modalStatus.textContent = translations.validationErrorFillFields || 'Будь ласка, заповніть обов\'язкові поля';
                     modalStatus.classList.add('error');
                     return;
                 }
@@ -1121,10 +1114,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Відправляємо дані на сервер
                 modalSubmit.disabled = true;
-                modalSubmit.textContent = 'Відправка...';
-                modalStatus.textContent = 'Відправка запиту...';
-                modalStatus.classList.remove('error');
-                modalStatus.classList.remove('success');
+                modalSubmit.textContent = translations.sendingButtonText || 'Відправка...';
+                modalStatus.textContent = translations.formStatusSending || 'Відправка запиту...';
+                modalStatus.classList.remove('error', 'success');
 
                 // Отримуємо CSRF токен зі сторінки
                 const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
@@ -1151,37 +1143,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            // Успішно відправлено
-                            modalStatus.textContent = data.message || 'Дякуємо! Ваш запит успішно надіслано.';
+                            modalStatus.textContent = data.message || (translations.formSentSuccess || 'Дякуємо! Ваш запит успішно надіслано.');
                             modalStatus.classList.add('success');
-
-                            // Закриваємо модальне вікно через 2 секунди
                             setTimeout(() => {
                                 modal.style.display = 'none';
                                 document.body.removeChild(modalContainer);
-
-                                // Показуємо повідомлення про успіх на сторінці
-                                submitButton.style.display = 'none';
-                                successMessage.classList.add('visible');
+                                if (submitButton) submitButton.style.display = 'none'; // submitButton може бути null, якщо користувач швидко закрив
+                                if (successMessage) successMessage.classList.add('visible');
                             }, 2000);
                         } else {
-                            // Помилка
-                            modalStatus.textContent = data.message || 'Виникла помилка. Спробуйте пізніше.';
+                            modalStatus.textContent = data.message || (translations.formSentErrorGeneric || 'Виникла помилка. Спробуйте пізніше.');
                             modalStatus.classList.add('error');
                             modalSubmit.disabled = false;
-                            modalSubmit.textContent = 'Надіслати запит';
+                            modalSubmit.textContent = translations.submitButtonText || 'Надіслати запит';
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        modalStatus.textContent = 'Виникла помилка при відправці. Спробуйте пізніше.';
+                        modalStatus.textContent = translations.formSentErrorNetwork || 'Виникла помилка при відправці. Спробуйте пізніше.';
                         modalStatus.classList.add('error');
                         modalSubmit.disabled = false;
-                        modalSubmit.textContent = 'Надіслати запит';
+                        modalSubmit.textContent = translations.submitButtonText || 'Надіслати запит';
                     });
             });
 
-            // Показуємо модальне вікно
             modal.style.display = 'block';
         });
     }
