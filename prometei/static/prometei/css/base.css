@@ -555,7 +555,7 @@ a:hover {
 
 /* Main Content */
 .main {
-    padding-top: 80px;
+    padding-top: 40px;
     padding-bottom: 2rem;
     flex-grow: 1;
 }
@@ -627,7 +627,7 @@ a:hover {
     }
 
     .main {
-        padding-top: 70px;
+        padding-top: 35px;
     }
 
     h1 {
