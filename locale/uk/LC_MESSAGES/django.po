@@ -2312,6 +2312,46 @@ msgstr "Django Community"
 msgid "Connect, get help, or contribute"
 msgstr "Connect, get help, or contribute"
 
+#: prometei/templates/prometei/builder.html:12
+msgid "Залиште свої контактні дані"
+msgstr "Залиште свої контактні дані"
+
+#: prometei/templates/prometei/builder.html:13
+msgid "Ваше ім'я*"
+msgstr "Ваше ім'я*"
+
+#: prometei/templates/prometei/builder.html:14
+msgid "Email або Telegram*"
+msgstr "Email або Telegram*"
+
+#: prometei/templates/prometei/builder.html:15
+msgid "Додаткові побажання"
+msgstr "Додаткові побажання"
+
+#: prometei/templates/prometei/builder.html:17
+msgid "Надсилаємо..."
+msgstr "Надсилаємо..."
+
+#: prometei/templates/prometei/builder.html:18
+msgid "Відправка запиту..."
+msgstr "Відправка запиту..."
+
+#: prometei/templates/prometei/builder.html:19
+msgid "Дякуємо! Ваш запит успішно надіслано."
+msgstr "Дякуємо! Ваш запит успішно надіслано."
+
+#: prometei/templates/prometei/builder.html:20
+msgid "Виникла помилка.Спробуйте пізніше."
+msgstr "Виникла помилка. Спробуйте пізніше."
+
+#: prometei/templates/prometei/builder.html:21
+msgid "Виникла помилка при відправці.Спробуйте пізніше."
+msgstr "Виникла помилка при відправці. Спробуйте пізніше."
+
+#: prometei/templates/prometei/builder.html:22
+msgid "Будь ласка, заповніть обов'язкові поля"
+msgstr "Будь ласка, заповніть обов'язкові поля"
+
 #~ msgid "Наша"
 #~ msgstr "Наша"
 
