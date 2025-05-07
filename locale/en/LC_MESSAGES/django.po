@@ -2143,3 +2143,43 @@ msgstr "Testing and support"
 #: prometei/templates/prometei/services.html:215
 msgid "Обговорити проект"
 msgstr "Discuss Project"
+
+#: prometei/templates/prometei/builder.html:12
+msgid "Залиште свої контактні дані"
+msgstr "Leave your contact details"
+
+#: prometei/templates/prometei/builder.html:13
+msgid "Ваше ім'я*"
+msgstr "Your name*"
+
+#: prometei/templates/prometei/builder.html:14
+msgid "Email або Telegram*"
+msgstr "Email or Telegram*"
+
+#: prometei/templates/prometei/builder.html:15
+msgid "Додаткові побажання"
+msgstr "Additional wishes"
+
+#: prometei/templates/prometei/builder.html:17
+msgid "Надсилаємо..."
+msgstr "Sending..."
+
+#: prometei/templates/prometei/builder.html:18
+msgid "Відправка запиту..."
+msgstr "Sending request..."
+
+#: prometei/templates/prometei/builder.html:19
+msgid "Дякуємо! Ваш запит успішно надіслано."
+msgstr "Thank you! Your request has been sent successfully."
+
+#: prometei/templates/prometei/builder.html:20
+msgid "Виникла помилка.Спробуйте пізніше."
+msgstr "An error occurred. Please try again later."
+
+#: prometei/templates/prometei/builder.html:21
+msgid "Виникла помилка при відправці.Спробуйте пізніше."
+msgstr "An error occurred while sending. Please try again later."
+
+#: prometei/templates/prometei/builder.html:22
+msgid "Будь ласка, заповніть обов'язкові поля"
+msgstr "Please fill in the required fields"
