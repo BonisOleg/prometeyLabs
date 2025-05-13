@@ -92,7 +92,8 @@
                     </form>
                     <!-- End Language Switcher Form -->
 
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% trans 'Відкрити меню' %}">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% trans 'Відкрити меню' %}"
+                     aria-expanded="false" aria-controls="mobileMenu">
                         <span class="mobile-menu-toggle__line"></span>
                         <span class="mobile-menu-toggle__line"></span>
                         <span class="mobile-menu-toggle__line"></span>
@@ -103,9 +104,9 @@
     </header>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
         <div class="container">
-            <nav class="mobile-nav">
+            <nav class="mobile-nav" aria-label="{% trans 'Мобільна навігація' %}">
                 <ul class="mobile-nav__list">
                     <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans "Головна" %}</a></li>
                     <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans "Про нас" %}</a></li>
