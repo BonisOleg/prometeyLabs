@@ -27,61 +27,86 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mobile Menu Toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    const header = document.querySelector('.header'); // Отримуємо хедер
+    const header = document.querySelector('.header');
 
+    // Функція для встановлення стану мобільного меню
     function updateMobileMenuState() {
+        if (!mobileMenu || !header) return;
+
         const headerHeight = header.offsetHeight;
-        // Встановлюємо top для мобільного меню відносно хедера
-        // Цей стиль може бути встановлений і в CSS, але для динаміки висоти хедера (якщо вона зміниться) краще тут
         mobileMenu.style.top = `${headerHeight}px`;
 
         if (mobileMenu.classList.contains('active')) {
-            // Встановлюємо висоту активного меню
-            mobileMenu.style.height = `${window.innerHeight - headerHeight}px`;
+            // Використовуємо calc і vh для надійної висоти навіть на iOS
+            mobileMenu.style.height = `calc(100vh - ${headerHeight}px)`;
             document.body.classList.add('menu-open');
         } else {
-            mobileMenu.style.height = '0px';
+            mobileMenu.style.height = '0';
             document.body.classList.remove('menu-open');
         }
     }
 
-    mobileMenuToggle.addEventListener('click', function () {
-        mobileMenuToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        updateMobileMenuState();
-    });
+    // Функція для перемикання мобільного меню (уникаємо дублювання)
+    function toggleMobileMenu(event) {
+        // Запобігаємо спрацюванню події за замовчуванням тільки для touchstart
+        if (event.type === 'touchstart') {
+            event.preventDefault();
+        }
 
-    mobileMenuToggle.addEventListener('touchstart', function (e) {
-        e.preventDefault(); // Залишаємо для запобігання подвійного кліку (click + touch)
-        mobileMenuToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        updateMobileMenuState();
-    });
+        if (mobileMenuToggle && mobileMenu) {
+            const isActive = mobileMenu.classList.contains('active');
 
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav__link');
-    mobileNavLinks.forEach(link => {
-        function closeMenuAction() {
-            mobileMenuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
+            mobileMenuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+
+            // Оновлюємо ARIA атрибути
+            mobileMenuToggle.setAttribute('aria-expanded', isActive ? 'false' : 'true');
+            mobileMenu.setAttribute('aria-hidden', isActive ? 'true' : 'false');
+
             updateMobileMenuState();
         }
-        link.addEventListener('click', closeMenuAction);
-        link.addEventListener('touchstart', function (e) {
-            // Для посилань не робимо e.preventDefault(), щоб перехід відбувся
-            closeMenuAction();
-        });
-    });
+    }
 
-    window.addEventListener('resize', function () {
-        // Закриваємо меню на десктопі, якщо воно було відкрите
-        if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) { // Змінено на 768px відповідно до CSS
+    // Функція для закриття мобільного меню
+    function closeMobileMenu() {
+        if (mobileMenuToggle && mobileMenu) {
             mobileMenuToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
+
+            // Оновлюємо ARIA атрибути
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+
+            updateMobileMenuState();
         }
-        updateMobileMenuState(); // Оновлюємо стан/висоту/позицію меню при ресайзі
+    }
+
+    // Додаємо обробники подій до кнопки
+    if (mobileMenuToggle) {
+        // Використовуємо єдиний обробник для click, що добре працює на більшості пристроїв
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+        // Додаємо touchstart спеціально для iOS щоб уникнути затримки
+        mobileMenuToggle.addEventListener('touchstart', toggleMobileMenu, { passive: false });
+    }
+
+    // Додаємо обробник для закриття меню при кліку на посилання
+    if (mobileMenu) {
+        const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav__link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+
+    // Закриваємо меню при ресайзі вікна, якщо ширина більша за точку перелому
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768 && mobileMenu && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+        updateMobileMenuState();
     });
 
-    // Ініціалізація стану меню при завантаженні (важливо для правильного top)
+    // Ініціалізуємо початковий стан
     updateMobileMenuState();
 
     // Add active class to current page nav link
