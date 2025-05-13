@@ -18,7 +18,7 @@
 </head>
 
 <body data-theme="{{ request.COOKIES.theme|default:'light' }}"
-    data-prometey-image-path="{% static 'prometei/media/prometey.png' %}">
+    data-prometey-image-path="{% static 'prometei/media/prometey.png' %}" {% block body_attributes %}{% endblock %}>
     <!-- Header -->
     <header class="header">
         <div class="container">
