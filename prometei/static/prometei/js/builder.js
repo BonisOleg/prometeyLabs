@@ -4,6 +4,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Builder.js loaded, current language:", document.documentElement.lang);
+    console.log("Body dataset:", document.body.dataset);
+
     const builderForm = document.getElementById('builderForm');
     const pageCountSlider = document.getElementById('pageCountSlider');
     const pageCountValue = document.getElementById('pageCountValue');
