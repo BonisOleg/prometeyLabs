@@ -93,7 +93,7 @@
                     <!-- End Language Switcher Form -->
 
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% trans 'Відкрити меню' %}"
-                     aria-expanded="false" aria-controls="mobileMenu">
+                        aria-expanded="false" aria-controls="mobileMenu">
                         <span class="mobile-menu-toggle__line"></span>
                         <span class="mobile-menu-toggle__line"></span>
                         <span class="mobile-menu-toggle__line"></span>
@@ -120,23 +120,6 @@
                     </li>
                     {% endif %}
                 </ul>
-                <!-- Mobile Language Switcher -->
-                <form action="{% url 'set_language' %}" method="post"
-                    class="language-switcher language-switcher--mobile">
-                    {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ request.get_full_path }}"> {# Removed |slice:'3:' #}
-                    <div class="language-switcher__buttons">
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                        <button type="submit" name="language" value="{{ language.code }}"
-                            class="language-switcher__button {% if language.code == request.LANGUAGE_CODE %}language-switcher__button--active{% endif %}">
-                            {% if language.code == 'uk' %}UA{% else %}{{ language.code|upper }}{% endif %}
-                        </button>
-                        {% endfor %}
-                    </div>
-                </form>
-                <!-- End Mobile Language Switcher -->
             </nav>
         </div>
     </div>

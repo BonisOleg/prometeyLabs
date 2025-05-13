@@ -381,9 +381,8 @@ a:hover {
 
 /* Mobile Language Switcher (inside mobile menu) */
 .language-switcher--mobile {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--theme-shadow);
+    display: none;
+    /* Приховуємо, щоб не показувалось */
 }
 
 .language-switcher__buttons {
