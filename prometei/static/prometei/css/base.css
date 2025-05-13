@@ -489,6 +489,8 @@ a:hover {
     z-index: 999;
     box-shadow: 0 6px 18px var(--theme-shadow);
     visibility: hidden;
+    overflow: hidden;
+    /* Повертаємо overflow: hidden для неактивного стану */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -499,11 +501,15 @@ a:hover {
 
 .mobile-menu.active {
     visibility: visible;
-    overflow-y: auto;
+    overflow-y: scroll;
+    /* Явно встановлюємо scroll замість auto для Safari */
     -webkit-overflow-scrolling: touch;
+    /* Важливо для iOS */
+    overflow-scrolling: touch;
     transition: height 0.4s ease;
     -webkit-transition: height 0.4s ease;
-    height: auto !important;
+    height: calc(100vh - var(--header-height, 70px)) !important;
+    /* Явна висота для Safari */
     max-height: calc(100vh - var(--header-height, 70px));
 }
 
@@ -752,12 +758,22 @@ a:hover {
 @supports (-webkit-touch-callout: none) {
 
     /* iOS-only CSS */
+    body.menu-open {
+        /* Запобігаємо прокрутці основної сторінки під меню на iOS */
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
     .mobile-menu.active {
         /* Додаткова плавність для iOS */
         -webkit-transform: translate3d(0, 0, 0);
         /* Покращення скролінгу для iOS */
         -webkit-overflow-scrolling: touch;
         overflow-scrolling: touch;
+        /* Чіткі правила для Safari */
+        overflow-y: scroll !important;
+        -webkit-overflow-y: scroll !important;
     }
 
     .mobile-nav__link {

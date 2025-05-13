@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileMenu.style.top = `${headerHeight}px`;
 
         if (mobileMenu.classList.contains('active')) {
-            // Не встановлюємо фіксовану висоту, а дозволяємо CSS правилам керувати цим
+            // Встановлюємо явну висоту для Safari
+            mobileMenu.style.height = `calc(100vh - ${headerHeight}px)`;
             document.body.classList.add('menu-open');
         } else {
             mobileMenu.style.height = '0';
@@ -94,9 +95,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Додаємо обробник для закриття меню при кліку на посилання
     if (mobileMenu) {
-        const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav__link');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
+        // Використовуємо делегування подій для кращої продуктивності
+        mobileMenu.addEventListener('click', function (event) {
+            // Перевіряємо, чи клікнуто на посилання
+            if (event.target.classList.contains('mobile-nav__link')) {
+                // Негайно закриваємо меню
+                closeMobileMenu();
+
+                // Для посилань на цій же сторінці (якорів) запобігаємо стандартній поведінці
+                // і самостійно прокручуємо до якоря після закриття меню
+                const href = event.target.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    event.preventDefault();
+                    setTimeout(function () {
+                        document.querySelector(href).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+            }
         });
     }
 
