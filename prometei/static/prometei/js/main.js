@@ -34,11 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!mobileMenu || !header) return;
 
         const headerHeight = header.offsetHeight;
+        // Встановлюємо CSS змінну для доступу в стилях
+        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+
         mobileMenu.style.top = `${headerHeight}px`;
 
         if (mobileMenu.classList.contains('active')) {
-            // Використовуємо calc і vh для надійної висоти навіть на iOS
-            mobileMenu.style.height = `calc(100vh - ${headerHeight}px)`;
+            // Не встановлюємо фіксовану висоту, а дозволяємо CSS правилам керувати цим
             document.body.classList.add('menu-open');
         } else {
             mobileMenu.style.height = '0';
