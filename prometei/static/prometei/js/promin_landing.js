@@ -430,15 +430,6 @@ function animateMockWebsiteElements() {
             yoyo: true,
             ease: 'sine.inOut'
         });
-
-        // Add pulsing effect to the mock button
-        gsap.to('.mock-button', {
-            scale: 1.05,
-            duration: 1.2,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
     }
 }
 
@@ -568,14 +559,6 @@ function initMouseMovement() {
                 ease: 'power1.out',
                 overwrite: 'auto'
             });
-
-            gsap.to('.mock-button', {
-                x: xPos * 5,
-                y: yPos * 5,
-                duration: 0.3,
-                ease: 'power1.out',
-                overwrite: 'auto'
-            });
         }
     });
 
@@ -622,10 +605,16 @@ function initDeviceMotion() {
     let initialBeta = null;
     let initialGamma = null;
 
+    // Touch tracking variables
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isTracking = false;
+
     // Sensitivity configuration for tilt effect
     const sensitivity = {
         rotate: 0.5,    // Lower for mobile to avoid extreme angles
-        parallax: 8     // Parallax movement amount
+        parallax: 8,    // Parallax movement amount
+        touch: 0.15     // Touch sensitivity factor
     };
 
     // Max tilt angles (degrees)
@@ -633,6 +622,12 @@ function initDeviceMotion() {
 
     // Function to handle device orientation data
     function handleOrientation(event) {
+        // Only use orientation detection for Android devices
+        // iOS will use touch tracking instead
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+            return;
+        }
+
         // Get beta (x-axis) and gamma (y-axis) angles in degrees
         const beta = event.beta;  // -180 to 180 (front/back tilt)
         const gamma = event.gamma; // -90 to 90 (left/right tilt)
@@ -652,19 +647,77 @@ function initDeviceMotion() {
         relativeBeta = Math.max(Math.min(relativeBeta, maxTilt), -maxTilt);
         relativeGamma = Math.max(Math.min(relativeGamma, maxTilt), -maxTilt);
 
+        // Apply transformations through applyFrameEffects function
+        applyFrameEffects(-relativeBeta, relativeGamma);
+    }
+
+    // Touch event handlers for iOS devices
+    function handleTouchStart(e) {
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        isTracking = true;
+    }
+
+    function handleTouchMove(e) {
+        if (!isTracking) return;
+
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        // Calculate tilt based on touch movement
+        // Map touch movement to tilt angles based on screen dimensions
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const tiltY = (deltaX / screenWidth) * maxTilt * 2 * sensitivity.touch;
+        const tiltX = (deltaY / screenHeight) * maxTilt * 2 * sensitivity.touch;
+
+        // Apply transformations
+        applyFrameEffects(tiltX, tiltY);
+    }
+
+    function handleTouchEnd() {
+        if (!isTracking) return;
+
+        // Reset the frame position smoothly
+        gsap.to(websiteFrame, {
+            rotateX: 0,
+            rotateY: 0,
+            transformOrigin: 'center center',
+            duration: 0.5,
+            ease: 'power2.out',
+            overwrite: 'auto'
+        });
+
+        // Reset inner elements
+        gsap.to(['.mock-hero-image', '.mock-feature-icon', '.mock-logo'], {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+            overwrite: 'auto'
+        });
+
+        isTracking = false;
+    }
+
+    // Apply frame effects (shared between touch and orientation)
+    function applyFrameEffects(tiltX, tiltY) {
         // Apply tilt to website frame
         gsap.to(websiteFrame, {
-            rotateX: -relativeBeta,  // Invert for natural tilt feeling
-            rotateY: relativeGamma,
+            rotateX: tiltX,
+            rotateY: tiltY,
             transformOrigin: 'center center',
             duration: 0.3,
             ease: 'power1.out',
             overwrite: 'auto'
         });
 
-        // Apply parallax effect to inner elements based on tilt
-        const betaFactor = relativeBeta / maxTilt; // -1 to 1
-        const gammaFactor = relativeGamma / maxTilt; // -1 to 1
+        // Calculate parallax factors
+        const betaFactor = tiltX / maxTilt; // -1 to 1
+        const gammaFactor = tiltY / maxTilt; // -1 to 1
 
         // Apply to hero image
         gsap.to('.mock-hero-image', {
@@ -693,14 +746,6 @@ function initDeviceMotion() {
             ease: 'power1.out',
             overwrite: 'auto'
         });
-
-        gsap.to('.mock-button', {
-            x: gammaFactor * 5,
-            y: betaFactor * 5,
-            duration: 0.3,
-            ease: 'power1.out',
-            overwrite: 'auto'
-        });
     }
 
     // Function to request device motion/orientation permission on iOS 13+
@@ -711,7 +756,12 @@ function initDeviceMotion() {
             DeviceOrientationEvent.requestPermission()
                 .then(permissionState => {
                     if (permissionState === 'granted') {
-                        window.addEventListener('deviceorientation', handleOrientation);
+                        // For iOS, we prefer touch tracking
+                        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                            initTouchTracking();
+                        } else {
+                            window.addEventListener('deviceorientation', handleOrientation);
+                        }
                     } else {
                         console.log('Device orientation permission denied');
                     }
@@ -719,12 +769,64 @@ function initDeviceMotion() {
                 .catch(console.error);
         } else {
             // Non iOS 13+ devices don't need permission
-            window.addEventListener('deviceorientation', handleOrientation);
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                // Use touch tracking for all iOS devices
+                initTouchTracking();
+            } else {
+                window.addEventListener('deviceorientation', handleOrientation);
+            }
         }
+    }
+
+    // Initialize touch tracking for iOS
+    function initTouchTracking() {
+        // Add touch event listeners to the frame
+        const frame = document.querySelector('.website-frame');
+        if (frame) {
+            frame.addEventListener('touchstart', handleTouchStart, { passive: true });
+            frame.addEventListener('touchmove', handleTouchMove, { passive: true });
+            frame.addEventListener('touchend', handleTouchEnd);
+
+            // Make it visually clear the element is interactive
+            frame.style.cursor = 'grab';
+
+            // Add instructions if needed
+            const frameContent = document.querySelector('.frame-content');
+            if (frameContent && !document.querySelector('.touch-hint')) {
+                const touchHint = document.createElement('div');
+                touchHint.className = 'touch-hint';
+                touchHint.textContent = 'Торкніться для 3D ефекту';
+                touchHint.style.position = 'absolute';
+                touchHint.style.bottom = '10px';
+                touchHint.style.left = '50%';
+                touchHint.style.transform = 'translateX(-50%)';
+                touchHint.style.fontSize = '10px';
+                touchHint.style.color = 'rgba(0,0,0,0.5)';
+                touchHint.style.padding = '4px 8px';
+                touchHint.style.borderRadius = '12px';
+                touchHint.style.background = 'rgba(255,255,255,0.7)';
+                touchHint.style.pointerEvents = 'none';
+                touchHint.style.opacity = '0.8';
+                touchHint.style.zIndex = '10';
+                frameContent.appendChild(touchHint);
+
+                // Hide hint after 3 seconds
+                setTimeout(() => {
+                    touchHint.style.opacity = '0';
+                    setTimeout(() => touchHint.remove(), 500);
+                }, 3000);
+            }
+        }
+
+        // Also add tracking to the whole window to ensure tracking continues if finger moves outside frame
+        window.addEventListener('touchend', handleTouchEnd);
     }
 
     // Function to handle device motion for Android/older devices
     function handleMotion(event) {
+        // Only use motion events if orientation isn't working
+        if (initialBeta !== null && initialGamma !== null) return;
+
         // Get acceleration data
         const accelerationX = event.accelerationIncludingGravity.x;
         const accelerationY = event.accelerationIncludingGravity.y;
@@ -740,15 +842,8 @@ function initDeviceMotion() {
             const limitedTiltX = Math.max(Math.min(tiltX, maxTilt), -maxTilt);
             const limitedTiltY = Math.max(Math.min(tiltY, maxTilt), -maxTilt);
 
-            // Apply tilt
-            gsap.to(websiteFrame, {
-                rotateX: -limitedTiltX,
-                rotateY: limitedTiltY,
-                transformOrigin: 'center center',
-                duration: 0.3,
-                ease: 'power1.out',
-                overwrite: 'auto'
-            });
+            // Apply transformations
+            applyFrameEffects(-limitedTiltX, limitedTiltY);
         }
     }
 
@@ -760,7 +855,8 @@ function initDeviceMotion() {
         const permissionBtn = document.createElement('button');
         permissionBtn.id = 'motion-permission-btn';
         permissionBtn.className = 'motion-permission-btn';
-        permissionBtn.innerText = 'Enable 3D Tilt Effect';
+        permissionBtn.innerText = /iPhone|iPad|iPod/.test(navigator.userAgent) ?
+            'Увімкнути 3D ефект' : 'Enable 3D Tilt Effect';
 
         permissionBtn.style.position = 'fixed';
         permissionBtn.style.bottom = '20px';
@@ -791,7 +887,10 @@ function initDeviceMotion() {
         createPermissionButton();
     } else {
         // For Android and older iOS
-        if (window.DeviceOrientationEvent) {
+        if (iOS) {
+            // For all iOS devices - use touch tracking
+            initTouchTracking();
+        } else if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', handleOrientation);
         } else if (window.DeviceMotionEvent) {
             // Fallback to device motion for some Android devices
@@ -833,7 +932,8 @@ function initDeviceMotion() {
                 ease: 'power2.out'
             });
 
-            gsap.to(['.mock-hero-image', '.mock-feature-icon', '.mock-logo', '.mock-button'], {
+            // Remove mock-button from the reset animation to prevent blinking
+            gsap.to(['.mock-hero-image', '.mock-feature-icon', '.mock-logo'], {
                 x: 0,
                 y: 0,
                 duration: 0.5,
