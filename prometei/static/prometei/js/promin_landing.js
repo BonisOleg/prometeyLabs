@@ -880,12 +880,13 @@ function initDeviceMotion() {
 
     // Check for iOS
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isMobile = window.innerWidth <= 768; // Ensure isMobile is defined or accessible here
 
-    if (iOS && typeof DeviceOrientationEvent !== 'undefined' &&
+    if (!isMobile && iOS && typeof DeviceOrientationEvent !== 'undefined' &&
         typeof DeviceOrientationEvent.requestPermission === 'function') {
         // iOS 13+ requires permission button
         createPermissionButton();
-    } else {
+    } else if (!isMobile) { // Also ensure other conditions for showing buttons are not on mobile
         // For Android and older iOS
         if (iOS) {
             // For all iOS devices - use touch tracking
@@ -896,6 +897,8 @@ function initDeviceMotion() {
             // Fallback to device motion for some Android devices
             window.addEventListener('devicemotion', handleMotion);
         }
+    } else if (isMobile && iOS) { // If mobile and iOS, still init touch tracking without permission button
+        initTouchTracking();
     }
 
     // Add reset button to recalibrate the neutral position
@@ -944,8 +947,8 @@ function initDeviceMotion() {
         document.body.appendChild(resetBtn);
     };
 
-    // Add reset button if device has orientation support
-    if (window.DeviceOrientationEvent || window.DeviceMotionEvent) {
+    // Add reset button if device has orientation support AND is not mobile
+    if (!isMobile && (window.DeviceOrientationEvent || window.DeviceMotionEvent)) {
         createResetButton();
     }
 }
