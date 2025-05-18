@@ -35,6 +35,7 @@ DEBUG = 'RENDER' not in os.environ # Змінено для Render (False, якщ
 # ALLOWED_HOSTS = [] # Оригінальне значення
 ALLOWED_HOSTS = [
     'www.prometeylabs.com', # Жорстко додано для тесту
+    '0.0.0.0', # Додано для розробки з використанням 0.0.0.0
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')

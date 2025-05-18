@@ -1,0 +1,251 @@
+<script>
+    (function () {
+        "use strict";
+        const config = {
+            visitId: {{ visit_id }
+    },
+        landingPageId: { { landing_page_id } },
+    slug: "{{ slug }}",
+        csrfToken: "{{ csrf_token }}",
+            trackingEndpoint: "{{ track_url }}", // Using server-provided URL
+                interactionEndpoint: "{{ interaction_url }}", // Using server-provided URL
+                    formEndpoint: "{{ form_submit_url }}", // Using server-provided URL
+                        samplingRateMs: 1000,
+                            maxSamples: 100,
+                                scrollDepthThresholdPx: 200, // For 'scroll_deep' interaction
+                                    debug: {% if debug_mode %} true{% else %} false{% endif %}
+        };
+
+    const state = {
+        startTime: Date.now(),
+        interactionsBuffer: [], // Buffer for interactions before sending to path_data
+        mouseMovements: [],
+        scrollPositions: [],
+        lastMoveTime: 0,
+        lastScrollTime: 0,
+        formSubmitting: false
+    };
+
+    function logDebug(...args) {
+        if (config.debug) {
+            console.log("[LandingTracker]", ...args);
+        }
+    }
+
+    function sendBeaconData(endpoint, data) {
+        try {
+            if (navigator.sendBeacon) {
+                const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+                navigator.sendBeacon(endpoint, blob);
+            } else { // Fallback for older browsers
+                fetch(endpoint, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: { 'Content-Type': 'application/json' },
+                    keepalive: true // Important for fetch during unload
+                }).catch(err => logDebug("Fallback send error:", err));
+            }
+        } catch (e) {
+            logDebug("Error sending beacon/fetch data:", e);
+        }
+    }
+
+    function postJsonData(endpoint, data) {
+        fetch(endpoint, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' } // No CSRF needed for these API-like endpoints if session not used for auth
+        }).catch(err => logDebug("POST JSON error:", err));
+    }
+
+    function extractMetadata() {
+        const metadata = {
+            screen: { w: window.screen.width, h: window.screen.height, cd: window.screen.colorDepth },
+            viewport: { w: window.innerWidth, h: window.innerHeight },
+            browser: navigator.userAgent.substring(0, 255), // Truncate user agent
+            lang: navigator.language,
+            tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            cookies: navigator.cookieEnabled
+        };
+        try {
+            const cookies = document.cookie.split(';');
+            const fbCookies = {};
+            for (const cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name && (name.startsWith('_fb') || name.startsWith('fb') || name.startsWith('_fbc'))) {
+                    fbCookies[name.substring(0, 50)] = true; // Store presence, truncate key
+                }
+            }
+            if (Object.keys(fbCookies).length > 0) metadata.fbCookies = fbCookies;
+        } catch (e) { metadata.cookieError = true; }
+        // Add more metadata extraction here if needed (e.g., localStorage keys)
+        return metadata;
+    }
+
+    function sendMainTrackingData() {
+        if (document.visibilityState === 'hidden') { // Send data when tab is hidden or closed
+            const timeSpent = Math.floor((Date.now() - state.startTime) / 1000);
+            const dataToSend = {
+                visit_id: config.visitId,
+                landing_page_id: config.landingPageId,
+                time_on_page: timeSpent,
+                mouse_movements: state.mouseMovements.slice(-config.maxSamples),
+                scroll_positions: state.scrollPositions.slice(-config.maxSamples),
+                metadata: extractMetadata()
+            };
+            sendBeaconData(config.trackingEndpoint, dataToSend);
+            logDebug("Main tracking data sent via Beacon/Fetch (unload/visibilitychange):", dataToSend);
+            // Clear buffers after sending if needed, but for unload it doesn't matter
+        }
+    }
+
+    function recordInteraction(elementId, elementType, interactionType) {
+        const interactionData = {
+            visit_id: config.visitId,
+            element_id: String(elementId).substring(0, 150),
+            element_tag: String(elementType).substring(0, 50), // Sending as element_tag to match view expectations
+            type: interactionType // Sending as 'type' to match view expectations
+        };
+        postJsonData(config.interactionEndpoint, interactionData);
+
+        // Also add to buffer for path_data
+        if (state.interactionsBuffer.length < config.maxSamples * 2) { // Allow a bit more in buffer
+            state.interactionsBuffer.push({ elId: elementId, elType: elementType, type: interactionType, ts: Date.now() });
+        }
+        logDebug("Interaction recorded:", interactionData);
+    }
+
+    function handleClicks(event) {
+        let target = event.target;
+        while (target && target !== document.body) {
+            if (target.id || target.tagName === 'A' || target.tagName === 'BUTTON' || target.getAttribute('data-trackable')) {
+                recordInteraction(target.id || target.className || target.href || 'unidentified_clickable', target.tagName, 'click');
+                return; // Record first identifiable parent or self
+            }
+            target = target.parentNode;
+        }
+    }
+
+    function handleScroll() {
+        const now = Date.now();
+        if (now - state.lastScrollTime > config.samplingRateMs) {
+            state.lastScrollTime = now;
+            const scrollY = window.scrollY;
+            if (state.scrollPositions.length < config.maxSamples) {
+                state.scrollPositions.push({ y: scrollY, ts: now });
+            }
+            // Check for deep scroll
+            const viewportHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            if (scrollY + viewportHeight >= documentHeight - config.scrollDepthThresholdPx) { // Near bottom
+                if (!state.deepScrollRecorded) { // Record only once
+                    recordInteraction('page_bottom', 'DOCUMENT', 'scroll_deep');
+                    state.deepScrollRecorded = true;
+                }
+            }
+        }
+    }
+
+    function handleMouseMove(event) {
+        const now = Date.now();
+        if (now - state.lastMoveTime > config.samplingRateMs) {
+            state.lastMoveTime = now;
+            if (state.mouseMovements.length < config.maxSamples) {
+                state.mouseMovements.push({ x: event.clientX, y: event.clientY, ts: now });
+            }
+        }
+    }
+
+    function handleFormSubmission(form, event) {
+        event.preventDefault();
+        if (state.formSubmitting) {
+            alert("Ваш запит обробляється..."); return;
+        }
+        state.formSubmitting = true;
+
+        const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+        const originalButtonText = submitButton ? submitButton.innerText || submitButton.value : "";
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerText = "Відправка...";
+            if (submitButton.value) submitButton.value = "Відправка...";
+        }
+
+        const formData = new FormData(form);
+        const data = {
+            landing_page_id: config.landingPageId,
+            visit_id: config.visitId,
+            form_id: form.id || 'form_unidentified'
+        };
+        formData.forEach((value, key) => { data[key] = value; });
+
+        fetch(config.formEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': config.csrfToken, 'X-Requested-With': 'XMLHttpRequest' },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json().then(json => ({ ok: response.ok, status: response.status, json })))
+            .then(({ ok, status, json }) => {
+                if (ok) {
+                    recordInteraction(form.id || 'form_unidentified', 'FORM', 'submit');
+                    if (form.parentNode) {
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'landing-form-success';
+                        successMsg.textContent = json.message || "Дякуємо! Запит відправлено.";
+                        successMsg.style.color = 'green'; successMsg.style.marginTop = '10px';
+                        form.parentNode.insertBefore(successMsg, form.nextSibling);
+                    }
+                    form.reset();
+                    form.style.display = 'none'; // Hide form after success
+                    // Trigger conversion pixels
+                    if (window.fbq) fbq('track', 'Lead');
+                    if (window.dataLayer) dataLayer.push({ 'event': 'form_submission_success', 'form_id': form.id });
+                } else {
+                    throw new Error(json.message || `Помилка серверу: ${status}`);
+                }
+            })
+            .catch(error => {
+                logDebug("Form submission error:", error);
+                if (form.parentNode) {
+                    let errorMsgDiv = form.querySelector('.landing-form-error');
+                    if (!errorMsgDiv) {
+                        errorMsgDiv = document.createElement('div');
+                        errorMsgDiv.className = 'landing-form-error';
+                        errorMsgDiv.style.color = 'red'; errorMsgDiv.style.marginTop = '10px';
+                        form.insertBefore(errorMsgDiv, form.firstChild);
+                    }
+                    errorMsgDiv.textContent = error.message || "Виникла помилка. Спробуйте ще раз.";
+                }
+            })
+            .finally(() => {
+                state.formSubmitting = false;
+                if (submitButton && form.style.display !== 'none') { // Only re-enable if form not hidden
+                    submitButton.disabled = false;
+                    if (submitButton.value) submitButton.value = originalButtonText;
+                    else submitButton.innerText = originalButtonText;
+                }
+            });
+    }
+
+    function init() {
+        document.addEventListener('click', handleClicks, true); // Use capture for broader click detection
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        document.addEventListener('mousemove', handleMouseMove, { passive: true });
+
+        // Send data on page hide/close
+        window.addEventListener('pagehide', sendMainTrackingData, { capture: true }); // For Firefox bfcache
+        document.addEventListener('visibilitychange', sendMainTrackingData, { capture: true }); // For tab switching
+
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (event) => handleFormSubmission(form, event));
+        });
+        logDebug("Landing page tracker initialized.");
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    }) ();
+</script>
