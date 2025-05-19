@@ -78,7 +78,7 @@ function fixIOSHeight() {
             landingWrapper.style.height = 'auto';
             landingWrapper.style.minHeight = `calc(var(--vh, 1vh) * 100)`;
         } else {
-            landingWrapper.style.height = `calc(var(--vh, 1vh) * 100)`;
+            // landingWrapper.style.height = `calc(var(--vh, 1vh) * 100)`;
         }
     }
 
