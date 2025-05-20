@@ -640,6 +640,10 @@
             0 15px 30px rgba(0, 0, 0, 0.1) !important;
     }
 
+    .voucher-text {
+        box-shadow: none !important;
+    }
+
     .voucher-card.active {
         transform: none !important;
     }
