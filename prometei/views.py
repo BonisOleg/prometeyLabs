@@ -141,59 +141,92 @@ class ContactPageView(FormView):
     success_url = reverse_lazy('prometei:contact')
 
     def post(self, request, *args, **kwargs):
+        # raise Exception("ContactPageView POST method was CALLED! THIS IS A TEST EXCEPTION.") # ВИДАЛЕНО
+        
+        logger.info("="*50)
+        logger.info("ContactPageView POST method CALLED") 
+        
+        # КЛЮЧОВИЙ РЯДОК ЛОГУВАННЯ:
+        logger.info(f"Contact POST headers from promin_landing: {request.headers}") 
+        
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            print("AJAX request DETECTED by X-Requested-With header.") 
+            logger.info("AJAX request identified by ContactPageView for promin_landing.")
             try:
                 data = json.loads(request.body)
-                form = self.get_form_class()(data)
+                form = self.get_form_class()(data) # Використовуємо ContactForm
                 if form.is_valid():
-                    return self.form_valid(form)
+                    # Логіка form_valid має повертати JsonResponse для AJAX
+                    return self.form_valid(form) 
                 else:
-                    logger.warning(f"AJAX: Отримано невалідну контактну форму з помилками: {form.errors.as_json()}")
+                    logger.warning(f"AJAX form invalid in ContactPageView (promin_landing): {form.errors.as_json()}")
                     return JsonResponse({
                         'success': False,
                         'message': _("Будь ласка, перевірте введені дані."),
                         'errors': form.errors
-                    })
+                    }, status=400) # Додамо статус 400 для невалідних даних
             except json.JSONDecodeError:
-                logger.error("AJAX: Не вдалося розпарсити JSON з тіла запиту")
+                logger.error("AJAX: JSONDecodeError in ContactPageView (promin_landing)")
                 return JsonResponse({'success': False, 'message': _("Помилка формату запиту.")}, status=400)
             except Exception as e:
-                 logger.error(f"AJAX: Непередбачена помилка при обробці POST: {str(e)}")
+                 logger.error(f"AJAX: Unexpected error in ContactPageView POST (promin_landing): {str(e)}")
                  return JsonResponse({'success': False, 'message': _("Внутрішня помилка сервера.")}, status=500)
         else:
-            return super().post(request, *args, **kwargs)
+            print("Request NOT detected as AJAX by X-Requested-With header.") 
+            logger.warning("Request NOT identified as AJAX by ContactPageView (promin_landing). Falling back to standard POST.")
+            return super().post(request, *args, **kwargs) # Стандартна обробка FormView
+        print("="*50) # Цей print може не досягатися, якщо return відбувається раніше
 
     def form_valid(self, form):
+        is_ajax = self.request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        
         try:
-            contact_request = form.save()
-            logger.info(f"Створено новий контактний запит ID: {contact_request.id}")
-            EmailService.send_contact_email(contact_request)
+            contact_request = form.save() 
+            if is_ajax:
+                logger.info(f"AJAX: ContactRequest ID {contact_request.id} saved via promin_landing form.")
+            else:
+                logger.info(f"ContactRequest ID {contact_request.id} saved (non-AJAX).")
+            
+            EmailService.send_contact_email(contact_request) 
             EmailService.send_confirmation_to_user(contact_request)
-            messages.success(
-                self.request,
-                _("Дякуємо за ваше повідомлення! Ми зв'яжемося з вами найближчим часом.")
-            )
-            if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            
+            if is_ajax:
                 return JsonResponse({
                     'success': True,
-                    'message': _("Дякуємо за ваше повідомлення! Ми зв'яжемося з вами найближчим часом.")
+                    'message': _("Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом.")
                 })
-            return super().form_valid(form)
+            else: 
+                messages.success(
+                    self.request,
+                    _("Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом.")
+                )
+                return super().form_valid(form)
+
         except Exception as e:
-            logger.error(f"Помилка при обробці контактної форми: {str(e)}")
-            if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            logger.error(f"Error in form_valid (ContactPageView, promin_landing, is_ajax={is_ajax}): {str(e)}")
+            if is_ajax:
                 return JsonResponse({
                     'success': False,
-                    'message': _("Виникла помилка при відправці повідомлення. Спробуйте пізніше або зв'яжіться з нами по телефону.")
-                })
-            messages.error(
-                self.request,
-                _("Виникла помилка при відправці повідомлення. Спробуйте пізніше або зв'яжіться з нами по телефону.")
-            )
-            return self.form_invalid(form)
+                    'message': _("Виникла помилка при відправці повідомлення. Спробуйте пізніше.")
+                }, status=500)
+            else:
+                messages.error(
+                    self.request,
+                    _("Виникла помилка при відправці повідомлення. Спробуйте пізніше або зв\'яжіться з нами по телефону.")
+                )
+                return self.form_invalid(form)
 
     def form_invalid(self, form):
-        logger.warning(f"Отримано невалідну контактну форму (не-AJAX або помилка після валідації): {form.errors}")
+        is_ajax = self.request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        if is_ajax:
+            logger.warning(f"AJAX: form_invalid in ContactPageView for promin_landing. Errors: {form.errors.as_json()}")
+            return JsonResponse({
+                'success': False,
+                'message': _("Будь ласка, перевірте введені дані. (from form_invalid)"),
+                'errors': form.errors
+            }, status=400)
+        
+        logger.warning(f"Non-AJAX form_invalid (ContactPageView, promin_landing): {form.errors}")
         return super().form_invalid(form)
 
 class ProminPageView(FormView):
