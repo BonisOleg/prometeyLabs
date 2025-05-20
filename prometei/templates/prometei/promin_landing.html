@@ -125,7 +125,7 @@
     .voucher-section,
     .website-section {
         min-height: 0;
-        padding: 0.75rem 0;
+
         display: flex;
         align-items: center;
     }
@@ -345,6 +345,7 @@
     // Remove no-js class as soon as possible
     document.documentElement.classList.remove('no-js');
     document.body.classList.remove('no-js');
+    window.languageCode = "{{ request.LANGUAGE_CODE }}";
 </script>
 <div class="landing-wrapper">
     <!-- Close Button -->

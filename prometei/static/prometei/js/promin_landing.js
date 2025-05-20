@@ -186,7 +186,7 @@ function initializeAnimations() {
                 onStart: () => console.log('Shape animation started')
             })
             // Animate intro text
-            .to('.intro-section .text-reveal', {
+            .to('.intro-section .reveal-text', {
                 y: 0,
                 opacity: 1,
                 duration: isMobile ? 0.5 : 0.7,
@@ -957,157 +957,83 @@ function initDeviceMotion() {
  * Initialize form handling and validation
  */
 function initFormHandling() {
-    const voucherForm = document.getElementById('voucherForm');
-    const formStatus = document.getElementById('formStatus');
+    const form = document.getElementById('voucherForm');
+    const contactInput = document.getElementById('contact_handle');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const responseMessage = document.getElementById('formStatus');
 
-    if (!voucherForm || !formStatus) return;
-
-    // Add touch events for mobile input focus
-    const inputField = document.getElementById('contact_handle');
-    if (inputField) {
-        inputField.addEventListener('focus', () => {
-            // Mobile scroll fix for iOS keyboard
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-            }, 300);
-        });
+    if (!form || !contactInput || !submitButton || !responseMessage) {
+        console.warn('Form elements not found for voucher form. Check IDs: voucherForm, contact_handle, formStatus, and button[type=submit]');
+        return;
     }
 
-    // Function for telegram/instagram handle or email validation
-    const isValidContactHandle = (handle) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const telegramRegex = /^@\w{5,32}$/;
-        const instagramRegex = /^@[a-zA-Z0-9._]{1,30}$/;
-
-        return emailRegex.test(handle) || telegramRegex.test(handle) || instagramRegex.test(handle);
-    };
-
-    voucherForm.addEventListener('submit', (event) => {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
+        responseMessage.textContent = '';
+        responseMessage.className = 'form-response-message'; // Reset classes
 
-        // Get input value
-        const contactHandleInput = document.getElementById('contact_handle');
-        const contactHandle = contactHandleInput.value.trim();
+        const contactHandle = contactInput.value.trim();
 
-        // Validate the input
         if (!contactHandle) {
-            showFormStatus('Будь ласка, введіть ваш контакт', 'error');
-            contactHandleInput.focus();
+            responseMessage.textContent = 'Будь ласка, вкажіть ваш Telegram або Email.';
+            responseMessage.classList.add('error');
             return;
         }
 
-        if (!isValidContactHandle(contactHandle)) {
-            showFormStatus('Введіть коректний email або @username', 'error');
-            contactHandleInput.focus();
-            return;
-        }
-
-        // Get CSRF token
-        const csrfToken = voucherForm.querySelector('input[name="csrfmiddlewaretoken"]').value;
-
-        // Show loading state
-        const submitButton = voucherForm.querySelector('.submit-button');
-        submitButton.disabled = true;
-        submitButton.innerHTML = '<span>Відправляємо...</span>';
-        showFormStatus('Відправка...', '');
+        // Determine the base URL with language prefix
+        const langCode = window.languageCode || 'uk'; // Default to 'uk' if not set
+        const submitUrl = `/${langCode}/contact/`;
 
         // Prepare form data for submission
         const formData = {
-            contact_handle: contactHandle,
-            form_type: 'promin_voucher', // Add form type to differentiate between forms
-            message: 'Запит на voucher $100 з лендінгу PROmin'
+            name: 'PROmin Voucher User', // Placeholder name for now
+            contact_method: contactHandle,
+            message: `Запит на voucher $100 (${contactHandle}) з лендінгу PROmin`,
+            form_type: 'promin_voucher',
         };
 
-        // Send data to server
-        fetch('/contact/', {
+        console.log('Submitting voucher form with data:', formData);
+        console.log('Submit URL:', submitUrl);
+
+        fetch(submitUrl, { // Use the dynamic URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': csrfToken
+                'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
+                'X-Requested-With': 'XMLHttpRequest'
             },
             body: JSON.stringify(formData)
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    // If response is not OK, try to parse as JSON for error details,
+                    // but prepare for it to be HTML or plain text.
+                    return response.text().then(text => {
+                        try {
+                            const errData = JSON.parse(text);
+                            throw new Error(errData.error || `Помилка сервера: ${response.status}`);
+                        } catch (e) {
+                            // If parsing as JSON fails, it's likely HTML (e.g., an error page)
+                            // Log the raw text for debugging.
+                            console.error("Server returned non-JSON error response:", text);
+                            throw new Error(`Помилка сервера: ${response.status}. Отримано не JSON відповідь.`);
+                        }
+                    });
                 }
                 return response.json();
             })
             .then(data => {
-                // Handle response
-                if (data.success) {
-                    showFormStatus('Voucher відправлено! Очікуйте на повідомлення.', 'success');
-                    voucherForm.reset();
-
-                    // Animate success (reduced animation for compact layout)
-                    gsap.to('.voucher-card', {
-                        y: -3,
-                        duration: 0.15,
-                        repeat: 1,
-                        yoyo: true,
-                        ease: 'power2.inOut'
-                    });
-                } else {
-                    showFormStatus(data.message || 'Виникла помилка. Спробуйте пізніше.', 'error');
-                }
+                console.log('Form submission successful:', data);
+                responseMessage.textContent = data.message || 'Ваш запит успішно надіслано!';
+                responseMessage.classList.add('success');
+                form.reset();
             })
             .catch(error => {
-                console.error('Error:', error);
-                showFormStatus('Помилка при відправці. Спробуйте пізніше.', 'error');
-            })
-            .finally(() => {
-                // Reset button state
-                submitButton.disabled = false;
-                submitButton.innerHTML = '<span>Отримати</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-                // Hide success message after a few seconds
-                if (formStatus.classList.contains('success')) {
-                    setTimeout(() => {
-                        gsap.to(formStatus, {
-                            opacity: 0,
-                            height: 0,
-                            duration: 0.3,
-                            ease: 'power2.out'
-                        });
-                    }, 2000); // Shorter timeout for mobile
-                }
+                console.error('Form submission error:', error);
+                responseMessage.textContent = error.message || 'Під час відправки сталася помилка. Спробуйте пізніше.';
+                responseMessage.classList.add('error');
             });
     });
-
-    // Input validation on focus out
-    const contactHandleInput = document.getElementById('contact_handle');
-    if (contactHandleInput) {
-        contactHandleInput.addEventListener('blur', () => {
-            const value = contactHandleInput.value.trim();
-            if (value && !isValidContactHandle(value)) {
-                gsap.to(contactHandleInput, {
-                    x: 3, // Less movement for mobile
-                    duration: 0.1,
-                    repeat: 2,
-                    yoyo: true,
-                    ease: 'power1.inOut'
-                });
-            }
-        });
-    }
-
-    // Function to show form status messages
-    function showFormStatus(message, type) {
-        formStatus.textContent = message;
-        formStatus.className = 'form-status visible';
-
-        if (type) {
-            formStatus.classList.add(type);
-        }
-
-        gsap.to(formStatus, {
-            opacity: 1,
-            height: 'auto',
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    }
 }
 
 // Add intersection observer to enhance animations based on visibility
