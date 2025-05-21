@@ -169,7 +169,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6rem 0;
+    padding: 6rem 2rem;
     position: relative;
 }
 
@@ -179,6 +179,35 @@
     margin: 0 auto;
     perspective: 1000px;
     transform-style: preserve-3d;
+
+    /* === Glassmorphism Styles === */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Менш прозорий світлий фон */
+    /* Додаємо текстуру шуму */
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.015) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.015) 75%), linear-gradient(45deg, rgba(0, 0, 0, 0.015) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.015) 75%);
+    background-size: 2px 2px;
+    background-position: 0 0, 1px 1px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 32px;
+    /* Як у .voucher-card */
+    padding: 3rem;
+    /* Внутрішні відступи */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    /* Легка тінь */
+}
+
+[data-theme="dark"] .intro-content {
+    background-color: rgba(30, 30, 30, 0.45);
+    /* Менш прозорий темний фон */
+    /* Додаємо текстуру шуму для темної теми */
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%), linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%);
+    background-size: 2px 2px;
+    background-position: 0 0, 1px 1px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    /* Тінь для темної теми */
 }
 
 .title {
@@ -371,30 +400,33 @@
 /* Більш об'ємний текст */
 .voucher-text {
     margin-bottom: 2.5rem;
-    max-width: 80%;
+    max-width: calc(100% - 190px);
     transform: translateZ(15px);
 }
 
 .voucher-text h2 {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--theme-text);
     margin-bottom: 1rem;
     line-height: 1.2;
-    transform: translateZ(8px);
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
-    color: #000;
-    font-weight: 800;
+    transform: translateZ(20px);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.voucher-text p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--theme-subtext);
+    line-height: 1.6;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateZ(10px);
 }
 
 [data-theme="dark"] .voucher-text h2 {
     color: #fff;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-}
-
-.voucher-text p {
-    font-size: 1.125rem;
-    color: #333;
-    transform: translateZ(5px);
-    line-height: 1.4;
 }
 
 [data-theme="dark"] .voucher-text p {
@@ -576,29 +608,79 @@
 
 /* Мобільні налаштування */
 @media (max-width: 768px) {
-    .voucher-card {
+    .intro-content {
         padding: 2rem;
-        transform: translateY(50px) perspective(800px) rotateX(2deg);
         border-radius: 24px;
     }
 
-    .voucher-card.active {
-        transform: translateY(0) perspective(800px) rotateX(2deg);
+    .intro-content .display-1 {
+        font-size: 2.5rem;
+        /* Трохи менше на мобільних */
+    }
+
+    .intro-content .lead {
+        font-size: 1rem;
+    }
+
+    .voucher-card {
+        padding: 2rem 1.5rem;
+        border-radius: 28px;
     }
 
     .voucher-amount {
-        right: 1.5rem;
-        top: 1.5rem;
-        font-size: 2.25rem;
-        min-height: 90px;
-        min-width: 90px;
+        right: 1rem;
+        /* Відступ справа */
+        top: 1rem;
+        /* Відступ зверху */
+        font-size: 2rem;
+        /* Розмір тексту $100 */
+        min-height: 75px;
+        /* Висота блоку $100 */
+        min-width: 75px;
+        /* Ширина блоку $100 */
         transform: translateZ(30px);
     }
 
     .voucher-text {
-        max-width: calc(100% - 110px);
-        margin-bottom: 2rem;
+        max-width: calc(100% - 95px);
+        /* Залишаємо місце для блоку $100 (75px + 20px відступ) */
+        margin-bottom: 1.5rem;
         margin-right: auto;
+        /* Щоб текст був зліва */
+        margin-left: 0;
+        /* скидаємо авто відступ зліва */
+        text-align: left;
+        /* Вирівнювання тексту по лівому краю */
+    }
+
+    .voucher-text h2 {
+        font-size: 1.6rem;
+        /* Розмір заголовка */
+        line-height: 1.25;
+        margin-bottom: 0.5rem;
+        /* "Даруємо 100$" - приблизно 10-12 символів + пробіли. 
+           "на наші послуги" - 16 символів. 
+           Спробуємо обмежити ширину так, щоб перший рядок поміщався.
+        */
+        max-width: 100%;
+        /* Дозволяємо тексту займати всю доступну ширину в межах .voucher-text */
+    }
+
+    .voucher-text p {
+        font-size: 0.95rem;
+        /* Розмір параграфа */
+        line-height: 1.5;
+        max-width: 100%;
+        /* Дозволяємо тексту займати всю доступну ширину */
+        /* "Залиште ваш "
+           "телеграм/інстаграм "
+           "або звʼяжіться з нами"
+        */
+    }
+
+    .voucher-form .form-group {
+        flex-direction: column;
+        transform-style: flat;
     }
 
     .social-buttons {
@@ -1009,6 +1091,7 @@
 
     .website-text {
         padding-right: 1rem;
+        margin-top: 2rem;
     }
 }
 
@@ -1052,7 +1135,7 @@
     }
 
     .voucher-text {
-        max-width: calc(100% - 110px);
+        max-width: calc(100% - 140px);
         margin-bottom: 2rem;
         margin-right: auto;
     }
@@ -1113,6 +1196,11 @@
         flex-direction: column;
         transform-style: flat;
     }
+
+    .website-text {
+        padding-right: 0;
+        margin-top: 2rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1155,20 +1243,34 @@
         right: 1rem;
         top: 1rem;
         font-size: 1.8rem;
-        min-height: 80px;
-        min-width: 80px;
+        min-height: 70px;
+        min-width: 70px;
+        padding: 0.8rem;
         transform: translateZ(10px);
     }
 
+    .voucher-text {
+        max-width: calc(100% - 85px);
+        margin-bottom: 1.2rem;
+        margin-left: 0;
+        padding-left: 0;
+        text-align: left;
+    }
+
     .voucher-text h2 {
-        font-size: 1.4rem;
-        line-height: 1.3;
-        max-width: calc(100% - 100px);
+        font-size: 1.25rem;
+        line-height: 1.2;
+        width: 12ch;
+        margin-bottom: 0.4rem;
+        margin-left: 0;
         transform: translateZ(2px);
     }
 
     .voucher-text p {
-        max-width: calc(100% - 100px);
+        font-size: 0.9rem;
+        line-height: 1.4;
+        width: 20ch;
+        margin-left: 0;
     }
 
     .social-buttons {
@@ -1255,14 +1357,6 @@
         /* padding-bottom: 4rem; */
     }
 
-    .container {
-        padding-top: 1.5rem;
-    }
-
-    .website-text {
-        padding-right: 0;
-    }
-
     .mock-hero-image::before {
         content: '';
         position: absolute;
@@ -1303,6 +1397,10 @@
             transform: scale(0.8);
             opacity: 0.5;
         }
+    }
+
+    .website-text {
+        padding-right: 0;
     }
 }
 
@@ -1520,10 +1618,34 @@
 }
 
 .form-status.error {
-    color: #ef4444;
+    color: var(--color-orange-400);
 }
 
 /* Стилі для футера, щоб прибрати верхній відступ */
 .footer {
     margin-top: 0 !important;
+}
+
+/* === Mobile Background Adjustment (Direct Override) === */
+@media (max-width: 768px) {
+
+    /* Light theme mobile background */
+    html:not([data-theme="dark"]) .promin-landing-page {
+        background-color: #FFF9F0 !important;
+        /* Дуже світлий пісочно-білий */
+    }
+
+    html:not([data-theme="dark"]) .gradient-overlay {
+        background: radial-gradient(circle at center, transparent 0%, #FFF9F0 70%) !important;
+    }
+
+    /* Dark theme mobile background */
+    html[data-theme="dark"] .promin-landing-page {
+        background-color: #2A2A2A !important;
+        /* Світліший темний */
+    }
+
+    html[data-theme="dark"] .gradient-overlay {
+        background: radial-gradient(circle at center, transparent 0%, #2A2A2A 70%) !important;
+    }
 }
