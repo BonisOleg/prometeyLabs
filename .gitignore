@@ -153,6 +153,15 @@ cython_debug/
 secrets.yml
 *.key
 *.pem
+.env
+.env.*
+!.env.example
+!env.example
+secrets.json
+.secrets
+*.token
+config.json
+credentials.json
 
 # OS generated files
 .DS_Store

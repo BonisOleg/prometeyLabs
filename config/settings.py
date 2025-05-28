@@ -220,7 +220,7 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Prometey Labs <info@p
 CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'info@prometeylabs.com')
 
 # Налаштування Monobank Acquiring
-MONOBANK_TOKEN = os.environ.get('MONOBANK_TOKEN', '***REMOVED***')
+MONOBANK_TOKEN = os.environ.get('MONOBANK_TOKEN', None)  # Токен має бути в змінних середовища
 SITE_URL = os.environ.get('SITE_URL', 'https://www.prometeylabs.com')
 
 # Для локальної розробки

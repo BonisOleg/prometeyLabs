@@ -16,24 +16,35 @@ pip install -r requirements.txt
 ```
 
 3. Створіть файл `.env` з налаштуваннями середовища:
+
+**ВАЖЛИВО: Ніколи не додавайте реальні секретні ключі та токени в код!**
+
+Скопіюйте файл `env.example` до `.env` та заповніть реальними значеннями:
+```bash
+cp env.example .env
 ```
-# Основні налаштування Django
-SECRET_KEY=your-secret-key-here
-DEBUG=True
+
+Потім відредагуйте `.env` файл:
+```bash
+# Django Settings
+SECRET_KEY=your-unique-secret-key-here
+DEBUG=True  # Для розробки
 ALLOWED_HOSTS=localhost,127.0.0.1
 
-# Налаштування для відправки email
-# Для розробки використовуйте консольний бекенд
-EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+# Monobank Acquiring (отримайте в Monobank)
+MONOBANK_TOKEN=your-real-monobank-token
 
-# Для відправки реальних листів через Gmail
-# EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-# EMAIL_HOST=smtp.gmail.com
-# EMAIL_PORT=587
-# EMAIL_USE_TLS=True
-# EMAIL_HOST_USER=your-email@gmail.com
-# EMAIL_HOST_PASSWORD=your-app-password  # Для Gmail: https://myaccount.google.com/apppasswords
+# Email Settings (для Gmail створіть пароль додатку)
+EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST_PASSWORD=your-app-password
+
+# Інші налаштування...
 ```
+
+**Безпека:**
+- Файл `.env` автоматично ігнорується Git
+- Ніколи не публікуйте реальні токени в коді
+- Використовуйте змінні середовища на продакшені
 
 4. Запустіть міграції:
 ```
