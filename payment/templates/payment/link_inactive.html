@@ -1,0 +1,68 @@
+{% load static tz %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посилання неактивне | PrometeyLabs</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Підключення власних стилів -->
+    <link rel="stylesheet" href="{% static 'payment/css/style.css' %}">
+    <style>
+        .container {
+            text-align: center;
+        }
+        h1 {
+            color: var(--color-text-main);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .status-icon {
+            font-size: 4rem;
+            margin: 20px 0;
+            color: var(--color-accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Логотип -->
+        <div class="logo">
+            <div class="logo-text">Prometey<span>Labs</span></div>
+        </div>
+
+        <div class="status-icon">⚠️</div>
+        
+        <h1>
+            {% if reason == 'expired' %}
+                Термін дії посилання минув
+            {% elif reason == 'paid' %}
+                Посилання вже оплачено
+            {% elif reason == 'deactivated' %}
+                Посилання деактивовано
+            {% else %}
+                Посилання неактивне
+            {% endif %}
+        </h1>
+        
+        <div class="info-section">
+            <p>На жаль, це платіжне посилання більше не дійсне.</p>
+            <p>Статус посилання: <strong>{{ payment_link.get_status_display }}</strong>.</p>
+            {% if payment_link.status == 'expired' and payment_link.expires_at %}
+                <p>Дійсне до: {{ payment_link.expires_at|timezone:"Europe/Kyiv"|date:"d.m.Y H:i:s" }} (Київ, Україна)</p>
+            {% endif %}
+            <p>Якщо ви вважаєте, що це помилка, будь ласка, зв'яжіться з нами.</p>
+            
+            <a href="https://prometeylabs.com" class="button button-primary">Перейти на головну</a>
+        </div>
+        
+        <div class="footer">
+            <p><small>ID посилання: {{ payment_link.unique_id }}</small></p>
+            <p><small>&copy; 2025 PrometeyLabs. Всі права захищено.</small></p>
+        </div>
+    </div>
+</body>
+</html> 

@@ -46,7 +46,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Дозволити localhost для локальних тестів prod налаштувань
 if not RENDER_EXTERNAL_HOSTNAME: # Або інша логіка визначення локального середовища
-    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1'])
+    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', 'testserver'])
 
 
 # Application definition
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'prometei.apps.PrometeiConfig', # Залишаємо цей
+    'payment.apps.PaymentConfig', # Додаємо payment додаток
 ]
 
 MIDDLEWARE = [
@@ -166,6 +167,7 @@ MEDIA_URL = 'media/' # Якщо використовуєш медіа файли
 # STATICFILES_DIRS визначає, де шукати статику в розробці
 STATICFILES_DIRS = [
     BASE_DIR / 'prometei' / 'static', # Перевір цей шлях
+    BASE_DIR / 'payment' / 'static', # Додаємо статичні файли payment додатку
 ]
 
 # Налаштування для WhiteNoise у продакшені
@@ -217,6 +219,14 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Prometey Labs <info@p
 # Адреса, на яку будуть надходити контактні запити
 CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'info@prometeylabs.com')
 
+# Налаштування Monobank Acquiring
+MONOBANK_TOKEN = os.environ.get('MONOBANK_TOKEN', '***REMOVED***')
+SITE_URL = os.environ.get('SITE_URL', 'https://www.prometeylabs.com')
+
+# Для локальної розробки
+if DEBUG:
+    SITE_URL = 'http://localhost:8001'
+
 # Налаштування логування
 LOGGING = {
     'version': 1,
@@ -250,6 +260,11 @@ LOGGING = {
             'level': 'INFO', # Базово INFO
             'propagate': False,
         },
+        'payment': { # Логування для payment додатку
+            'handlers': ['console'], # Базово - лише консоль
+            'level': 'INFO', # Базово INFO
+            'propagate': False,
+        },
     }
 }
 
@@ -272,6 +287,8 @@ if DEBUG:
     LOGGING['loggers']['django']['handlers'].append('mail_admins') # Якщо потрібно надсилати помилки Django адмінам
     LOGGING['loggers']['prometei']['handlers'].append('file')
     LOGGING['loggers']['prometei']['level'] = 'DEBUG' # Більш детальні логи локально
+    LOGGING['loggers']['payment']['handlers'].append('file')
+    LOGGING['loggers']['payment']['level'] = 'DEBUG' # Більш детальні логи локально
 
 # Примусово вимикаємо файлове логування на Render (цей блок тепер не потрібен, але залишу про всяк випадок, якщо DEBUG визначиться неправильно)
 # if 'RENDER' in os.environ:

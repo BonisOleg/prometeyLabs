@@ -17,11 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
+from django.conf import settings
+from django.conf.urls.static import static
 
 # URL-шляхи, які не залежать від мови (адмінка, статичні файли, тощо)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('payment/', include('payment.urls')),  # Додаємо URL для payment
 ]
 
 # URL-шляхи, які будуть змінюватись в залежності від обраної мови (префікси uk/, en/)
@@ -29,3 +32,7 @@ urlpatterns += i18n_patterns(
     path('', include('prometei.urls')),
     prefix_default_language=True,
 )
+
+# Додаємо обслуговування медіа файлів в DEBUG режимі
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
