@@ -291,6 +291,47 @@ class ProminPageView(FormView):
         return super().form_invalid(form)
 
 
+class DreamSitePageView(TemplateView):
+    template_name = 'prometei/dream_site.html'
+    
+    def post(self, request, *args, **kwargs):
+        logger.info("DreamSitePageView POST method called")
+        
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            logger.info("AJAX request detected for dream_site")
+            try:
+                data = json.loads(request.body)
+                form = ContactForm(data)
+                form.instance.request_type = 'dream_site'
+                
+                if form.is_valid():
+                    contact_request = form.save()
+                    logger.info(f"AJAX: ContactRequest ID {contact_request.id} saved via dream_site form.")
+                    
+                    EmailService.send_contact_email(contact_request)
+                    EmailService.send_confirmation_to_user(contact_request)
+                    
+                    return JsonResponse({
+                        'success': True,
+                        'message': _("Дякуємо за ваш запит! Ми зв'яжемося з вами протягом доби.")
+                    })
+                else:
+                    logger.warning(f"AJAX form invalid in DreamSitePageView: {form.errors.as_json()}")
+                    return JsonResponse({
+                        'success': False,
+                        'message': _("Будь ласка, перевірте введені дані."),
+                        'errors': form.errors
+                    }, status=400)
+            except json.JSONDecodeError:
+                logger.error("AJAX: JSONDecodeError in DreamSitePageView")
+                return JsonResponse({'success': False, 'message': _("Помилка формату запиту.")}, status=400)
+            except Exception as e:
+                logger.error(f"AJAX: Unexpected error in DreamSitePageView POST: {str(e)}")
+                return JsonResponse({'success': False, 'message': _("Внутрішня помилка сервера.")}, status=500)
+        else:
+            return super().get(request, *args, **kwargs)
+
+
 def builder_request_view(request):
     if request.method != "POST":
         return redirect('prometei:builder')

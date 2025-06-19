@@ -14,6 +14,7 @@ class ContactRequest(models.Model):
         ('contact', _('Контактна форма')),
         ('builder', _('Конструктор сайту')),
         ('promin', _('Заявка Промінь')),
+        ('dream_site', _('Сайт мрії')),
     )
     
     name = models.CharField(_('Імʼя'), max_length=100)

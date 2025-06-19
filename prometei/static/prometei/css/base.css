@@ -749,6 +749,78 @@ a:hover {
     transform: translateY(-1px);
 }
 
+/* Style for the Dream Site menu item link */
+.nav__link--dream {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, var(--theme-accent), var(--theme-accent-alt));
+    padding: 6px 12px !important;
+    border-radius: 8px;
+    margin-left: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav__link--dream::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav__link--dream:hover::before {
+    left: 100%;
+}
+
+.nav__link--dream:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.4);
+}
+
+/* Mobile styles for dream site button */
+.mobile-nav__item--dream {
+    margin-top: 12px;
+}
+
+.mobile-nav__link--dream {
+    background: linear-gradient(135deg, var(--theme-accent), var(--theme-accent-alt));
+    color: #fff !important;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-nav__link--dream::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.mobile-nav__link--dream:hover::before {
+    left: 100%;
+}
+
+.mobile-nav__link--dream:hover,
+.mobile-nav__link--dream:focus {
+    color: #fff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.4);
+}
+
 .nav__item:first-child {
     padding-left: 0;
 }

@@ -1,0 +1,227 @@
+{% extends 'prometei/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Сайт вашої мрії до 500$" %} - Prometey Labs
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'prometei/css/dream_site.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="dream-site-main">
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <div class="floating-sphere sphere-1"></div>
+        <div class="floating-sphere sphere-2"></div>
+        <div class="floating-sphere sphere-3"></div>
+        <div class="floating-sphere sphere-4"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h1 class="main-title">
+                    {% trans "Сайт вашої мрії до" %} <span class="price-highlight">$500</span> {% trans "це реальність"
+                    %}
+                </h1>
+                <p class="subtitle">
+                    {% trans "дайте відповідь на 5 простих запитань і отримайте індивідуальну пропозицію спеціально для
+                    вас" %}
+                </p>
+                <button class="start-test-btn" id="startTestBtn">
+                    <span>{% trans "пройти тест" %}</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal 1: Website Type -->
+    <div class="modal" id="quizModal1">
+        <div class="modal-content">
+            <h2>{% trans "Який тип сайту вам потрібен?" %}</h2>
+            <div class="quiz-options">
+                <button class="quiz-option" data-value="landing">
+                    <span class="option-title">Landing page</span>
+                    <span class="option-desc">{% trans "Одна сторінка для продажу товару чи послуги" %}</span>
+                </button>
+                <button class="quiz-option" data-value="online-store">
+                    <span class="option-title">{% trans "Інтернет-магазин" %}</span>
+                    <span class="option-desc">{% trans "Повноцінний магазин з каталогом товарів" %}</span>
+                </button>
+                <button class="quiz-option" data-value="corporate">
+                    <span class="option-title">{% trans "Корпоративний сайт" %}</span>
+                    <span class="option-desc">{% trans "Сайт-візитка для бізнесу чи компанії" %}</span>
+                </button>
+                <button class="quiz-option" data-value="webapp">
+                    <span class="option-title">{% trans "Веб-додаток" %}</span>
+                    <span class="option-desc">{% trans "Складна логіка, особливий функціонал" %}</span>
+                </button>
+            </div>
+            <div class="modal-actions">
+                <button class="back-btn" style="display: none;">{% trans "Назад" %}</button>
+                <button class="next-btn" disabled>{% trans "Далі" %}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal 2: Client Source -->
+    <div class="modal" id="quizModal2">
+        <div class="modal-content">
+            <h2>{% trans "Звідки будуть приходити ваші клієнти?" %}</h2>
+            <div class="quiz-options">
+                <button class="quiz-option" data-value="instagram">
+                    <span class="option-title">Instagram</span>
+                    <span class="option-desc">{% trans "Соціальні мережі та SMM" %}</span>
+                </button>
+                <button class="quiz-option" data-value="tiktok">
+                    <span class="option-title">TikTok</span>
+                    <span class="option-desc">{% trans "Коротке відео та трендові формати" %}</span>
+                </button>
+                <button class="quiz-option" data-value="google">
+                    <span class="option-title">Google</span>
+                    <span class="option-desc">{% trans "Пошукова оптимізація та контекстна реклама" %}</span>
+                </button>
+                <button class="quiz-option" data-value="other-ads">
+                    <span class="option-title">{% trans "Інша реклама" %}</span>
+                    <span class="option-desc">{% trans "Facebook, Telegram, офлайн реклама" %}</span>
+                </button>
+                <button class="quiz-option" data-value="no-matter">
+                    <span class="option-title">{% trans "Не має значення" %}</span>
+                    <span class="option-desc">{% trans "Хочу універсальне рішення" %}</span>
+                </button>
+            </div>
+            <div class="modal-actions">
+                <button class="back-btn">{% trans "Назад" %}</button>
+                <button class="next-btn" disabled>{% trans "Далі" %}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal 3: Special Features -->
+    <div class="modal" id="quizModal3">
+        <div class="modal-content">
+            <h2>{% trans "Які особливі функції вам потрібні?" %}</h2>
+            <div class="quiz-input">
+                <textarea id="specialFeatures"
+                    placeholder="{% trans 'Наприклад: онлайн-запис, чат-бот, інтеграція з CRM, калькулятор вартості, багатомовність, особливий дизайн...' %}"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="back-btn">{% trans "Назад" %}</button>
+                <button class="next-btn">{% trans "Далі" %}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal 4: Personal Wishes -->
+    <div class="modal" id="quizModal4">
+        <div class="modal-content">
+            <h2>{% trans "Поділіться своїми побажаннями" %}</h2>
+            <div class="quiz-input">
+                <textarea id="personalWishes"
+                    placeholder="{% trans 'Розкажіть про свій бізнес, цільову аудиторію, улюблені кольори, приклади сайтів які подобаються...' %}"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="back-btn">{% trans "Назад" %}</button>
+                <button class="submit-btn">{% trans "Отримати пропозицію" %}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal" id="loadingModal">
+        <div class="modal-content loading-content">
+            <div class="loading-spinner"></div>
+            <h2 id="loadingText">{% trans "Шукаємо технології" %}</h2>
+            <div class="loading-progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proposal Modal -->
+    <div class="modal" id="proposalModal">
+        <div class="modal-content">
+            <h2>{% trans "Ваша індивідуальна пропозиція готова!" %}</h2>
+            <div class="proposal-content">
+                <div class="price-section">
+                    <span class="price-label">{% trans "Вартість розробки:" %}</span>
+                    <span class="price-value" id="calculatedPrice">$350-450</span>
+                </div>
+                <div class="features-preview">
+                    <h3>{% trans "Що входить в пакет:" %}</h3>
+                    <ul id="featuresList">
+                        <li>{% trans "Адаптивний дизайн під всі пристрої" %}</li>
+                        <li>{% trans "Швидкість завантаження менше 3 секунд" %}</li>
+                        <li>{% trans "SEO-оптимізація" %}</li>
+                        <li>{% trans "Інтеграція з соціальними мережами" %}</li>
+                    </ul>
+                </div>
+                <div class="next-steps">
+                    <p>{% trans "Хочете побачити як це буде виглядати?" %}</p>
+                    <button class="get-visualization-btn">{% trans "отримати безкоштовну візуалізацію" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <h2>{% trans "Залишіть контакти для візуалізації" %}</h2>
+            <form id="contactForm" class="contact-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="contactName">{% trans "Ваше ім'я" %} <span class="required">*</span></label>
+                    <input type="text" id="contactName" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Як з вами зв'язатися?" %} <span class="form-note">{% trans "(хоча б один спосіб)"
+                            %}</span></label>
+                    <input type="text" id="contactPhone" name="phone" placeholder="{% trans 'Телефон' %}">
+                    <input type="text" id="contactTelegram" name="telegram" placeholder="{% trans 'Telegram' %}">
+                    <input type="text" id="contactInstagram" name="instagram" placeholder="{% trans 'Instagram' %}">
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMessage">{% trans "Повідомлення" %}</label>
+                    <textarea id="contactMessage" name="message" rows="4"
+                        placeholder="{% trans 'Додаткові побажання або запитання...' %}"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-form-btn">{% trans "надіслати запит" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content success-content">
+            <div class="success-icon">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <h2>{% trans "Дякуємо!" %}</h2>
+            <p>{% trans "ми зв'яжемося із вами протягом доби" %}</p>
+            <button class="close-success-btn">{% trans "закрити" %}</button>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'prometei/js/dream_site.js' %}"></script>
+{% endblock %}
