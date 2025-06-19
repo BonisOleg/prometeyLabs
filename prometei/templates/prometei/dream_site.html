@@ -6,7 +6,7 @@
 {% trans "Сайт вашої мрії до 500$" %} - Prometey Labs
 {% endblock %}
 
-{% block extra_css %}
+{% block styles %}
 <link rel="stylesheet" href="{% static 'prometei/css/dream_site.css' %}">
 {% endblock %}
 
@@ -65,10 +65,6 @@
                     <span class="option-desc">{% trans "Складна логіка, особливий функціонал" %}</span>
                 </button>
             </div>
-            <div class="modal-actions">
-                <button class="back-btn" style="display: none;">{% trans "Назад" %}</button>
-                <button class="next-btn" disabled>{% trans "Далі" %}</button>
-            </div>
         </div>
     </div>
 
@@ -98,10 +94,6 @@
                     <span class="option-desc">{% trans "Хочу універсальне рішення" %}</span>
                 </button>
             </div>
-            <div class="modal-actions">
-                <button class="back-btn">{% trans "Назад" %}</button>
-                <button class="next-btn" disabled>{% trans "Далі" %}</button>
-            </div>
         </div>
     </div>
 
@@ -109,27 +101,79 @@
     <div class="modal" id="quizModal3">
         <div class="modal-content">
             <h2>{% trans "Які особливі функції вам потрібні?" %}</h2>
-            <div class="quiz-input">
-                <textarea id="specialFeatures"
-                    placeholder="{% trans 'Наприклад: онлайн-запис, чат-бот, інтеграція з CRM, калькулятор вартості, багатомовність, особливий дизайн...' %}"></textarea>
-            </div>
-            <div class="modal-actions">
-                <button class="back-btn">{% trans "Назад" %}</button>
-                <button class="next-btn">{% trans "Далі" %}</button>
+            <div class="quiz-options">
+                <button class="quiz-option" data-value="basic">
+                    <span class="option-title">{% trans "Базовий функціонал" %}</span>
+                    <span class="option-desc">{% trans "Контактна форма, галерея, карта" %}</span>
+                </button>
+                <button class="quiz-option" data-value="online-booking">
+                    <span class="option-title">{% trans "Онлайн-запис" %}</span>
+                    <span class="option-desc">{% trans "Бронювання послуг, календар" %}</span>
+                </button>
+                <button class="quiz-option" data-value="payment">
+                    <span class="option-title">{% trans "Приймання платежів" %}</span>
+                    <span class="option-desc">{% trans "Онлайн оплата, корзина" %}</span>
+                </button>
+                <button class="quiz-option" data-value="automation">
+                    <span class="option-title">{% trans "Автоматизація" %}</span>
+                    <span class="option-desc">{% trans "CRM, чат-бот, розсилки" %}</span>
+                </button>
+                <button class="quiz-option" data-value="advanced">
+                    <span class="option-title">{% trans "Складний функціонал" %}</span>
+                    <span class="option-desc">{% trans "Калькулятори, інтеграції, API" %}</span>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Quiz Modal 4: Personal Wishes -->
+    <!-- Quiz Modal 4: Design Style -->
     <div class="modal" id="quizModal4">
         <div class="modal-content">
-            <h2>{% trans "Поділіться своїми побажаннями" %}</h2>
-            <div class="quiz-input">
-                <textarea id="personalWishes"
-                    placeholder="{% trans 'Розкажіть про свій бізнес, цільову аудиторію, улюблені кольори, приклади сайтів які подобаються...' %}"></textarea>
+            <h2>{% trans "Який стиль дизайну вам подобається?" %}</h2>
+            <div class="quiz-options">
+                <button class="quiz-option" data-value="minimalist">
+                    <span class="option-title">{% trans "Мінімалістичний" %}</span>
+                    <span class="option-desc">{% trans "Чисті лінії, багато білого простору" %}</span>
+                </button>
+                <button class="quiz-option" data-value="modern">
+                    <span class="option-title">{% trans "Сучасний" %}</span>
+                    <span class="option-desc">{% trans "Яскраві кольори, градієнти, анімації" %}</span>
+                </button>
+                <button class="quiz-option" data-value="classic">
+                    <span class="option-title">{% trans "Класичний" %}</span>
+                    <span class="option-desc">{% trans "Традиційні кольори, консервативний вигляд" %}</span>
+                </button>
+                <button class="quiz-option" data-value="creative">
+                    <span class="option-title">{% trans "Креативний" %}</span>
+                    <span class="option-desc">{% trans "Нестандартні рішення, унікальні елементи" %}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal 5: Timeline -->
+    <div class="modal" id="quizModal5">
+        <div class="modal-content">
+            <h2>{% trans "Коли потрібен готовий сайт?" %}</h2>
+            <div class="quiz-options">
+                <button class="quiz-option" data-value="asap">
+                    <span class="option-title">{% trans "Якнайшвидше" %}</span>
+                    <span class="option-desc">{% trans "2-3 дні (експрес-розробка)" %}</span>
+                </button>
+                <button class="quiz-option" data-value="week">
+                    <span class="option-title">{% trans "Протягом тижня" %}</span>
+                    <span class="option-desc">{% trans "Стандартні терміни" %}</span>
+                </button>
+                <button class="quiz-option" data-value="month">
+                    <span class="option-title">{% trans "Протягом місяця" %}</span>
+                    <span class="option-desc">{% trans "Є час на детальну проробку" %}</span>
+                </button>
+                <button class="quiz-option" data-value="no-rush">
+                    <span class="option-title">{% trans "Не поспішаю" %}</span>
+                    <span class="option-desc">{% trans "Якість важливіше за швидкість" %}</span>
+                </button>
             </div>
             <div class="modal-actions">
-                <button class="back-btn">{% trans "Назад" %}</button>
                 <button class="submit-btn">{% trans "Отримати пропозицію" %}</button>
             </div>
         </div>
@@ -222,6 +266,6 @@
 </main>
 {% endblock %}
 
-{% block extra_js %}
+{% block scripts %}
 <script src="{% static 'prometei/js/dream_site.js' %}"></script>
 {% endblock %}

@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
         websiteType: '',
         clientSource: '',
         specialFeatures: '',
-        personalWishes: ''
+        designStyle: '',
+        timeline: ''
     };
 
     // Get all modals
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         quiz2: document.getElementById('quizModal2'),
         quiz3: document.getElementById('quizModal3'),
         quiz4: document.getElementById('quizModal4'),
+        quiz5: document.getElementById('quizModal5'),
         loading: document.getElementById('loadingModal'),
         proposal: document.getElementById('proposalModal'),
         contact: document.getElementById('contactModal'),
@@ -35,13 +37,45 @@ document.addEventListener('DOMContentLoaded', function () {
         'Формуємо пропозицію'
     ];
 
-    // Price calculation based on website type
-    const priceRanges = {
-        'landing': '$160-250',
-        'online-store': '$300-499',
-        'corporate': '$300-499',
-        'webapp': '$600-799'
-    };
+    // Price calculation based on website type and features
+    function calculatePrice() {
+        const basePrices = {
+            'landing': 200,
+            'online-store': 350,
+            'corporate': 300,
+            'webapp': 650
+        };
+
+        const featureModifiers = {
+            'basic': 0,
+            'online-booking': 100,
+            'payment': 150,
+            'automation': 200,
+            'advanced': 300
+        };
+
+        const timelineModifiers = {
+            'asap': 150,     // Експрес надбавка
+            'week': 0,       // Стандартна ціна
+            'month': -50,    // Знижка за неспішність
+            'no-rush': -100  // Максимальна знижка
+        };
+
+        let basePrice = basePrices[quizData.websiteType] || 300;
+        let featureModifier = featureModifiers[quizData.specialFeatures] || 0;
+        let timelineModifier = timelineModifiers[quizData.timeline] || 0;
+
+        let totalPrice = basePrice + featureModifier + timelineModifier;
+
+        // Ensure minimum price
+        totalPrice = Math.max(totalPrice, 150);
+
+        // Create price range
+        let minPrice = totalPrice - 50;
+        let maxPrice = totalPrice + 50;
+
+        return `$${minPrice}-${maxPrice}`;
+    }
 
     // Start test button click
     startTestBtn.addEventListener('click', function () {
@@ -75,17 +109,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Setup quiz options for all quiz modals
     function setupQuizOptions() {
-        const quizModals = ['quiz1', 'quiz2'];
+        const quizModals = ['quiz1', 'quiz2', 'quiz3', 'quiz4'];
 
         quizModals.forEach((modalName, index) => {
             const modal = modals[modalName];
             if (!modal) return;
 
             const options = modal.querySelectorAll('.quiz-option');
-            const nextBtn = modal.querySelector('.next-btn');
-            const backBtn = modal.querySelector('.back-btn');
 
-            // Option selection
+            // Option selection with automatic progression
             options.forEach(option => {
                 option.addEventListener('click', function () {
                     // Remove selected class from all options
@@ -94,81 +126,71 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Add selected class to clicked option
                     this.classList.add('selected');
 
-                    // Enable next button
-                    nextBtn.disabled = false;
-
                     // Store the value
                     const value = this.getAttribute('data-value');
                     if (modalName === 'quiz1') {
                         quizData.websiteType = value;
                     } else if (modalName === 'quiz2') {
                         quizData.clientSource = value;
+                    } else if (modalName === 'quiz3') {
+                        quizData.specialFeatures = value;
+                    } else if (modalName === 'quiz4') {
+                        quizData.designStyle = value;
                     }
+
+                    // Add slight delay for visual feedback, then proceed
+                    setTimeout(() => {
+                        if (modalName === 'quiz1') {
+                            showModal('quiz2');
+                            currentStep = 2;
+                        } else if (modalName === 'quiz2') {
+                            showModal('quiz3');
+                            currentStep = 3;
+                        } else if (modalName === 'quiz3') {
+                            showModal('quiz4');
+                            currentStep = 4;
+                        } else if (modalName === 'quiz4') {
+                            showModal('quiz5');
+                            currentStep = 5;
+                        }
+                    }, 300);
                 });
             });
-
-            // Next button
-            nextBtn.addEventListener('click', function () {
-                if (modalName === 'quiz1') {
-                    showModal('quiz2');
-                    currentStep = 2;
-                } else if (modalName === 'quiz2') {
-                    showModal('quiz3');
-                    currentStep = 3;
-                }
-            });
-
-            // Back button
-            if (backBtn) {
-                backBtn.addEventListener('click', function () {
-                    if (modalName === 'quiz2') {
-                        showModal('quiz1');
-                        currentStep = 1;
-                    }
-                });
-            }
         });
     }
 
-    // Setup quiz3 (special features)
-    function setupQuiz3() {
-        const modal = modals.quiz3;
+    // Setup quiz5 (timeline)
+    function setupQuiz5() {
+        const modal = modals.quiz5;
         if (!modal) return;
 
-        const textarea = modal.querySelector('#specialFeatures');
-        const nextBtn = modal.querySelector('.next-btn');
-        const backBtn = modal.querySelector('.back-btn');
-
-        nextBtn.addEventListener('click', function () {
-            quizData.specialFeatures = textarea.value.trim();
-            showModal('quiz4');
-            currentStep = 4;
-        });
-
-        backBtn.addEventListener('click', function () {
-            showModal('quiz2');
-            currentStep = 2;
-        });
-    }
-
-    // Setup quiz4 (personal wishes)
-    function setupQuiz4() {
-        const modal = modals.quiz4;
-        if (!modal) return;
-
-        const textarea = modal.querySelector('#personalWishes');
+        const options = modal.querySelectorAll('.quiz-option');
         const submitBtn = modal.querySelector('.submit-btn');
-        const backBtn = modal.querySelector('.back-btn');
 
-        submitBtn.addEventListener('click', function () {
-            quizData.personalWishes = textarea.value.trim();
-            startLoadingProcess();
+        // Option selection for quiz5
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+                // Remove selected class from all options
+                options.forEach(opt => opt.classList.remove('selected'));
+
+                // Add selected class to clicked option
+                this.classList.add('selected');
+
+                // Store the value
+                const value = this.getAttribute('data-value');
+                quizData.timeline = value;
+            });
         });
 
-        backBtn.addEventListener('click', function () {
-            showModal('quiz3');
-            currentStep = 3;
-        });
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function () {
+                if (!quizData.timeline) {
+                    alert('Будь ласка, оберіть термін виконання');
+                    return;
+                }
+                startLoadingProcess();
+            });
+        }
     }
 
     // Start loading process
@@ -202,8 +224,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Show proposal
     function showProposal() {
-        // Calculate price based on website type
-        const price = priceRanges[quizData.websiteType] || '$300-499';
+        // Calculate price based on all selections
+        const price = calculatePrice();
         calculatedPrice.textContent = price;
 
         // Update features list based on selections
@@ -221,17 +243,47 @@ document.addEventListener('DOMContentLoaded', function () {
             'Інтеграція з соціальними мережами'
         ];
 
-        const additionalFeatures = {
+        const websiteTypeFeatures = {
             'landing': ['Конверсійний дизайн', 'A/B тестування форм'],
             'online-store': ['Каталог товарів', 'Система оплати', 'Управління замовленнями'],
             'corporate': ['Багатосторінкова структура', 'Корпоративний блог', 'Команда та контакти'],
             'webapp': ['Складна логіка', 'Особливий функціонал', 'API інтеграції']
         };
 
+        const specialFeatures = {
+            'basic': ['Контактна форма', 'Галерея зображень'],
+            'online-booking': ['Система бронювання', 'Календар записів'],
+            'payment': ['Онлайн оплата', 'Корзина покупок'],
+            'automation': ['CRM інтеграція', 'Автоматичні розсилки'],
+            'advanced': ['Калькулятори', 'API інтеграції', 'Складна логіка']
+        };
+
+        const designFeatures = {
+            'minimalist': ['Чистий дизайн', 'Фокус на контенті'],
+            'modern': ['Сучасні анімації', 'Градієнти та ефекти'],
+            'classic': ['Професійний вигляд', 'Корпоративні кольори'],
+            'creative': ['Унікальний дизайн', 'Нестандартні рішення']
+        };
+
         let features = [...baseFeatures];
-        if (additionalFeatures[quizData.websiteType]) {
-            features = features.concat(additionalFeatures[quizData.websiteType]);
+
+        // Add website type features
+        if (websiteTypeFeatures[quizData.websiteType]) {
+            features = features.concat(websiteTypeFeatures[quizData.websiteType]);
         }
+
+        // Add special features
+        if (specialFeatures[quizData.specialFeatures]) {
+            features = features.concat(specialFeatures[quizData.specialFeatures]);
+        }
+
+        // Add design features
+        if (designFeatures[quizData.designStyle]) {
+            features = features.concat(designFeatures[quizData.designStyle]);
+        }
+
+        // Remove duplicates and limit to 8 features max
+        features = [...new Set(features)].slice(0, 8);
 
         featuresList.innerHTML = features.map(feature => `<li>${feature}</li>`).join('');
     }
@@ -287,14 +339,9 @@ document.addEventListener('DOMContentLoaded', function () {
             let fullMessage = `Запит з конструктора сайту мрії:\n\n`;
             fullMessage += `Тип сайту: ${getWebsiteTypeText(quizData.websiteType)}\n`;
             fullMessage += `Джерело клієнтів: ${getClientSourceText(quizData.clientSource)}\n`;
-
-            if (quizData.specialFeatures) {
-                fullMessage += `Особливі функції: ${quizData.specialFeatures}\n`;
-            }
-
-            if (quizData.personalWishes) {
-                fullMessage += `Особисті побажання: ${quizData.personalWishes}\n`;
-            }
+            fullMessage += `Особливі функції: ${getSpecialFeaturesText(quizData.specialFeatures)}\n`;
+            fullMessage += `Стиль дизайну: ${getDesignStyleText(quizData.designStyle)}\n`;
+            fullMessage += `Термін виконання: ${getTimelineText(quizData.timeline)}\n`;
 
             if (formData.get('message').trim()) {
                 fullMessage += `Додаткове повідомлення: ${formData.get('message').trim()}`;
@@ -326,6 +373,40 @@ document.addEventListener('DOMContentLoaded', function () {
             'no-matter': 'Не має значення'
         };
         return sources[source] || source;
+    }
+
+    // Get special features text
+    function getSpecialFeaturesText(features) {
+        const featuresMap = {
+            'basic': 'Базовий функціонал',
+            'online-booking': 'Онлайн-запис',
+            'payment': 'Приймання платежів',
+            'automation': 'Автоматизація',
+            'advanced': 'Складний функціонал'
+        };
+        return featuresMap[features] || features;
+    }
+
+    // Get design style text
+    function getDesignStyleText(style) {
+        const stylesMap = {
+            'minimalist': 'Мінімалістичний',
+            'modern': 'Сучасний',
+            'classic': 'Класичний',
+            'creative': 'Креативний'
+        };
+        return stylesMap[style] || style;
+    }
+
+    // Get timeline text
+    function getTimelineText(timeline) {
+        const timelinesMap = {
+            'asap': 'Якнайшвидше (2-3 дні)',
+            'week': 'Протягом тижня',
+            'month': 'Протягом місяця',
+            'no-rush': 'Не поспішаю'
+        };
+        return timelinesMap[timeline] || timeline;
     }
 
     // Submit form via AJAX
@@ -397,7 +478,8 @@ document.addEventListener('DOMContentLoaded', function () {
             websiteType: '',
             clientSource: '',
             specialFeatures: '',
-            personalWishes: ''
+            designStyle: '',
+            timeline: ''
         };
 
         // Reset all quiz selections
@@ -445,8 +527,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize all components
     setupQuizOptions();
-    setupQuiz3();
-    setupQuiz4();
+    setupQuiz5();
     setupProposalModal();
     setupContactForm();
     setupSuccessModal();

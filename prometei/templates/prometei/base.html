@@ -32,22 +32,16 @@
 
                 <nav class="nav">
                     <ul class="nav__list">
-                        <li class="nav__item"><a href="{% url 'prometei:home' %}" class="nav__link">{% trans "Головна"
-                                %}</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:about' %}" class="nav__link">{% trans "Про нас"
-                                %}</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:services' %}" class="nav__link">{% trans
-                                "Послуги" %}</a></li>
-                        <li class="nav__item"><a href="{% url 'prometei:builder' %}" class="nav__link">{% trans
-                                "Конструктор" %}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:home' %}" class="nav__link">{% trans "Головна" %}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:about' %}" class="nav__link">{% trans "Про нас" %}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:services' %}" class="nav__link">{% trans "Послуги" %}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:builder' %}" class="nav__link">{% trans "Конструктор" %}</a></li>
                         <li class="nav__item nav__item--dream">
                             <a href="{% url 'prometei:dream_site' %}" class="nav__link nav__link--dream">
-                                {% if request.LANGUAGE_CODE == 'uk' %}Розрахувати проект{% else %}Calculate Project{%
-                                endif %}
+                                {% if request.LANGUAGE_CODE == 'uk' %}Розрахувати проект{% else %}Calculate Project{% endif %}
                             </a>
                         </li>
-                        <li class="nav__item"><a href="{% url 'prometei:contact' %}" class="nav__link">{% trans
-                                "Контакти" %}</a></li>
+                        <li class="nav__item"><a href="{% url 'prometei:contact' %}" class="nav__link">{% trans "Контакти" %}</a></li>
                         {# Add Promin button only for Ukrainian language #}
                         {% if request.LANGUAGE_CODE == 'uk' %}
                         <li class="nav__item nav__item--promin">
@@ -98,8 +92,7 @@
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% for language in languages %}
-                            <option value="{{ language.code }}" {% if language.code==request.LANGUAGE_CODE %} selected{%
-                                endif %}>
+                            <option value="{{ language.code }}" {% if language.code == request.LANGUAGE_CODE %} selected{% endif %}>
                                 {% if language.code == 'uk' %}UA{% else %}{{ language.code|upper }}{% endif %}
                             </option>
                             {% endfor %}
@@ -123,22 +116,16 @@
         <div class="container">
             <nav class="mobile-nav" aria-label="{% trans 'Мобільна навігація' %}">
                 <ul class="mobile-nav__list">
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans
-                            "Головна" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans
-                            "Про нас" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}"
-                            class="mobile-nav__link">{%trans "Послуги" %}</a></li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{%
-                            trans "Конструктор" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:home' %}" class="mobile-nav__link">{% trans "Головна" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:about' %}" class="mobile-nav__link">{% trans "Про нас" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:services' %}" class="mobile-nav__link">{%trans "Послуги" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:builder' %}" class="mobile-nav__link">{% trans "Конструктор" %}</a></li>
                     <li class="mobile-nav__item mobile-nav__item--dream">
                         <a href="{% url 'prometei:dream_site' %}" class="mobile-nav__link mobile-nav__link--dream">
-                            {% if request.LANGUAGE_CODE == 'uk' %}Розрахувати проект{% else %}Calculate Project{% endif
-                            %}
+                            {% if request.LANGUAGE_CODE == 'uk' %}Розрахувати проект{% else %}Calculate Project{% endif %}
                         </a>
                     </li>
-                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{%
-                            trans "Контакти" %}</a></li>
+                    <li class="mobile-nav__item"><a href="{% url 'prometei:contact' %}" class="mobile-nav__link">{% trans "Контакти" %}</a></li>
                     {% if request.LANGUAGE_CODE == 'uk' %}
                     <li class="mobile-nav__item mobile-nav__item--promin">
                         <a href="{% url 'prometei:promin' %}"
@@ -163,10 +150,8 @@
                     &copy; {% now "Y" %} {% blocktrans %}Prometey Labs. Всі права захищено.{% endblocktrans %}
                 </div>
                 <div class="footer__links">
-                    <a href="{% url 'prometei:privacy_policy' %}" class="footer__link">{% if request.LANGUAGE_CODE ==
-                        'uk' %}Політика конфіденційності{% else %}Privacy Policy{% endif %}</a>
-                    <a href="{% url 'prometei:terms_of_use' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk'
-                        %}Умови використання{% else %}Terms of Use{% endif %}</a>
+                    <a href="{% url 'prometei:privacy_policy' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Політика конфіденційності{% else %}Privacy Policy{% endif %}</a>
+                    <a href="{% url 'prometei:terms_of_use' %}" class="footer__link">{% if request.LANGUAGE_CODE == 'uk' %}Умови використання{% else %}Terms of Use{% endif %}</a>
                 </div>
             </div>
         </div>
