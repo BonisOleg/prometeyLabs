@@ -228,6 +228,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Store the value
                 const value = this.getAttribute('data-value');
                 quizData.timeline = value;
+
+                // Додаємо фірмовий градієнт до кнопки submit
+                if (submitBtn) {
+                    submitBtn.classList.add('has-selection');
+                }
             });
         });
 
