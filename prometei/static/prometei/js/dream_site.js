@@ -1,5 +1,54 @@
 // Dream Site Quiz Logic
 document.addEventListener('DOMContentLoaded', function () {
+    // === МОБІЛЬНА ТЕМНА ТЕМА - ПОЧАТОК ===
+    // Визначаємо мобільні пристрої та iOS
+    function isMobileDevice() {
+        return window.innerWidth <= 768 ||
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    function isIOSDevice() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
+    // Функція для встановлення темної теми тільки на мобільних
+    function setMobileDarkTheme() {
+        if (isMobileDevice() || isIOSDevice()) {
+            const htmlElement = document.documentElement;
+            const bodyElement = document.body;
+
+            // Встановлюємо темну тему
+            htmlElement.setAttribute('data-theme', 'dark');
+            bodyElement.setAttribute('data-theme', 'dark');
+
+            // Приховуємо кнопку перемикання теми на мобільних для цієї сторінки
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.style.display = 'none';
+            }
+
+            // Додаємо клас для індикації що це мобільна темна тема
+            document.body.classList.add('mobile-dark-theme');
+
+            console.log('Mobile/iOS темна тема активована для dream_site');
+        }
+    }
+
+    // Встановлюємо темну тему одразу при завантаженні
+    setMobileDarkTheme();
+
+    // Перевіряємо при зміні розміру вікна
+    window.addEventListener('resize', function () {
+        setMobileDarkTheme();
+    });
+
+    // Перевіряємо при поворотах екрану
+    window.addEventListener('orientationchange', function () {
+        setTimeout(setMobileDarkTheme, 100);
+    });
+    // === МОБІЛЬНА ТЕМНА ТЕМА - КІНЕЦЬ ===
+
     // Quiz state
     let currentStep = 0;
     let quizData = {
