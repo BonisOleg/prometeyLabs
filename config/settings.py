@@ -107,15 +107,30 @@ ASGI_APPLICATION = 'config.asgi.application' # Додано, якщо викор
 #     }
 # }
 
-# Нова конфігурація для PostgreSQL на Render:
-DATABASES = {
-    'default': dj_database_url.config(
-        # Зчитує DATABASE_URL зі змінної середовища
-        # Значення за замовчуванням для локальної розробки (якщо DATABASE_URL не встановлено):
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}", # Або твоя локальна Postgres URL
-        conn_max_age=600 # Опціонально
-    )
-}
+# Конфігурація бази даних для Render PostgreSQL
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    # Використовуємо PostgreSQL на продакшені
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+    # Додаткові налаштування SSL для PostgreSQL на Render
+    DATABASES['default']['OPTIONS'] = {
+        'sslmode': 'require',
+    }
+else:
+    # Використовуємо SQLite для локальної розробки
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -171,8 +186,8 @@ STATICFILES_DIRS = [
 ]
 
 # Налаштування для WhiteNoise у продакшені
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = BASE_DIR / 'mediafiles' # Якщо використовуєш медіа файли
