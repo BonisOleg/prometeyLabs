@@ -293,8 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const baseFeatures = [
             'Адаптивний дизайн під всі пристрої',
             'Швидкість завантаження менше 3 секунд',
-            'SEO-оптимізація',
-            'Інтеграція з соціальними мережами'
+            'SEO-оптимізація'
         ];
 
         const websiteTypeFeatures = {
@@ -336,8 +335,8 @@ document.addEventListener('DOMContentLoaded', function () {
             features = features.concat(designFeatures[quizData.designStyle]);
         }
 
-        // Remove duplicates and limit to 8 features max
-        features = [...new Set(features)].slice(0, 8);
+        // Remove duplicates and limit to 3 features max
+        features = [...new Set(features)].slice(0, 3);
 
         featuresList.innerHTML = features.map(feature => `<li>${feature}</li>`).join('');
     }
