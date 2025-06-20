@@ -107,30 +107,39 @@ ASGI_APPLICATION = 'config.asgi.application' # Додано, якщо викор
 #     }
 # }
 
-# Конфігурація бази даних для Render PostgreSQL
-DATABASE_URL = os.environ.get('DATABASE_URL')
+# Конфігурація бази даних - тимчасово використовуємо SQLite
+# DATABASE_URL = os.environ.get('DATABASE_URL')
 
-if DATABASE_URL:
-    # Використовуємо PostgreSQL на продакшені
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=True
-        )
+# Тимчасово використовуємо SQLite навіть на продакшені для запуску сайту
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-    # Додаткові налаштування SSL для PostgreSQL на Render
-    DATABASES['default']['OPTIONS'] = {
-        'sslmode': 'require',
-    }
-else:
-    # Використовуємо SQLite для локальної розробки
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
+
+# Закоментовано PostgreSQL конфігурацію:
+# if DATABASE_URL:
+#     # Використовуємо PostgreSQL на продакшені
+#     DATABASES = {
+#         'default': dj_database_url.config(
+#             default=DATABASE_URL,
+#             conn_max_age=600,
+#             ssl_require=True
+#         )
+#     }
+#     # Додаткові налаштування SSL для PostgreSQL на Render
+#     DATABASES['default']['OPTIONS'] = {
+#         'sslmode': 'require',
+#     }
+# else:
+#     # Використовуємо SQLite для локальної розробки
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
 
 
 # Password validation
