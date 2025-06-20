@@ -1126,6 +1126,13 @@
                 var(--theme-accent-alt)),
             rgba(255, 255, 255, 0.2);
         background-blend-mode: overlay;
+        backdrop-filter: blur(20px) saturate(1.6) brightness(1.4);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow:
+            0 12px 35px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.3),
+            0 4px 16px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05);
     }
 
     .next-btn,
@@ -1227,6 +1234,13 @@
                 var(--theme-accent-alt)),
             rgba(255, 255, 255, 0.2);
         background-blend-mode: overlay;
+        backdrop-filter: blur(20px) saturate(1.6) brightness(1.4);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow:
+            0 12px 35px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.3),
+            0 4px 16px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05);
     }
 
     .modal-content {
@@ -1275,12 +1289,18 @@
     }
 
     .start-test-btn {
-        backdrop-filter: blur(15px) saturate(1.4) brightness(1.2);
+        backdrop-filter: blur(20px) saturate(1.6) brightness(1.4);
         background: linear-gradient(135deg,
-                rgba(var(--theme-accent-rgb, 255, 101, 0), 0.12),
-                rgba(var(--theme-accent-alt-rgb, 116, 44, 240), 0.08)),
-            transparent;
+                var(--theme-accent),
+                var(--theme-accent-alt)),
+            rgba(255, 255, 255, 0.2);
         background-blend-mode: overlay;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow:
+            0 12px 35px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.3),
+            0 4px 16px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.05);
     }
 }
 
@@ -1416,7 +1436,13 @@
 
     .start-test-btn:hover {
         transform: translateY(-4px) scale(1.05);
-        backdrop-filter: blur(20px) saturate(1.6) brightness(1.5);
+        backdrop-filter: blur(25px) saturate(2.5) brightness(1.5);
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow:
+            0 16px 45px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.4),
+            0 6px 20px rgba(var(--theme-accent-alt-rgb, 116, 44, 240), 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.2);
     }
 
     .next-btn,
