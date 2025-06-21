@@ -1,5 +1,7 @@
 // Dream Site Quiz Logic
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('Dream Site JS loaded');
+
     // === МОБІЛЬНА ТЕМНА ТЕМА - ПОЧАТОК ===
     // Визначаємо мобільні пристрої та iOS
     function isMobileDevice() {
@@ -72,6 +74,12 @@ document.addEventListener('DOMContentLoaded', function () {
         success: document.getElementById('successModal')
     };
 
+    // Debug: Check if all modals exist
+    console.log('Modals found:');
+    Object.entries(modals).forEach(([name, modal]) => {
+        console.log(`${name}:`, !!modal);
+    });
+
     // Get elements
     const startTestBtn = document.getElementById('startTestBtn');
     const loadingText = document.getElementById('loadingText');
@@ -82,58 +90,95 @@ document.addEventListener('DOMContentLoaded', function () {
     // Loading texts for animation
     const loadingTexts = [
         'Шукаємо технології',
-        'Прораховуємо кількість роботи',
+        'Аналізуємо потреби',
+        'Підбираємо рішення',
+        'Розраховуємо вартість',
         'Формуємо пропозицію'
     ];
 
-    // Price calculation based on website type and features
-    function calculatePrice() {
-        const basePrices = {
-            'landing': 200,
-            'online-store': 350,
-            'corporate': 300,
-            'webapp': 650
-        };
+    // Базові ціни для різних типів сайтів
+    const BASE_PRICES = {
+        'landing': { min: 299, max: 399 },
+        'online-store': { min: 399, max: 499 },
+        'corporate': { min: 349, max: 449 },
+        'webapp': { min: 399, max: 499 }
+    };
 
-        const featureModifiers = {
-            'basic': 0,
-            'online-booking': 100,
-            'payment': 150,
-            'automation': 200,
-            'advanced': 300
-        };
+    // Модифікатори цін для різних опцій
+    const PRICE_MODIFIERS = {
+        // Джерело трафіку
+        'instagram': { min: 0, max: 50 },
+        'tiktok': { min: 0, max: 50 },
+        'google': { min: 50, max: 100 },
+        'other-ads': { min: 30, max: 80 },
+        'no-matter': { min: 0, max: 0 },
 
-        const timelineModifiers = {
-            'asap': 150,     // Експрес надбавка
-            'week': 0,       // Стандартна ціна
-            'month': -50,    // Знижка за неспішність
-            'no-rush': -100  // Максимальна знижка
-        };
+        // Функціонал
+        'basic': { min: 0, max: 0 },
+        'online-booking': { min: 50, max: 100 },
+        'payment': { min: 70, max: 100 },
+        'automation': { min: 80, max: 100 },
+        'advanced': { min: 100, max: 100 },
 
-        let basePrice = basePrices[quizData.websiteType] || 300;
-        let featureModifier = featureModifiers[quizData.specialFeatures] || 0;
-        let timelineModifier = timelineModifiers[quizData.timeline] || 0;
+        // Дизайн
+        'minimalist': { min: 0, max: 0 },
+        'modern': { min: 30, max: 50 },
+        'classic': { min: 20, max: 40 },
+        'creative': { min: 50, max: 70 },
 
-        let totalPrice = basePrice + featureModifier + timelineModifier;
+        // Терміновість
+        'asap': { min: 100, max: 100 },
+        'week': { min: 50, max: 70 },
+        'month': { min: 0, max: 0 },
+        'no-rush': { min: -50, max: -30 }
+    };
 
-        // Ensure minimum price
-        totalPrice = Math.max(totalPrice, 150);
+    // Функція для розрахунку фінальної ціни
+    function calculatePrice(selections) {
+        let basePrice = BASE_PRICES[selections.websiteType] || { min: 299, max: 399 };
+        let totalMin = basePrice.min;
+        let totalMax = basePrice.max;
+
+        // Додаємо модифікатори
+        Object.entries(selections).forEach(([key, value]) => {
+            if (value && PRICE_MODIFIERS[value]) {
+                totalMin += PRICE_MODIFIERS[value].min;
+                totalMax += PRICE_MODIFIERS[value].max;
+            }
+        });
+
+        // Обмежуємо максимальну ціну до 499
+        totalMin = Math.min(totalMin, 499);
+        totalMax = Math.min(totalMax, 499);
+
+        totalMin = Math.max(totalMin, 299);
+        totalMax = Math.max(totalMax, totalMin);
 
         // Create price range
-        let minPrice = totalPrice - 50;
-        let maxPrice = totalPrice + 50;
+        totalMin = Math.floor(totalMin / 10) * 10 + 9;
+        totalMax = Math.floor(totalMax / 10) * 10 + 9;
 
-        return `$${minPrice}-${maxPrice}`;
+        return `$${totalMin}-${totalMax}`;
     }
 
     // Start test button click
-    startTestBtn.addEventListener('click', function () {
-        showModal('quiz1');
-        currentStep = 1;
-    });
+    console.log('Start test button:', startTestBtn);
+
+    if (startTestBtn) {
+        startTestBtn.addEventListener('click', function () {
+            console.log('Start test button clicked');
+            showModal('quiz1');
+            currentStep = 1;
+        });
+    } else {
+        console.error('Start test button not found!');
+    }
 
     // Show modal function
     function showModal(modalName) {
+        console.log('Showing modal:', modalName);
+        console.log('Modal exists:', !!modals[modalName]);
+
         // Hide all modals
         Object.values(modals).forEach(modal => {
             if (modal) modal.classList.remove('active');
@@ -142,9 +187,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Show specific modal
         if (modals[modalName]) {
             modals[modalName].classList.add('active');
+            console.log('Modal activated:', modalName);
 
             // Prevent body scroll
             document.body.style.overflow = 'hidden';
+        } else {
+            console.error('Modal not found:', modalName);
         }
     }
 
@@ -279,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Show proposal
     function showProposal() {
         // Calculate price based on all selections
-        const price = calculatePrice();
+        const price = calculatePrice(quizData);
         calculatedPrice.textContent = price;
 
         // Update features list based on selections
