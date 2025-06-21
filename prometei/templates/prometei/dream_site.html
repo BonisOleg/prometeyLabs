@@ -25,10 +25,12 @@
         <div class="content-wrapper">
             <div class="text-content">
                 <h1 class="main-title">
-                    {% trans "Сайт вашої мрії до" %} <span class="price-highlight">$499</span> {% trans "це реальність" %}
+                    {% trans "Сайт вашої мрії до" %} <span class="price-highlight">$499</span> {% trans "це реальність"
+                    %}
                 </h1>
                 <p class="subtitle">
-                    {% trans "дайте відповідь на 5 простих запитань і отримайте індивідуальну пропозицію спеціально для вас" %}
+                    {% trans "дайте відповідь на 5 простих запитань і отримайте індивідуальну пропозицію спеціально для
+                    вас" %}
                 </p>
                 <button class="start-test-btn" id="startTestBtn">
                     <span>{% trans "пройти тест" %}</span>
@@ -70,27 +72,31 @@
     <div class="modal" id="quizModal2">
         <div class="modal-content">
             <h2>{% trans "Звідки будуть приходити ваші клієнти?" %}</h2>
+            <p class="quiz-hint">{% trans "Можете обрати декілька варіантів" %}</p>
             <div class="quiz-options">
-                <button class="quiz-option" data-value="instagram">
+                <button class="quiz-option multi-select" data-value="instagram">
                     <span class="option-title">Instagram</span>
                     <span class="option-desc">{% trans "Соціальні мережі та SMM" %}</span>
                 </button>
-                <button class="quiz-option" data-value="tiktok">
+                <button class="quiz-option multi-select" data-value="tiktok">
                     <span class="option-title">TikTok</span>
                     <span class="option-desc">{% trans "Коротке відео та трендові формати" %}</span>
                 </button>
-                <button class="quiz-option" data-value="google">
+                <button class="quiz-option multi-select" data-value="google">
                     <span class="option-title">Google</span>
                     <span class="option-desc">{% trans "Пошукова оптимізація та контекстна реклама" %}</span>
                 </button>
-                <button class="quiz-option" data-value="other-ads">
+                <button class="quiz-option multi-select" data-value="other-ads">
                     <span class="option-title">{% trans "Інша реклама" %}</span>
                     <span class="option-desc">{% trans "Facebook, Telegram, офлайн реклама" %}</span>
                 </button>
-                <button class="quiz-option" data-value="no-matter">
+                <button class="quiz-option multi-select" data-value="no-matter">
                     <span class="option-title">{% trans "Не має значення" %}</span>
                     <span class="option-desc">{% trans "Хочу універсальне рішення" %}</span>
                 </button>
+            </div>
+            <div class="modal-actions">
+                <button class="next-btn" disabled>{% trans "далі" %}</button>
             </div>
         </div>
     </div>
@@ -99,27 +105,31 @@
     <div class="modal" id="quizModal3">
         <div class="modal-content">
             <h2>{% trans "Які особливі функції вам потрібні?" %}</h2>
+            <p class="quiz-hint">{% trans "Можете обрати декілька варіантів" %}</p>
             <div class="quiz-options">
-                <button class="quiz-option" data-value="basic">
+                <button class="quiz-option multi-select" data-value="basic">
                     <span class="option-title">{% trans "Базовий функціонал" %}</span>
                     <span class="option-desc">{% trans "Контактна форма, галерея, карта" %}</span>
                 </button>
-                <button class="quiz-option" data-value="online-booking">
+                <button class="quiz-option multi-select" data-value="online-booking">
                     <span class="option-title">{% trans "Онлайн-запис" %}</span>
                     <span class="option-desc">{% trans "Бронювання послуг, календар" %}</span>
                 </button>
-                <button class="quiz-option" data-value="payment">
+                <button class="quiz-option multi-select" data-value="payment">
                     <span class="option-title">{% trans "Приймання платежів" %}</span>
                     <span class="option-desc">{% trans "Онлайн оплата, корзина" %}</span>
                 </button>
-                <button class="quiz-option" data-value="automation">
+                <button class="quiz-option multi-select" data-value="automation">
                     <span class="option-title">{% trans "Автоматизація" %}</span>
                     <span class="option-desc">{% trans "CRM, чат-бот, розсилки" %}</span>
                 </button>
-                <button class="quiz-option" data-value="advanced">
+                <button class="quiz-option multi-select" data-value="advanced">
                     <span class="option-title">{% trans "Складний функціонал" %}</span>
                     <span class="option-desc">{% trans "Калькулятори, інтеграції, API" %}</span>
                 </button>
+            </div>
+            <div class="modal-actions">
+                <button class="next-btn" disabled>{% trans "далі" %}</button>
             </div>
         </div>
     </div>
@@ -226,7 +236,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>{% trans "Як з вами зв'язатися?" %} <span class="form-note">{% trans "(хоча б один спосіб)" %}</span></label>
+                    <label>{% trans "Як з вами зв'язатися?" %} <span class="form-note">{% trans "(хоча б один спосіб)"
+                            %}</span></label>
                     <input type="text" id="contactPhone" name="phone" placeholder="{% trans 'Телефон' %}">
                     <input type="text" id="contactTelegram" name="telegram" placeholder="{% trans 'Telegram' %}">
                     <input type="text" id="contactInstagram" name="instagram" placeholder="{% trans 'Instagram' %}">

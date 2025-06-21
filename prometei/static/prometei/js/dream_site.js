@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentStep = 0;
     let quizData = {
         websiteType: '',
-        clientSource: '',
-        specialFeatures: '',
+        clientSource: [],
+        specialFeatures: [],
         designStyle: '',
         timeline: ''
     };
@@ -139,13 +139,26 @@ document.addEventListener('DOMContentLoaded', function () {
         let totalMin = basePrice.min;
         let totalMax = basePrice.max;
 
-        // Додаємо модифікатори
-        Object.entries(selections).forEach(([key, value]) => {
-            if (value && PRICE_MODIFIERS[value]) {
-                totalMin += PRICE_MODIFIERS[value].min;
-                totalMax += PRICE_MODIFIERS[value].max;
+        // Додаємо модифікатори для масивів
+        const processValues = (values) => {
+            if (Array.isArray(values)) {
+                values.forEach(value => {
+                    if (value && PRICE_MODIFIERS[value]) {
+                        totalMin += PRICE_MODIFIERS[value].min;
+                        totalMax += PRICE_MODIFIERS[value].max;
+                    }
+                });
+            } else if (values && PRICE_MODIFIERS[values]) {
+                totalMin += PRICE_MODIFIERS[values].min;
+                totalMax += PRICE_MODIFIERS[values].max;
             }
-        });
+        };
+
+        // Обробляємо всі вибори
+        processValues(selections.clientSource);
+        processValues(selections.specialFeatures);
+        processValues(selections.designStyle);
+        processValues(selections.timeline);
 
         // Обмежуємо максимальну ціну до 499
         totalMin = Math.min(totalMin, 499);
@@ -206,54 +219,109 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Setup quiz options for all quiz modals
     function setupQuizOptions() {
-        const quizModals = ['quiz1', 'quiz2', 'quiz3', 'quiz4'];
+        // Quiz 1 - single select
+        setupSingleSelectQuiz('quiz1');
 
-        quizModals.forEach((modalName, index) => {
-            const modal = modals[modalName];
-            if (!modal) return;
+        // Quiz 2 & 3 - multi select
+        setupMultiSelectQuiz('quiz2');
+        setupMultiSelectQuiz('quiz3');
 
-            const options = modal.querySelectorAll('.quiz-option');
+        // Quiz 4 - single select
+        setupSingleSelectQuiz('quiz4');
+    }
 
-            // Option selection with automatic progression
-            options.forEach(option => {
-                option.addEventListener('click', function () {
-                    // Remove selected class from all options
-                    options.forEach(opt => opt.classList.remove('selected'));
+    // Single select quiz setup
+    function setupSingleSelectQuiz(modalName) {
+        const modal = modals[modalName];
+        if (!modal) return;
 
-                    // Add selected class to clicked option
-                    this.classList.add('selected');
+        const options = modal.querySelectorAll('.quiz-option');
 
-                    // Store the value
-                    const value = this.getAttribute('data-value');
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+                // Remove selected class from all options
+                options.forEach(opt => opt.classList.remove('selected'));
+
+                // Add selected class to clicked option
+                this.classList.add('selected');
+
+                // Store the value
+                const value = this.getAttribute('data-value');
+                if (modalName === 'quiz1') {
+                    quizData.websiteType = value;
+                } else if (modalName === 'quiz4') {
+                    quizData.designStyle = value;
+                }
+
+                // Add slight delay for visual feedback, then proceed
+                setTimeout(() => {
                     if (modalName === 'quiz1') {
-                        quizData.websiteType = value;
-                    } else if (modalName === 'quiz2') {
-                        quizData.clientSource = value;
-                    } else if (modalName === 'quiz3') {
-                        quizData.specialFeatures = value;
+                        showModal('quiz2');
+                        currentStep = 2;
                     } else if (modalName === 'quiz4') {
-                        quizData.designStyle = value;
+                        showModal('quiz5');
+                        currentStep = 5;
                     }
-
-                    // Add slight delay for visual feedback, then proceed
-                    setTimeout(() => {
-                        if (modalName === 'quiz1') {
-                            showModal('quiz2');
-                            currentStep = 2;
-                        } else if (modalName === 'quiz2') {
-                            showModal('quiz3');
-                            currentStep = 3;
-                        } else if (modalName === 'quiz3') {
-                            showModal('quiz4');
-                            currentStep = 4;
-                        } else if (modalName === 'quiz4') {
-                            showModal('quiz5');
-                            currentStep = 5;
-                        }
-                    }, 300);
-                });
+                }, 300);
             });
         });
+    }
+
+    // Multi select quiz setup
+    function setupMultiSelectQuiz(modalName) {
+        const modal = modals[modalName];
+        if (!modal) return;
+
+        const options = modal.querySelectorAll('.quiz-option.multi-select');
+        const nextBtn = modal.querySelector('.next-btn');
+
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+                const value = this.getAttribute('data-value');
+
+                // Toggle selection
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    // Remove from array
+                    if (modalName === 'quiz2') {
+                        quizData.clientSource = quizData.clientSource.filter(item => item !== value);
+                    } else if (modalName === 'quiz3') {
+                        quizData.specialFeatures = quizData.specialFeatures.filter(item => item !== value);
+                    }
+                } else {
+                    this.classList.add('selected');
+                    // Add to array
+                    if (modalName === 'quiz2') {
+                        if (!quizData.clientSource.includes(value)) {
+                            quizData.clientSource.push(value);
+                        }
+                    } else if (modalName === 'quiz3') {
+                        if (!quizData.specialFeatures.includes(value)) {
+                            quizData.specialFeatures.push(value);
+                        }
+                    }
+                }
+
+                // Enable/disable next button
+                const hasSelection = modal.querySelectorAll('.quiz-option.selected').length > 0;
+                if (nextBtn) {
+                    nextBtn.disabled = !hasSelection;
+                }
+            });
+        });
+
+        // Next button functionality
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function () {
+                if (modalName === 'quiz2') {
+                    showModal('quiz3');
+                    currentStep = 3;
+                } else if (modalName === 'quiz3') {
+                    showModal('quiz4');
+                    currentStep = 4;
+                }
+            });
+        }
     }
 
     // Setup quiz5 (timeline)
@@ -465,15 +533,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Get client source text
-    function getClientSourceText(source) {
-        const sources = {
+    function getClientSourceText(sources) {
+        const sourceMap = {
             'instagram': 'Instagram',
             'tiktok': 'TikTok',
             'google': 'Google',
             'other-ads': 'Інша реклама',
             'no-matter': 'Не має значення'
         };
-        return sources[source] || source;
+
+        if (Array.isArray(sources)) {
+            return sources.map(source => sourceMap[source] || source).join(', ');
+        }
+        return sourceMap[sources] || sources;
     }
 
     // Get special features text
@@ -485,6 +557,10 @@ document.addEventListener('DOMContentLoaded', function () {
             'automation': 'Автоматизація',
             'advanced': 'Складний функціонал'
         };
+
+        if (Array.isArray(features)) {
+            return features.map(feature => featuresMap[feature] || feature).join(', ');
+        }
         return featuresMap[features] || features;
     }
 
@@ -577,8 +653,8 @@ document.addEventListener('DOMContentLoaded', function () {
         currentStep = 0;
         quizData = {
             websiteType: '',
-            clientSource: '',
-            specialFeatures: '',
+            clientSource: [],
+            specialFeatures: [],
             designStyle: '',
             timeline: ''
         };
@@ -603,6 +679,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.next-btn').forEach(btn => {
             btn.disabled = true;
         });
+
+        // Reset submit button gradient
+        const submitBtn = document.querySelector('.submit-btn');
+        if (submitBtn) {
+            submitBtn.classList.remove('has-selection');
+        }
 
         // Reset progress
         progressBar.style.width = '0%';
