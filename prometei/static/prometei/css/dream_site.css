@@ -1832,3 +1832,175 @@
         rgba(0, 0, 0, 0.5) !important;
     border-color: rgba(255, 101, 0, 0.6) !important;
 }
+
+/* Inactive button styles */
+.next-btn:disabled,
+.submit-btn:disabled {
+    background: rgba(128, 128, 128, 0.3) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(128, 128, 128, 0.2) !important;
+    cursor: not-allowed !important;
+    backdrop-filter: blur(10px) saturate(1.0) brightness(0.8) !important;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1) !important,
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transform: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.next-btn:disabled::before,
+.submit-btn:disabled::before,
+.next-btn:disabled::after,
+.submit-btn:disabled::after {
+    display: none !important;
+}
+
+/* Active button styles when selection is made */
+.next-btn:not(:disabled),
+.submit-btn:not(:disabled) {
+    /* Glass background */
+    background:
+        radial-gradient(ellipse 150px 80px at 50% -20%, rgba(255, 255, 255, 0.2) 0%, transparent 70%),
+        linear-gradient(135deg,
+            rgba(var(--theme-accent-rgb), 0.2),
+            rgba(var(--theme-accent-alt-rgb), 0.15));
+    background-blend-mode: overlay, normal;
+    backdrop-filter: blur(16px) saturate(1.6) brightness(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    padding: clamp(0.75rem, 3vw, 1rem) clamp(1.5rem, 5vw, 2rem);
+    color: var(--theme-text);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    box-shadow:
+        0 8px 24px rgba(var(--theme-accent-rgb), 0.15),
+        0 2px 8px rgba(var(--theme-accent-alt-rgb), 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.next-btn:not(:disabled)::before,
+.submit-btn:not(:disabled)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 14px;
+}
+
+.next-btn:not(:disabled):hover,
+.submit-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 12px 32px rgba(var(--theme-accent-rgb), 0.2),
+        0 4px 16px rgba(var(--theme-accent-alt-rgb), 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.next-btn:not(:disabled):hover::before,
+.submit-btn:not(:disabled):hover::before {
+    opacity: 1;
+}
+
+.next-btn:not(:disabled):active,
+.submit-btn:not(:disabled):active {
+    transform: translateY(1px);
+}
+
+/* Special styling for submit button with selection (gradient) */
+.submit-btn.has-selection:not(:disabled) {
+    background:
+        /* Текстура overlay */
+        radial-gradient(ellipse 200px 100px at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 150px 80px at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 60%),
+        /* Основний градієнт */
+        linear-gradient(135deg, #ff6500 0%, #9f5dfd 100%),
+        /* Базовий glass */
+        rgba(255, 255, 255, 0.1);
+    background-blend-mode: overlay, screen, normal, overlay;
+    backdrop-filter: blur(20px) saturate(1.8) brightness(1.3);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: brandGradientPulse 3s ease-in-out infinite;
+
+    box-shadow:
+        0 12px 35px rgba(255, 101, 0, 0.3),
+        0 4px 16px rgba(159, 93, 253, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn.has-selection:not(:disabled):hover {
+    transform: translateY(-3px) scale(1.02);
+    backdrop-filter: blur(25px) saturate(2.0) brightness(1.4);
+
+    box-shadow:
+        0 16px 45px rgba(255, 101, 0, 0.4),
+        0 6px 20px rgba(159, 93, 253, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Dark theme inactive button styles */
+[data-theme="dark"] .next-btn:disabled,
+[data-theme="dark"] .submit-btn:disabled {
+    background: rgba(64, 64, 64, 0.4) !important;
+    color: rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(64, 64, 64, 0.3) !important;
+    backdrop-filter: blur(10px) saturate(1.0) brightness(0.6) !important;
+}
+
+[data-theme="dark"] .next-btn:not(:disabled),
+[data-theme="dark"] .submit-btn:not(:disabled) {
+    background:
+        radial-gradient(ellipse 150px 80px at 50% -20%, rgba(255, 255, 255, 0.1) 0%, transparent 70%),
+        linear-gradient(135deg,
+            rgba(255, 101, 0, 0.2),
+            rgba(159, 93, 253, 0.15));
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile dark theme inactive button styles */
+.mobile-dark-theme .next-btn:disabled,
+.mobile-dark-theme .submit-btn:disabled {
+    background: rgba(64, 64, 64, 0.5) !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    border: 1px solid rgba(64, 64, 64, 0.4) !important;
+    backdrop-filter: blur(12px) saturate(1.0) brightness(0.7) !important;
+}
+
+.mobile-dark-theme .next-btn:not(:disabled),
+.mobile-dark-theme .submit-btn:not(:disabled) {
+    background:
+        radial-gradient(ellipse 150px 80px at 50% -20%, rgba(255, 255, 255, 0.12) 0%, transparent 70%),
+        linear-gradient(135deg,
+            rgba(255, 101, 0, 0.25),
+            rgba(159, 93, 253, 0.2)) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(18px) saturate(1.8) brightness(1.3) !important;
+}
+
+.mobile-dark-theme .submit-btn.has-selection:not(:disabled) {
+    background:
+        radial-gradient(ellipse 200px 100px at 30% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 150px 80px at 70% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+        linear-gradient(135deg, #ff6500 0%, #9f5dfd 100%),
+        rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
+}

@@ -220,56 +220,64 @@ document.addEventListener('DOMContentLoaded', function () {
     // Setup quiz options for all quiz modals
     function setupQuizOptions() {
         // Quiz 1 - single select
-        setupSingleSelectQuiz('quiz1');
+        setupSingleSelectQuiz(1);
 
         // Quiz 2 & 3 - multi select
-        setupMultiSelectQuiz('quiz2');
-        setupMultiSelectQuiz('quiz3');
+        setupMultiSelectQuiz(2);
+        setupMultiSelectQuiz(3);
 
         // Quiz 4 - single select
-        setupSingleSelectQuiz('quiz4');
+        setupSingleSelectQuiz(4);
+
+        // Quiz 5 - single select with submit
+        setupSingleSelectQuiz(5);
     }
 
     // Single select quiz setup
-    function setupSingleSelectQuiz(modalName) {
-        const modal = modals[modalName];
+    function setupSingleSelectQuiz(quizId) {
+        const modal = document.getElementById(`quizModal${quizId}`);
         if (!modal) return;
 
         const options = modal.querySelectorAll('.quiz-option');
+        const nextBtn = modal.querySelector('.next-btn');
+        const submitBtn = modal.querySelector('.submit-btn');
+        const targetBtn = nextBtn || submitBtn;
 
         options.forEach(option => {
             option.addEventListener('click', function () {
-                // Remove selected class from all options
+                // Remove previous selections
                 options.forEach(opt => opt.classList.remove('selected'));
 
-                // Add selected class to clicked option
+                // Add selection to clicked option
                 this.classList.add('selected');
 
-                // Store the value
+                // Store the selection
                 const value = this.getAttribute('data-value');
-                if (modalName === 'quiz1') {
-                    quizData.websiteType = value;
-                } else if (modalName === 'quiz4') {
+                if (quizId === 1) {
+                    quizData.businessType = value;
+                } else if (quizId === 4) {
                     quizData.designStyle = value;
+                } else if (quizId === 5) {
+                    quizData.timeline = value;
+                    // Add gradient class for submit button
+                    if (submitBtn) {
+                        submitBtn.classList.add('has-selection');
+                    }
                 }
 
-                // Add slight delay for visual feedback, then proceed
-                setTimeout(() => {
-                    if (modalName === 'quiz1') {
-                        showModal('quiz2');
-                        currentStep = 2;
-                    } else if (modalName === 'quiz4') {
-                        showModal('quiz5');
-                        currentStep = 5;
-                    }
-                }, 300);
+                // Enable the button
+                if (targetBtn) {
+                    targetBtn.disabled = false;
+                }
+
+                console.log('Single select - Current quiz data:', quizData);
             });
         });
     }
 
     // Multi select quiz setup
-    function setupMultiSelectQuiz(modalName) {
-        const modal = modals[modalName];
+    function setupMultiSelectQuiz(quizId) {
+        const modal = document.getElementById(`quizModal${quizId}`);
         if (!modal) return;
 
         const options = modal.querySelectorAll('.quiz-option.multi-select');
@@ -277,90 +285,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
         options.forEach(option => {
             option.addEventListener('click', function () {
-                const value = this.getAttribute('data-value');
-
                 // Toggle selection
-                if (this.classList.contains('selected')) {
-                    this.classList.remove('selected');
-                    // Remove from array
-                    if (modalName === 'quiz2') {
-                        quizData.clientSource = quizData.clientSource.filter(item => item !== value);
-                    } else if (modalName === 'quiz3') {
-                        quizData.specialFeatures = quizData.specialFeatures.filter(item => item !== value);
-                    }
-                } else {
-                    this.classList.add('selected');
-                    // Add to array
-                    if (modalName === 'quiz2') {
-                        if (!quizData.clientSource.includes(value)) {
-                            quizData.clientSource.push(value);
-                        }
-                    } else if (modalName === 'quiz3') {
-                        if (!quizData.specialFeatures.includes(value)) {
-                            quizData.specialFeatures.push(value);
-                        }
-                    }
+                this.classList.toggle('selected');
+
+                // Get all selected values
+                const selectedOptions = modal.querySelectorAll('.quiz-option.multi-select.selected');
+                const selectedValues = Array.from(selectedOptions).map(opt => opt.getAttribute('data-value'));
+
+                // Store the selections
+                if (quizId === 2) {
+                    quizData.clientSource = selectedValues;
+                } else if (quizId === 3) {
+                    quizData.specialFeatures = selectedValues;
                 }
 
-                // Enable/disable next button
-                const hasSelection = modal.querySelectorAll('.quiz-option.selected').length > 0;
+                // Enable/disable next button based on selections
                 if (nextBtn) {
-                    nextBtn.disabled = !hasSelection;
+                    nextBtn.disabled = selectedValues.length === 0;
                 }
+
+                console.log('Multi select - Current quiz data:', quizData);
             });
         });
-
-        // Next button functionality
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function () {
-                if (modalName === 'quiz2') {
-                    showModal('quiz3');
-                    currentStep = 3;
-                } else if (modalName === 'quiz3') {
-                    showModal('quiz4');
-                    currentStep = 4;
-                }
-            });
-        }
-    }
-
-    // Setup quiz5 (timeline)
-    function setupQuiz5() {
-        const modal = modals.quiz5;
-        if (!modal) return;
-
-        const options = modal.querySelectorAll('.quiz-option');
-        const submitBtn = modal.querySelector('.submit-btn');
-
-        // Option selection for quiz5
-        options.forEach(option => {
-            option.addEventListener('click', function () {
-                // Remove selected class from all options
-                options.forEach(opt => opt.classList.remove('selected'));
-
-                // Add selected class to clicked option
-                this.classList.add('selected');
-
-                // Store the value
-                const value = this.getAttribute('data-value');
-                quizData.timeline = value;
-
-                // Додаємо фірмовий градієнт до кнопки submit
-                if (submitBtn) {
-                    submitBtn.classList.add('has-selection');
-                }
-            });
-        });
-
-        if (submitBtn) {
-            submitBtn.addEventListener('click', function () {
-                if (!quizData.timeline) {
-                    alert('Будь ласка, оберіть термін виконання');
-                    return;
-                }
-                startLoadingProcess();
-            });
-        }
     }
 
     // Start loading process
@@ -652,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function resetQuiz() {
         currentStep = 0;
         quizData = {
-            websiteType: '',
+            businessType: '',
             clientSource: [],
             specialFeatures: [],
             designStyle: '',
@@ -680,9 +626,10 @@ document.addEventListener('DOMContentLoaded', function () {
             btn.disabled = true;
         });
 
-        // Reset submit button gradient
+        // Reset submit button
         const submitBtn = document.querySelector('.submit-btn');
         if (submitBtn) {
+            submitBtn.disabled = true;
             submitBtn.classList.remove('has-selection');
         }
 
@@ -708,12 +655,67 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Setup navigation between quiz modals
+    function setupQuizNavigation() {
+        // Next buttons for all quizzes
+        const quiz1NextBtn = document.querySelector('#quizModal1 .next-btn');
+        const quiz2NextBtn = document.querySelector('#quizModal2 .next-btn');
+        const quiz3NextBtn = document.querySelector('#quizModal3 .next-btn');
+        const quiz4NextBtn = document.querySelector('#quizModal4 .next-btn');
+
+        if (quiz1NextBtn) {
+            quiz1NextBtn.addEventListener('click', function () {
+                if (quizData.businessType && !this.disabled) {
+                    showModal('quiz2');
+                    currentStep = 2;
+                }
+            });
+        }
+
+        if (quiz2NextBtn) {
+            quiz2NextBtn.addEventListener('click', function () {
+                if (quizData.clientSource && quizData.clientSource.length > 0) {
+                    showModal('quiz3');
+                    currentStep = 3;
+                }
+            });
+        }
+
+        if (quiz3NextBtn) {
+            quiz3NextBtn.addEventListener('click', function () {
+                if (quizData.specialFeatures && quizData.specialFeatures.length > 0) {
+                    showModal('quiz4');
+                    currentStep = 4;
+                }
+            });
+        }
+
+        if (quiz4NextBtn) {
+            quiz4NextBtn.addEventListener('click', function () {
+                if (quizData.designStyle && !this.disabled) {
+                    showModal('quiz5');
+                    currentStep = 5;
+                }
+            });
+        }
+
+        // Submit button for final quiz
+        const submitBtn = document.querySelector('#quizModal5 .submit-btn');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function () {
+                if (quizData.timeline && !this.disabled) {
+                    startLoadingProcess();
+                }
+            });
+        }
+    }
+
     // Initialize all components
     setupQuizOptions();
-    setupQuiz5();
     setupProposalModal();
     setupContactForm();
     setupSuccessModal();
+    setupQuizNavigation();
 
     // Prevent form submission on Enter in text inputs (but allow in textareas)
     document.addEventListener('keydown', function (e) {
