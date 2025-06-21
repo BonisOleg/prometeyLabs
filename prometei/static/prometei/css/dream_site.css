@@ -387,7 +387,7 @@
     z-index: 1000;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 10vh 1rem;
 }
 
 .modal.active {
@@ -403,10 +403,10 @@
     background-blend-mode: overlay;
     backdrop-filter: blur(20px) saturate(1.4) brightness(1.5);
     border-radius: 24px;
-    padding: clamp(1.5rem, 3vh, 2.5rem);
-    max-width: min(600px, 95vw);
+    padding: clamp(1.5rem, 2.5vh, 2.5rem);
+    max-width: min(600px, 90vw);
     width: 100%;
-    max-height: 100vh;
+    max-height: 80vh;
     height: fit-content;
     overflow-y: auto;
     position: relative;
@@ -418,7 +418,7 @@
         inset 0 -1px 0 rgba(0, 0, 0, 0.05);
     animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
-    scale: min(1, calc(100vh / 800px));
+    scale: min(1, calc(80vh / 640px));
 }
 
 /* Modal glass texture */
@@ -1245,6 +1245,10 @@
 
 /* Mobile Adaptations */
 @media (max-width: 768px) {
+    .modal {
+        padding: 8vh 0.5rem;
+    }
+
     .content-wrapper {
         margin: 1rem;
         padding: 2rem 1.5rem;
@@ -1295,11 +1299,12 @@
     }
 
     .modal-content {
-        margin: clamp(0.5rem, 2vw, 1rem);
+        margin: 0;
         padding: clamp(1rem, 2vh, 1.5rem);
         border-radius: 20px;
-        max-height: 100vh;
-        scale: min(1, calc(100vh / 600px));
+        max-height: 80vh;
+        max-width: 95vw;
+        scale: min(1, calc(80vh / 480px));
     }
 
     .modal-content h2 {
@@ -1354,6 +1359,10 @@
 }
 
 @media (max-width: 480px) {
+    .modal {
+        padding: 6vh 0.25rem;
+    }
+
     .main-container {
         padding: 1rem 0.75rem;
     }
@@ -1398,10 +1407,11 @@
     }
 
     .modal-content {
-        padding: clamp(1rem, 2vh, 1.25rem);
+        padding: clamp(1rem, 1.8vh, 1.25rem);
         border-radius: 16px;
-        max-height: 100vh;
-        scale: min(1, calc(100vh / 500px));
+        max-height: 80vh;
+        max-width: 98vw;
+        scale: min(1, calc(80vh / 400px));
     }
 
     .quiz-option {
@@ -1417,10 +1427,10 @@
 /* iOS Safari glass fixes */
 @supports (-webkit-touch-callout: none) {
     .modal-content {
-        max-height: 100vh;
+        max-height: 80vh;
         backdrop-filter: blur(15px) saturate(1.3) brightness(1.5);
         background: rgba(255, 255, 255, 0.45);
-        scale: min(1, calc(100vh / 700px));
+        scale: min(1, calc(80vh / 560px));
     }
 
     .form-group input,
