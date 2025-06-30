@@ -1,0 +1,826 @@
+/* Base Styles for Prometey Labs
+   Based on stylerules.mdc */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Manrope:wght@400;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap');
+
+/* Root Variables */
+:root {
+    /* Black */
+    --color-black-100: #4d4d4d;
+    --color-black-200: #333333;
+    --color-black-300: #1a1a1a;
+    --color-black-400: #000000;
+
+    /* Orange */
+    --color-orange-100: #ffe3b3;
+    --color-orange-200: #ffb347;
+    --color-orange-300: #ff8911;
+    --color-orange-400: #ff6500;
+
+    /* Purple */
+    --color-purple-100: #e8d1ff;
+    --color-purple-200: #c796ff;
+    --color-purple-300: #9f5dfd;
+    --color-purple-400: #742cf0;
+
+    /* Sand (Beige) */
+    --color-sand-100: #fffaf3;
+    --color-sand-200: #fcefd9;
+    --color-sand-300: #f7e5c3;
+    --color-sand-400: #f2dcb0;
+
+    /* Yellow (Fire) */
+    --color-yellow-100: #fff3c7;
+    --color-yellow-200: #ffe066;
+    --color-yellow-300: #ffc400;
+    --color-yellow-400: #ffae00;
+
+    /* Gray UI */
+    --color-gray-100: #f2f2f2;
+    --color-gray-200: #d9d9d9;
+    --color-gray-300: #bfbfbf;
+    --color-gray-400: #a6a6a6;
+
+    /* Theme (light by default) */
+    --theme-bg: #fcfcfc;
+    --theme-text: #1a1a1a;
+    --theme-subtext: #4d4d4d;
+    --theme-surface: var(--color-sand-300);
+    --theme-surface-alt: var(--color-sand-300);
+    --theme-accent: #ff6500;
+    --theme-accent-alt: #742cf0;
+    --theme-button: var(--color-purple-300);
+    --theme-button-text: #ffffff;
+    --theme-button-hover: var(--color-purple-400);
+    --theme-shadow: rgba(0, 0, 0, 0.07);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --theme-bg: #0d0d0d;
+    --theme-text: #f2f2f2;
+    --theme-subtext: #bfbfbf;
+    --theme-surface: var(--color-black-200);
+    --theme-surface-alt: var(--color-black-200);
+    --theme-accent: #ff6500;
+    --theme-accent-alt: #9f5dfd;
+    --theme-button: var(--color-orange-300);
+    --theme-button-text: #000000;
+    --theme-button-hover: var(--color-orange-400);
+    --theme-shadow: rgba(255, 255, 255, 0.05);
+}
+
+/* Base Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+}
+
+body {
+    font-family: 'Rubik', 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    line-height: 1.6;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--theme-text);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--theme-subtext);
+}
+
+a {
+    color: var(--theme-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--theme-accent-alt);
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Button Styles */
+.button {
+    display: inline-block;
+    background: var(--theme-button);
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    padding: 14px 28px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.button:hover {
+    background: var(--theme-button-hover);
+    transform: translateY(-2px);
+    color: #fff !important;
+}
+
+.cta-button {
+    background: var(--theme-accent);
+    color: #fff !important;
+}
+
+.cta-button:hover {
+    background: var(--theme-accent-alt);
+    color: #fff !important;
+}
+
+/* Header Styles */
+.header {
+    background-color: var(--theme-surface);
+    box-shadow: 0 2px 10px var(--theme-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo__text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--theme-text);
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.logo__accent {
+    color: var(--theme-accent-alt);
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    /* Needed for transform */
+}
+
+/* Logo Hover Effect */
+.logo:hover .logo__text {
+    color: var(--theme-accent);
+    /* Change main text to orange */
+}
+
+.logo:hover .logo__accent {
+    color: var(--color-purple-200);
+    /* Slightly lighter purple */
+    transform: scale(1.08);
+    /* Slightly scale up Labs */
+}
+
+/* Navigation */
+.nav__list {
+    display: flex;
+    list-style: none;
+    gap: 0;
+    align-items: center;
+}
+
+.nav__item {
+    position: relative;
+    padding: 0 1rem;
+}
+
+.nav__item:not(:last-child)::after {
+    content: '|';
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--theme-subtext);
+    font-weight: 100;
+    font-size: 1.1em;
+    opacity: 0.8;
+}
+
+.nav__item:first-child {
+    padding-left: 0;
+}
+
+.nav__item:last-child {
+    padding-right: 0;
+}
+
+.nav__link {
+    color: var(--theme-accent);
+    font-weight: 600;
+    position: relative;
+    padding: 8px 0;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.nav__link:hover {
+    color: var(--theme-accent-alt);
+}
+
+.nav__link::after {
+    display: none;
+}
+
+/* Header Controls */
+.header__controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Gap between buttons */
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-text);
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--theme-accent);
+}
+
+.theme-toggle__icon {
+    width: 24px;
+    height: 24px;
+}
+
+.theme-toggle__icon--light {
+    display: block;
+}
+
+.theme-toggle__icon--dark {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon--light {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon--dark {
+    display: block;
+}
+
+/* Language Switcher */
+.language-switcher {
+    position: relative;
+    /* Needed for potential dropdowns if select is styled differently */
+    margin: 0;
+    /* Reset default form margin */
+}
+
+.language-switcher__select {
+    background-color: #ffffff;
+    color: var(--theme-subtext);
+    border: 1px solid var(--color-gray-300);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    appearance: none;
+    /* Remove default browser appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-width: 50px;
+    /* Ensure minimum width */
+    text-align: center;
+}
+
+.language-switcher__select:hover,
+.language-switcher__select:focus {
+    border-color: var(--theme-accent);
+    outline: none;
+}
+
+[data-theme="dark"] .language-switcher__select {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-300);
+    color: var(--color-black-300);
+}
+
+/* Mobile Language Switcher (inside mobile menu) */
+.language-switcher--mobile {
+    display: none;
+    /* Приховуємо, щоб не показувалось */
+}
+
+.language-switcher__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.language-switcher__button {
+    background: var(--color-gray-200);
+    color: #fff !important;
+    border: 1px solid var(--color-gray-300);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.language-switcher__button:hover {
+    background-color: var(--color-gray-400);
+    color: #fff !important;
+    border-color: var(--color-gray-400);
+}
+
+.language-switcher__button--active {
+    background-color: var(--theme-accent);
+    color: #fff !important;
+    border-color: var(--theme-accent);
+    cursor: default;
+}
+
+.language-switcher__button--active:hover {
+    background-color: var(--theme-accent);
+    border-color: var(--theme-accent);
+}
+
+[data-theme="dark"] .language-switcher__button {
+    background-color: var(--color-black-200);
+    border-color: var(--color-black-100);
+    color: #fff !important;
+    border-color: var(--theme-accent);
+}
+
+[data-theme="dark"] .language-switcher__button--active:hover {
+    background-color: var(--theme-accent);
+    border-color: var(--theme-accent);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    padding: 8px;
+    -webkit-tap-highlight-color: transparent;
+    /* Прибирає підсвітлення на тап для iOS */
+    touch-action: manipulation;
+    /* Покращує реакцію на дотик */
+}
+
+.mobile-menu-toggle__line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 5px 0;
+    background-color: var(--theme-text);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    -webkit-transition: transform 0.3s ease, opacity 0.3s ease;
+    /* Для Safari */
+}
+
+/* Трансформація бургер-меню в хрестик */
+.mobile-menu-toggle.active .mobile-menu-toggle__line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    -webkit-transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active .mobile-menu-toggle__line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .mobile-menu-toggle__line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    -webkit-transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--theme-surface);
+    transition: height 0.4s ease, visibility 0s linear 0.4s;
+    -webkit-transition: height 0.4s ease, visibility 0s linear 0.4s;
+    z-index: 999;
+    box-shadow: 0 6px 18px var(--theme-shadow);
+    visibility: hidden;
+    overflow: hidden;
+    /* Повертаємо overflow: hidden для неактивного стану */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: height;
+    /* Підказка для браузера про анімацію */
+}
+
+.mobile-menu.active {
+    visibility: visible;
+    overflow-y: scroll;
+    /* Явно встановлюємо scroll замість auto для Safari */
+    -webkit-overflow-scrolling: touch;
+    /* Важливо для iOS */
+    overflow-scrolling: touch;
+    transition: height 0.4s ease;
+    -webkit-transition: height 0.4s ease;
+    height: calc(100vh - var(--header-height, 70px)) !important;
+    /* Явна висота для Safari */
+    max-height: calc(100vh - var(--header-height, 70px));
+}
+
+.mobile-nav {
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100%;
+    width: 100%;
+}
+
+.mobile-nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.mobile-nav__item {
+    margin-bottom: 24px;
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-nav__item:last-child {
+    margin-bottom: 0;
+}
+
+.mobile-nav__link {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--theme-text);
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    border-radius: 8px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* Прибирає підсвітлення тапу для iOS */
+}
+
+.mobile-nav__link:hover,
+.mobile-nav__link:focus,
+.mobile-nav__link:active {
+    color: var(--theme-accent);
+    background-color: var(--theme-surface-alt);
+}
+
+/* Promin button in mobile menu */
+.mobile-nav__item--promin {
+    margin-top: 12px;
+}
+
+.mobile-nav__link--promin {
+    background-color: var(--color-purple-300);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav__link--promin:hover,
+.mobile-nav__link--promin:focus {
+    background-color: var(--color-purple-400);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(159, 93, 253, 0.3);
+}
+
+/* Mobile Language Switcher */
+.language-switcher--mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+/* Main Content */
+.main {
+    padding-bottom: 0;
+    flex-grow: 1;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--theme-surface);
+    padding: 2rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.footer__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer__copyright {
+    color: var(--theme-subtext);
+}
+
+.footer__links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer__link {
+    color: var(--theme-subtext);
+    font-size: 0.9rem;
+}
+
+.footer__link:hover {
+    color: var(--theme-accent);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .header__wrapper {
+        height: 70px;
+    }
+
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .footer__wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Уменьшаем отступы контейнера на очень маленьких экранах */
+    /* html, 
+    body {
+        font-size: 14px;
+    } */
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Set separator color for dark theme */
+[data-theme="dark"] .nav__item:not(:last-child)::after {
+    color: #ffffff;
+    /* White for dark theme */
+    opacity: 0.7;
+    /* Keep previous opacity for white */
+}
+
+/* Remove separator specifically for the item before Promin */
+.nav__item:has(+ .nav__item--promin)::after {
+    content: none;
+}
+
+/* Style for the Promin menu item link */
+.nav__link--promin {
+    color: #ffffff !important;
+    /* White text */
+    background-color: var(--theme-accent-alt);
+    /* Purple background */
+    padding: 6px 12px !important;
+    /* Custom padding */
+    border-radius: 8px;
+    margin-left: 0.5rem;
+    /* Add some space before it */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.nav__link--promin:hover {
+    background-color: var(--color-purple-200);
+    /* Lighter purple on hover */
+    color: var(--color-black-400) !important;
+    /* Dark text on hover */
+    transform: translateY(-1px);
+}
+
+/* Style for the Dream Site menu item link */
+.nav__link--dream {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, var(--theme-accent), var(--theme-accent-alt));
+    padding: 6px 12px !important;
+    border-radius: 8px;
+    margin-left: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
+.nav__link--dream:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.4);
+}
+
+/* Mobile styles for dream site button */
+.mobile-nav__item--dream {
+    margin-top: 12px;
+}
+
+.mobile-nav__link--dream {
+    background: linear-gradient(135deg, var(--theme-accent), var(--theme-accent-alt));
+    color: #fff !important;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
+.mobile-nav__link--dream:hover,
+.mobile-nav__link--dream:focus {
+    color: #fff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(var(--theme-accent-rgb, 255, 101, 0), 0.4);
+}
+
+.nav__item:first-child {
+    padding-left: 0;
+}
+
+/* Додаткові iOS-специфічні адаптації */
+@supports (-webkit-touch-callout: none) {
+
+    /* iOS-only CSS */
+    body.menu-open {
+        /* Запобігаємо прокрутці основної сторінки під меню на iOS */
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mobile-menu.active {
+        /* Додаткова плавність для iOS */
+        -webkit-transform: translate3d(0, 0, 0);
+        /* Покращення скролінгу для iOS */
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+        /* Чіткі правила для Safari */
+        overflow-y: scroll !important;
+        -webkit-overflow-y: scroll !important;
+    }
+
+    .mobile-nav__link {
+        /* Збільшуємо розмір для тапу на iOS */
+        padding: 12px 24px;
+    }
+}

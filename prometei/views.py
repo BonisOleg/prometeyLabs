@@ -293,6 +293,9 @@ class ProminPageView(FormView):
 
 class DreamSitePageView(TemplateView):
     template_name = 'prometei/dream_site.html'
+
+class CoursePageView(TemplateView):
+    template_name = 'prometei/course.html'
     
     def post(self, request, *args, **kwargs):
         logger.info("DreamSitePageView POST method called")

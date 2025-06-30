@@ -1,0 +1,211 @@
+/*
+ * Services Page Styles for Prometey Labs
+ */
+
+.services-hero {
+    background-color: var(--theme-surface-alt);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.services-hero__title {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    color: var(--theme-text);
+}
+
+.services-hero__accent {
+    color: var(--theme-accent-alt);
+}
+
+.services-hero__text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--theme-subtext);
+}
+
+/* Services Grid */
+.services-grid {
+    padding: 5rem 0;
+}
+
+/* Додано для центрування заголовка секції */
+.services-grid .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    /* Збільшив відступ знизу для кращого вигляду */
+}
+
+.services-grid__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+.service-card {
+    background-color: var(--theme-surface);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 6px 18px var(--theme-shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 1 320px;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px var(--theme-shadow);
+}
+
+.service-card__icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    background-color: var(--theme-surface-alt);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-accent);
+    flex-shrink: 0;
+}
+
+.service-card__title {
+    margin-bottom: 1rem;
+    color: var(--theme-text);
+    font-size: 1.4rem;
+}
+
+.service-card__description {
+    color: var(--theme-subtext);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    /* Makes description fill space */
+}
+
+.button--details {
+    margin-top: auto;
+    /* Pushes button to the bottom */
+    background-color: var(--color-yellow-300);
+    color: var(--color-black-400);
+    font-weight: 600;
+}
+
+.button--details:hover {
+    background-color: var(--color-orange-400);
+}
+
+/* Modal Window Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--theme-surface);
+    color: var(--theme-text);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 36px var(--theme-shadow);
+    max-width: 600px;
+    width: 90%;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--theme-subtext);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.modal__close:hover {
+    color: var(--theme-accent);
+}
+
+.modal__title {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--theme-text);
+}
+
+.modal__content p {
+    margin-bottom: 1rem;
+}
+
+.modal__content ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal__content li {
+    margin-bottom: 0.5rem;
+    color: var(--theme-subtext);
+}
+
+.modal__content .button {
+    margin-top: 1rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .services-hero__title {
+        font-size: 2.5rem;
+    }
+
+    .services-grid__wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .service-card {
+        padding: 2rem;
+    }
+
+    .modal {
+        padding: 2rem;
+    }
+}

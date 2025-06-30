@@ -1,0 +1,1649 @@
+/* PROmin Landing Page Styles
+   Modern, spatial, with 3D elements and cutting-edge animations */
+
+/* === Base Styles === */
+.promin-landing-page {
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    height: 100%;
+    font-family: "Inter", "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.landing-wrapper {
+    position: relative;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.landing-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-bottom: 0 !important;
+}
+
+/* === Two-Column Layout for Top Section === */
+.top-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.top-section .intro-section,
+.top-section .voucher-section {
+    width: 50%;
+    min-height: auto;
+    padding: 3rem 0;
+}
+
+/* === Bottom Section (Full Width) === */
+.bottom-section {
+    width: 100%;
+    padding: 0 2rem;
+}
+
+/* === Close Button === */
+.close-button {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 50px;
+    color: var(--theme-text);
+    font-weight: 600;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.close-button svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: var(--theme-accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.close-button:hover svg {
+    transform: rotate(90deg);
+}
+
+[data-theme="dark"] .close-button {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* === 3D Animated Background === */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.6;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(45deg, var(--color-purple-300), var(--color-purple-400));
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 700px;
+    height: 700px;
+    background: linear-gradient(45deg, var(--color-orange-300), var(--color-orange-400));
+    bottom: -200px;
+    right: -200px;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(45deg, var(--color-yellow-300), var(--color-yellow-200));
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, var(--theme-bg) 70%);
+    mix-blend-mode: normal;
+    display: none;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+
+    33% {
+        transform: translate(2%, 2%) rotate(1deg) scale(1.03);
+    }
+
+    66% {
+        transform: translate(-2%, 1%) rotate(-1deg) scale(0.97);
+    }
+
+    100% {
+        transform: translate(1%, -2%) rotate(0.5deg) scale(1.01);
+    }
+}
+
+/* === Intro Section === */
+.intro-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.intro-content {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+
+    /* === Glassmorphism Styles === */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Менш прозорий світлий фон */
+    /* Додаємо текстуру шуму */
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.015) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.015) 75%), linear-gradient(45deg, rgba(0, 0, 0, 0.015) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.015) 75%);
+    background-size: 2px 2px;
+    background-position: 0 0, 1px 1px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 32px;
+    /* Як у .voucher-card */
+    padding: 3rem;
+    /* Внутрішні відступи */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    /* Легка тінь */
+}
+
+[data-theme="dark"] .intro-content {
+    background-color: rgba(30, 30, 30, 0.45);
+    /* Менш прозорий темний фон */
+    /* Додаємо текстуру шуму для темної теми */
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%), linear-gradient(45deg, rgba(255, 255, 255, 0.015) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.015) 75%);
+    background-size: 2px 2px;
+    background-position: 0 0, 1px 1px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    /* Тінь для темної теми */
+}
+
+.title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    transform: translateZ(0);
+    position: relative;
+    color: var(--theme-text);
+}
+
+.accent {
+    color: var(--theme-accent);
+    position: relative;
+    display: inline-block;
+}
+
+.accent::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: var(--color-purple-300);
+    bottom: -4px;
+    left: 0;
+    transform: skewX(-15deg);
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.reveal-text {
+    overflow: hidden;
+    display: block;
+}
+
+.text-reveal {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.cta-wrapper {
+    margin-top: 3rem;
+    position: relative;
+    perspective: 1000px;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--color-orange-400);
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border-radius: 50px;
+    box-shadow: 0 15px 35px rgba(255, 101, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255, 101, 0, 0.3);
+    color: white !important;
+}
+
+.cta-button:hover::before {
+    transform: translateX(100%);
+    transition: transform 0.8s ease;
+}
+
+.button-arrow {
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover .button-arrow {
+    transform: translateX(5px);
+}
+
+/* === Voucher Section === */
+.voucher-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 0;
+    position: relative;
+}
+
+.voucher-content {
+    max-width: 900px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+}
+
+/* === Voucher Card with enhanced 3D depth === */
+.voucher-card {
+    background: #f4ece0;
+    /* Пісочний колір з фото */
+    position: relative;
+    border-radius: 32px;
+    padding: 3rem;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.08),
+        0 20px 40px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(0, 0, 0, 0.01),
+        inset 0 2px 3px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    transform: translateY(50px) perspective(1000px) rotateX(2deg);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+}
+
+.voucher-card.active {
+    transform: translateY(0) perspective(1000px) rotateX(2deg);
+    opacity: 1;
+}
+
+[data-theme="dark"] .voucher-card {
+    background: #272727;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Максимально випуклий блок $100 без анімацій */
+.voucher-amount {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    background: #ff6500;
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    padding: 1.2rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateZ(60px);
+    z-index: 10;
+    box-shadow:
+        0 30px 60px rgba(255, 101, 0, 0.3),
+        0 15px 30px rgba(0, 0, 0, 0.15),
+        0 5px 10px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.2);
+    min-width: 130px;
+    min-height: 130px;
+    text-align: center;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    clip-path: none;
+}
+
+/* Видаляємо всі анімації */
+.voucher-amount::after {
+    display: none;
+}
+
+@keyframes shineEffect {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Більш об'ємний текст */
+.voucher-text {
+    margin-bottom: 2.5rem;
+    max-width: calc(100% - 190px);
+    transform: translateZ(15px);
+}
+
+.voucher-text h2 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--theme-text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    transform: translateZ(20px);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.voucher-text p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--theme-subtext);
+    line-height: 1.6;
+    max-width: 85%;
+    transform: translateZ(10px);
+}
+
+[data-theme="dark"] .voucher-text h2 {
+    color: #fff;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .voucher-text p {
+    color: #bbb;
+}
+
+/* Максимально випуклі соціальні кнопки */
+.social-buttons {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2.2rem;
+    background: white;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    transform: translateZ(40px);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.06),
+        0 4px 8px rgba(0, 0, 0, 0.04),
+        inset 0 2px 3px rgba(255, 255, 255, 1),
+        inset 0 -2px 2px rgba(0, 0, 0, 0.05);
+    border: none;
+}
+
+.social-button svg {
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+.social-button.telegram {
+    color: #0088cc;
+}
+
+.social-button.instagram {
+    color: #C13584;
+}
+
+.social-button:hover {
+    transform: translateY(-4px) translateZ(45px);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        0 10px 20px rgba(0, 0, 0, 0.08),
+        0 5px 10px rgba(0, 0, 0, 0.04),
+        inset 0 2px 3px rgba(255, 255, 255, 1),
+        inset 0 -2px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Максимально впале поле введення */
+.input-wrapper {
+    flex: 1;
+    position: relative;
+    border-radius: 50px;
+    box-shadow:
+        inset 0 4px 8px rgba(0, 0, 0, 0.15),
+        inset 0 2px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 3px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(255, 255, 255, 0.4);
+    transform: translateZ(5px);
+    background: rgba(255, 255, 255, 0.55);
+    overflow: hidden;
+}
+
+/* Світліший край зверху для ефекту */
+.input-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+[data-theme="dark"] .input-wrapper {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        inset 0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 2px 6px rgba(0, 0, 0, 0.2),
+        inset 0 1px 3px rgba(0, 0, 0, 0.15),
+        0 1px 3px rgba(255, 255, 255, 0.05);
+}
+
+.voucher-form input {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    color: #444;
+    transition: all 0.3s ease;
+    transform: translateZ(0);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.voucher-form input::placeholder {
+    color: #888;
+    opacity: 0.7;
+}
+
+[data-theme="dark"] .voucher-form input {
+    color: #f0f0f0;
+    text-shadow: none;
+}
+
+[data-theme="dark"] .voucher-form input::placeholder {
+    color: #777;
+}
+
+.voucher-form input:focus {
+    outline: none;
+    transform: translateZ(1px);
+}
+
+/* Максимально випукла кнопка */
+.submit-button {
+    padding: 1.25rem 2.2rem;
+    background: #742cf0;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transform: translateZ(50px);
+    box-shadow:
+        0 20px 40px rgba(116, 44, 240, 0.3),
+        0 10px 20px rgba(116, 44, 240, 0.15),
+        0 5px 10px rgba(0, 0, 0, 0.1),
+        inset 0 2px 3px rgba(255, 255, 255, 0.5),
+        inset 0 -2px 2px rgba(0, 0, 0, 0.2);
+    min-width: 180px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Видаляємо анімацію */
+.submit-button::before {
+    display: none;
+}
+
+.submit-button svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.submit-button:hover {
+    background: #6023d0;
+    transform: translateY(-4px) translateZ(55px);
+    box-shadow:
+        0 25px 50px rgba(116, 44, 240, 0.35),
+        0 15px 30px rgba(116, 44, 240, 0.2),
+        0 8px 16px rgba(0, 0, 0, 0.12),
+        inset 0 2px 3px rgba(255, 255, 255, 0.5),
+        inset 0 -2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:hover svg {
+    transform: translateX(5px);
+}
+
+/* Мобільні налаштування */
+@media (max-width: 768px) {
+    .intro-content {
+        padding: 2rem;
+        border-radius: 24px;
+    }
+
+    .intro-content .display-1 {
+        font-size: 2.5rem;
+        /* Трохи менше на мобільних */
+    }
+
+    .intro-content .lead {
+        font-size: 1rem;
+    }
+
+    .voucher-card {
+        padding: 2rem 1.5rem;
+        border-radius: 28px;
+    }
+
+    .voucher-amount {
+        right: 1rem;
+        /* Відступ справа */
+        top: 1rem;
+        /* Відступ зверху */
+        font-size: 2rem;
+        /* Розмір тексту $100 */
+        min-height: 75px;
+        /* Висота блоку $100 */
+        min-width: 75px;
+        /* Ширина блоку $100 */
+        transform: translateZ(30px);
+    }
+
+    .voucher-text {
+        max-width: calc(100% - 95px);
+        /* Залишаємо місце для блоку $100 (75px + 20px відступ) */
+        margin-bottom: 1.5rem;
+        margin-right: auto;
+        /* Щоб текст був зліва */
+        margin-left: 0;
+        /* скидаємо авто відступ зліва */
+        text-align: left;
+        /* Вирівнювання тексту по лівому краю */
+    }
+
+    .voucher-text h2 {
+        font-size: 1.6rem;
+        /* Розмір заголовка */
+        line-height: 1.25;
+        margin-bottom: 0.5rem;
+        /* "Даруємо 100$" - приблизно 10-12 символів + пробіли. 
+           "на наші послуги" - 16 символів. 
+           Спробуємо обмежити ширину так, щоб перший рядок поміщався.
+        */
+        max-width: 100%;
+        /* Дозволяємо тексту займати всю доступну ширину в межах .voucher-text */
+    }
+
+    .voucher-text p {
+        font-size: 0.95rem;
+        /* Розмір параграфа */
+        line-height: 1.5;
+        max-width: 100%;
+        /* Дозволяємо тексту займати всю доступну ширину */
+        /* "Залиште ваш "
+           "телеграм/інстаграм "
+           "або звʼяжіться з нами"
+        */
+    }
+
+    .voucher-form .form-group {
+        flex-direction: column;
+        transform-style: flat;
+    }
+
+    .social-buttons {
+        transform-style: flat;
+        -webkit-transform-style: flat;
+    }
+
+    .social-button {
+        transform: translateZ(20px);
+        padding: 0.75rem 1.5rem;
+    }
+
+    .social-button:hover {
+        transform: translateY(-2px) translateZ(25px);
+    }
+
+    .submit-button {
+        padding: 1rem 1.75rem;
+        transform: translateZ(30px);
+    }
+
+    .submit-button:hover {
+        transform: translateY(-2px) translateZ(35px);
+    }
+}
+
+/* Фікс для iOS Safari */
+@supports (-webkit-touch-callout: none) {
+
+    .voucher-card,
+    .voucher-amount,
+    .social-button,
+    .submit-button,
+    .input-wrapper {
+        transform: none !important;
+        box-shadow:
+            0 25px 50px rgba(0, 0, 0, 0.12),
+            0 15px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .voucher-card.active {
+        transform: none !important;
+    }
+
+    .voucher-amount {
+        top: 3rem;
+        right: 3rem;
+        box-shadow:
+            0 25px 50px rgba(255, 101, 0, 0.25),
+            0 15px 30px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Покращений скролінг для iOS */
+    .voucher-section {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* === Website Section === */
+.website-section {
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+    position: relative;
+}
+
+.website-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    position: relative;
+}
+
+.website-mock {
+    width: 50%;
+    max-width: 500px;
+    perspective: 1200px;
+}
+
+.website-frame {
+    width: 100%;
+    background: var(--theme-surface);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+        0 8px 25px -5px rgba(0, 0, 0, 0.1),
+        0 0 15px 2px rgba(0, 0, 0, 0.05);
+    transform: perspective(1000px) rotateY(10deg) rotateX(5deg) scale(0.9);
+    opacity: 0;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    will-change: transform;
+    transform-origin: center center;
+}
+
+.frame-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    background: var(--color-gray-100);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.control:nth-child(1) {
+    background: #ff5f57;
+}
+
+.control:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.control:nth-child(3) {
+    background: #28c940;
+}
+
+.frame-content {
+    padding: 1.5rem;
+    background: white;
+}
+
+.mock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mock-logo {
+    display: flex;
+    align-items: center;
+}
+
+.mock-logo-text {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+}
+
+.mock-logo-accent {
+    color: var(--color-orange-400);
+}
+
+.mock-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.mock-nav-item {
+    width: 36px;
+    height: 8px;
+    background: var(--color-gray-200);
+    border-radius: 4px;
+}
+
+.mock-nav-item.active {
+    background: var(--color-purple-300);
+    width: 24px;
+}
+
+.mock-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.mock-hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.mock-hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mock-title {
+    height: 24px;
+    width: 90%;
+    background: var(--color-gray-300);
+    border-radius: 6px;
+}
+
+.mock-subtitle {
+    height: 14px;
+    width: 70%;
+    background: var(--color-gray-200);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.mock-button {
+    height: 32px;
+    width: 120px;
+    background: var(--color-orange-300);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mock-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    display: none;
+}
+
+.mock-hero-image {
+    flex: 1;
+    height: 120px;
+    background: linear-gradient(45deg, var(--color-purple-200), var(--color-orange-200));
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    background-size: 200% 200%;
+    animation: gradientBackground 6s ease infinite;
+    transform: translateZ(20px);
+    box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.mock-hero-image::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.mock-hero-image::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(15px);
+    z-index: 0;
+}
+
+.mock-features {
+    display: flex;
+    gap: 15px;
+}
+
+.mock-feature {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mock-feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(10px);
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.2);
+}
+
+.mock-feature:nth-child(1) .mock-feature-icon {
+    background: var(--color-orange-300);
+}
+
+.mock-feature:nth-child(2) .mock-feature-icon {
+    background: var(--color-purple-300);
+}
+
+.mock-feature:nth-child(3) .mock-feature-icon {
+    background: var(--color-yellow-300);
+}
+
+.mock-feature-icon::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: rotate(45deg);
+    animation: iconShine 3s ease-in-out infinite;
+    animation-delay: calc(var(--index, 0) * 1s);
+}
+
+.mock-feature:nth-child(1) .mock-feature-icon {
+    --index: 0;
+}
+
+.mock-feature:nth-child(2) .mock-feature-icon {
+    --index: 1;
+}
+
+.mock-feature:nth-child(3) .mock-feature-icon {
+    --index: 2;
+}
+
+@keyframes iconShine {
+    0% {
+        left: -150%;
+    }
+
+    30%,
+    100% {
+        left: 150%;
+    }
+}
+
+.mock-feature-text {
+    height: 10px;
+    width: 80%;
+    background: var(--color-gray-200);
+    border-radius: 4px;
+}
+
+.website-text {
+    width: 50%;
+}
+
+.website-text h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.website-text p {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.6;
+    color: var(--theme-subtext);
+    margin-bottom: 2rem;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .website-frame {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 8px 25px -5px rgba(255, 255, 255, 0.03),
+        0 0 15px 2px rgba(255, 255, 255, 0.02);
+}
+
+[data-theme="dark"] .frame-content {
+    background: var(--theme-surface);
+}
+
+[data-theme="dark"] .mock-header {
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 1024px) {
+    .top-section {
+        flex-direction: column;
+    }
+
+    .top-section .intro-section,
+    .top-section .voucher-section {
+        width: 100%;
+    }
+
+    .website-content {
+        gap: 2rem;
+    }
+
+    .website-text {
+        padding-right: 1rem;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-section {
+        padding: 0 1rem;
+    }
+
+    .bottom-section {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .intro-section,
+    .voucher-section,
+    .website-section {
+        padding: 2rem 0;
+        min-height: auto;
+    }
+
+    .title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .voucher-card {
+        padding: 2rem;
+        transform: translateY(50px) perspective(800px) rotateX(2deg);
+    }
+
+    .voucher-card.active {
+        transform: translateY(0) perspective(800px) rotateX(2deg);
+    }
+
+    .voucher-amount {
+        right: 1.5rem;
+        top: 1.5rem;
+        font-size: 2.25rem;
+        min-height: 90px;
+        min-width: 90px;
+        transform: translateZ(30px);
+    }
+
+    .voucher-text {
+        max-width: calc(100% - 140px);
+        margin-bottom: 2rem;
+        margin-right: auto;
+    }
+
+    .social-buttons {
+        transform-style: flat;
+    }
+
+    .social-button {
+        transform: translateZ(10px);
+    }
+
+    .social-button:hover {
+        transform: translateY(-2px) translateZ(15px);
+    }
+
+    .close-button {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .website-content {
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+
+    .website-mock,
+    .website-text {
+        width: 100%;
+    }
+
+    .website-frame {
+        max-width: 100%;
+        transform: none !important;
+    }
+
+    .landing-content {
+        /* padding-bottom: 2rem; */
+    }
+
+    .website-frame {
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform-style: preserve-3d;
+        transform-origin: center center;
+    }
+
+    .mock-hero-image,
+    .mock-feature-icon,
+    .mock-logo,
+    .mock-button {
+        will-change: transform;
+        transform-style: preserve-3d;
+    }
+
+    .form-group {
+        flex-direction: column;
+        transform-style: flat;
+    }
+
+    .website-text {
+        padding-right: 0;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-wrapper {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .top-section {
+        padding: 0 0.5rem;
+    }
+
+    .bottom-section {
+        padding: 0 0.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .website-section {
+        height: auto;
+        min-height: auto;
+        overflow: visible;
+        padding: 1.5rem 0;
+    }
+
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .voucher-card {
+        padding: 1.5rem;
+        transform: translateY(30px) perspective(500px) rotateX(1deg);
+    }
+
+    .voucher-card.active {
+        transform: translateY(0) perspective(500px) rotateX(1deg);
+    }
+
+    .voucher-amount {
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.8rem;
+        min-height: 70px;
+        min-width: 70px;
+        padding: 0.8rem;
+        transform: translateZ(10px);
+    }
+
+    .voucher-text {
+        max-width: calc(100% - 85px);
+        margin-bottom: 1.2rem;
+        margin-left: 0;
+        padding-left: 0;
+        text-align: left;
+    }
+
+    .voucher-text h2 {
+        font-size: 1.25rem;
+        line-height: 1.2;
+        width: 12ch;
+        margin-bottom: 0.4rem;
+        margin-left: 0;
+        transform: translateZ(2px);
+    }
+
+    .voucher-text p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        width: 20ch;
+        margin-left: 0;
+    }
+
+    .social-buttons {
+        flex-direction: column;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+    }
+
+    .submit-button {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        transform: translateZ(15px);
+    }
+
+    .submit-button:hover {
+        transform: translateY(-2px) translateZ(20px);
+    }
+
+    /* Enhanced mobile website mockup */
+    .mock-header {
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .mock-logo-text {
+        font-size: 1rem;
+    }
+
+    .mock-hero {
+        flex-direction: row;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .mock-hero-text {
+        width: 55%;
+    }
+
+    .mock-hero-image {
+        width: 45%;
+        height: 120px;
+        background: linear-gradient(45deg, var(--color-purple-200), var(--color-orange-200));
+        background-size: 200% 200%;
+        animation: gradientBackground 6s ease infinite;
+    }
+
+    .mock-features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .mock-feature-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    .website-frame {
+        transform: none !important;
+        border-radius: 16px;
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.25);
+        animation: floatFrame 4s ease-in-out infinite;
+    }
+
+    @keyframes floatFrame {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .landing-content {
+        /* padding-bottom: 4rem; */
+    }
+
+    .mock-hero-image::before {
+        content: '';
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        top: 10%;
+        left: 10%;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        backdrop-filter: blur(2px);
+    }
+
+    .mock-hero-image::after {
+        content: '';
+        position: absolute;
+        width: 40%;
+        height: 40%;
+        top: 30%;
+        left: 30%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        filter: blur(10px);
+        animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(0.8);
+            opacity: 0.5;
+        }
+
+        50% {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: scale(0.8);
+            opacity: 0.5;
+        }
+    }
+
+    .website-text {
+        padding-right: 0;
+    }
+}
+
+/* === Animations (to be controlled via JS) === */
+.reveal-button.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.voucher-card.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.website-frame.active {
+    transform: rotateY(0) rotateX(0) scale(1);
+    opacity: 1;
+}
+
+.text-reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* === Motion Permission Buttons === */
+.motion-permission-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background-color: var(--theme-accent, #ff6500);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.motion-permission-btn:hover,
+.motion-permission-btn:focus {
+    background-color: var(--color-orange-400, #ff6500);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.motion-permission-btn:active {
+    transform: translateX(-50%) translateY(0);
+}
+
+.motion-reset-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.motion-reset-btn:hover,
+.motion-reset-btn:focus {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .motion-reset-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+[data-theme="dark"] .motion-reset-btn:hover,
+[data-theme="dark"] .motion-reset-btn:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* === Fallback Styles for No JavaScript === */
+.no-js .text-reveal,
+.no-js .cta-button,
+.no-js .voucher-card,
+.no-js .website-frame,
+.no-js .shape,
+.no-js .close-button,
+.no-js .keyword {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* Initial state visibility fixes */
+.text-reveal {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.cta-button,
+.voucher-card,
+.website-frame,
+.close-button {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Ensure content is visible if animations take too long */
+@media (prefers-reduced-motion: reduce) {
+
+    .text-reveal,
+    .cta-button,
+    .voucher-card,
+    .website-frame,
+    .shape,
+    .close-button,
+    .keyword,
+    .voucher-amount,
+    .social-button,
+    .input-wrapper,
+    .submit-button,
+    .form-status {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    [data-theme="dark"] .voucher-card,
+    [data-theme="dark"] .input-wrapper {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+    }
+}
+
+/* Touch Hint */
+.touch-hint {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .touch-hint {
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Fallback for older browsers that don't support 3D transforms */
+@supports not (transform-style: preserve-3d) {
+
+    .voucher-card,
+    .voucher-amount,
+    .voucher-text,
+    .social-button,
+    .submit-button,
+    .input-wrapper {
+        transform: none !important;
+    }
+
+    .voucher-card {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    [data-theme="dark"] .voucher-card {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    }
+}
+
+.voucher-form {
+    margin-top: 2rem;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.form-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    transform-style: preserve-3d;
+}
+
+.form-status {
+    margin-top: 1rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    height: 0;
+    overflow: hidden;
+    transform: translateZ(10px);
+}
+
+.form-status.visible {
+    opacity: 1;
+    height: auto;
+}
+
+.form-status.success {
+    color: #10b981;
+}
+
+.form-status.error {
+    color: var(--color-orange-400);
+}
+
+/* Стилі для футера, щоб прибрати верхній відступ */
+.footer {
+    margin-top: 0 !important;
+}
+
+/* === Mobile Background Adjustment (Direct Override) === */
+@media (max-width: 768px) {
+
+    /* Light theme mobile background */
+    html:not([data-theme="dark"]) .promin-landing-page {
+        background-color: #FFF9F0 !important;
+        /* Дуже світлий пісочно-білий */
+    }
+
+    html:not([data-theme="dark"]) .gradient-overlay {
+        background: radial-gradient(circle at center, transparent 0%, #FFF9F0 70%) !important;
+    }
+
+    /* Dark theme mobile background */
+    html[data-theme="dark"] .promin-landing-page {
+        background-color: #2A2A2A !important;
+        /* Світліший темний */
+    }
+
+    html[data-theme="dark"] .gradient-overlay {
+        background: radial-gradient(circle at center, transparent 0%, #2A2A2A 70%) !important;
+    }
+}
