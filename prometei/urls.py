@@ -26,7 +26,9 @@ from .views import (
     api_create_landing_page_from_template,
     api_list_landing_page_templates,
     # New PROmin landing page view
-    ProminLandingPageView
+    ProminLandingPageView,
+    # Course payment view
+    create_course_payment_link
 )
 
 app_name = 'prometei' # Додаємо неймспейс для уникнення конфліктів імен URL
@@ -57,6 +59,7 @@ urlpatterns = [
     
     # Course Landing
     path('course/', CoursePageView.as_view(), name='course'),
+    path('course/create-payment-link/', create_course_payment_link, name='create_course_payment_link'),
 
     # Юридичні сторінки
     path('privacy_policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),

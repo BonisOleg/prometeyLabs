@@ -135,7 +135,10 @@
                         <div class="plan-price-old">14 999 грн</div>
                         <div class="plan-price-new">11 249 грн</div>
                     </div>
-                    <a href="#contact" class="btn btn-primary btn-full">Оплатити курс</a>
+                    <button type="button" class="btn btn-primary btn-full payment-btn" data-package="full"
+                        data-price="11249" data-title="Повний курс">
+                        Оплатити курс
+                    </button>
                 </div>
 
                 <!-- Starter Plan -->
@@ -152,7 +155,10 @@
                     <div class="plan-pricing">
                         <div class="plan-price-new">3 999 грн</div>
                     </div>
-                    <a href="#contact" class="btn btn-outline btn-full">Спробувати</a>
+                    <button type="button" class="btn btn-outline btn-full payment-btn" data-package="starter"
+                        data-price="3999" data-title="Стартовий пакет">
+                        Спробувати
+                    </button>
                 </div>
 
                 <!-- Premium Plan -->
@@ -171,7 +177,10 @@
                         <div class="plan-price-new">13 999 грн</div>
                         <div class="plan-note">розширені можливості</div>
                     </div>
-                    <a href="#contact" class="btn btn-secondary btn-full">Обрати преміум</a>
+                    <button type="button" class="btn btn-secondary btn-full payment-btn" data-package="premium"
+                        data-price="13999" data-title="Преміум-пакет">
+                        Обрати преміум
+                    </button>
                 </div>
             </div>
         </div>
@@ -367,8 +376,47 @@
         </div>
     </section>
 
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Залишити заявку на курс</h2>
+            <div class="contact-form-container">
+                <form id="courseForm" method="post" class="contact-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.name }}
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.contact_method }}
+                        <div class="error-message" id="contact-error"></div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.course_package }}
+                        <div class="error-message" id="package-error"></div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.course_experience }}
+                        <div class="error-message" id="experience-error"></div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.message }}
+                        <div class="error-message" id="message-error"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Надіслати заявку</button>
+                </form>
+                <div id="form-success" class="success-message" style="display: none;">
+                    Дякуємо за вашу заявку! Ми зв'яжемося з вами найближчим часом.
+                </div>
+                <div id="form-error" class="error-message" style="display: none;">
+                    Виникла помилка при відправці форми. Будь ласка, спробуйте пізніше.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
@@ -399,6 +447,39 @@
             </div>
         </div>
     </footer>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="payment-modal" style="display: none;">
+        <div class="payment-modal-content">
+            <div class="payment-modal-header">
+                <h3>Оформлення замовлення</h3>
+                <button type="button" class="payment-modal-close">&times;</button>
+            </div>
+            <div class="payment-modal-body">
+                <div class="selected-package">
+                    <h4 id="modalPackageTitle"></h4>
+                    <p class="package-price" id="modalPackagePrice"></p>
+                </div>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="clientName">Ваше ім'я *</label>
+                        <input type="text" id="clientName" name="client_name" required placeholder="Введіть ваше ім'я">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail">Email (опціонально)</label>
+                        <input type="email" id="clientEmail" name="client_email" placeholder="example@email.com">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelPayment">Скасувати</button>
+                        <button type="submit" class="btn btn-primary" id="confirmPayment">Перейти до оплати</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CSRF Token for AJAX -->
+    {% csrf_token %}
 
     <!-- Scripts -->
     <script src="{% static 'prometei/js/course.js' %}"></script>

@@ -38,7 +38,8 @@ from .models import (
     LandingPageTemplate
 )
 from .email_service import EmailService
-from .forms import ContactForm, BuilderRequestForm, ProminRequestForm # Existing forms
+from .forms import ContactForm, BuilderRequestForm, ProminRequestForm, CourseRequestForm # Existing forms
+from payment.models import PaymentLink  # Додаємо імпорт для платіжних посилань
 from .landing_page_generator import (
     create_landing_page, 
     update_landing_page,
@@ -294,8 +295,86 @@ class ProminPageView(FormView):
 class DreamSitePageView(TemplateView):
     template_name = 'prometei/dream_site.html'
 
-class CoursePageView(TemplateView):
+class CoursePageView(FormView):
     template_name = 'prometei/course.html'
+    form_class = CourseRequestForm
+    success_url = reverse_lazy('prometei:course')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.get_form()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            try:
+                data = json.loads(request.body)
+                form = self.get_form_class()(data)
+                if form.is_valid():
+                    return self.form_valid(form)
+                else:
+                    return JsonResponse({
+                        'success': False,
+                        'message': _("Будь ласка, перевірте введені дані."),
+                        'errors': form.errors
+                    }, status=400)
+            except json.JSONDecodeError:
+                return JsonResponse({'success': False, 'message': _("Помилка формату запиту.")}, status=400)
+            except Exception as e:
+                logger.error(f"Unexpected error in CoursePageView POST: {str(e)}")
+                return JsonResponse({'success': False, 'message': _("Внутрішня помилка сервера.")}, status=500)
+        else:
+            return super().post(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        is_ajax = self.request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        
+        try:
+            contact_request = form.save()
+            
+            # Відправляємо email повідомлення
+            EmailService.send_contact_email(contact_request)
+            EmailService.send_confirmation_to_user(contact_request)
+            
+            if is_ajax:
+                return JsonResponse({
+                    'success': True,
+                    'message': _("Дякуємо за вашу заявку! Ми зв'яжемося з вами найближчим часом.")
+                })
+            else:
+                messages.success(
+                    self.request,
+                    _("Дякуємо за вашу заявку! Ми зв'яжемося з вами найближчим часом.")
+                )
+                return super().form_valid(form)
+                
+        except Exception as e:
+            logger.error(f"Error processing course request form: {str(e)}")
+            if is_ajax:
+                return JsonResponse({
+                    'success': False,
+                    'message': _("Виникла помилка при обробці заявки. Будь ласка, спробуйте пізніше.")
+                }, status=500)
+            else:
+                messages.error(
+                    self.request,
+                    _("Виникла помилка при обробці заявки. Будь ласка, спробуйте пізніше.")
+                )
+                return self.form_invalid(form)
+    
+    def form_invalid(self, form):
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': False,
+                'message': _("Будь ласка, перевірте введені дані."),
+                'errors': form.errors
+            }, status=400)
+        else:
+            messages.error(
+                self.request,
+                _("Будь ласка, перевірте правильність заповнення форми.")
+            )
+            return super().form_invalid(form)
     
     def post(self, request, *args, **kwargs):
         logger.info("DreamSitePageView POST method called")
@@ -1058,3 +1137,88 @@ def api_list_landing_page_templates(request):
     except Exception as e:
         logger.error(f"Error in api_list_landing_page_templates: {str(e)}", exc_info=True)
         return JsonResponse({'status': 'error', 'message': f'Server error: {str(e)}'}, status=500)
+
+
+@csrf_protect
+@require_POST
+def create_course_payment_link(request):
+    """
+    Створює платіжне посилання для курсу
+    POST /course/create-payment-link/
+    """
+    try:
+        # Отримуємо дані з POST запиту
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            data = json.loads(request.body)
+        else:
+            data = request.POST
+        
+        package_type = data.get('package_type')
+        client_name = data.get('client_name', 'Анонім')
+        client_email = data.get('client_email', '')
+        
+        # Мапінг пакетів до цін та описів
+        course_packages = {
+            'starter': {
+                'price_uah': 3999,
+                'price_usd': 95,  # Приблизно за курсом 42
+                'title': 'Стартовий пакет',
+                'description': 'Стартовий пакет курсу "Нейро-старт в IT": перші 3 уроки з наставником 24/7. Можна доплатити до повного курсу.'
+            },
+            'full': {
+                'price_uah': 11249,
+                'price_usd': 268,  # Приблизно за курсом 42
+                'title': 'Повний курс',
+                'description': 'Повний курс "Нейро-старт в IT": всі уроки + створення інтернет-магазину + наставник 24/7 + кейс у портфоліо.'
+            },
+            'premium': {
+                'price_uah': 13999,
+                'price_usd': 333,  # Приблизно за курсом 42
+                'title': 'Преміум-пакет',
+                'description': 'Преміум-пакет курсу "Нейро-старт в IT": повний курс + персональний супровід + AI-гайди та шаблони + персональний аналіз проєкту.'
+            }
+        }
+        
+        if package_type not in course_packages:
+            return JsonResponse({
+                'success': False,
+                'message': 'Невірний тип пакету курсу'
+            }, status=400)
+        
+        package_info = course_packages[package_type]
+        
+        # Поточний курс USD/UAH (можна винести в налаштування)
+        current_exchange_rate = 42.0
+        
+        # Створюємо платіжне посилання
+        payment_link = PaymentLink.objects.create(
+            client_name=client_name,
+            client_email=client_email if client_email else None,
+            amount_usd=package_info['price_usd'],
+            exchange_rate_usd_to_uah=current_exchange_rate,
+            description=package_info['description'],
+            duration_minutes=1440  # 24 години
+        )
+        
+        logger.info(f"Created course payment link {payment_link.unique_id} for package '{package_type}' - {package_info['title']}")
+        
+        return JsonResponse({
+            'success': True,
+            'payment_url': payment_link.get_absolute_url(),
+            'package_title': package_info['title'],
+            'amount_usd': package_info['price_usd'],
+            'amount_uah': float(payment_link.final_amount_uah)
+        })
+        
+    except json.JSONDecodeError:
+        logger.error("Invalid JSON in course payment link request")
+        return JsonResponse({
+            'success': False,
+            'message': 'Невірний формат запиту'
+        }, status=400)
+    except Exception as e:
+        logger.error(f"Error creating course payment link: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'message': 'Внутрішня помилка сервера'
+        }, status=500)

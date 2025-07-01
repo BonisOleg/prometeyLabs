@@ -1,0 +1,16 @@
+{% extends "email/base_email.html" %}
+
+{% block content %}
+<h2>Нова заявка на курс</h2>
+
+<p><strong>Імʼя:</strong> {{ contact_request.name }}</p>
+<p><strong>Контакт:</strong> {{ contact_request.contact_method }}</p>
+
+<div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+    {{ contact_request.message|linebreaks }}
+</div>
+
+<p style="color: #666; font-size: 14px;">
+    Заявка надійшла: {{ contact_request.created_at|date:"d.m.Y H:i" }}
+</p>
+{% endblock %}
