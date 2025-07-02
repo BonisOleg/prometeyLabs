@@ -1,23 +1,43 @@
 {% load static tz %}
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     <title>Оплата замовлення | PrometeyLabs</title>
-    <meta name="page-version" content="v1.5.3">
-    
-    <!-- Google Fonts -->
+    <meta name="page-version" content="v1.5.4-mobile-optimized">
+
+    <!-- iOS Safari оптимізації -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="PrometeyLabs">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="date=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="msapplication-TileColor" content="#ff6d00">
+    <meta name="theme-color" content="#ff6d00">
+
+    <!-- Performance -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <!-- Google Fonts з DNS prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Стилі -->
     <link rel="stylesheet" href="{% static 'payment/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'payment/css/green_styles.css' %}">
     {% include "payment/includes/currency_styles.html" %}
     {% include "payment/direct_styles.html" %}
 </head>
+
 <body>
     <div class="container">
         <div class="logo">
@@ -27,42 +47,44 @@
         <h1>Деталі вашого замовлення</h1>
 
         {% if expires_at_iso %}
-            <div id="countdown-timer">Часу на оплату залишилось: <span id="timer"></span></div>
+        <div id="countdown-timer">Часу на оплату залишилось: <span id="timer"></span></div>
         {% endif %}
 
         <div class="info-section payment-details">
             <h2>Інформація про платіж</h2>
             <p><strong>Опис:</strong> {{ payment_link.description }}</p>
-            
+
             {% include "payment/includes/currency_display.html" with payment_link=payment_link %}
-            
+
             <p>
-                <strong>Статус:</strong> 
+                <strong>Статус:</strong>
                 {% if payment_link.status == 'pending' %}
-                    <span class="status-badge status-pending">{{ payment_link.get_status_display }}</span>
+                <span class="status-badge status-pending">{{ payment_link.get_status_display }}</span>
                 {% elif payment_link.status == 'paid' %}
-                    <span class="status-badge status-paid">{{ payment_link.get_status_display }}</span>
+                <span class="status-badge status-paid">{{ payment_link.get_status_display }}</span>
                 {% elif payment_link.status == 'expired' %}
-                    <span class="status-badge status-expired">{{ payment_link.get_status_display }}</span>
+                <span class="status-badge status-expired">{{ payment_link.get_status_display }}</span>
                 {% elif payment_link.status == 'deactivated' %}
-                    <span class="status-badge status-cancelled">{{ payment_link.get_status_display }}</span>
+                <span class="status-badge status-cancelled">{{ payment_link.get_status_display }}</span>
                 {% else %}
-                    <span class="status-badge">{{ payment_link.get_status_display }}</span>
+                <span class="status-badge">{{ payment_link.get_status_display }}</span>
                 {% endif %}
             </p>
             {% if payment_link.expires_at %}
             <p>
-                <strong>Дійсне до:</strong> 
-                <span class="expires-date">{{ payment_link.expires_at|timezone:"Europe/Kyiv"|date:"d.m.Y" }}</span> 
+                <strong>Дійсне до:</strong>
+                <span class="expires-date">{{ payment_link.expires_at|timezone:"Europe/Kyiv"|date:"d.m.Y" }}</span>
                 <span class="expires-time">{{ payment_link.expires_at|timezone:"Europe/Kyiv"|date:"H:i" }}</span>
                 <span class="expires-timezone">(Київ, Україна)</span>
             </p>
             {% endif %}
-            
+
             <div class="payment-cta">
                 <button class="button button-primary scroll-to-payment green-button" id="scrollToPaymentBtn">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z" fill="currentColor"/>
+                        <path
+                            d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z"
+                            fill="currentColor" />
                     </svg>
                     Оплатити
                 </button>
@@ -72,28 +94,33 @@
         <div class="info-section company-info">
             <h2>Інформація про компанію</h2>
             <div class="company-description">
-                <p>PrometeyLabs — це українська ІТ-компанія, що спеціалізується на швидкій розробці вебпродуктів, автоматизації процесів, інтеграції ШІ та чат-ботів. Ми працюємо швидко, без зайвих витрат та з фокусом на якість.</p>
-                
+                <p>PrometeyLabs — це українська ІТ-компанія, що спеціалізується на швидкій розробці вебпродуктів,
+                    автоматизації процесів, інтеграції ШІ та чат-ботів. Ми працюємо швидко, без зайвих витрат та з
+                    фокусом на якість.</p>
+
                 <div class="company-website">
                     <a href="https://prometeylabs.com" target="_blank" class="website-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM18.92 8H15.97C15.65 6.75 15.19 5.55 14.59 4.44C16.43 5.07 17.96 6.35 18.92 8ZM12 4.04C12.83 5.24 13.48 6.57 13.91 8H10.09C10.52 6.57 11.17 5.24 12 4.04ZM4.26 14C4.1 13.36 4 12.69 4 12C4 11.31 4.1 10.64 4.26 10H7.64C7.56 10.66 7.5 11.32 7.5 12C7.5 12.68 7.56 13.34 7.64 14H4.26ZM5.08 16H8.03C8.35 17.25 8.81 18.45 9.41 19.56C7.57 18.93 6.04 17.66 5.08 16ZM8.03 8H5.08C6.04 6.34 7.57 5.07 9.41 4.44C8.81 5.55 8.35 6.75 8.03 8ZM12 19.96C11.17 18.76 10.52 17.43 10.09 16H13.91C13.48 17.43 12.83 18.76 12 19.96ZM14.34 14H9.66C9.57 13.34 9.5 12.68 9.5 12C9.5 11.32 9.57 10.65 9.66 10H14.34C14.43 10.65 14.5 11.32 14.5 12C14.5 12.68 14.43 13.34 14.34 14ZM14.59 19.56C15.19 18.45 15.65 17.25 15.97 16H18.92C17.96 17.65 16.43 18.93 14.59 19.56ZM16.36 14C16.44 13.34 16.5 12.68 16.5 12C16.5 11.32 16.44 10.66 16.36 10H19.74C19.9 10.64 20 11.31 20 12C20 12.69 19.9 13.36 19.74 14H16.36Z" fill="currentColor"/>
+                            <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM18.92 8H15.97C15.65 6.75 15.19 5.55 14.59 4.44C16.43 5.07 17.96 6.35 18.92 8ZM12 4.04C12.83 5.24 13.48 6.57 13.91 8H10.09C10.52 6.57 11.17 5.24 12 4.04ZM4.26 14C4.1 13.36 4 12.69 4 12C4 11.31 4.1 10.64 4.26 10H7.64C7.56 10.66 7.5 11.32 7.5 12C7.5 12.68 7.56 13.34 7.64 14H4.26ZM5.08 16H8.03C8.35 17.25 8.81 18.45 9.41 19.56C7.57 18.93 6.04 17.66 5.08 16ZM8.03 8H5.08C6.04 6.34 7.57 5.07 9.41 4.44C8.81 5.55 8.35 6.75 8.03 8ZM12 19.96C11.17 18.76 10.52 17.43 10.09 16H13.91C13.48 17.43 12.83 18.76 12 19.96ZM14.34 14H9.66C9.57 13.34 9.5 12.68 9.5 12C9.5 11.32 9.57 10.65 9.66 10H14.34C14.43 10.65 14.5 11.32 14.5 12C14.5 12.68 14.43 13.34 14.34 14ZM14.59 19.56C15.19 18.45 15.65 17.25 15.97 16H18.92C17.96 17.65 16.43 18.93 14.59 19.56ZM16.36 14C16.44 13.34 16.5 12.68 16.5 12C16.5 11.32 16.44 10.66 16.36 10H19.74C19.9 10.64 20 11.31 20 12C20 12.69 19.9 13.36 19.74 14H16.36Z"
+                                fill="currentColor" />
                         </svg>
                         prometeylabs.com
                     </a>
                 </div>
-                
+
                 <div class="toggle-btn-wrapper">
                     <button class="toggle-details-btn" id="companyDetailsBtn">Детальніше</button>
                 </div>
-                
+
                 <div class="company-details" id="companyDetails">
                     <p><strong>Основні напрямки:</strong><br>
-                    Розробка сайтів та платформ<br>
-                    AI-аватари, чат-боти, телеграм-боти<br>
-                    E-commerce рішення</p>
-                    
-                    <p class="company-legal-info">ФОП Дмитренко Софія Дмитрівна, зареєстровано в Україні, платник єдиного податку 3 групи.</p>
+                        Розробка сайтів та платформ<br>
+                        AI-аватари, чат-боти, телеграм-боти<br>
+                        E-commerce рішення</p>
+
+                    <p class="company-legal-info">ФОП Дмитренко Софія Дмитрівна, зареєстровано в Україні, платник
+                        єдиного податку 3 групи.</p>
                 </div>
             </div>
         </div>
@@ -102,11 +129,11 @@
             <h2>💡 Як оплатити</h2>
             <div class="payment-instructions-description">
                 <p>Оберіть зручний спосіб оплати з двох доступних варіантів.</p>
-                
+
                 <div class="toggle-btn-wrapper">
                     <button class="toggle-details-btn" id="paymentInstructionsBtn">Детальні інструкції</button>
                 </div>
-                
+
                 <div class="payment-instructions-details" id="paymentInstructionsDetails">
                     <div class="payment-methods-guide">
                         <div class="payment-method-option">
@@ -121,7 +148,7 @@
                             </ol>
                             <p class="method-note">✅ Миттєве зарахування • 🔒 Безпечно • 💳 Будь-яка картка</p>
                         </div>
-                        
+
                         <div class="payment-method-option">
                             <h3>🏦 Банківський переказ</h3>
                             <ol>
@@ -132,13 +159,15 @@
                                 <li>Вкажіть точну суму та призначення платежу</li>
                                 <li>Надішліть квитанцію в Telegram або на email</li>
                             </ol>
-                            <p class="method-note">⏰ До 24 годин • 📋 Копіювання одним кліком • 🧾 Надішліть квитанцію</p>
+                            <p class="method-note">⏰ До 24 годин • 📋 Копіювання одним кліком • 🧾 Надішліть квитанцію
+                            </p>
                         </div>
-                        
+
                         <div class="important-notes">
                             <h4>❗ Важливо:</h4>
                             <ul>
-                                <li>Для ФОП та юридичних осіб обов'язково вказуйте правильне <strong>призначення платежу</strong></li>
+                                <li>Для ФОП та юридичних осіб обов'язково вказуйте правильне <strong>призначення
+                                        платежу</strong></li>
                                 <li>При банківському переказі надішліть квитанцію для швидшого зарахування</li>
                                 <li>Після оплати ви отримаєте підтвердження на email</li>
                             </ul>
@@ -147,73 +176,73 @@
                 </div>
             </div>
         </div>
-        
+
         <style>
-        .payment-methods-guide {
-            margin-top: 16px;
-        }
-        
-        .payment-method-option {
-            background: #f8f9fa;
-            border-left: 4px solid #4CAF50;
-            padding: 16px;
-            margin-bottom: 16px;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .payment-method-option h3 {
-            color: #2e7d32;
-            margin: 0 0 12px 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .payment-method-option ol {
-            margin: 0 0 12px 0;
-            padding-left: 20px;
-        }
-        
-        .payment-method-option li {
-            margin-bottom: 6px;
-            color: #333;
-            line-height: 1.4;
-        }
-        
-        .method-note {
-            margin: 0;
-            font-size: 12px;
-            color: #4CAF50;
-            font-weight: 500;
-            padding: 8px 12px;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 4px;
-        }
-        
-        .important-notes {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid #ffc107;
-            padding: 16px;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .important-notes h4 {
-            color: #e65100;
-            margin: 0 0 8px 0;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .important-notes ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        
-        .important-notes li {
-            margin-bottom: 4px;
-            color: #333;
-            font-size: 13px;
-            line-height: 1.4;
-        }
+            .payment-methods-guide {
+                margin-top: 16px;
+            }
+
+            .payment-method-option {
+                background: #f8f9fa;
+                border-left: 4px solid #4CAF50;
+                padding: 16px;
+                margin-bottom: 16px;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .payment-method-option h3 {
+                color: #2e7d32;
+                margin: 0 0 12px 0;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .payment-method-option ol {
+                margin: 0 0 12px 0;
+                padding-left: 20px;
+            }
+
+            .payment-method-option li {
+                margin-bottom: 6px;
+                color: #333;
+                line-height: 1.4;
+            }
+
+            .method-note {
+                margin: 0;
+                font-size: 12px;
+                color: #4CAF50;
+                font-weight: 500;
+                padding: 8px 12px;
+                background: rgba(76, 175, 80, 0.1);
+                border-radius: 4px;
+            }
+
+            .important-notes {
+                background: rgba(255, 193, 7, 0.1);
+                border-left: 4px solid #ffc107;
+                padding: 16px;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .important-notes h4 {
+                color: #e65100;
+                margin: 0 0 8px 0;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .important-notes ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+
+            .important-notes li {
+                margin-bottom: 4px;
+                color: #333;
+                font-size: 13px;
+                line-height: 1.4;
+            }
         </style>
 
         {% if payment_settings.default_contract_file %}
@@ -221,29 +250,33 @@
             <h2>{{ payment_settings.contract_title }}</h2>
             <p>{{ payment_settings.contract_description }}</p>
             <p><b>Якщо у вас виникли питання щодо умов договору, зв'яжіться з нами до здійснення оплати.</b></p>
-            
+
             <div class="contact-info">
                 <p><strong>Контакти для звернень</strong></p>
                 <p>З усіх питань, пов'язаних з оплатою, прохання звертатися на електронну адресу:</p>
                 <p><a href="mailto:prometeylabs@gmail.com" class="contact-email">prometeylabs@gmail.com</a></p>
                 <p>або</p>
                 <p><a href="https://t.me/PrometeyLabs" target="_blank" class="telegram-button">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
-                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.15 11.34 9.24 13.39C8.78 13.71 8.37 13.86 8 13.85C7.58 13.84 6.79 13.62 6.2 13.43C5.47 13.21 4.89 13.09 4.95 12.7C4.98 12.5 5.27 12.29 5.82 12.09C8.94 10.67 11.07 9.72 12.21 9.22C15.33 7.8 16.13 7.54 16.64 7.54C16.75 7.54 16.99 7.57 17.15 7.7C17.29 7.82 17.32 7.97 17.33 8.08C17.33 8.17 17.35 8.44 17.34 8.67L16.64 8.8Z" fill="currentColor"/>
-                    </svg>
-                    Telegram
-                </a></p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="vertical-align: middle; margin-right: 8px;">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.15 11.34 9.24 13.39C8.78 13.71 8.37 13.86 8 13.85C7.58 13.84 6.79 13.62 6.2 13.43C5.47 13.21 4.89 13.09 4.95 12.7C4.98 12.5 5.27 12.29 5.82 12.09C8.94 10.67 11.07 9.72 12.21 9.22C15.33 7.8 16.13 7.54 16.64 7.54C16.75 7.54 16.99 7.57 17.15 7.7C17.29 7.82 17.32 7.97 17.33 8.08C17.33 8.17 17.35 8.44 17.34 8.67L16.64 8.8Z"
+                                fill="currentColor" />
+                        </svg>
+                        Telegram
+                    </a></p>
             </div>
-            
+
             <div class="download-btn-wrapper">
-                <a href="{{ payment_settings.default_contract_file.url }}" target="_blank" class="button button-secondary download-contract-btn">Завантажити договір (PDF)</a>
+                <a href="{{ payment_settings.default_contract_file.url }}" target="_blank"
+                    class="button button-secondary download-contract-btn">Завантажити договір (PDF)</a>
             </div>
         </div>
         {% endif %}
 
         <div class="info-section payment-form">
             <h2>Форма оплати</h2>
-            
+
             <!-- Сума до сплати -->
             {% if payment_link.amount_usd and payment_link.exchange_rate_usd_to_uah and payment_link.final_amount_uah %}
             <div class="payment-summary-modern">
@@ -257,7 +290,8 @@
                     <div class="exchange-details">
                         <div class="exchange-row">
                             <span class="usd-amount">${{ payment_link.amount_usd|floatformat:2 }}</span>
-                            <span class="exchange-rate">× {{ payment_link.exchange_rate_usd_to_uah|floatformat:2 }}</span>
+                            <span class="exchange-rate">× {{ payment_link.exchange_rate_usd_to_uah|floatformat:2
+                                }}</span>
                             <span class="equals">=</span>
                             <span class="uah-result">{{ payment_link.final_amount_uah|floatformat:2 }} ₴</span>
                         </div>
@@ -265,118 +299,123 @@
                     </div>
                 </div>
             </div>
-            
+
             <style>
-            /* Unified Payment Styles */
-            .payment-section {
-                background: #fff;
-                border: 1px solid #e9ecef;
-                border-radius: 12px;
-                padding: 20px;
-                margin-bottom: 20px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            }
-            
-            .payment-summary-modern {
-                margin-bottom: 20px;
-            }
-            
-            .payment-amount-card {
-                background: #f8f9fa;
-                border: 2px solid #4CAF50;
-                border-radius: 12px;
-                padding: 24px;
-                text-align: center;
-            }
-            
-            .amount-header {
-                margin-bottom: 12px;
-            }
-            
-            .amount-label {
-                font-size: 14px;
-                font-weight: 600;
-                color: #4CAF50;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-            
-            .amount-main {
-                margin-bottom: 16px;
-            }
-            
-            .final-amount {
-                font-size: 36px;
-                font-weight: 800;
-                color: #2e7d32;
-                display: block;
-                line-height: 1;
-            }
-            
-            .exchange-details {
-                background: rgba(76, 175, 80, 0.1);
-                border-radius: 8px;
-                padding: 12px;
-                margin-top: 12px;
-            }
-            
-            .exchange-row {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                font-family: monospace;
-                font-size: 14px;
-                margin-bottom: 4px;
-                color: #2e7d32;
-            }
-            
-            .usd-amount, .uah-result {
-                font-weight: 600;
-                color: #1b5e20;
-            }
-            
-            .exchange-rate, .equals {
-                color: #4CAF50;
-                font-weight: 500;
-            }
-            
-            .exchange-note {
-                font-size: 11px;
-                color: #4CAF50;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-            
-            @media (max-width: 480px) {
+                /* Unified Payment Styles */
+                .payment-section {
+                    background: #fff;
+                    border: 1px solid #e9ecef;
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                }
+
+                .payment-summary-modern {
+                    margin-bottom: 20px;
+                }
+
+                .payment-amount-card {
+                    background: #f8f9fa;
+                    border: 2px solid #4CAF50;
+                    border-radius: 12px;
+                    padding: 24px;
+                    text-align: center;
+                }
+
+                .amount-header {
+                    margin-bottom: 12px;
+                }
+
+                .amount-label {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #4CAF50;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+
+                .amount-main {
+                    margin-bottom: 16px;
+                }
+
                 .final-amount {
-                    font-size: 28px;
+                    font-size: 36px;
+                    font-weight: 800;
+                    color: #2e7d32;
+                    display: block;
+                    line-height: 1;
                 }
-                
+
+                .exchange-details {
+                    background: rgba(76, 175, 80, 0.1);
+                    border-radius: 8px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+
                 .exchange-row {
-                    font-size: 12px;
-                    gap: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    font-family: monospace;
+                    font-size: 14px;
+                    margin-bottom: 4px;
+                    color: #2e7d32;
                 }
-            }
+
+                .usd-amount,
+                .uah-result {
+                    font-weight: 600;
+                    color: #1b5e20;
+                }
+
+                .exchange-rate,
+                .equals {
+                    color: #4CAF50;
+                    font-weight: 500;
+                }
+
+                .exchange-note {
+                    font-size: 11px;
+                    color: #4CAF50;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+
+                @media (max-width: 480px) {
+                    .final-amount {
+                        font-size: 28px;
+                    }
+
+                    .exchange-row {
+                        font-size: 12px;
+                        gap: 6px;
+                    }
+                }
             </style>
             {% endif %}
-            
+
             <!-- Онлайн оплата через monobank -->
             <div class="online-payment-highlight">
                 <div class="payment-badge">🏆 РЕКОМЕНДОВАНО</div>
-                
+
                 <div class="online-payment-header">
                     <h3>💳 Швидка оплата онлайн</h3>
                     <p>Картками будь-якого банку • Миттєво • Безпечно</p>
                 </div>
-                
-                <form method="post" action="{% url 'payment:create_monobank_invoice' payment_link.unique_id %}" class="highlight-payment-form">
+
+                <form method="post" action="{% url 'payment:create_monobank_invoice' payment_link.unique_id %}"
+                    class="highlight-payment-form">
                     {% csrf_token %}
                     <button type="submit" name="payment_method" value="card" class="highlight-pay-button">
                         <div class="highlight-button-content">
                             <div class="button-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z" fill="currentColor"/>
+                                    <path
+                                        d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z"
+                                        fill="currentColor" />
                                 </svg>
                             </div>
                             <div class="button-text">
@@ -387,419 +426,433 @@
                         </div>
                     </button>
                 </form>
-                
+
                 <div class="payment-features">
                     <div class="feature">✨ Без комісії</div>
                     <div class="feature">🔐 3D Secure</div>
                     <div class="feature">⚡ Миттєво</div>
                 </div>
-                
+
                 <div class="mono-branding">
                     <span>Powered by <strong>monobank</strong></span>
                 </div>
             </div>
-            
+
             <style>
-            .online-payment-highlight {
-                background: linear-gradient(135deg, rgba(76, 175, 80, 0.8) 0%, rgba(69, 160, 73, 0.75) 50%, rgba(56, 142, 60, 0.7) 100%);
-                border-radius: 16px;
-                padding: 24px;
-                margin-bottom: 24px;
-                color: white;
-                position: relative;
-                box-shadow: 0 8px 24px rgba(76, 175, 80, 0.25);
-                border: 2px solid rgba(255, 255, 255, 0.3);
-                backdrop-filter: blur(10px);
-            }
-            
-            .payment-badge {
-                position: absolute;
-                top: -8px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: #ff6f00;
-                color: white;
-                padding: 4px 12px;
-                border-radius: 12px;
-                font-size: 11px;
-                font-weight: 700;
-                letter-spacing: 0.5px;
-                box-shadow: 0 2px 8px rgba(255, 111, 0, 0.4);
-            }
-            
-            .online-payment-highlight .online-payment-header {
-                text-align: center;
-                margin-bottom: 20px;
-                margin-top: 8px;
-            }
-            
-            .online-payment-highlight h3 {
-                margin: 0 0 8px 0;
-                font-size: 22px;
-                font-weight: 700;
-                color: white;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            }
-            
-            .online-payment-highlight p {
-                margin: 0;
-                font-size: 14px;
-                color: rgba(255, 255, 255, 0.98);
-                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-            }
-            
-            .highlight-pay-button {
-                width: 100%;
-                background: white;
-                color: #2e7d32;
-                border: none;
-                border-radius: 12px;
-                padding: 20px;
-                font-family: inherit;
-                font-size: 18px;
-                font-weight: 700;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                margin-bottom: 16px;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            }
-            
-            .highlight-pay-button:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-                background: #f8f9fa;
-            }
-            
-            .highlight-button-content {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-            
-            .button-icon {
-                color: #4CAF50;
-            }
-            
-            .button-text {
-                flex: 1;
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                gap: 4px;
-            }
-            
-            .button-main {
-                font-size: 18px;
-                font-weight: 700;
-                color: #2e7d32;
-            }
-            
-            .button-amount {
-                font-size: 24px;
-                font-weight: 800;
-                color: #4CAF50;
-            }
-            
-            .button-arrow {
-                font-size: 20px;
-                font-weight: bold;
-                color: #4CAF50;
-            }
-            
-            .payment-features {
-                display: flex;
-                justify-content: center;
-                gap: 16px;
-                margin-bottom: 12px;
-            }
-            
-            .feature {
-                font-size: 12px;
-                color: rgba(255, 255, 255, 0.98);
-                font-weight: 500;
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-            }
-            
-            .mono-branding {
-                text-align: center;
-                font-size: 11px;
-                color: rgba(255, 255, 255, 0.7);
-                font-style: italic;
-            }
-            
-            @media (max-width: 480px) {
                 .online-payment-highlight {
-                    padding: 20px 16px;
-                    margin-bottom: 20px;
+                    background: linear-gradient(135deg, rgba(76, 175, 80, 0.8) 0%, rgba(69, 160, 73, 0.75) 50%, rgba(56, 142, 60, 0.7) 100%);
+                    border-radius: 16px;
+                    padding: 24px;
+                    margin-bottom: 24px;
+                    color: white;
+                    position: relative;
+                    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.25);
+                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    backdrop-filter: blur(10px);
                 }
-                
-                .online-payment-highlight h3 {
-                    font-size: 20px;
+
+                .payment-badge {
+                    position: absolute;
+                    top: -8px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: #ff6f00;
+                    color: white;
+                    padding: 4px 12px;
+                    border-radius: 12px;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                    box-shadow: 0 2px 8px rgba(255, 111, 0, 0.4);
                 }
-                
-                .highlight-pay-button {
-                    padding: 16px;
-                }
-                
-                .button-main {
-                    font-size: 16px;
-                }
-                
-                .button-amount {
-                    font-size: 20px;
-                }
-                
-                .payment-features {
-                    flex-direction: column;
-                    gap: 8px;
+
+                .online-payment-highlight .online-payment-header {
                     text-align: center;
+                    margin-bottom: 20px;
+                    margin-top: 8px;
                 }
-            }
-            </style>
-            
-            <style>
-            .primary-pay-button {
-                width: 100%;
-                background: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 8px;
-                padding: 16px 20px;
-                font-family: inherit;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.2s ease;
-            }
-            
-            .primary-pay-button:hover {
-                background: #45a049;
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-            }
-            
-            .pay-button-content {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .button-left {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .pay-amount {
-                font-size: 18px;
-                font-weight: 700;
-                color: #fff;
-            }
-            
-            @media (max-width: 480px) {
-                .online-payment-section {
-                    padding: 16px;
+
+                .online-payment-highlight h3 {
+                    margin: 0 0 8px 0;
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: white;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
                 }
-                
-                .security-info {
+
+                .online-payment-highlight p {
+                    margin: 0;
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, 0.98);
+                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+                }
+
+                .highlight-pay-button {
+                    width: 100%;
+                    background: white;
+                    color: #2e7d32;
+                    border: none;
+                    border-radius: 12px;
+                    padding: 20px;
+                    font-family: inherit;
+                    font-size: 18px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    margin-bottom: 16px;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+                }
+
+                .highlight-pay-button:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+                    background: #f8f9fa;
+                }
+
+                .highlight-button-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+                .button-icon {
+                    color: #4CAF50;
+                }
+
+                .button-text {
+                    flex: 1;
+                    text-align: center;
+                    display: flex;
                     flex-direction: column;
                     gap: 4px;
                 }
-                
-                .pay-button-content {
-                    flex-direction: column;
-                    gap: 8px;
-                    text-align: center;
+
+                .button-main {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #2e7d32;
                 }
-                
-                .pay-amount {
+
+                .button-amount {
+                    font-size: 24px;
+                    font-weight: 800;
+                    color: #4CAF50;
+                }
+
+                .button-arrow {
                     font-size: 20px;
+                    font-weight: bold;
+                    color: #4CAF50;
                 }
-            }
+
+                .payment-features {
+                    display: flex;
+                    justify-content: center;
+                    gap: 16px;
+                    margin-bottom: 12px;
+                }
+
+                .feature {
+                    font-size: 12px;
+                    color: rgba(255, 255, 255, 0.98);
+                    font-weight: 500;
+                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                }
+
+                .mono-branding {
+                    text-align: center;
+                    font-size: 11px;
+                    color: rgba(255, 255, 255, 0.7);
+                    font-style: italic;
+                }
+
+                @media (max-width: 480px) {
+                    .online-payment-highlight {
+                        padding: 20px 16px;
+                        margin-bottom: 20px;
+                    }
+
+                    .online-payment-highlight h3 {
+                        font-size: 20px;
+                    }
+
+                    .highlight-pay-button {
+                        padding: 16px;
+                    }
+
+                    .button-main {
+                        font-size: 16px;
+                    }
+
+                    .button-amount {
+                        font-size: 20px;
+                    }
+
+                    .payment-features {
+                        flex-direction: column;
+                        gap: 8px;
+                        text-align: center;
+                    }
+                }
             </style>
-            
+
+            <style>
+                .primary-pay-button {
+                    width: 100%;
+                    background: #4CAF50;
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 16px 20px;
+                    font-family: inherit;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                }
+
+                .primary-pay-button:hover {
+                    background: #45a049;
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+                }
+
+                .pay-button-content {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .button-left {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .pay-amount {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #fff;
+                }
+
+                @media (max-width: 480px) {
+                    .online-payment-section {
+                        padding: 16px;
+                    }
+
+                    .security-info {
+                        flex-direction: column;
+                        gap: 4px;
+                    }
+
+                    .pay-button-content {
+                        flex-direction: column;
+                        gap: 8px;
+                        text-align: center;
+                    }
+
+                    .pay-amount {
+                        font-size: 20px;
+                    }
+                }
+            </style>
+
             <!-- Реквізити для банківського переказу -->
             <div class="payment-section">
-                <h3 style="color: #2e7d32; margin: 0 0 16px 0; font-size: 18px; text-align: center;">🏦 Банківський переказ</h3>
-                
+                <h3 style="color: #2e7d32; margin: 0 0 16px 0; font-size: 18px; text-align: center;">🏦 Банківський
+                    переказ</h3>
+
                 <div class="bank-transfer-compact">
                     <div class="transfer-item">
                         <span class="transfer-label">IBAN:</span>
                         <span class="transfer-value">UA633220010000026003350084660</span>
                         <button class="copy-btn-small" data-copy="UA633220010000026003350084660">copy</button>
                     </div>
-                    
+
                     <div class="transfer-item">
                         <span class="transfer-label">Отримувач:</span>
                         <span class="transfer-value">Дмитренко Софія Дмитрівна</span>
                         <button class="copy-btn-small" data-copy="Дмитренко Софія Дмитрівна">copy</button>
                     </div>
-                    
+
                     <div class="transfer-item">
                         <span class="transfer-label">ІПН:</span>
                         <span class="transfer-value">3770706565</span>
                         <button class="copy-btn-small" data-copy="3770706565">copy</button>
                     </div>
-                    
+
                     <div class="transfer-item">
                         <span class="transfer-label">Призначення:</span>
                         <span class="transfer-value">Оплата за {{ payment_link.description }}</span>
-                        <button class="copy-btn-small" data-copy="Оплата за {{ payment_link.description }}">copy</button>
+                        <button class="copy-btn-small"
+                            data-copy="Оплата за {{ payment_link.description }}">copy</button>
                     </div>
-                    
+
                     <div class="transfer-bank-info">
                         УНІВЕРСАЛ БАНК, МФО: 322001
                     </div>
                 </div>
-                
+
                 <style>
-                .bank-transfer-compact {
-                    background: rgba(76, 175, 80, 0.08);
-                    border: 1px solid rgba(76, 175, 80, 0.2);
-                    border-radius: 8px;
-                    padding: 16px;
-                    font-size: 13px;
-                }
-                
-                .transfer-item {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    margin-bottom: 12px;
-                    padding: 8px 0;
-                    border-bottom: 1px solid rgba(76, 175, 80, 0.1);
-                }
-                
-                .transfer-item:last-of-type {
-                    margin-bottom: 16px;
-                }
-                
-                .transfer-label {
-                    min-width: 90px;
-                    color: #4CAF50;
-                    font-size: 12px;
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    flex-shrink: 0;
-                }
-                
-                .transfer-value {
-                    flex: 1;
-                    font-weight: 500;
-                    word-break: break-all;
-                    font-family: monospace;
-                    color: #2e7d32;
-                    font-size: 13px;
-                }
-                
-                .copy-btn-small {
-                    background: #4CAF50;
-                    color: white;
-                    border: none;
-                    border-radius: 4px;
-                    padding: 6px 8px;
-                    cursor: pointer;
-                    font-size: 10px;
-                    flex-shrink: 0;
-                    width: 42px;
-                    height: 28px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: all 0.2s ease;
-                    font-weight: 500;
-                    text-transform: lowercase;
-                }
-                
-                .copy-btn-small:hover {
-                    background: #45a049;
-                    transform: translateY(-1px);
-                }
-                
-                .copy-btn-small.copy-success {
-                    background: #2e7d32;
-                }
-                
-                .transfer-bank-info {
-                    font-size: 11px;
-                    color: #4CAF50;
-                    text-align: center;
-                    padding-top: 12px;
-                    border-top: 1px solid rgba(76, 175, 80, 0.2);
-                    font-weight: 500;
-                }
-                
-                @media (max-width: 480px) {
                     .bank-transfer-compact {
-                        padding: 12px;
-                        font-size: 12px;
+                        background: rgba(76, 175, 80, 0.08);
+                        border: 1px solid rgba(76, 175, 80, 0.2);
+                        border-radius: 8px;
+                        padding: 16px;
+                        font-size: 13px;
                     }
-                    
+
                     .transfer-item {
-                        flex-direction: column;
-                        align-items: stretch;
-                        gap: 6px;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        margin-bottom: 12px;
                         padding: 8px 0;
-                        margin-bottom: 8px;
+                        border-bottom: 1px solid rgba(76, 175, 80, 0.1);
                     }
-                    
+
+                    .transfer-item:last-of-type {
+                        margin-bottom: 16px;
+                    }
+
                     .transfer-label {
-                        min-width: auto;
-                        margin-bottom: 2px;
-                        font-size: 11px;
+                        min-width: 90px;
+                        color: #4CAF50;
+                        font-size: 12px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        flex-shrink: 0;
                     }
-                    
+
                     .transfer-value {
-                        margin-bottom: 6px;
-                        padding: 6px 8px;
-                        background: rgba(76, 175, 80, 0.05);
-                        border-radius: 4px;
-                        font-size: 11px;
-                        line-height: 1.2;
+                        flex: 1;
+                        font-weight: 500;
                         word-break: break-all;
-                        hyphens: auto;
+                        font-family: monospace;
+                        color: #2e7d32;
+                        font-size: 13px;
                     }
-                    
+
                     .copy-btn-small {
-                        align-self: flex-end;
-                        width: 50px;
-                        height: 24px;
-                        font-size: 9px;
-                        padding: 4px 6px;
-                    }
-                }
-                
-                @media (max-width: 360px) {
-                    .transfer-value {
+                        background: #4CAF50;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        padding: 6px 8px;
+                        cursor: pointer;
                         font-size: 10px;
-                        padding: 4px 6px;
-                        letter-spacing: -0.3px;
+                        flex-shrink: 0;
+                        width: 42px;
+                        height: 28px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.2s ease;
+                        font-weight: 500;
+                        text-transform: lowercase;
                     }
-                    
-                    .transfer-label {
-                        font-size: 10px;
+
+                    .copy-btn-small:hover {
+                        background: #45a049;
+                        transform: translateY(-1px);
                     }
-                    
-                    .copy-btn-small {
-                        width: 45px;
-                        height: 22px;
-                        font-size: 8px;
+
+                    .copy-btn-small.copy-success {
+                        background: #2e7d32;
                     }
-                    
-                    .bank-transfer-compact {
-                        padding: 10px;
+
+                    .transfer-bank-info {
+                        font-size: 11px;
+                        color: #4CAF50;
+                        text-align: center;
+                        padding-top: 12px;
+                        border-top: 1px solid rgba(76, 175, 80, 0.2);
+                        font-weight: 500;
                     }
-                }
+
+                    @media (max-width: 480px) {
+                        .bank-transfer-compact {
+                            padding: 12px;
+                            font-size: 12px;
+                        }
+
+                        .transfer-item {
+                            flex-direction: column;
+                            align-items: stretch;
+                            gap: 6px;
+                            padding: 8px 0;
+                            margin-bottom: 8px;
+                        }
+
+                        .transfer-label {
+                            min-width: auto;
+                            margin-bottom: 2px;
+                            font-size: 11px;
+                        }
+
+                        .transfer-value {
+                            margin-bottom: 6px;
+                            padding: 6px 8px;
+                            background: rgba(76, 175, 80, 0.05);
+                            border-radius: 4px;
+                            font-size: 11px;
+                            line-height: 1.2;
+                            word-break: break-all;
+                            hyphens: auto;
+                        }
+
+                        .copy-btn-small {
+                            align-self: flex-end;
+                            width: 50px;
+                            height: 24px;
+                            font-size: 9px;
+                            padding: 4px 6px;
+                        }
+                    }
+
+                    @media (max-width: 360px) {
+                        .transfer-value {
+                            font-size: 10px;
+                            padding: 4px 6px;
+                            letter-spacing: -0.3px;
+                        }
+
+                        .transfer-label {
+                            font-size: 10px;
+                        }
+
+                        .copy-btn-small {
+                            width: 45px;
+                            height: 22px;
+                            font-size: 8px;
+                        }
+
+                        .bank-transfer-compact {
+                            padding: 10px;
+                        }
+                    }
                 </style>
-                
+
                 <!-- Кнопки для відправки квитанції -->
                 <div class="send-receipt-actions">
-                    <a href="https://t.me/PrometeyLabs" target="_blank" class="button button-secondary receipt-btn-telegram">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.15 11.34 9.24 13.39C8.78 13.71 8.37 13.86 8 13.85C7.58 13.84 6.79 13.62 6.2 13.43C5.47 13.21 4.89 13.09 4.95 12.7C4.98 12.5 5.27 12.29 5.82 12.09C8.94 10.67 11.07 9.72 12.21 9.22C15.33 7.8 16.13 7.54 16.64 7.54C16.75 7.54 16.99 7.57 17.15 7.7C17.29 7.82 17.32 7.97 17.33 8.08C17.33 8.17 17.35 8.44 17.34 8.67L16.64 8.8Z" fill="currentColor"/></svg>
+                    <a href="https://t.me/PrometeyLabs" target="_blank"
+                        class="button button-secondary receipt-btn-telegram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="margin-right: 8px;">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.15 11.34 9.24 13.39C8.78 13.71 8.37 13.86 8 13.85C7.58 13.84 6.79 13.62 6.2 13.43C5.47 13.21 4.89 13.09 4.95 12.7C4.98 12.5 5.27 12.29 5.82 12.09C8.94 10.67 11.07 9.72 12.21 9.22C15.33 7.8 16.13 7.54 16.64 7.54C16.75 7.54 16.99 7.57 17.15 7.7C17.29 7.82 17.32 7.97 17.33 8.08C17.33 8.17 17.35 8.44 17.34 8.67L16.64 8.8Z"
+                                fill="currentColor" />
+                        </svg>
                         Відправити 🧾 у Telegram
                     </a>
-                    <a href="mailto:prometeylabs@gmail.com?subject=Квитанція%20про%20оплату%20за%20{{ payment_link.description|urlencode }}" class="button button-secondary receipt-btn-email">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px;"><path d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z" fill="currentColor"/></svg>
+                    <a href="mailto:prometeylabs@gmail.com?subject=Квитанція%20про%20оплату%20за%20{{ payment_link.description|urlencode }}"
+                        class="button button-secondary receipt-btn-email">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="margin-right: 8px;">
+                            <path
+                                d="M20 4H4C2.89 4 2.01 4.89 2.01 6L2 18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z"
+                                fill="currentColor" />
+                        </svg>
                         Відправити 🧾 на email
                     </a>
                 </div>
@@ -814,7 +867,7 @@
 
     {% if expires_at_iso %}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const countDownDate = new Date("{{ expires_at_iso }}").getTime();
             const timerElement = document.getElementById("timer");
             const timerContainer = document.getElementById("countdown-timer");
@@ -830,7 +883,7 @@
                     timerContainer.classList.add('timer-expired');
                     return;
                 }
-                
+
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -841,9 +894,9 @@
                 if (hours > 0 || days > 0) timerText += hours + " год ";
                 if (minutes > 0 || hours > 0 || days > 0) timerText += minutes + " хв ";
                 timerText += seconds + " с";
-                
+
                 timerElement.innerHTML = timerText;
-                
+
                 if (distance < 1000 * 60 * 30) {
                     timerContainer.classList.add('timer-urgent');
                 } else if (distance < 1000 * 60 * 60 * 3) {
@@ -858,17 +911,17 @@
     {% endif %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const scrollToPaymentBtn = document.getElementById('scrollToPaymentBtn');
             if (scrollToPaymentBtn) {
-                scrollToPaymentBtn.addEventListener('click', function() {
+                scrollToPaymentBtn.addEventListener('click', function () {
                     document.querySelector('.payment-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             }
-            
+
             // Copy buttons functionality
             document.querySelectorAll('.copy-btn, .copy-btn-small').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const textToCopy = this.getAttribute('data-copy');
                     navigator.clipboard.writeText(textToCopy).then(() => {
                         const originalText = this.innerText;
@@ -881,20 +934,20 @@
                     }).catch(err => console.error('Помилка копіювання: ', err));
                 });
             });
-            
+
             // Toggle details functionality
             function setupToggle(btnId, detailsId) {
                 const btn = document.getElementById(btnId);
                 const details = document.getElementById(detailsId);
-                
+
                 if (btn && details) {
-                    btn.addEventListener('click', function() {
+                    btn.addEventListener('click', function () {
                         const btnWrapper = this.parentElement;
                         const parentDiv = btnWrapper.parentElement;
-                        
+
                         details.classList.toggle('visible');
                         this.classList.toggle('active');
-                        
+
                         if (details.classList.contains('visible')) {
                             this.textContent = 'Згорнути';
                             btnWrapper.classList.add('bottom');
@@ -907,10 +960,11 @@
                     });
                 }
             }
-            
+
             setupToggle('companyDetailsBtn', 'companyDetails');
             setupToggle('paymentInstructionsBtn', 'paymentInstructionsDetails');
         });
     </script>
 </body>
-</html> 
+
+</html>
