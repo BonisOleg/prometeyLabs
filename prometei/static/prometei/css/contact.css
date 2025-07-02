@@ -7,142 +7,104 @@
     padding: 40px 15px;
     /* Add vertical padding */
     text-align: center;
-    -webkit-text-size-adjust: 100%;
 }
 
 .contact-section .section-title {
     margin-bottom: 1rem;
-    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-size: 2.5rem;
     /* Larger title */
     color: var(--theme-text);
-    font-weight: 800;
-    line-height: 1.2;
 }
 
 .contact-section .section-subtitle {
     margin-bottom: 3rem;
     color: var(--theme-subtext);
-    font-size: clamp(1rem, 3vw, 1.1rem);
+    font-size: 1.1rem;
 }
 
 .contact-form-container {
-    background-color: rgba(26, 26, 26, 0.95);
-    padding: clamp(1.5rem, 5vw, 2.5rem);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-    margin: 1rem auto 3rem;
+    background-color: var(--theme-surface);
+    padding: 2.5rem 3rem;
+    /* Increased padding */
+    border-radius: 16px;
+    box-shadow: 0 8px 25px var(--theme-shadow);
+    margin-bottom: 3rem;
     text-align: left;
     max-width: 600px;
-    width: 92%;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Додаємо підтримку для iOS */
-@supports (-webkit-touch-callout: none) {
-    .contact-form-container {
-        background-color: rgba(26, 26, 26, 0.98);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+    /* Limit form width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact-form .form-group {
     margin-bottom: 1.5rem;
-    position: relative;
 }
 
 .contact-form label {
     display: block;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     font-weight: 600;
     /* Bolder labels */
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.95rem;
+    color: var(--theme-text);
+    font-size: 0.9rem;
     letter-spacing: 0.5px;
 }
 
 .contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form input[type="tel"],
-.contact-form textarea,
-.contact-form select {
+.contact-form textarea {
     width: 100%;
-    padding: 1rem 1.2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.9);
+    padding: 0.9rem 1.1rem;
+    /* Slightly larger padding */
+    border: 1px solid var(--color-gray-300);
+    border-radius: 12px;
+    /* Match stylerules */
+    background-color: #ffffff;
+    color: var(--theme-text);
     font-size: 1rem;
-    transition: all 0.3s ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* iOS специфічні стилі для інпутів */
-@supports (-webkit-touch-callout: none) {
-
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form input[type="tel"],
-    .contact-form textarea,
-    .contact-form select {
-        font-size: 16px;
-        /* Запобігає зуму на iOS */
-        line-height: 1.3;
-        padding: 1.2rem;
-    }
+[data-theme="dark"] .contact-form input[type="text"],
+[data-theme="dark"] .contact-form textarea {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-300);
+    color: var(--color-black-300);
 }
 
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus,
-.contact-form select:focus {
+.contact-form input[type="text"]:focus,
+.contact-form textarea:focus {
     outline: none;
     border-color: var(--theme-accent-alt);
-    background-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 3px rgba(116, 44, 240, 0.2);
+    /* Using rgb representation for box-shadow color with opacity */
+    box-shadow: 0 0 0 3px rgba(116, 44, 240, 0.15);
+    /* Based on --color-purple-400 */
+}
+
+[data-theme="dark"] .contact-form input[type="text"]:focus,
+[data-theme="dark"] .contact-form textarea:focus {
+    box-shadow: 0 0 0 3px rgba(159, 93, 253, 0.2);
+    /* Based on --color-purple-300 */
 }
 
 .contact-form textarea {
     resize: vertical;
     /* Allow vertical resize */
     min-height: 120px;
-    padding-top: 1rem;
-}
-
-.contact-form select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1.2em;
-    padding-right: 2.5rem;
 }
 
 .contact-form button[type="submit"] {
     width: 100%;
     padding: 1rem 1.5rem;
-    font-size: 1.1rem;
+    /* Match stylerules button padding */
+    font-size: 1.05rem;
     font-weight: 600;
+    /* Match stylerules */
     letter-spacing: 0.5px;
+    /* Match stylerules */
     border-radius: 14px;
-    margin-top: 1.5rem;
-    background: linear-gradient(135deg, var(--color-purple-300), var(--color-purple-400));
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.contact-form button[type="submit"]:active {
-    transform: translateY(1px);
+    /* Match stylerules */
+    margin-top: 1rem;
+    /* Button colors are handled by global .button.cta-button styles */
 }
 
 .form-status {
@@ -215,44 +177,15 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .contact-form-container {
-        padding: 1.5rem;
-        margin: 1rem auto 2rem;
-        width: 94%;
+        padding: 2rem 1.5rem;
     }
 
     .contact-section .section-title {
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
+        font-size: 2rem;
     }
 
     .contact-section .section-subtitle {
         font-size: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .contact-form .form-group {
-        margin-bottom: 1.2rem;
-    }
-}
-
-/* Специфічні стилі для iOS */
-@supports (-webkit-touch-callout: none) {
-    @media (max-width: 428px) {
-        .contact-form-container {
-            border-radius: 20px;
-            padding: 1.25rem;
-        }
-
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form input[type="tel"],
-        .contact-form textarea,
-        .contact-form select {
-            padding: 1rem;
-        }
-
-        .contact-form button[type="submit"] {
-            padding: 0.9rem 1.25rem;
-        }
+        margin-bottom: 2rem;
     }
 }

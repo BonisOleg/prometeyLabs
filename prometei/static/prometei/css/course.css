@@ -1337,12 +1337,45 @@ section:not(.hero):not(.footer)::before {
 
 /* Contact Form Section */
 .contact-form-section {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    /* Темний градієнтний фон для всіх браузерів */
+    background: linear-gradient(135deg,
+            rgba(26, 26, 26, 0.95) 0%,
+            rgba(45, 35, 55, 0.95) 25%,
+            rgba(65, 25, 85, 0.9) 50%,
+            rgba(45, 35, 55, 0.95) 75%,
+            rgba(26, 26, 26, 0.95) 100%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     padding: var(--spacing-xl) 0;
     margin: var(--spacing-xl) 0;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Додатковий градієнтний overlay для глибини */
+.contact-form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+            transparent 0%,
+            rgba(255, 105, 180, 0.1) 30%,
+            rgba(138, 43, 226, 0.15) 50%,
+            rgba(255, 105, 180, 0.1) 70%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.contact-form-section .container {
+    position: relative;
+    z-index: 2;
 }
 
 .contact-form-container {
@@ -1367,20 +1400,37 @@ section:not(.hero):not(.footer)::before {
 .form-group select,
 .form-group textarea {
     padding: var(--spacing-sm);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--border-radius-small);
     font-size: var(--font-base);
     width: 100%;
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
     transition: var(--transition-base);
+}
+
+.form-group input::placeholder,
+.form-group select::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+    border-color: rgba(255, 105, 180, 0.8);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.3);
+}
+
+.form-group label {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
 }
 
 .form-group textarea {
@@ -1405,24 +1455,103 @@ section:not(.hero):not(.footer)::before {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+    .contact-form-section {
+        margin: 1rem 0;
+        padding: 2rem 0;
+        background: linear-gradient(135deg,
+                rgba(26, 26, 26, 0.98) 0%,
+                rgba(45, 35, 55, 0.98) 25%,
+                rgba(65, 25, 85, 0.95) 50%,
+                rgba(45, 35, 55, 0.98) 75%,
+                rgba(26, 26, 26, 0.98) 100%);
+    }
+
+    .contact-form-section h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
     .contact-form-container {
-        padding: var(--spacing-md);
+        padding: 1.5rem;
+        max-width: 100%;
     }
 
     .contact-form {
-        gap: var(--spacing-sm);
+        gap: 1rem;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
-        font-size: var(--font-sm);
-        padding: 0.75rem;
+        font-size: 16px;
+        /* iOS Safari zoom prevention */
+        padding: 0.875rem;
+        border-radius: 10px;
     }
+
+    .contact-form-section .btn-primary,
+    .contact-form-section .btn-secondary,
+    .contact-form-section .btn,
+    .contact-form-section button[type="submit"] {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Extra small devices (iPhone SE, etc.) */
+@media (max-width: 480px) {
+    .contact-form-section {
+        margin: 0.5rem 0;
+        padding: 1.5rem 0;
+        border-radius: 12px;
+    }
+
+    .contact-form-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        padding: 0 1rem;
+    }
+
+    .contact-form-container {
+        padding: 1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.75rem;
+        font-size: 16px;
+    }
+}
+
+/* Стилі заголовка секції */
+.contact-form-section h2 {
+    background: linear-gradient(135deg, #ff69b4 0%, #8a2be2 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.2;
 }
 
 /* iOS Safari Specific Styles */
 @supports (-webkit-touch-callout: none) {
+
+    /* Забезпечуємо темний фон для iOS Safari */
+    .contact-form-section {
+        background: linear-gradient(135deg,
+                rgba(26, 26, 26, 0.98) 0%,
+                rgba(45, 35, 55, 0.98) 25%,
+                rgba(65, 25, 85, 0.95) 50%,
+                rgba(45, 35, 55, 0.98) 75%,
+                rgba(26, 26, 26, 0.98) 100%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+    }
 
     .form-group input,
     .form-group select,
@@ -1431,35 +1560,71 @@ section:not(.hero):not(.footer)::before {
         appearance: none;
         font-size: 16px;
         /* Prevents zoom on focus */
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+
+    .form-group input::placeholder,
+    .form-group select::placeholder,
+    .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.7) !important;
+        opacity: 1;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 105, 180, 0.8) !important;
+        box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.4) !important;
     }
 
     .form-group select {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 0.5rem center;
         background-size: 1.5em;
         padding-right: 2.5rem;
     }
+
+    /* Заголовок для iOS Safari */
+    .contact-form-section h2 {
+        background: linear-gradient(135deg, #ff69b4 0%, #8a2be2 100%) !important;
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    .contact-form-section {
-        background: rgba(0, 0, 0, 0.8);
-    }
+/* Стилі кнопки для форми */
+.contact-form-section .btn-primary,
+.contact-form-section .btn-secondary,
+.contact-form-section .btn,
+.contact-form-section button[type="submit"] {
+    background: linear-gradient(135deg, #ff69b4 0%, #8a2be2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    width: 100%;
+    margin-top: 1rem;
+}
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.1);
-        color: white;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-    }
+.contact-form-section .btn-primary:hover,
+.contact-form-section .btn-secondary:hover,
+.contact-form-section .btn:hover,
+.contact-form-section button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+    background: linear-gradient(135deg, #ff1493 0%, #9932cc 100%);
 }
 
 /* Payment Modal Styles */
