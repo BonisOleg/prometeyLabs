@@ -15,7 +15,6 @@ class ContactRequest(models.Model):
         ('builder', _('Конструктор сайту')),
         ('promin', _('Заявка Промінь')),
         ('dream_site', _('Сайт мрії')),
-        ('course', _('Заявка на курс')),
     )
     
     name = models.CharField(_('Імʼя'), max_length=100)
@@ -38,10 +37,6 @@ class ContactRequest(models.Model):
     project_description = models.TextField(_('Опис проєкту'), blank=True, null=True)
     project_budget = models.CharField(_('Бюджет'), max_length=50, blank=True, null=True)
     project_deadline = models.DateField(_('Дедлайн'), blank=True, null=True)
-    
-    # Поля для курсу
-    course_package = models.CharField(_('Пакет курсу'), max_length=50, null=True, blank=True)
-    course_experience = models.CharField(_('Досвід в IT'), max_length=50, null=True, blank=True)
     
     # Службові поля
     created_at = models.DateTimeField(_('Дата створення'), default=timezone.now)

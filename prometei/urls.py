@@ -7,7 +7,6 @@ from .views import (
     ContactPageView,
     ProminPageView,
     DreamSitePageView,
-    CoursePageView,
     PrivacyPolicyView,
     TermsOfUseView,
     builder_request_view,
@@ -27,8 +26,8 @@ from .views import (
     api_list_landing_page_templates,
     # New PROmin landing page view
     ProminLandingPageView,
-    # Course payment view
-    create_course_payment_link
+    # Payment creation view
+    create_payment_link
 )
 
 app_name = 'prometei' # Додаємо неймспейс для уникнення конфліктів імен URL
@@ -57,9 +56,8 @@ urlpatterns = [
     # Dream Site
     path('dream-site/', DreamSitePageView.as_view(), name='dream_site'),
     
-    # Course Landing
-    path('course/', CoursePageView.as_view(), name='course'),
-    path('course/create-payment-link/', create_course_payment_link, name='create_course_payment_link'),
+    # Payment creation
+    path('create-payment-link/', create_payment_link, name='create_payment_link'),
 
     # Юридичні сторінки
     path('privacy_policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),

@@ -66,7 +66,6 @@ class EmailService:
                 'contact': _('Новий контактний запит від {name}'),
                 'builder': _('Новий запит з конструктора сайту від {name}'),
                 'promin': _('Нова заявка на проєкт Promin від {name}'),
-                'course': _('Нова заявка на курс від {name}'),
             }
             
             subject = subject_map.get(
@@ -79,7 +78,6 @@ class EmailService:
                 'contact': 'email/contact_request_email.html',
                 'builder': 'email/builder_request_email.html',
                 'promin': 'email/promin_request_email.html',
-                'course': 'email/course_request_email.html',
             }
             
             template = template_map.get(
