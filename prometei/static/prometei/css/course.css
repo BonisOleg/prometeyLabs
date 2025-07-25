@@ -1,0 +1,275 @@
+/* Course Page Styles */
+
+/* Root CSS custom properties for viewport height */
+:root {
+    --vh: 1vh;
+}
+
+/* Hide header and footer on course page */
+.course-page .header,
+.course-page .footer {
+    display: none;
+}
+
+/* Adjust main content without header */
+.course-page .main {
+    padding-top: 0;
+}
+
+/* Full viewport height for course page */
+.course-page {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    /* Dynamic viewport height for iOS Safari */
+    height: 100dvh;
+    /* Modern browsers */
+    overflow-x: hidden;
+}
+
+.course-page .main {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+}
+
+/* Hero Section with full screen video */
+.course .hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    /* Dynamic viewport height for iOS Safari */
+    height: 100dvh;
+    /* Modern browsers */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--theme-bg);
+}
+
+/* Video container */
+.hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hero video styles */
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    /* iOS Safari optimizations */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* GIF animation optimizations */
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* Preserve animation quality */
+    animation-fill-mode: both;
+    animation-play-state: running;
+}
+
+/* Content overlay */
+.course .hero .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 20px;
+    pointer-events: none;
+    /* Allow clicks to pass through to video */
+}
+
+/* iOS Safari specific optimizations */
+@supports (-webkit-touch-callout: none) {
+    .course-page {
+        height: -webkit-fill-available;
+        height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .course-page .main {
+        height: -webkit-fill-available;
+        height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .course .hero {
+        height: -webkit-fill-available;
+        height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .course-content,
+    .course-features,
+    .course-contact {
+        min-height: -webkit-fill-available;
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .hero-video {
+        /* Prevent iOS Safari zoom issues */
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        will-change: transform;
+    }
+}
+
+/* Course Content Section */
+.course-content {
+    background: var(--theme-surface);
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100dvh;
+    padding: 8vh 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Course Features Section */
+.course-features {
+    background: var(--theme-surface-alt);
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100dvh;
+    padding: 8vh 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Course Contact Section */
+.course-contact {
+    background: var(--theme-bg);
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100dvh;
+    padding: 8vh 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Container for sections */
+.course-content .container,
+.course-features .container,
+.course-contact .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5vw;
+    width: 100%;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+
+    .course-content,
+    .course-features,
+    .course-contact {
+        padding: 5vh 0;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+        min-height: 100dvh;
+    }
+
+    .course-content .container,
+    .course-features .container,
+    .course-contact .container {
+        padding: 0 4vw;
+    }
+
+    /* Ensure video maintains aspect ratio on mobile */
+    .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Mobile optimizations for GIF */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        will-change: transform;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+@media (max-width: 375px) {
+
+    .course-content,
+    .course-features,
+    .course-contact {
+        padding: 3vh 0;
+    }
+
+    .course-content .container,
+    .course-features .container,
+    .course-contact .container {
+        padding: 0 3vw;
+    }
+}
+
+/* iOS Safari mobile viewport fixes */
+@media screen and (max-width: 768px) {
+    @supports (-webkit-touch-callout: none) {
+
+        .course-content,
+        .course-features,
+        .course-contact {
+            min-height: -webkit-fill-available;
+            min-height: calc(var(--vh, 1vh) * 100);
+        }
+
+        /* Fix for iOS Safari bottom bar */
+        .course-page {
+            min-height: -webkit-fill-available;
+            min-height: calc(var(--vh, 1vh) * 100);
+        }
+
+        /* Prevent zoom on input focus */
+        input,
+        textarea,
+        select {
+            font-size: 16px;
+        }
+    }
+}
+
+/* Landscape orientation optimizations */
+@media screen and (orientation: landscape) and (max-height: 480px) {
+    .hero-video {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .hero-video-container {
+        padding: 2vh 2vw;
+    }
+}
+
+/* Special optimizations for wide screens */
+@media screen and (min-aspect-ratio: 16/9) {
+    .hero-video {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}

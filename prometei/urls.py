@@ -7,6 +7,7 @@ from .views import (
     ContactPageView,
     ProminPageView,
     DreamSitePageView,
+    CoursePageView,
     PrivacyPolicyView,
     TermsOfUseView,
     builder_request_view,
@@ -52,9 +53,13 @@ urlpatterns = [
     # Promin
     path('promin/', ProminPageView.as_view(), name='promin'),
     path('promin/landing/', ProminLandingPageView.as_view(), name='promin_landing'),
+    path('promin/course/', CoursePageView.as_view(), name='promin_course'),
     
     # Dream Site
     path('dream-site/', DreamSitePageView.as_view(), name='dream_site'),
+    
+    # Course
+    path('course/', CoursePageView.as_view(), name='course'),
     
     # Payment creation
     path('create-payment-link/', create_payment_link, name='create_payment_link'),

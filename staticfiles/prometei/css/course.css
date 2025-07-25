@@ -1,0 +1,401 @@
+/* Course Page - ПРОСТИЙ МАКЕТ */
+
+.course-page .header,
+.course-page .footer {
+    display: none !important;
+}
+
+.course-page .main {
+    padding-top: 0 !important;
+}
+
+.course-hero {
+    min-height: 100vh !important;
+    display: flex !important;
+    width: 100% !important;
+    background: var(--theme-bg) !important;
+}
+
+.course-hero__left {
+    width: 50% !important;
+    padding: 40px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    color: var(--theme-text) !important;
+}
+
+.course-hero__left h1 {
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 20px !important;
+    line-height: 1.1 !important;
+}
+
+.course-hero__left p {
+    font-size: 1.2rem !important;
+    margin-bottom: 40px !important;
+    color: var(--theme-subtext) !important;
+}
+
+.btn-primary {
+    background: var(--theme-button) !important;
+    color: var(--theme-button-text) !important;
+    padding: 16px 32px !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    width: fit-content !important;
+}
+
+.btn-primary:hover {
+    background: var(--theme-button-hover) !important;
+    transform: translateY(-2px) !important;
+}
+
+.course-hero__right {
+    width: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 40px !important;
+}
+
+.course-gif {
+    max-width: 90% !important;
+    max-height: 80vh !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px var(--theme-shadow) !important;
+}
+
+/* МОБІЛЬНІ СТИЛІ - ЗАЛИШАЄМО ПОРУЧ! */
+@media (max-width: 768px) {
+    .course-hero {
+        flex-direction: row !important;
+        min-height: 100vh !important;
+    }
+
+    .course-hero__left {
+        width: 50% !important;
+        padding: 20px 10px !important;
+    }
+
+    .course-hero__left h1 {
+        font-size: 1.6rem !important;
+        margin-bottom: 15px !important;
+    }
+
+    .course-hero__left p {
+        font-size: 0.9rem !important;
+        margin-bottom: 20px !important;
+    }
+
+    .btn-primary {
+        padding: 10px 20px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .course-hero__right {
+        width: 50% !important;
+        padding: 20px 5px !important;
+    }
+
+    .course-gif {
+        max-width: 85% !important;
+        max-height: 50vh !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-hero__left {
+        padding: 15px 5px !important;
+    }
+
+    .course-hero__left h1 {
+        font-size: 1.3rem !important;
+    }
+
+    .course-hero__left p {
+        font-size: 0.8rem !important;
+    }
+
+    .course-hero__right {
+        padding: 15px 2px !important;
+    }
+
+    .course-gif {
+        max-width: 90% !important;
+        max-height: 45vh !important;
+    }
+}
+
+/* Course Program Section */
+.course-program {
+    padding: 100px 0;
+    background: var(--theme-surface);
+}
+
+.course-program h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--theme-text);
+    margin-bottom: 60px;
+}
+
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.program-week {
+    background: var(--theme-bg);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 8px 24px var(--theme-shadow);
+    transition: transform 0.3s ease;
+}
+
+.program-week:hover {
+    transform: translateY(-8px);
+}
+
+.week-number {
+    width: 60px;
+    height: 60px;
+    background: var(--theme-accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 auto 24px;
+}
+
+.program-week h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--theme-text);
+    margin-bottom: 20px;
+}
+
+.program-week ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.program-week li {
+    padding: 8px 0;
+    color: var(--theme-subtext);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.program-week li:last-child {
+    border-bottom: none;
+}
+
+/* Instructors Section */
+.course-instructors {
+    padding: 100px 0;
+    background: var(--theme-surface-alt);
+}
+
+.course-instructors h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--theme-text);
+    margin-bottom: 60px;
+}
+
+.instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.instructor-card {
+    background: var(--theme-surface);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 8px 24px var(--theme-shadow);
+    transition: transform 0.3s ease;
+}
+
+.instructor-card:hover {
+    transform: translateY(-8px);
+}
+
+.instructor-photo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--theme-accent);
+}
+
+.instructor-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.instructor-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--theme-text);
+    margin-bottom: 8px;
+}
+
+.instructor-role {
+    font-size: 1.1rem;
+    color: var(--theme-accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.instructor-bio {
+    color: var(--theme-subtext);
+    line-height: 1.6;
+}
+
+/* Course Contact Section */
+.course-contact {
+    padding: 100px 0;
+    background: var(--theme-bg);
+}
+
+.contact-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.contact-info h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--theme-text);
+    margin-bottom: 24px;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    color: var(--theme-subtext);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.contact-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    color: var(--theme-text);
+}
+
+.benefit-icon {
+    background: var(--theme-accent);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.course-form {
+    background: var(--theme-surface);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 12px 32px var(--theme-shadow);
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: var(--theme-surface-alt);
+    color: var(--theme-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--theme-accent);
+}
+
+.btn-submit {
+    width: 100%;
+    background: var(--theme-accent);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--theme-accent-alt);
+    transform: translateY(-2px);
+}
+
+/* iOS Safari optimizations */
+@supports (-webkit-touch-callout: none) {
+    .course-gif {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    @media (max-width: 768px) {
+        .course-hero {
+            min-height: 100svh;
+        }
+    }
+}
+
+/* iPad */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .course-hero__left {
+        padding: 0 40px;
+    }
+
+    .course-hero__left h1 {
+        font-size: 3rem;
+    }
+}
